@@ -1,0 +1,54 @@
+<ion-view view-title="发现">
+  <ion-content>
+    <h2>{{person.name}}</h2>
+
+    <transclude-directive>
+      <div class="card">
+        <div class="item item-divider">
+          卡片头部！
+        </div>
+        <div class="item item-text-wrap">
+          基本卡片，包含了文本信息。
+          <!-- <button class="button button-positive" ng-click="getDataAjax()">
+            button-positive
+          </button> -->
+        </div>
+        <div class="item item-divider">
+          卡片底部！
+        </div>
+      </div>
+
+    </transclude-directive>
+
+    <transclude-directive>
+      <div class="card">
+        <div class="item item-divider">
+          卡片头部！
+        </div>
+        <div class="item item-text-wrap">
+          基本卡片，包含了文本信息。
+        </div>
+        <div class="item item-divider">
+          卡片底部！
+        </div>
+      </div>
+
+    </transclude-directive>
+
+
+    <div templatescript-directive></div>
+
+    <!-- <ion-list>
+    <ion-toggle  ng-model="settings.enableFriends">
+        Enable Friends
+    </ion-toggle>
+    </ion-list> -->
+  </ion-content>
+  <script type="text/ng-template" id="part.html">
+    <div>
+      <h1>通过ng-template封装的part.html</h1>
+      <p>这里是part.html中的内容</p>
+    </div>
+
+  </script>
+</ion-view>

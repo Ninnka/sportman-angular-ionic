@@ -1,0 +1,11 @@
+/* Empty. Add your own CSS if you like */
+
+.btns {
+  display: flex;
+  justify-content: center;
+}
+
+.btns>button {
+  margin: 6px 12px;
+  width: 120px;
+}
