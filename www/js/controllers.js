@@ -1,4 +1,7 @@
 angular.module('starter.controllers', [])
+  .controller('AppCtrl', function ($scope) {
+
+  })
   .controller('HomeCtrl', function ($scope, ajaxGetData, $ionicSlideBoxDelegate, $state) {
     // $scope.bannerList = [];
     // $scope.mainGoodsList = [];
@@ -29,18 +32,23 @@ angular.module('starter.controllers', [])
         console.log(err);
       });
     $scope.firstEnter = false;
-
-    $scope.middlenav = function () {
-      console.log("in middlenav");
-      // $location.path("/thematic");
-      $state.go("themetic");
-    };
   })
-  .controller('HomeThematicCtrl', function ($scope) {
-
+  .controller('HomeGoodsDetailCtrl', function ($scope, $ionicHistory, $stateParams) {
+    $scope.viewTitle = $stateParams.itemname;
+    // console.log("viewTitle");
+    // console.log($scope.viewTitle);
+    $scope.toBackView = function () {
+      $ionicHistory.goBack(-1);
+    };
+    var vh = $ionicHistory.viewHistory();
+    console.log("vh");
+    console.log(vh);
+    // $scope.$on("$ionicView.enter", function () {
+    //
+    // });
   })
   .controller('CategoryCtrl', function ($scope) {
-
+    console.log("in CatetoryCrtl");
   })
   .controller('FindCtrl', ["$scope", "$http", "constantParams", "valueParams", "provideTest", "getData", "ajaxGetData", "studentsService", "$timeout", function ($scope, $http, constantParams, valueParams, provideTest, getData, ajaxGetData, studentsService, $timeout) {
     // console.log("constantParams: " + constantParams);
@@ -93,8 +101,8 @@ angular.module('starter.controllers', [])
       studentsService.logSTC();
       console.log("innerThing: " + studentsService.innerThing);
       var data = ajaxGetData.ajaxGet("http://www.hehe168.com/mapi.php?act=getGoods");
-      console.log("getData");
-      console.log(getData);
+      // console.log("getData");
+      // console.log(getData);
     };
   }])
   .controller('MyCtrl', function ($scope) {

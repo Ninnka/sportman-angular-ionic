@@ -39,7 +39,7 @@
     <div class="thematic-wrapper">
       <p class="thematic-title">精品推荐</p>
       <ion-scroll scrollbar-x="false" scrollbar-y="false" zooming="false" direction="x" class="thematic">
-        <div class="thematic-content" ng-controller="HomeThematicCtrl">
+        <div class="thematic-content">
           <a class="thematic-item-wrapper">
             <img ng-src="http://img10.360buyimg.com/n4/s130x130_jfs/t3046/266/4474424408/618161/f2cbbcf/5844d109N00395079.jpg!q90.webp" alt="">
             <p>【京东超市】佳洁士（Crest）3D炫白双效牙膏180g6支装 鹿晗咖啡箱（新老包装随机发货）</p>
@@ -66,7 +66,7 @@
 
     <div class="main-goods-list-wrapper">
       <ion-list class="goods-list-wrapper" ng-if="mainGoodsListLoaded">
-        <ion-item class="goods-item" ng-repeat="goodsitem in mainGoodsList" href="#/tab/goodsdetail">
+        <ion-item class="goods-item" ng-repeat="goodsitem in mainGoodsList" href="#/detail/goodsdetail/{{goodsitem.name}}">
           <div class="goods-item-icon-wrapper">
             <img ng-src="{{goodsitem.icon}}" alt="">
           </div>

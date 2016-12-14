@@ -1,5 +1,9 @@
-<ion-view view-title="detail">
+<ion-view view-title="{{viewTitle}}">
+  <ion-nav-buttons side="left">
+    <a class="button button-icon icon ion-ios-arrow-back" ng-click="toBackView()"></a>
+  </ion-nav-buttons>
   <ion-content class="padding">
-    <p>detail</p>
+    <p></p>
+    <button type="button" name="button" class="button button-positive" ng-click="toBackView()"></button>
   </ion-content>
 </ion-view>
