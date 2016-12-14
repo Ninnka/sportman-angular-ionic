@@ -154,18 +154,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     console.log("initial ajaxGetData instance");
     return {
       ajaxGet(url) {
-        $http({
-            method: "GET",
-            url: url
-          })
-          .then(function successCallback(res) {
-            console.log("res:");
-            console.log(res);
-            return res.data;
-          }, function errorCallback(err) {
-            console.log("err:");
-            console.log(err);
-          });
+        return $http({
+          method: "GET",
+          url: url
+        });
       }
     };
   })
@@ -185,7 +177,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       };
     };
   })
-  .config(function ($stateProvider, $urlRouterProvider, $provide, constantParams) {
+  .config(function ($stateProvider, $urlRouterProvider, $provide, constantParams, $ionicConfigProvider) {
     console.log("start config");
 
     $provide.provider("provideTest", function () {
@@ -251,10 +243,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             controller: 'ShoppingCarCtrl'
           }
         }
+      })
+      .state('tab.goodsdetail', {
+        url: '/goodsdetail',
+        views: {
+          'tab-home': {
+            templateUrl: 'templates/goodsdetail.html',
+            controller: 'HomeThematicCtrl'
+          }
+        }
       });
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/home');
+
+    // 修改Android的样式
+    $ionicConfigProvider.platform.ios.tabs.style('standard');
+    $ionicConfigProvider.platform.ios.tabs.position('bottom');
+    $ionicConfigProvider.platform.android.tabs.style('standard');
+    $ionicConfigProvider.platform.android.tabs.position('standard');
+
+    $ionicConfigProvider.platform.ios.navBar.alignTitle('center');
+    $ionicConfigProvider.platform.android.navBar.alignTitle('center');
+
+    $ionicConfigProvider.platform.ios.backButton.previousTitleText('')
+      .icon('ion-ios-arrow-thin-left');
+    $ionicConfigProvider.platform.android.backButton.previousTitleText('')
+      .icon('ion-android-arrow-back');
+
+    $ionicConfigProvider.platform.ios.views.transition('ios');
+    $ionicConfigProvider.platform.android.views.transition('android');
 
   });
 

@@ -1,20 +1,46 @@
 angular.module('starter.controllers', [])
-  .controller('HomeCtrl', function ($scope) {
+  .controller('HomeCtrl', function ($scope, ajaxGetData, $ionicSlideBoxDelegate, $state) {
+    // $scope.bannerList = [];
+    // $scope.mainGoodsList = [];
+    $scope.firstEnter = true;
+
+    $scope.$on("$ionicView.enter", function () {
+      if (!$scope.firstEnter) {
+        $ionicSlideBoxDelegate.start();
+      }
+    });
+
+    $scope.bannerListLoaded = false;
+    $scope.mainGoodsListLoaded = false;
+    $scope.goodsListAll = ajaxGetData.ajaxGet("http://www.hehe168.com/mapi.php?act=getGoods")
+      .then(function successCallback(res) {
+        console.log("res:");
+        console.log(res);
+
+        $scope.bannerList = res.data.bannerList;
+        $scope.bannerListLoaded = true;
+
+        $scope.mainGoodsList = res.data.shareList;
+        $scope.mainGoodsListLoaded = true;
+
+        return res.data;
+      }, function errorCallback(err) {
+        console.log("err:");
+        console.log(err);
+      });
+    $scope.firstEnter = false;
+
+    $scope.middlenav = function () {
+      console.log("in middlenav");
+      // $location.path("/thematic");
+      $state.go("themetic");
+    };
+  })
+  .controller('HomeThematicCtrl', function ($scope) {
 
   })
   .controller('CategoryCtrl', function ($scope) {
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
 
-    // $scope.chats = Chats.all();
-    // $scope.remove = function (chat) {
-    //   Chats.remove(chat);
-    // };
   })
   .controller('FindCtrl', ["$scope", "$http", "constantParams", "valueParams", "provideTest", "getData", "ajaxGetData", "studentsService", "$timeout", function ($scope, $http, constantParams, valueParams, provideTest, getData, ajaxGetData, studentsService, $timeout) {
     // console.log("constantParams: " + constantParams);
