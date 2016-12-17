@@ -1,50 +1,112 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
-
+.factory("SignInOrUpApi", function () {
   return {
-    all: function() {
-      return chats;
+    signInUrl: "http://localhost:8080/sportman/auth",
+    signUpUrl: "http://localhost:8080/sportman/signup"
+  };
+})
+
+.factory("SignInOrUpFac", function ($http, SignInOrUpApi) {
+  return {
+    signIn(usrname, usrpassword) {
+      return $http({
+        method: "POST",
+        url: SignInOrUpApi.signInUrl,
+        data: {
+          username: usrname,
+          password: usrpassword
+        },
+        timeout: 5000
+      });
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
+    signUp(usrname, usrpassword) {
+      return $http({
+        method: "POST",
+        url: SignInOrUpApi.signUpUrl,
+        data: {
+          username: usrname,
+          password: usrpassword
+        },
+        timeout: 5000
+      });
     }
+  };
+})
+
+.service("studentsService", function () {
+  var somethingCommon = "somethingCommon_init";
+
+  this.innerThing = "innerThing";
+  this.modifyInner = function (modifyStr) {
+    this.innerThing = modifyStr;
+  };
+  this.logSTC = function () {
+    console.log("somethingCommon: " + somethingCommon);
+  };
+  this.modifySTC = function (modifyStr) {
+    somethingCommon = modifyStr;
+  };
+})
+
+.factory("getData", function () {
+  return {
+    p1: {
+      pname: "p1",
+      page: "12"
+    },
+    p2: {
+      pname: "p2",
+      page: "13"
+    },
+    p3: {
+      pname: "p3",
+      page: "14"
+    }
+  };
+})
+
+.factory("ls", function ($window) {
+  return {
+    set(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject(key, defaultValue) {
+      return JSON.parse($window.localStorage[key]) || defaultValue;
+    }
+  };
+})
+
+.factory("ajaxGetData", function ($http) {
+  return {
+    ajaxGet(url) {
+      return $http({
+        method: "GET",
+        url
+      });
+    }
+  };
+})
+
+.provider("otherProviderData", function () {
+  console.log("initial otherProviderData instance");
+  this.$get = function () {
+    return {
+      otherProviderDataKey: "otherProviderDataValue"
+    };
+  };
+})
+
+.provider("providerData", function () {
+  this.$get = function () {
+    return {
+      providerDataKey: "providerDataValue"
+    };
   };
 });

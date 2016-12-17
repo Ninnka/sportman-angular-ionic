@@ -1,22 +1,62 @@
-<form>
-  <div>
-    <label for="username" class="item item-input">
-      username:
-      <input type="text" name="username" value="" placeholder="input username">
-    </label>
+<div id="my">
+  <div class="top-icon-wrapper">
+    <embed ng-src="img/pie-chart.svg" width="60" height="60" class="my-top-icon">
   </div>
-  <div>
-    <label for="password" class="item item-input">
-      password:
-      <input type="password" name="password" value="" placeholder="input password">
-    </label>
+  <form class="login-form">
+    <div class="input-wrapper">
+      <label for="username" class="item item-input">
+        <!-- 用户名 -->
+        <input type="text" name="username" ng-model="usrinfo.usrname" placeholder="用户名">
+      </label>
+    </div>
+    <div class="input-wrapper">
+      <label for="password" class="item item-input">
+        <!-- 密码 -->
+        <input type="password" name="password" ng-model="usrinfo.usrpassword" placeholder="密码">
+      </label>
+    </div>
+    <div class="btns">
+      <button class="button button-calm" ng-click="loginSubmit()">
+        sign in
+      </button>
+    </div>
+  </form>
+  <div class="account-assit">
+    <p class="forgetpassword">忘记密码？</p>
+    <p class="signup" ng-click="openSignUpModal()">注册账号</p>
   </div>
-  <div class="btns">
-    <button class="button button-calm">
-      sign in
-    </button>
-    <button class="button button-positive">
-      sign up
-    </button>
+  <div class="error-notification" ng-if="resultFail">{{resultErrorText}}</div>
+  <div class="thirdplatform-login">
+    <div class="thirdplatform-top">
+      <span class="title-line"></span>
+      <span class="thirdplatform-title">其他账号登录</span>
+      <span class="title-line"></span>
+    </div>
+    <div class="thirdplatform-main">
+      <div class="thirdplatform-item item-weibo">
+        <div class="thirdplatform-svg-wrapper">
+          <svg class="icon-svg" aria-hidden="true">
+              <use xlink:href="#icon-weixin"></use>
+          </svg>
+        </div>
+        <p class="thirdplatform-item-title">微博</p>
+      </div>
+      <div class="thirdplatform-item item-weibo">
+        <div class="thirdplatform-svg-wrapper">
+          <svg class="icon-svg" aria-hidden="true">
+              <use xlink:href="#icon-weibo"></use>
+          </svg>
+        </div>
+        <p class="thirdplatform-item-title">微信</p>
+      </div>
+      <div class="thirdplatform-item item-weibo">
+        <div class="thirdplatform-svg-wrapper">
+          <svg class="icon-svg" aria-hidden="true">
+              <use xlink:href="#icon-social-github"></use>
+          </svg>
+        </div>
+        <p class="thirdplatform-item-title">Github</p>
+      </div>
+    </div>
   </div>
-</form>
+</div>

@@ -79,7 +79,7 @@ module.exports = {
     "func-style": [2, "declaration", {
       "allowArrowFunctions": true
 		}],
-    "indent": [1, 2, {
+    "indent": [0, 2, {
       "SwitchCase": 0
 		}],
     "space-before-function-paren": ["off", {

@@ -2,9 +2,78 @@
 
   <ion-content class="padding">
 
-    <div my-directive userinfo="userinfo" custominfo="custominfoValue"></div>
-
-    <div form-directive></div>
+    <div form-directive ng-if="my.form"></div>
+    <div my-content-directive um="{{um}}" ng-if="my.content"></div>
 
   </ion-content>
+
+  <script id="my-signup-modal.html" type="text/ng-template">
+    <div class="modal">
+
+      <ion-header-bar class="bar-secondary">
+
+        <h1 class="title">欢迎注册</h1>
+        <button class="button button-clear button-positive" ng-click="closeSignUpModal()">Cancel</button>
+
+      </ion-header-bar>
+
+      <ion-content>
+
+        <form ng-submit="signupSubmit()">
+          <div class="list">
+            <label class="item item-input">
+              <input type="text" placeholder="用户名" ng-model="signupInfo.usrname">
+            </label>
+            <label class="item item-input">
+              <input type="text" placeholder="密码" ng-model="signupInfo.usrpassword">
+            </label>
+          </div>
+          <div class="padding">
+            <button class="button button-block button-positive">注册</button>
+          </div>
+          <!-- <div class="list">
+            <label for="" class="item item-input">
+              <input type="text" placeholder="What do you need to do?">
+            </label>
+          </div>
+          <div class="padding">
+            <button type="submit" class="button button-block button-positive">Create Task</button>
+          </div> -->
+        </form>
+
+      </ion-content>
+
+    </div>
+
+  </script>
+
 </ion-view>
+
+
+<!-- <script type="text/ng-template" id="signup-modal.html">
+  <div class="modal">
+
+
+    <ion-header-bar class="bar-secondary">
+      <h1 class="title">New Task</h1>
+      <button class="button button-clear button-positive">Cancel</button>
+    </ion-header-bar>
+
+
+    <ion-content>
+
+      <form>
+        <div class="list">
+          <label for="" class="item item-input">
+            <input type="text" placeholder="What do you need to do?">
+          </label>
+        </div>
+        <div class="padding">
+          <button type="submit" class="button button-block button-positive">Create Task</button>
+        </div>
+      </form>
+
+    </ion-content>
+
+  </div>
+</script> -->
