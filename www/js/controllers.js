@@ -41,13 +41,16 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   }];
 })
 
-.controller('AppCtrl', ['$scope', '$rootScope', 'SignInOrUpFac', 'ls', function ($scope, $rootScope, SignInOrUpFac, ls) {
+.controller('AppCtrl', ['$scope', '$rootScope', 'SignInOrUpFac', 'ls', '$timeout', function ($scope, $rootScope, SignInOrUpFac, ls, $timeout) {
   console.log("init AppCtrl");
+
+  $rootScope.um = "";
+  $rootScope.sportmanid = "";
+  $rootScope.avatar = "";
+
   $rootScope.globalSignSymbol = false;
   $scope.globalUsrname = ls.get("usrname", "");
   $scope.globalPassword = ls.get("usrpassword", "");
-
-  // $rootScope.testnum = 1;
 
   if ($scope.globalUsrname !== "" && $scope.globalPassword !== "") {
     SignInOrUpFac.signIn($scope.globalUsrname, $scope.globalPassword)
@@ -56,7 +59,14 @@ angular.module('starter.controllers', [], function ($httpProvider) {
         if (response.data.resultStatus === "success") {
           $rootScope.globalSignSymbol = true;
           $rootScope.um = response.data.usrnm;
+          $rootScope.sportmanid = response.data.sportmanid;
+          $rootScope.avatar = response.data.avatar;
+          $rootScope.$apply("sportmanid");
+          $rootScope.$apply("avatar");
+          console.log("$rootScope.sportmanid: " + $rootScope.sportmanid);
+          console.log("$rootScope.avatar: " + $rootScope.avatar);
           console.log("global success");
+
         } else {
           console.log("global fail");
         }
@@ -226,12 +236,17 @@ angular.module('starter.controllers', [], function ($httpProvider) {
         if (response.data.resultStatus === "success") {
           $scope.resultFail = false;
           $rootScope.um = response.data.usrnm;
+          $rootScope.sportmanid = response.data.sportmanid;
+          $rootScope.avatar = response.data.avatar;
 
           // storage in local
-          ls.set("usrpassword", $scope.usrinfo.usrpassword);
-
-          ls.set("usrname", $scope.usrinfo.usrname);
+          ls.set("usrpassword", response.data.usrpw);
+          ls.set("usrname", response.data.usrnm);
           ls.set("avatar", response.data.avatar);
+          ls.set("sportmanid", response.data.sportmanid);
+
+          // console.log(ls.get("avatar", ""));
+          // console.log(ls.get("sportmanid", ""));
 
           console.log("on signinsuccess");
           $scope.my.form = false;
@@ -290,9 +305,12 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   $scope.$watch("globalSignSymbol", function (newValue, oldValue, scope) {
     console.log("change");
     if (newValue === true) {
+      console.log("newValue: true");
       $scope.my.content = true;
       $scope.my.form = false;
     } else if (newValue === false) {
+      console.log("newValue: false");
+
       $scope.my.content = false;
       $scope.my.form = true;
     }
