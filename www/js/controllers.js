@@ -61,8 +61,6 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           $rootScope.um = response.data.usrnm;
           $rootScope.sportmanid = response.data.sportmanid;
           $rootScope.avatar = response.data.avatar;
-          $rootScope.$apply("sportmanid");
-          $rootScope.$apply("avatar");
           console.log("$rootScope.sportmanid: " + $rootScope.sportmanid);
           console.log("$rootScope.avatar: " + $rootScope.avatar);
           console.log("global success");
@@ -310,7 +308,6 @@ angular.module('starter.controllers', [], function ($httpProvider) {
       $scope.my.form = false;
     } else if (newValue === false) {
       console.log("newValue: false");
-
       $scope.my.content = false;
       $scope.my.form = true;
     }

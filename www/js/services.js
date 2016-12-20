@@ -34,6 +34,23 @@ angular.module('starter.services', [])
   };
 })
 
+.factory("ls", function ($window) {
+  return {
+    set(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject(key, defaultValue) {
+      return JSON.parse($window.localStorage[key]) || defaultValue;
+    }
+  };
+})
+
 .service("studentsService", function () {
   var somethingCommon = "somethingCommon_init";
 
@@ -62,23 +79,6 @@ angular.module('starter.services', [])
     p3: {
       pname: "p3",
       page: "14"
-    }
-  };
-})
-
-.factory("ls", function ($window) {
-  return {
-    set(key, value) {
-      $window.localStorage[key] = value;
-    },
-    get(key, defaultValue) {
-      return $window.localStorage[key] || defaultValue;
-    },
-    setObject(key, value) {
-      $window.localStorage[key] = JSON.stringify(value);
-    },
-    getObject(key, defaultValue) {
-      return JSON.parse($window.localStorage[key]) || defaultValue;
     }
   };
 })
