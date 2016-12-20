@@ -1,5 +1,21 @@
 angular.module('starter.services', [])
 
+.service("UsrInfoLocal", [function () {
+  console.log("init UsrInfoLocal");
+  this.um = "";
+  this.sportmanid = "";
+  this.avatar = "";
+  this.setUm = function (um) {
+    this.um = um;
+  };
+  this.setSpmid = function (sportmanid) {
+    this.sportmanid = sportmanid;
+  };
+  this.setAvatar = function (avatar) {
+    this.avatar = avatar;
+  };
+}])
+
 .factory("SignInOrUpApi", function () {
   return {
     signInUrl: "http://localhost:8080/sportman/auth",
@@ -51,6 +67,17 @@ angular.module('starter.services', [])
   };
 })
 
+.factory("ajaxGetData", function ($http) {
+  return {
+    ajaxGet(url) {
+      return $http({
+        method: "GET",
+        url
+      });
+    }
+  };
+})
+
 .service("studentsService", function () {
   var somethingCommon = "somethingCommon_init";
 
@@ -79,17 +106,6 @@ angular.module('starter.services', [])
     p3: {
       pname: "p3",
       page: "14"
-    }
-  };
-})
-
-.factory("ajaxGetData", function ($http) {
-  return {
-    ajaxGet(url) {
-      return $http({
-        method: "GET",
-        url
-      });
     }
   };
 })

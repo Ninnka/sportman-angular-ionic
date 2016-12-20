@@ -91,6 +91,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
       }
     })
     .state('detail', {
+      cache: false,
       url: '/detail',
       abstract: true,
       views: {
@@ -107,6 +108,37 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
         'detail-goods': {
           templateUrl: 'templates/goodsdetail.html',
           controller: 'HomeGoodsDetailCtrl'
+        }
+      }
+    })
+    .state('usr', {
+      cache: false,
+      url: '/usr',
+      abstract: true,
+      views: {
+        'index': {
+          templateUrl: 'templates/usr.html',
+          controller: ''
+        }
+      }
+    })
+    .state('usr.detail', {
+      cache: false,
+      url: '/detail',
+      views: {
+        'usr-detail': {
+          templateUrl: 'templates/usr/detail.html',
+          controller: 'usrDetailCtrl'
+        }
+      }
+    })
+    .state('usr.phone', {
+      cache: false,
+      url: '/detail/phone',
+      views: {
+        'usr-detail': {
+          templateUrl: 'templates/usr/detail/phone.html',
+          controller: ''
         }
       }
     });

@@ -130,23 +130,13 @@
  * home
  */
 
-ion-slide>div {
-  font-size: 0px;
-}
-
-.box {
+.slide-box {
   height: 160px;
-  overflow: hidden;
 }
 
-.box>a {
-  display: block;
+.slide-box img {
   width: 100%;
-  font-size: 0px;
-}
-
-.box img {
-  width: 100%;
+  height: 100%;
 }
 
 .recommended-nav-wrapper {

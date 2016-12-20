@@ -1,11 +1,9 @@
 <ion-view view-title="主页">
 
   <ion-content class="padding">
-    <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" slide-interval="2000" auto-play="true" ng-if="bannerListLoaded">
+    <ion-slide-box class="slide-box" on-slide-changed="slideHasChanged($index)" does-continue="true" slide-interval="2000" auto-play="true">
       <ion-slide ng-repeat="banneritem in bannerList">
-        <div class="box">
-          <a><img ng-src="{{banneritem.logo}}" alt=""></a>
-        </div>
+        <img ng-src="{{banneritem.logo}}" src="{{banneritem.logo}}" alt="">
       </ion-slide>
     </ion-slide-box>
 
@@ -65,7 +63,7 @@
     </div>
 
     <div class="main-goods-list-wrapper">
-      <ion-list class="goods-list-wrapper" ng-if="mainGoodsListLoaded">
+      <ion-list class="goods-list-wrapper">
         <ion-item class="goods-item" ng-repeat="goodsitem in mainGoodsList" href="#/detail/goodsdetail/{{goodsitem.name}}">
           <div class="goods-item-icon-wrapper">
             <img ng-src="{{goodsitem.icon}}" alt="">

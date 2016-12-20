@@ -41,12 +41,19 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   }];
 })
 
-.controller('AppCtrl', ['$scope', '$rootScope', 'SignInOrUpFac', 'ls', '$timeout', function ($scope, $rootScope, SignInOrUpFac, ls, $timeout) {
+.controller('AppCtrl', ['$scope', '$rootScope', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', function ($scope, $rootScope, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal) {
   console.log("init AppCtrl");
 
-  $rootScope.um = "";
-  $rootScope.sportmanid = "";
-  $rootScope.avatar = "";
+  $rootScope.toBackView = function () {
+    console.log("back");
+    $ionicHistory.goBack(-1);
+  };
+
+  $scope.uil = UsrInfoLocal;
+
+  // $rootScope.um = "";
+  // $rootScope.sportmanid = "";
+  // $rootScope.avatar = "";
 
   $rootScope.globalSignSymbol = false;
   $scope.globalUsrname = ls.get("usrname", "");
@@ -58,12 +65,14 @@ angular.module('starter.controllers', [], function ($httpProvider) {
         console.log("global sign in");
         if (response.data.resultStatus === "success") {
           $rootScope.globalSignSymbol = true;
-          $rootScope.um = response.data.usrnm;
-          $rootScope.sportmanid = response.data.sportmanid;
-          $rootScope.avatar = response.data.avatar;
-          console.log("$rootScope.sportmanid: " + $rootScope.sportmanid);
-          console.log("$rootScope.avatar: " + $rootScope.avatar);
-          console.log("global success");
+
+          $scope.uil.setUm(response.data.usrnm);
+          $scope.uil.setSpmid(response.data.sportmanid);
+          $scope.uil.setAvatar(response.data.avatar);
+
+          // $rootScope.um = response.data.usrnm;
+          // $rootScope.sportmanid = response.data.sportmanid;
+          // $rootScope.avatar = response.data.avatar;
 
         } else {
           console.log("global fail");
@@ -72,8 +81,10 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   }
 }])
 
-.controller('HomeCtrl', function ($scope, ajaxGetData, $ionicSlideBoxDelegate, $state) {
+.controller('HomeCtrl', ['$scope', 'ajaxGetData', '$ionicSlideBoxDelegate', function ($scope, ajaxGetData, $ionicSlideBoxDelegate) {
   $scope.firstEnter = true;
+  $scope.bannerList = [];
+  $scope.mainGoodsList = [];
 
   $scope.$on("$ionicView.enter", function () {
     if (!$scope.firstEnter) {
@@ -81,18 +92,16 @@ angular.module('starter.controllers', [], function ($httpProvider) {
     }
   });
 
-  $scope.bannerListLoaded = false;
-  $scope.mainGoodsListLoaded = false;
   $scope.goodsListAll = ajaxGetData.ajaxGet("http://www.hehe168.com/mapi.php?act=getGoods")
     .then(function successCallback(res) {
       console.log("res:");
       console.log(res);
 
-      $scope.bannerList = res.data.bannerList;
-      $scope.bannerListLoaded = true;
+      $scope.bannerList = $scope.bannerList.concat(res.data.bannerList);
 
-      $scope.mainGoodsList = res.data.shareList;
-      $scope.mainGoodsListLoaded = true;
+      $scope.mainGoodsList = $scope.mainGoodsList.concat(res.data.shareList);
+
+      $ionicSlideBoxDelegate.update();
 
       return res.data;
     }, function errorCallback(err) {
@@ -100,22 +109,15 @@ angular.module('starter.controllers', [], function ($httpProvider) {
       console.log(err);
     });
   $scope.firstEnter = false;
-})
+}])
 
-.controller('HomeGoodsDetailCtrl', function ($scope, $ionicHistory, $stateParams) {
+.controller('HomeGoodsDetailCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
   $scope.viewTitle = $stateParams.itemname;
+}])
 
-  $scope.toBackView = function () {
-    $ionicHistory.goBack(-1);
-  };
-  var vh = $ionicHistory.viewHistory();
-  console.log("vh");
-  console.log(vh);
-})
-
-.controller('CategoryCtrl', function ($scope) {
+.controller('CategoryCtrl', ['$scope', function ($scope) {
   console.log("init CatetoryCrtl");
-})
+}])
 
 .controller('FindCtrl', ["$scope", "$http", "constantParams", "valueParams", "provideTest", "getData", "ajaxGetData", "studentsService", "$timeout", function ($scope, $http, constantParams, valueParams, provideTest, getData, ajaxGetData, studentsService, $timeout) {
   console.log("init FindCtrl");
@@ -165,14 +167,14 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 
   }])
 
-.controller('ShoppingCarCtrl', ["$scope", "studentsService", "ajaxGetData", "getData", function ($scope, studentsService, ajaxGetData, getData) {
+.controller('ShoppingCarCtrl', ["$scope", function ($scope) {
   console.log("init ShoppingCarCtrl");
 
   // 测试用，可删除
   $scope.getGoodsData = function () {};
   }])
 
-.controller('MyCtrl', ['$scope', '$timeout', '$ionicModal', '$rootScope', 'ls', 'SignInOrUpFac', function ($scope, $timeout, $ionicModal, $rootScope, ls, SignInOrUpFac) {
+.controller('MyCtrl', ['$scope', '$timeout', '$ionicModal', '$rootScope', 'ls', 'SignInOrUpFac', 'UsrInfoLocal', function ($scope, $timeout, $ionicModal, $rootScope, ls, SignInOrUpFac, UsrInfoLocal) {
 
   // create modal
   // use for test
@@ -226,6 +228,9 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   $scope.resultFail = false;
   $scope.resultErrorText = "";
 
+  // 本地用户信息共享部分
+  $scope.uil = UsrInfoLocal;
+
   // 登录提交回调函数
   $scope.loginSubmit = function () {
     SignInOrUpFac.signIn($scope.usrinfo.usrname, $scope.usrinfo.usrpassword)
@@ -233,18 +238,20 @@ angular.module('starter.controllers', [], function ($httpProvider) {
         // $scope.response = response;
         if (response.data.resultStatus === "success") {
           $scope.resultFail = false;
-          $rootScope.um = response.data.usrnm;
-          $rootScope.sportmanid = response.data.sportmanid;
-          $rootScope.avatar = response.data.avatar;
+
+          $scope.uil.setUm(response.data.usrnm);
+          $scope.uil.setSpmid(response.data.sportmanid);
+          $scope.uil.setAvatar(response.data.avatar);
+
+          // $rootScope.um = response.data.usrnm;
+          // $rootScope.sportmanid = response.data.sportmanid;
+          // $rootScope.avatar = response.data.avatar;
 
           // storage in local
           ls.set("usrpassword", response.data.usrpw);
           ls.set("usrname", response.data.usrnm);
           ls.set("avatar", response.data.avatar);
           ls.set("sportmanid", response.data.sportmanid);
-
-          // console.log(ls.get("avatar", ""));
-          // console.log(ls.get("sportmanid", ""));
 
           console.log("on signinsuccess");
           $scope.my.form = false;
@@ -267,16 +274,6 @@ angular.module('starter.controllers', [], function ($httpProvider) {
         console.log(err);
       });
   };
-
-  // if ($rootScope.globalSignSymbol === true) {
-  //   console.log("globalSignSymbol is true");
-  //   $scope.my.content = true;
-  //   $scope.my.form = false;
-  // } else {
-  //   console.log("globalSignSymbol is false");
-  //   $scope.my.content = false;
-  //   $scope.my.form = true;
-  // }
 
   // 注册相关信息
   $scope.signupInfo = {
@@ -315,7 +312,11 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 
   }])
 
-.controller('LoginCtrl', ['$scope', '$timeout', 'ls', 'SignInOrUpFac', function ($scope, $timeout, ls, SignInOrUpFac) {
+.controller('LoginCtrl', ['$scope', function ($scope) {
+
+}])
+
+.controller('usrDetailCtrl', ['$scope', function ($scope) {
 
 }])
 
