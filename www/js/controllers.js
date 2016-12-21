@@ -317,7 +317,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 }])
 
 .controller('usrDetailCtrl', ['$scope', function ($scope) {
-
+  console.log("init usrDetailCtrl");
 }])
 
 // test isolate scope and link function in directive，测试directive的独立作用域和link函数

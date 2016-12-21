@@ -163,7 +163,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
   $ionicConfigProvider.platform.ios.views.transition('ios');
   $ionicConfigProvider.platform.android.views.transition('android');
 
+  $ionicConfigProvider.views.maxCache(15);
+
 });
-
-
-angular.module('todo', ['ionic']);

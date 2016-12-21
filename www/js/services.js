@@ -1,7 +1,6 @@
 angular.module('starter.services', [])
 
 .service("UsrInfoLocal", [function () {
-  console.log("init UsrInfoLocal");
   this.um = "";
   this.sportmanid = "";
   this.avatar = "";
