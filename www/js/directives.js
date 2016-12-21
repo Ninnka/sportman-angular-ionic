@@ -92,7 +92,7 @@ angular.module('starter.directives', [])
       h1_ele.text("文本替换成为了strike，DOM操作应该在这里进行，我换了颜色及更改了字体大小，并且添加了移入移除事件");
       h1_ele.css({
         color: "red",
-        "font-size": "14px"
+        "font-size": "20px"
       });
       h1_ele.on("mouseover", function () {
         h1_ele.css({

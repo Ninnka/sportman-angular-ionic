@@ -320,9 +320,11 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   console.log("init usrDetailCtrl");
 }])
 
-// test isolate scope and link function in directive，测试directive的独立作用域和link函数
-// this directive use in shoppingcar.html，用在了shoppingcar.html上，删除时注意!
-.controller('myDirectiveCtrl', function ($scope, $element, $attrs, $transclude) {
+// test isolate scope and link function in directive
+// 测试directive的独立作用域和link函数
+// this directive use in shoppingcar.html
+// 用在了shoppingcar.html上，删除时注意!
+.controller('myDirectiveCtrl', ['$scope', '$element', '$attrs', '$transclude', function ($scope, $element, $attrs, $transclude) {
   $scope.collectionCount = "100";
   $scope.historyCount = {
     yesterday: "300",
@@ -331,7 +333,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   $scope.showvalue = function () {
     console.log("showvalue: " + $scope.value);
   };
-});
+}]);
 
 // .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
 //   $scope.chat = Chats.get($stateParams.chatId);

@@ -24,7 +24,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
 
 .value("valueParams", "valueParams value")
 
-.config(function ($stateProvider, $urlRouterProvider, $provide, constantParams, $ionicConfigProvider) {
+.config(['$stateProvider','$urlRouterProvider','$provide','constantParams','$ionicConfigProvider',function ($stateProvider, $urlRouterProvider, $provide, constantParams, $ionicConfigProvider) {
 
   $provide.provider("provideTest", function () {
     this.$get = function () {
@@ -165,4 +165,4 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
 
   $ionicConfigProvider.views.maxCache(15);
 
-});
+}]);
