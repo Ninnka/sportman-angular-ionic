@@ -1,6 +1,6 @@
 <ion-view view-title="主页">
 
-  <ion-content class="padding">
+  <ion-content class="padding-top">
     <ion-slide-box class="slide-box" on-slide-changed="slideHasChanged($index)" does-continue="true" slide-interval="2000" auto-play="true">
       <ion-slide ng-repeat="banneritem in bannerList">
         <img ng-src="{{banneritem.logo}}" src="{{banneritem.logo}}" alt="">

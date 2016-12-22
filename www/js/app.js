@@ -24,7 +24,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
 
 .value("valueParams", "valueParams value")
 
-.config(['$stateProvider','$urlRouterProvider','$provide','constantParams','$ionicConfigProvider',function ($stateProvider, $urlRouterProvider, $provide, constantParams, $ionicConfigProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$provide', 'constantParams', '$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $provide, constantParams, $ionicConfigProvider) {
 
   $provide.provider("provideTest", function () {
     this.$get = function () {
@@ -96,7 +96,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
       abstract: true,
       views: {
         'index': {
-          templateUrl: 'templates/detail.html',
+          templateUrl: 'templates/detail-abstract.html',
           controller: ''
         }
       }
@@ -117,7 +117,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
       abstract: true,
       views: {
         'index': {
-          templateUrl: 'templates/usr.html',
+          templateUrl: 'templates/usr-abstract.html',
           controller: ''
         }
       }
@@ -139,6 +139,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
         'usr-detail': {
           templateUrl: 'templates/usr/detail/phone.html',
           controller: ''
+        }
+      }
+    })
+    .state('app', {
+      cache: false,
+      url: '/app',
+      views: {
+        "index": {
+          templateUrl: "templates/app-abstract.html",
+          controller: ""
+        }
+      }
+    })
+    .state('app.setting', {
+      cache: false,
+      url: '/app/setting',
+      views: {
+        "app-setting": {
+          templateUrl: "",
+          controller: ""
         }
       }
     });

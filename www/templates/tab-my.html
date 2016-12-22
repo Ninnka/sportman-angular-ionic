@@ -1,6 +1,12 @@
 <ion-view view-title="我的">
 
-  <ion-content class="padding">
+  <ion-nav-buttons side="right">
+    <a class="my-content-setting" ng-href="#/app/setting">
+      <img ng-src="img/setting.png" alt="" class="my-setting-img">
+    </a>
+  </ion-nav-buttons>
+
+  <ion-content class="">
 
     <div form-directive ng-if="my.form"></div>
     <div my-content-directive um="{{uil.um}}" sportmanid="{{uil.sportmanid}}" ng-if="my.content"></div>
@@ -48,32 +54,3 @@
   </script>
 
 </ion-view>
-
-
-<!-- <script type="text/ng-template" id="signup-modal.html">
-  <div class="modal">
-
-
-    <ion-header-bar class="bar-secondary">
-      <h1 class="title">New Task</h1>
-      <button class="button button-clear button-positive">Cancel</button>
-    </ion-header-bar>
-
-
-    <ion-content>
-
-      <form>
-        <div class="list">
-          <label for="" class="item item-input">
-            <input type="text" placeholder="What do you need to do?">
-          </label>
-        </div>
-        <div class="padding">
-          <button type="submit" class="button button-block button-positive">Create Task</button>
-        </div>
-      </form>
-
-    </ion-content>
-
-  </div>
-</script> -->

@@ -3,6 +3,30 @@
 
 /* 通用 */
 
+.scroll {
+  height: 100%;
+  background: #F5F5F5;
+}
+
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active,
+ion-tabs.tabs-color-active-positive .tab-item.active,
+ion-tabs.tabs-color-active-positive .tab-item.activated {
+  color: #FB8041;
+}
+
+.ion-color-fade {
+  color: #666;
+}
+
+.ion-ajust-arrow-right {
+  font-size: 18px !important;
+  color: #666 !important;
+}
+
+.ion-ajust-symbolsize {
+  font-size: 26px !important;
+}
+
 .icon-svg {
   width: 2.6em;
   height: 2.6em;
@@ -11,9 +35,29 @@
   overflow: hidden;
 }
 
+.bar-header {
+  background: #FB8041 !important;
+}
+
+.bar-stable.bar.bar-header {
+  box-shadow: 0px 0px 6px 0px #BABABA;
+}
+
+.bar.bar-stable .title {
+  color: white;
+}
+
+.bar-stable .button.button-clear {
+  color: white;
+}
+
+.bar .buttons-left span {
+  color: white;
+}
+
 
 /**
- * my
+ * my signin
  */
 
 .login-form {
@@ -129,6 +173,10 @@
 /**
  * home
  */
+
+.padding-top {
+  padding-top: 5px;
+}
 
 .slide-box {
   height: 160px;
