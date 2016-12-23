@@ -64,7 +64,7 @@
 
     <div class="main-goods-list-wrapper">
       <ion-list class="goods-list-wrapper">
-        <ion-item class="goods-item" ng-repeat="goodsitem in mainGoodsList" href="#/detail/goodsdetail/{{goodsitem.name}}">
+        <ion-item class="goods-item" ng-repeat="goodsitem in mainGoodsList" href="#/detail/goodsdetail/{{goodsitem.name}}" ng-click="inAnimation()">
           <div class="goods-item-icon-wrapper">
             <img ng-src="{{goodsitem.icon}}" alt="">
           </div>

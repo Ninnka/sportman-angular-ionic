@@ -1,7 +1,7 @@
 <ion-view view-title="我的">
 
   <ion-nav-buttons side="right">
-    <a class="my-content-setting" ng-href="#/app/setting">
+    <a class="my-content-setting" ng-href="#/app/setting" nav-direction="forward">
       <img ng-src="img/setting.png" alt="" class="my-setting-img">
     </a>
   </ion-nav-buttons>
@@ -9,7 +9,7 @@
   <ion-content class="">
 
     <div form-directive ng-if="my.form"></div>
-    <div my-content-directive um="{{uil.um}}" sportmanid="{{uil.sportmanid}}" ng-if="my.content"></div>
+    <div my-content-directive um="{{uil.um}}" sportmanid="{{uil.sportmanid}}" avatar="{{uil.avatar}}" ng-if="my.content"></div>
 
   </ion-content>
 
@@ -18,14 +18,15 @@
 
       <ion-header-bar class="bar-secondary">
 
-        <h1 class="title">欢迎注册</h1>
-        <button class="button button-clear button-positive" ng-click="closeSignUpModal()">Cancel</button>
+        <h1 class="title white-text">欢迎注册</h1>
+        <button class="button button-clear button-assertive white-text" ng-click="closeSignUpModal()">Cancel</button>
 
       </ion-header-bar>
 
       <ion-content>
 
         <form ng-submit="signupSubmit()">
+
           <div class="list">
             <label class="item item-input">
               <input type="text" placeholder="用户名" ng-model="signupInfo.usrname">
@@ -37,14 +38,7 @@
           <div class="padding">
             <button class="button button-block button-positive">注册</button>
           </div>
-          <!-- <div class="list">
-            <label for="" class="item item-input">
-              <input type="text" placeholder="What do you need to do?">
-            </label>
-          </div>
-          <div class="padding">
-            <button type="submit" class="button button-block button-positive">Create Task</button>
-          </div> -->
+
         </form>
 
       </ion-content>

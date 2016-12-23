@@ -7,7 +7,8 @@ angular.module('starter.directives', [])
     templateUrl: "templates/tab_my/my-content.html",
     scope: {
       um: "@",
-      sportmanid: "@"
+      sportmanid: "@",
+      avatar: "@"
     }
   };
 })

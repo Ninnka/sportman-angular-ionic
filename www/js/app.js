@@ -29,6 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
   $provide.provider("provideTest", function () {
     this.$get = function () {
       console.log("initial provideTest instance");
+      i
       return {
         testStr: "testValue"
       };
@@ -90,43 +91,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
         }
       }
     })
-    .state('detail', {
+    .state('goodsdetail', {
       cache: false,
-      url: '/detail',
-      abstract: true,
+      url: '/detail/goodsdetail/:itemname',
       views: {
         'index': {
-          templateUrl: 'templates/detail-abstract.html',
-          controller: ''
-        }
-      }
-    })
-    .state('detail.goodsdetail', {
-      cache: false,
-      url: '/goodsdetail/:itemname',
-      views: {
-        'detail-goods': {
           templateUrl: 'templates/goodsdetail.html',
           controller: 'HomeGoodsDetailCtrl'
         }
       }
     })
-    .state('usr', {
+    .state('usrdetail', {
       cache: false,
-      url: '/usr',
-      abstract: true,
+      url: '/usr/detail',
       views: {
         'index': {
-          templateUrl: 'templates/usr-abstract.html',
-          controller: ''
-        }
-      }
-    })
-    .state('usr.detail', {
-      cache: false,
-      url: '/detail',
-      views: {
-        'usr-detail': {
           templateUrl: 'templates/usr/detail.html',
           controller: 'usrDetailCtrl'
         }
@@ -136,32 +115,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
       cache: false,
       url: '/detail/phone',
       views: {
-        'usr-detail': {
+        'index': {
           templateUrl: 'templates/usr/detail/phone.html',
           controller: ''
         }
       }
     })
-    .state('app', {
-      cache: false,
-      url: '/app',
-      views: {
-        "index": {
-          templateUrl: "templates/app-abstract.html",
-          controller: ""
-        }
-      }
-    })
-    .state('app.setting', {
+    .state('appsetting', {
       cache: false,
       url: '/app/setting',
       views: {
-        "app-setting": {
-          templateUrl: "",
+        "index": {
+          templateUrl: "templates/app/setting.html",
           controller: ""
         }
       }
     });
+
 
   // 默认跳转到tab/home页面
   $urlRouterProvider.otherwise('/tab/home');

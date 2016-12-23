@@ -141,7 +141,7 @@ module.exports = {
     "no-useless-call": 2,
     "no-useless-concat": 2,
     "no-void": 2,
-    "object-shorthand": 2,
+    "object-shorthand": 0,
     "operator-assignment": 2,
     "operator-linebreak": 0,
     "prefer-const": 0,

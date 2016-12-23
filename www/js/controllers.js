@@ -41,12 +41,29 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   }];
 })
 
-.controller('AppCtrl', ['$scope', '$rootScope', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', function ($scope, $rootScope, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal) {
+.controller('AppCtrl', ['$scope', '$rootScope', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', function ($scope, $rootScope, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher) {
   console.log("init AppCtrl");
+
+  $rootScope.inAnimation = function () {
+    $ionicViewSwitcher.nextDirection("forward");
+  };
+
+  $rootScope.outAnimation = function () {
+    $ionicViewSwitcher.nextDirection("back");
+  };
 
   $rootScope.toBackView = function () {
     console.log("back");
     $ionicHistory.goBack(-1);
+    $rootScope.outAnimation();
+  };
+
+  $rootScope.logout = function () {
+    console.log("logout");
+    UsrInfoLocal.clear();
+    ls.clear();
+    $rootScope.globalSignSymbol = false;
+    $rootScope.toBackView();
   };
 
   $scope.uil = UsrInfoLocal;
@@ -69,6 +86,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           $scope.uil.setUm(response.data.usrnm);
           $scope.uil.setSpmid(response.data.sportmanid);
           $scope.uil.setAvatar(response.data.avatar);
+          $scope.uil.setEmpty(false);
 
           // $rootScope.um = response.data.usrnm;
           // $rootScope.sportmanid = response.data.sportmanid;
@@ -242,6 +260,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           $scope.uil.setUm(response.data.usrnm);
           $scope.uil.setSpmid(response.data.sportmanid);
           $scope.uil.setAvatar(response.data.avatar);
+          $scope.uil.setEmpty(false);
 
           // $rootScope.um = response.data.usrnm;
           // $rootScope.sportmanid = response.data.sportmanid;
@@ -309,6 +328,21 @@ angular.module('starter.controllers', [], function ($httpProvider) {
       $scope.my.form = true;
     }
   }, true);
+
+  // 注册页面进入检测事件
+  $scope.$on("$ionicView.enter", function () {
+    console.log("enter my");
+    if (UsrInfoLocal.empty === true) {
+      console.log("empty");
+      $rootScope.globalSignSymbol = false;
+      $scope.my.content = false;
+      $scope.my.form = true;
+      $scope.usrinfo = {
+        usrname: "",
+        usrpassword: ""
+      };
+    }
+  });
 
   }])
 

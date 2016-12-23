@@ -3,6 +3,28 @@
 
 /* 通用 */
 
+.title.title-center.header-item {
+  padding: 0 12%;
+}
+
+.white-text {
+  color: white !important;
+}
+
+.red-text {
+  color: red !important;
+}
+
+.button-custom-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.button-custom-size-large {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .scroll {
   height: 100%;
   background: #F5F5F5;

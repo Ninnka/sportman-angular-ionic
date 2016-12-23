@@ -4,6 +4,7 @@ angular.module('starter.services', [])
   this.um = "";
   this.sportmanid = "";
   this.avatar = "";
+  this.empty = true;
   this.setUm = function (um) {
     this.um = um;
   };
@@ -12,6 +13,15 @@ angular.module('starter.services', [])
   };
   this.setAvatar = function (avatar) {
     this.avatar = avatar;
+  };
+  this.setEmpty = function (flag) {
+    this.empty = flag;
+  };
+  this.clear = function () {
+    this.setUm("");
+    this.setSpmid("");
+    this.setAvatar("");
+    this.setEmpty(true);
   };
 }])
 
@@ -43,11 +53,19 @@ angular.module('starter.services', [])
           username: usrname,
           password: usrpassword
         },
-        timeout: 5000
+        timeout: 10000
       });
     }
   };
 })
+
+.factory("Logout", ['UsrInfoLocal', function (UsrInfoLocal) {
+  return {
+    logoutCurrentAccount: function () {
+
+    }
+  };
+}])
 
 .factory("ls", function ($window) {
   return {
@@ -62,6 +80,12 @@ angular.module('starter.services', [])
     },
     getObject(key, defaultValue) {
       return JSON.parse($window.localStorage[key]) || defaultValue;
+    },
+    remove(key) {
+      $window.localStorage.removeItem(key);
+    },
+    clear() {
+      $window.localStorage.clear();
     }
   };
 })
