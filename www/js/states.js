@@ -43,7 +43,9 @@ angular.module('starter.states', [])
         }
       }
     })
-    .state('appsetting', {
+
+  // app设置部分
+  .state('appsetting', {
       cache: false,
       url: '/app/setting',
       views: {
