@@ -1,32 +1,32 @@
 angular.module('starter.directives', [])
 
-.directive("myContentDirective", function () {
-  return {
-    restrict: "EA",
-    replace: "true",
-    templateUrl: "templates/tab_my/my-content.html",
-    scope: {
-      um: "@",
-      sportmanid: "@",
-      avatar: "@"
-    }
-  };
-})
+// .directive("myContentDirective", function () {
+//   return {
+//     restrict: "EA",
+//     replace: "true",
+//     templateUrl: "templates/tab_my/my-content.html",
+//     scope: {
+//       um: "@",
+//       sportmanid: "@",
+//       avatar: "@"
+//     }
+//   };
+// })
 
-.directive("formDirective", function () {
-  console.log("initial formDirective");
-  return {
-    restrict: "EA",
-    templateUrl: "templates/form.html",
-    replace: true,
-    controller: "LoginCtrl",
-  };
-})
+// .directive("formDirective", function () {
+//   console.log("initial formDirective");
+//   return {
+//     restrict: "EA",
+//     templateUrl: "templates/form.html",
+//     replace: true,
+//     controller: "SignInCtrl",
+//   };
+// })
 
 .directive("myDirective", function () {
   return {
     restrict: "EA",
-    template(tElement, tAttrs) {
+    template: function (tElement, tAttrs) {
       return "\
       <div class='userinfo-wrapper'>\
         <p>用户名：{{userinfo.username}}</p>\
@@ -88,7 +88,7 @@ angular.module('starter.directives', [])
       c: "="
     },
     controller: "myDirectiveCtrl",
-    link(scope, element, attrs) {
+    link: function (scope, element, attrs) {
       var h1_ele = element.find("h1");
       h1_ele.text("文本替换成为了strike，DOM操作应该在这里进行，我换了颜色及更改了字体大小，并且添加了移入移除事件");
       h1_ele.css({
@@ -112,7 +112,7 @@ angular.module('starter.directives', [])
 .directive('hideTabs', function ($rootScope) {
   return {
     restrict: 'EA',
-    link($scope) {
+    link: function ($scope) {
       $rootScope.hideTabs = 'tabs-item-hide';
       $scope.$on('$destroy', function () {
         $rootScope.hideTabs = ' ';

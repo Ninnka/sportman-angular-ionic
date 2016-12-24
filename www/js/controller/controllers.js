@@ -77,10 +77,6 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 
   $scope.uil = UsrInfoLocal;
 
-  // $rootScope.um = "";
-  // $rootScope.sportmanid = "";
-  // $rootScope.avatar = "";
-
   $rootScope.globalSignSymbol = false;
   $scope.globalUsrname = ls.get("usrname", "");
   $scope.globalPassword = ls.get("usrpassword", "");
@@ -97,9 +93,10 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           $scope.uil.setAvatar(response.data.avatar);
           $scope.uil.setEmpty(false);
 
-          // $rootScope.um = response.data.usrnm;
-          // $rootScope.sportmanid = response.data.sportmanid;
-          // $rootScope.avatar = response.data.avatar;
+          ls.set("usrpassword", response.data.usrpw);
+          ls.set("usrname", response.data.usrnm);
+          ls.set("avatar", response.data.avatar);
+          ls.set("sportmanid", response.data.sportmanid);
 
         } else {
           console.log("global fail");
@@ -108,6 +105,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   }
 }])
 
+// 主页控制器
 .controller('HomeCtrl', ['$scope', 'ajaxGetData', '$ionicSlideBoxDelegate', function ($scope, ajaxGetData, $ionicSlideBoxDelegate) {
   $scope.firstEnter = true;
   $scope.bannerList = [];
@@ -138,14 +136,17 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   $scope.firstEnter = false;
 }])
 
+// 主页商品详细页面控制器
 .controller('HomeGoodsDetailCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
   $scope.viewTitle = $stateParams.itemname;
 }])
 
+// 分类页面的控制器
 .controller('CategoryCtrl', ['$scope', function ($scope) {
   console.log("init CatetoryCrtl");
 }])
 
+// 发现页面的控制器
 .controller('FindCtrl', ["$scope", "$http", "constantParams", "valueParams", "provideTest", "getData", "ajaxGetData", "studentsService", "$timeout", function ($scope, $http, constantParams, valueParams, provideTest, getData, ajaxGetData, studentsService, $timeout) {
   console.log("init FindCtrl");
 
@@ -194,6 +195,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 
   }])
 
+// 购物车页面的控制器
 .controller('ShoppingCarCtrl', ["$scope", function ($scope) {
   console.log("init ShoppingCarCtrl");
 
@@ -201,7 +203,51 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   $scope.getGoodsData = function () {};
   }])
 
-.controller('MyCtrl', ['$scope', '$timeout', '$ionicModal', '$rootScope', 'ls', 'SignInOrUpFac', 'UsrInfoLocal', function ($scope, $timeout, $ionicModal, $rootScope, ls, SignInOrUpFac, UsrInfoLocal) {
+// 我的主页 的控制器
+.controller('MyCtrl', ['$scope', '$rootScope', 'UsrInfoLocal', function ($scope, $rootScope, UsrInfoLocal) {
+
+  // 控制个人信息视图显示
+  $scope.my = {
+    form: true,
+    content: false
+  };
+
+  // 本地用户信息共享部分
+  $scope.uil = UsrInfoLocal;
+
+  // 观察全局变量
+  $scope.$watch("globalSignSymbol", function (newValue, oldValue, scope) {
+    console.log("change");
+    if (newValue === true) {
+      console.log("newValue: true");
+      $scope.my.content = true;
+      $scope.my.form = false;
+    } else if (newValue === false) {
+      console.log("newValue: false");
+      $scope.my.content = false;
+      $scope.my.form = true;
+    }
+  }, true);
+
+  // 我的页面进入检测事件
+  $scope.$on("$ionicView.enter", function () {
+    console.log("enter my");
+    if (UsrInfoLocal.empty === true) {
+      console.log("empty");
+      $rootScope.globalSignSymbol = false;
+      $scope.my.content = false;
+      $scope.my.form = true;
+      $scope.usrinfo = {
+        usrname: "",
+        usrpassword: ""
+      };
+    }
+  });
+
+  }])
+
+// 登录注册页面的控制器
+.controller('SignInUpCtrl', ['$scope', '$timeout', '$ionicModal', '$rootScope', 'ls', 'SignInOrUpFac', 'UsrInfoLocal', '$ionicHistory', function ($scope, $timeout, $ionicModal, $rootScope, ls, SignInOrUpFac, UsrInfoLocal, $ionicHistory) {
 
   // create modal
   // use for test
@@ -238,12 +284,6 @@ angular.module('starter.controllers', [], function ($httpProvider) {
     console.log("modal.removed");
   });
 
-  // 控制表单与主内容的显示
-  $scope.my = {
-    form: false,
-    content: false
-  };
-
   // 提交账户信息相关
   // 对象形式，与子controller共享
   $scope.usrinfo = {
@@ -271,10 +311,6 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           $scope.uil.setAvatar(response.data.avatar);
           $scope.uil.setEmpty(false);
 
-          // $rootScope.um = response.data.usrnm;
-          // $rootScope.sportmanid = response.data.sportmanid;
-          // $rootScope.avatar = response.data.avatar;
-
           // storage in local
           ls.set("usrpassword", response.data.usrpw);
           ls.set("usrname", response.data.usrnm);
@@ -282,13 +318,14 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           ls.set("sportmanid", response.data.sportmanid);
 
           console.log("on signinsuccess");
-          $scope.my.form = false;
-          $scope.my.content = true;
 
           // 清空本地登录信息存储
           $scope.usrinfo = undefined;
 
           $rootScope.globalSignSymbol = true;
+
+          $rootScope.toBackView();
+
         } else {
           $scope.resultFail = true;
           $scope.resultErrorText = "账户名或密码出错";
@@ -328,48 +365,14 @@ angular.module('starter.controllers', [], function ($httpProvider) {
       });
   };
 
-  // 观察全局变量
-  $scope.$watch("globalSignSymbol", function (newValue, oldValue, scope) {
-    console.log("change");
-    if (newValue === true) {
-      console.log("newValue: true");
-      $scope.my.content = true;
-      $scope.my.form = false;
-    } else if (newValue === false) {
-      console.log("newValue: false");
-      $scope.my.content = false;
-      $scope.my.form = true;
-    }
-  }, true);
-
-  // 注册页面进入检测事件
-  $scope.$on("$ionicView.enter", function () {
-    console.log("enter my");
-    if (UsrInfoLocal.empty === true) {
-      console.log("empty");
-      $rootScope.globalSignSymbol = false;
-      $scope.my.content = false;
-      $scope.my.form = true;
-      $scope.usrinfo = {
-        usrname: "",
-        usrpassword: ""
-      };
-    }
-  });
-
   }])
 
-.controller('LoginCtrl', ['$scope', function ($scope) {
-
-}])
-
+// 用户详细页控制器
 .controller('usrDetailCtrl', ['$scope', function ($scope) {
   console.log("init usrDetailCtrl");
 }])
 
-// test isolate scope and link function in directive
 // 测试directive的独立作用域和link函数
-// this directive use in shoppingcar.html
 // 用在了shoppingcar.html上，删除时注意!
 .controller('myDirectiveCtrl', ['$scope', '$element', '$attrs', '$transclude', function ($scope, $element, $attrs, $transclude) {
   $scope.collectionCount = "100";

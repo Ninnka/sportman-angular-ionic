@@ -34,7 +34,7 @@ angular.module('starter.services', [])
 
 .factory("SignInOrUpFac", function ($http, SignInOrUpApi) {
   return {
-    signIn(usrname, usrpassword) {
+    signIn: function (usrname, usrpassword) {
       return $http({
         method: "POST",
         url: SignInOrUpApi.signInUrl,
@@ -45,7 +45,7 @@ angular.module('starter.services', [])
         timeout: 5000
       });
     },
-    signUp(usrname, usrpassword) {
+    signUp: function (usrname, usrpassword) {
       return $http({
         method: "POST",
         url: SignInOrUpApi.signUpUrl,
@@ -69,22 +69,22 @@ angular.module('starter.services', [])
 
 .factory("ls", function ($window) {
   return {
-    set(key, value) {
+    set: function (key, value) {
       $window.localStorage[key] = value;
     },
-    get(key, defaultValue) {
+    get: function (key, defaultValue) {
       return $window.localStorage[key] || defaultValue;
     },
-    setObject(key, value) {
+    setObject: function (key, value) {
       $window.localStorage[key] = JSON.stringify(value);
     },
-    getObject(key, defaultValue) {
+    getObject: function (key, defaultValue) {
       return JSON.parse($window.localStorage[key]) || defaultValue;
     },
-    remove(key) {
+    remove: function (key) {
       $window.localStorage.removeItem(key);
     },
-    clear() {
+    clear: function () {
       $window.localStorage.clear();
     }
   };
@@ -92,7 +92,7 @@ angular.module('starter.services', [])
 
 .factory("ajaxGetData", function ($http) {
   return {
-    ajaxGet(url) {
+    ajaxGet: function (url) {
       return $http({
         method: "GET",
         url

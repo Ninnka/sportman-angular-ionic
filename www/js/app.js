@@ -3,7 +3,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'starter.services', 'ngAnimate'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'starter.services', 'starter.states', 'ngAnimate'])
   .run(function ($ionicPlatform) {
     // console.log("run before ionicPlatform ready");
     $ionicPlatform.ready(function () {
@@ -89,48 +89,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
           controller: 'ShoppingCarCtrl'
         }
       }
-    })
-    .state('goodsdetail', {
-      cache: false,
-      url: '/detail/goodsdetail/:itemname',
-      views: {
-        'index': {
-          templateUrl: 'templates/goodsdetail.html',
-          controller: 'HomeGoodsDetailCtrl'
-        }
-      }
-    })
-    .state('usrdetail', {
-      cache: false,
-      url: '/usr/detail',
-      views: {
-        'index': {
-          templateUrl: 'templates/usr/detail.html',
-          controller: 'usrDetailCtrl'
-        }
-      }
-    })
-    .state('usrdetail_phone', {
-      cache: false,
-      url: '/usr/detail/phone',
-      views: {
-        'index': {
-          templateUrl: 'templates/usr/detail/phone.html',
-          controller: ''
-        }
-      }
-    })
-    .state('appsetting', {
-      cache: false,
-      url: '/app/setting',
-      views: {
-        "index": {
-          templateUrl: "templates/app/setting.html",
-          controller: ""
-        }
-      }
     });
-
 
   // 默认跳转到tab/home页面
   $urlRouterProvider.otherwise('/tab/home');

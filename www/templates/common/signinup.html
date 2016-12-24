@@ -1,0 +1,111 @@
+<ion-view view-title="登录">
+
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
+    <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
+        <span class="default-title" style="line-height: 35px;">Back</span>
+    </span>
+  </ion-nav-buttons>
+
+  <ion-content>
+
+    <div id="my">
+      <div class="top-icon-wrapper">
+        <embed ng-src="img/pie-chart.svg" width="60" height="60" class="my-top-icon">
+      </div>
+      <form class="login-form">
+        <div class="input-wrapper">
+          <label for="username" class="item item-input">
+            <!-- 用户名 -->
+            <input type="text" name="username" ng-model="usrinfo.usrname" placeholder="用户名">
+          </label>
+        </div>
+        <div class="input-wrapper">
+          <label for="password" class="item item-input">
+            <!-- 密码 -->
+            <input type="password" name="password" ng-model="usrinfo.usrpassword" placeholder="密码">
+          </label>
+        </div>
+        <div class="btns">
+          <button class="button button-calm" ng-click="loginSubmit()">
+            sign in
+          </button>
+        </div>
+      </form>
+      <div class="account-assit">
+        <p class="forgetpassword">忘记密码？</p>
+        <p class="signup" ng-click="openSignUpModal()">注册账号</p>
+      </div>
+      <div class="error-notification" ng-if="resultFail">{{resultErrorText}}</div>
+      <div class="thirdplatform-login">
+        <div class="thirdplatform-top">
+          <span class="title-line"></span>
+          <span class="thirdplatform-title">其他账号登录</span>
+          <span class="title-line"></span>
+        </div>
+        <div class="thirdplatform-main">
+          <div class="thirdplatform-item item-weibo">
+            <div class="thirdplatform-svg-wrapper">
+              <svg class="icon-svg" aria-hidden="true">
+                  <use xlink:href="#icon-weixin"></use>
+              </svg>
+            </div>
+            <p class="thirdplatform-item-title">微博</p>
+          </div>
+          <div class="thirdplatform-item item-weibo">
+            <div class="thirdplatform-svg-wrapper">
+              <svg class="icon-svg" aria-hidden="true">
+                  <use xlink:href="#icon-weibo"></use>
+              </svg>
+            </div>
+            <p class="thirdplatform-item-title">微信</p>
+          </div>
+          <div class="thirdplatform-item item-weibo">
+            <div class="thirdplatform-svg-wrapper">
+              <svg class="icon-svg" aria-hidden="true">
+                  <use xlink:href="#icon-social-github"></use>
+              </svg>
+            </div>
+            <p class="thirdplatform-item-title">Github</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+
+  <script id="my-signup-modal.html" type="text/ng-template">
+    <div class="modal">
+
+      <ion-header-bar class="bar-secondary">
+
+        <h1 class="title white-text">欢迎注册</h1>
+        <button class="button button-clear button-assertive white-text" ng-click="closeSignUpModal()">Cancel</button>
+
+      </ion-header-bar>
+
+      <ion-content>
+
+        <form ng-submit="signupSubmit()">
+
+          <div class="list">
+            <label class="item item-input">
+              <input type="text" placeholder="用户名" ng-model="signupInfo.usrname">
+            </label>
+            <label class="item item-input">
+              <input type="text" placeholder="密码" ng-model="signupInfo.usrpassword">
+            </label>
+          </div>
+          <div class="padding">
+            <button class="button button-block button-positive">注册</button>
+          </div>
+
+        </form>
+
+      </ion-content>
+
+    </div>
+
+  </script>
+
+</ion-view>
