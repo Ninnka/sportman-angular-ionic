@@ -44,6 +44,10 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 .controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher) {
   console.log("init AppCtrl");
 
+  $rootScope.clearHistory = function () {
+    $ionicHistory.clearHistory();
+  };
+
   $rootScope.checkSignSymbolAndState = function (targetState) {
     if ($rootScope.globalSignSymbol === true) {
       $state.go(targetState);
@@ -100,6 +104,10 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           ls.set("usrname", response.data.usrnm);
           ls.set("avatar", response.data.avatar);
           ls.set("sportmanid", response.data.sportmanid);
+
+          ls.set("email", response.data.usremail);
+          ls.set("phonenumber", response.data.usrpn);
+          ls.set("gender", response.data.usrgender);
 
         } else {
           console.log("global fail");
@@ -235,6 +243,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   // 我的页面进入检测事件
   $scope.$on("$ionicView.enter", function () {
     console.log("enter my");
+    $rootScope.clearHistory();
     if (UsrInfoLocal.empty === true) {
       console.log("empty");
       $rootScope.globalSignSymbol = false;
@@ -319,6 +328,10 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           ls.set("usrname", response.data.usrnm);
           ls.set("avatar", response.data.avatar);
           ls.set("sportmanid", response.data.sportmanid);
+
+          ls.set("email", response.data.usremail);
+          ls.set("phonenumber", response.data.usrpn);
+          ls.set("gender", response.data.usrgender);
 
           console.log("on signinsuccess");
 
@@ -417,6 +430,47 @@ angular.module('starter.controllers', [], function ($httpProvider) {
     }
   };
 
+}])
+
+.controller('settingLinkMobileCtrl', ['$scope', "ls", function ($scope, ls) {
+
+  $scope.mobileInfo = {
+    phonenumber: ls.get("phonenumber", "")
+  };
+
+  $scope.bindSymbol = {
+    hasBind: $scope.mobileInfo.phonenumber !== "",
+    noBind: $scope.mobileInfo.phonenumber === ""
+  };
+
+  // 监听页面进入事件
+  // $scope.$on("$ionicView.enter", function () {
+  //
+  // });
+
+  $scope.bindMobile = function () {
+
+  };
+
+  $scope.changeMobile = function () {
+
+  };
+}])
+
+.controller('settingBindMobileCtrl', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {
+
+  $scope.bindmobile = {
+    phonenumber: ""
+  };
+
+  $scope.resetInput = function () {
+    $scope.bindmobile.phonenumber = "";
+  };
+
+  $scope.nextStep = function () {
+    $state.go("appsetting_account-security_link-mobile_validatemobile");
+    $rootScope.inAnimation();
+  };
 }]);
 
 // .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {

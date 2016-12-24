@@ -1,5 +1,57 @@
 <ion-view view-title="手机">
   <ion-content>
-    手机
+
+    <div class="setting-account-security-link-mobile" ng-show="{{bindSymbol.noBind}}">
+
+      <div class="mobile-img-symbol-wapper">
+        <img ng-src="img/mobile_noBind.png" alt="">
+      </div>
+
+      <div class="bind-mobile-symbol-text">
+        您还未绑定手机号
+      </div>
+      <div class="bind-mobile-symbol-subtext">
+        绑定后能使用手机号+密码来登录 Sportman, 和使用更多功能。
+      </div>
+
+      <div class="button-custom-size-large-wrapper">
+        <a ng-href="#/app/setting/account-security/link-mobile/bindmobile" nav-direction="forward">
+          <div class="button button-positive button-custom-size-large">
+            绑定手机号
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="setting-account-security-link-mobile" ng-show="{{bindSymbol.hasBind}}">
+
+      <div class="mobile-img-symbol-wapper">
+        <img ng-src="img/mobile_hasBind.png" alt="">
+      </div>
+
+      <div class="bind-mobile-symbol-text">
+        您已绑定手机号：{{mobileInfo.phonenumber}}
+      </div>
+      <div class="bind-mobile-symbol-subtext">
+        可以点击下面的按钮更换手机号，sportman会通知您通讯录中的sportman用户
+      </div>
+
+      <div class="button-custom-size-large-wrapper">
+        <a ng-href="#/app/setting/account-security/link-mobile/changemobile" nav-direction="forward">
+          <div class="button button-assertive button-custom-size-large">
+            更换手机号
+          </div>
+        </a>
+      </div>
+
+      <div class="button-custom-size-large-wrapper button-wrapper-margintop">
+        <div class="button button-outline button-assertive button-custom-size-large">
+          取消绑定
+        </div>
+      </div>
+
+    </div>
+
   </ion-content>
 </ion-view>

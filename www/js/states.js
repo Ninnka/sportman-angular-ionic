@@ -131,7 +131,7 @@ angular.module('starter.states', [])
       views: {
         'index': {
           templateUrl: "templates/app/setting/account-security/link-mobile.html",
-          controller: ""
+          controller: "settingLinkMobileCtrl"
         }
       }
     })
@@ -151,6 +151,36 @@ angular.module('starter.states', [])
       views: {
         'index': {
           templateUrl: "templates/app/setting/account-security/sportmanid.html",
+          controller: ""
+        }
+      }
+    })
+    .state('appsetting_account-security_link-mobile_bindmobile', {
+      cache: false,
+      url: "/app/setting/account-security/link-mobile/bindmobile",
+      views: {
+        'index': {
+          templateUrl: "templates/app/setting/account-security/link-mobile/bindmobile.html",
+          controller: "settingBindMobileCtrl"
+        }
+      }
+    })
+    .state('appsetting_account-security_link-mobile_changemobile', {
+      cache: false,
+      url: "/app/setting/account-security/link-mobile/changemobile",
+      views: {
+        'index': {
+          templateUrl: "templates/app/setting/account-security/link-mobile/changemobile.html",
+          controller: ""
+        }
+      }
+    })
+    .state('appsetting_account-security_link-mobile_validatemobile', {
+      cache: false,
+      url: "/app/setting/account-security/link-mobile/validatemobile",
+      views: {
+        'index': {
+          templateUrl: "templates/app/setting/account-security/link-mobile/validatemobile.html",
           controller: ""
         }
       }

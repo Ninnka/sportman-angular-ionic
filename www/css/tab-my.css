@@ -145,3 +145,46 @@
   height: 40px;
   line-height: 40px;
 }
+
+
+/* 手机部分 */
+
+.mobile-img-symbol-wapper {
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+  padding: 36px 0 26px;
+}
+
+.mobile-img-symbol-wapper>img {
+  height: 140px;
+}
+
+.bind-mobile-symbol-text {
+  color: #252525;
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.bind-mobile-symbol-subtext {
+  color: #777;
+  width: 80%;
+  margin: 4px auto 12px;
+}
+
+.button-wrapper-margintop {
+  margin-top: 16px;
+}
+
+.bindmobile-notice {
+  width: 85%;
+  margin: 12px auto;
+  color: #666;
+  line-height: 1.4;
+}
+
+.bindmobile-country {
+  margin-left: 20px;
+}

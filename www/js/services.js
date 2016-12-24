@@ -4,6 +4,9 @@ angular.module('starter.services', [])
   this.um = "";
   this.sportmanid = "";
   this.avatar = "";
+  this.email = "";
+  this.pn = "";
+  this.gender = "";
   this.empty = true;
   this.setUm = function (um) {
     this.um = um;
@@ -14,6 +17,15 @@ angular.module('starter.services', [])
   this.setAvatar = function (avatar) {
     this.avatar = avatar;
   };
+  this.setEmail = function (email) {
+    this.email = email;
+  };
+  this.setPn = function (pn) {
+    this.pn = pn;
+  };
+  this.setGender = function (gender) {
+    this.gender = gender;
+  };
   this.setEmpty = function (flag) {
     this.empty = flag;
   };
@@ -21,6 +33,9 @@ angular.module('starter.services', [])
     this.setUm("");
     this.setSpmid("");
     this.setAvatar("");
+    this.setEmail("");
+    this.setPn("");
+    this.setGender("");
     this.setEmpty(true);
   };
 }])

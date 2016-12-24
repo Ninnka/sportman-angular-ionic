@@ -3,6 +3,10 @@
 
 /* 通用 */
 
+.button-custom-size-large-wrapper {
+  text-align: center;
+}
+
 .bgW {
   background: white;
 }
