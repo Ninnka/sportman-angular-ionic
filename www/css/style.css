@@ -3,6 +3,23 @@
 
 /* 通用 */
 
+.bgW {
+  background: white;
+}
+
+.password-spmid-wrapper {
+  margin-left: 24px;
+}
+
+.float-left {
+  float: left;
+}
+
+.tab-nav.tabs {
+  box-shadow: 0px 0px 1px 0px #CCC;
+  transform: translateZ(2px);
+}
+
 .title.title-center.header-item {
   padding: 0 12%;
 }

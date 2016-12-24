@@ -59,10 +59,11 @@ angular.module('starter.services', [])
   };
 })
 
-.factory("Logout", ['UsrInfoLocal', function (UsrInfoLocal) {
+.factory("Logout", ['UsrInfoLocal', 'ls', function (UsrInfoLocal, ls) {
   return {
     logoutCurrentAccount: function () {
-
+      UsrInfoLocal.clear();
+      ls.clear();
     }
   };
 }])

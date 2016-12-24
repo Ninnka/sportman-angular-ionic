@@ -33,7 +33,7 @@ angular.module('starter.states', [])
         }
       }
     })
-    .state('usrdetail-phone', {
+    .state('usrdetail_phone', {
       cache: false,
       url: '/usr/detail/phone',
       views: {
@@ -53,7 +53,7 @@ angular.module('starter.states', [])
         }
       }
     })
-    .state('appsetting-account-security', {
+    .state('appsetting_account-security', {
       cache: false,
       url: '/app/setting/account-security',
       views: {
@@ -63,7 +63,7 @@ angular.module('starter.states', [])
         }
       }
     })
-    .state('appsetting-notification', {
+    .state('appsetting_notification', {
       cache: false,
       url: '/app/setting/notification',
       views: {
@@ -73,7 +73,7 @@ angular.module('starter.states', [])
         }
       }
     })
-    .state('appsetting-privacy', {
+    .state('appsetting_privacy', {
       cache: false,
       url: '/app/setting/privacy',
       views: {
@@ -83,7 +83,7 @@ angular.module('starter.states', [])
         }
       }
     })
-    .state('appsetting-universal', {
+    .state('appsetting_universal', {
       cache: false,
       url: '/app/setting/universal',
       views: {
@@ -93,7 +93,7 @@ angular.module('starter.states', [])
         }
       }
     })
-    .state('appsetting-feedback', {
+    .state('appsetting_feedback', {
       cache: false,
       url: '/app/setting/feedback',
       views: {
@@ -103,12 +103,52 @@ angular.module('starter.states', [])
         }
       }
     })
-    .state('appsetting-about', {
+    .state('appsetting_about', {
       cache: false,
       url: '/app/setting/about',
       views: {
         'index': {
           templateUrl: "templates/app/setting/about.html",
+          controller: ""
+        }
+      }
+    })
+    .state('appsetting_account-security_password', {
+      cache: false,
+      url: '/app/setting/account-security/password',
+      views: {
+        'index': {
+          templateUrl: "templates/app/setting/account-security/password.html",
+          controller: "settingAccountSecurityPasswordCtrl"
+        }
+      }
+    })
+    .state('appsetting_account-security_link-mobile', {
+      cache: false,
+      url: "/app/setting/account-security/link-mobile",
+      views: {
+        'index': {
+          templateUrl: "templates/app/setting/account-security/link-mobile.html",
+          controller: ""
+        }
+      }
+    })
+    .state('appsetting_account-security_email', {
+      cache: false,
+      url: "/app/setting/account-security/email",
+      views: {
+        'index': {
+          templateUrl: "templates/app/setting/account-security/email.html",
+          controller: ""
+        }
+      }
+    })
+    .state('appsetting_account-security_sportmanid', {
+      cache: false,
+      url: "/app/setting/account-security/sportmanid",
+      views: {
+        'index': {
+          templateUrl: "templates/app/setting/account-security/sportmanid.html",
           controller: ""
         }
       }

@@ -125,3 +125,23 @@
 
 
 /* 设置 */
+
+
+/* 密码部分 */
+
+.account-security-password-submitbtn-wrapper {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+.account-security-password-submitbtn-wrapper>div {
+  flex-grow: 1;
+  flex-shrink: 0;
+  margin: 0 10px;
+  min-height: 12px;
+  height: 40px;
+  line-height: 40px;
+}

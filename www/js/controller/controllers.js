@@ -69,8 +69,9 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 
   $rootScope.logout = function () {
     console.log("logout");
-    UsrInfoLocal.clear();
-    ls.clear();
+    // UsrInfoLocal.clear();
+    // ls.clear();
+    Logout.logoutCurrentAccount();
     $rootScope.globalSignSymbol = false;
     $rootScope.toBackView();
   };
@@ -92,6 +93,8 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           $scope.uil.setSpmid(response.data.sportmanid);
           $scope.uil.setAvatar(response.data.avatar);
           $scope.uil.setEmpty(false);
+
+          console.log("UsrInfoLocal.sportmanid: " + UsrInfoLocal.sportmanid);
 
           ls.set("usrpassword", response.data.usrpw);
           ls.set("usrname", response.data.usrnm);
@@ -383,6 +386,37 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   $scope.showvalue = function () {
     console.log("showvalue: " + $scope.value);
   };
+}])
+
+.controller('settingAccountSecurityPasswordCtrl', ['$scope', 'UsrInfoLocal', function ($scope, UsrInfoLocal) {
+  console.log("init settingAccountSecurityPasswordCtrl");
+  $scope.uil = UsrInfoLocal;
+
+  $scope.passwordModify = {
+    enterPW: "",
+    confirmPW: "",
+    compare: function () {
+      if (this.enterPW === this.confirmPW) {
+        return true;
+      }
+      return false;
+
+    }
+  };
+
+  $scope.resetInput = function () {
+    $scope.passwordModify.enterPW = "";
+    $scope.passwordModify.confirmPW = "";
+  };
+
+  $scope.submitInput = function () {
+    if ($scope.passwordModify.compare()) {
+      console.log("提交成功");
+    } else {
+      console.log("密码不一致");
+    }
+  };
+
 }]);
 
 // .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
