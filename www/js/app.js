@@ -3,7 +3,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'starter.services', 'ngAnimate'])
   .run(function ($ionicPlatform) {
     // console.log("run before ionicPlatform ready");
     $ionicPlatform.ready(function () {
@@ -29,7 +29,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
   $provide.provider("provideTest", function () {
     this.$get = function () {
       console.log("initial provideTest instance");
-      i
       return {
         testStr: "testValue"
       };
@@ -111,9 +110,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
         }
       }
     })
-    .state('usr.phone', {
+    .state('usrdetail_phone', {
       cache: false,
-      url: '/detail/phone',
+      url: '/usr/detail/phone',
       views: {
         'index': {
           templateUrl: 'templates/usr/detail/phone.html',

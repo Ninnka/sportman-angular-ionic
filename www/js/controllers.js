@@ -41,8 +41,17 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   }];
 })
 
-.controller('AppCtrl', ['$scope', '$rootScope', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', function ($scope, $rootScope, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher) {
+.controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher) {
   console.log("init AppCtrl");
+
+  $rootScope.checkSignSymbolAndState = function (targetState) {
+    if ($rootScope.globalSignSymbol === true) {
+      $state.go(targetState);
+      $rootScope.inAnimation();
+    } else {
+      console.log("请先登录");
+    }
+  };
 
   $rootScope.inAnimation = function () {
     $ionicViewSwitcher.nextDirection("forward");
@@ -275,7 +284,11 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           console.log("on signinsuccess");
           $scope.my.form = false;
           $scope.my.content = true;
+
+          // 清空本地登录信息存储
           $scope.usrinfo = undefined;
+
+          $rootScope.globalSignSymbol = true;
         } else {
           $scope.resultFail = true;
           $scope.resultErrorText = "账户名或密码出错";
