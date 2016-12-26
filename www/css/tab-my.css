@@ -188,3 +188,72 @@
 .bindmobile-country {
   margin-left: 20px;
 }
+
+.validatemobile-notification-text {
+  text-align: center;
+  color: #676767;
+  font-size: 17px;
+  padding: 16px 0;
+}
+
+.validatemobile-submitbtn-wrapper {
+  margin: 20px 0 12px;
+  text-align: center;
+}
+
+.validatemobile-submitbtn-wrapper>button:nth-child(1) {
+  width: 60%;
+}
+
+.validatemobile-submitbtn-wrapper>button:nth-child(2) {
+  width: 14%;
+  font-size: 14px;
+  line-height: 1;
+  margin: 0 10px;
+}
+
+.validatemobile-help-cantreceivecode-wrapper {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.changemobile-notification-text {
+  text-align: center;
+  color: #676767;
+  font-size: 17px;
+  padding: 16px 36px;
+}
+
+
+/* 邮箱部分 */
+
+.updateemail-notification-text-hb {
+  text-align: center;
+  color: #1212AA;
+  font-size: 15px;
+  padding: 12px 14px 8px;
+}
+
+.updateemail-notification-text-hnb {
+  color: #771212;
+}
+
+.updateemail-notification-text {
+  text-align: center;
+  color: #676767;
+  font-size: 15px;
+  padding: 8px 14px;
+  margin-bottom: 16px;
+}
+
+
+/* id部分 */
+
+.updateid-notification-text {
+  text-align: center;
+  color: #676767;
+  font-size: 15px;
+  padding: 8px 14px;
+  margin-bottom: 16px;
+}

@@ -1,5 +1,36 @@
 <ion-view view-title="更换手机号">
   <ion-content>
-    更换手机号
+
+    <div class="changemobile-notification-text">
+      更换手机后，下次登录后可使用新手机，当前手机号：12345654321
+    </div>
+
+    <div class="list bindmobile-wrapper">
+
+      <a class="item">
+        <span class="float-left">
+          国家/地区
+        </span>
+        <span class="bindmobile-country">
+          China
+        </span>
+      </a>
+      <a class="item">
+        <span class="input-label">+86</span>
+        <input type="text" placeholder="请输入手机号码" ng-model="bindmobile.phonenumber">
+      </a>
+
+    </div>
+
+    <div class="account-security-password-submitbtn-wrapper">
+      <div class="button button-outline button-assertive button-reset" ng-click="resetInput()">
+        清空
+      </div>
+      <div class="button button-positive button-complete" ng-click="nextStep()">
+        提交
+      </div>
+    </div>
+
+
   </ion-content>
 </ion-view>

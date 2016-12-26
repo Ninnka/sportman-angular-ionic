@@ -1,5 +1,32 @@
 <ion-view view-title="认证">
   <ion-content>
-    认证
+    <div class="validatemobile-notification-text">
+      短信验证码已发送，请填写验证码
+    </div>
+    <div class="validatemobile-input-code-wrapper">
+      <div class="list bgW">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">电话号码</span>
+          <input type="text" placeholder="12345654321" disabled="disabled">
+        </label>
+        <div class="item">
+          <span>验证码</span>
+          <input type="text" name="" value="" class="" placeholder="请输入验证码">
+        </div>
+      </div>
+    </div>
+
+    <div class="validatemobile-submitbtn-wrapper">
+      <button type="button" name="button" class="button button-assertive">提交</button>
+      <button type="button" name="button" class="button button-positive">重新发送</button>
+    </div>
+
+    <div class="validatemobile-help-cantreceivecode-wrapper">
+      <a class=“validatemobile-help-cantreceivecode” ng-href="#/app/setting/feedback" nav-direction="forward">
+        接受不到验证码?
+      </a>
+    </div>
+
+
   </ion-content>
 </ion-view>

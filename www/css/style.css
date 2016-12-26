@@ -3,6 +3,18 @@
 
 /* 通用 */
 
+.empty {
+  height: 12px;
+}
+
+.martop {
+  margin-top: 12px;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
 .button-custom-size-large-wrapper {
   text-align: center;
 }

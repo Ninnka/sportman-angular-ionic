@@ -1,5 +1,27 @@
-<ion-view view-title="sportmanid">
+<ion-view view-title="修改ID">
   <ion-content>
-    sportmanid
+    <div class="empty"></div>
+
+    <div class="list bgW">
+      <label for="" class="item item-input item-stacked-label">
+        <span class="input-label">Sportmanid</span>
+        <input type="text" placeholder="{{idPlaceholder}}" disabled="{{bindSymbol.hasBind}}">
+      </label>
+    </div>
+
+    <div class="updateid-notification-text">
+      Sportman ID 是帐号的唯一凭证，只能修改一次
+      <p ng-show="{{bindSymbol.hasBind}}">您已经提交过Sportmanid，无法再修改</p>
+    </div>
+
+    <div class="account-security-password-submitbtn-wrapper" ng-show="{{!bindSymbol.hasBind}}">
+      <div class="button button-outline button-assertive button-reset" ng-click="resetInput()">
+        清空
+      </div>
+      <div class="button button-positive button-complete" ng-click="updateId()">
+        提交
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>

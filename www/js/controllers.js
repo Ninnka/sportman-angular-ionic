@@ -98,6 +98,10 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           $scope.uil.setAvatar(response.data.avatar);
           $scope.uil.setEmpty(false);
 
+          $scope.uil.setEmail(response.data.usremail);
+          $scope.uil.setPn(response.data.usrpn);
+          $scope.uil.setGender(response.data.usrgender);
+
           console.log("UsrInfoLocal.sportmanid: " + UsrInfoLocal.sportmanid);
 
           ls.set("usrpassword", response.data.usrpw);
@@ -323,6 +327,10 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           $scope.uil.setAvatar(response.data.avatar);
           $scope.uil.setEmpty(false);
 
+          $scope.uil.setEmail(response.data.usremail);
+          $scope.uil.setPn(response.data.usrpn);
+          $scope.uil.setGender(response.data.usrgender);
+
           // storage in local
           ls.set("usrpassword", response.data.usrpw);
           ls.set("usrname", response.data.usrnm);
@@ -470,6 +478,62 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   $scope.nextStep = function () {
     $state.go("appsetting_account-security_link-mobile_validatemobile");
     $rootScope.inAnimation();
+  };
+}])
+
+.controller('settingChangeMobileCtrl', ['$scope', '$rootScope', '$state', function ($scope, $rootScope, $state) {
+  $scope.bindmobile = {
+    phonenumber: ""
+  };
+
+  $scope.resetInput = function () {
+    $scope.bindmobile.phonenumber = "";
+  };
+
+  $scope.nextStep = function () {
+    $state.go("appsetting_account-security_link-mobile_validatemobile");
+    $rootScope.inAnimation();
+  };
+}])
+
+.controller('settingUpdateEmail', ['$scope', 'UsrInfoLocal', function ($scope, UsrInfoLocal) {
+
+  $scope.bindSymbol = {
+    hasBind: UsrInfoLocal.email !== ""
+  };
+
+  $scope.bindEmail = {
+    email: ""
+  };
+
+  $scope.resetInput = function () {
+    $scope.bindEmail.email = "";
+  };
+
+  $scope.updateEmail = function () {
+    console.log("submit email");
+  };
+
+}])
+
+.controller('settingUpdateSportmanid', ['$scope', 'UsrInfoLocal', function ($scope, UsrInfoLocal) {
+
+  $scope.bindSymbol = {
+    hasBind: UsrInfoLocal.sportmanid !== ""
+  };
+
+  $scope.idPlaceholder = $scope.bindSymbol.hasBind ? UsrInfoLocal.sportmanid : "6-20个字母、数字、下划线和减号，必须以字母开头";
+
+  $scope.bindSportmanid = {
+    sportmanid: ""
+  };
+
+  $scope.resetInput = function () {
+    $scope.bindSportmanid.sportmanid = "";
+  };
+
+  $scope.updateId = function () {
+    console.log("updateId");
   };
 }]);
 

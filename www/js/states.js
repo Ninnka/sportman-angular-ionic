@@ -141,7 +141,7 @@ angular.module('starter.states', [])
       views: {
         'index': {
           templateUrl: "templates/app/setting/account-security/email.html",
-          controller: ""
+          controller: "settingUpdateEmail"
         }
       }
     })
@@ -151,7 +151,7 @@ angular.module('starter.states', [])
       views: {
         'index': {
           templateUrl: "templates/app/setting/account-security/sportmanid.html",
-          controller: ""
+          controller: "settingUpdateSportmanid"
         }
       }
     })
@@ -171,7 +171,7 @@ angular.module('starter.states', [])
       views: {
         'index': {
           templateUrl: "templates/app/setting/account-security/link-mobile/changemobile.html",
-          controller: ""
+          controller: "settingChangeMobileCtrl"
         }
       }
     })
