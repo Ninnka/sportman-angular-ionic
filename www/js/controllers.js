@@ -431,6 +431,8 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   };
 
   $scope.submitInput = function () {
+    console.log("enterPw");
+    console.log($scope.passwordModify.enterPW);
     if ($scope.passwordModify.compare()) {
       console.log("提交成功");
     } else {
@@ -535,4 +537,54 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   $scope.updateId = function () {
     console.log("updateId");
   };
+}])
+
+.controller('settingNotification', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {
+
+  // $scope.firstEnter = true;
+
+  // $scope.$on("$ionicView.enter", function () {
+  //   if ($scope.firstEnter === true) {
+  //     console.log("firstEnter notification");
+  //     $state.go("appsetting_notification_tab.activities");
+  //     $scope.firstEnter = false;
+  //   }
+  // });
+  $scope.toUpperStage = function () {
+    $state.go("appsetting");
+    $rootScope.outAnimation();
+  };
+
+  $scope.tab = {
+    activities: true,
+    companies: false
+  };
+
+  $scope.contentList = {
+    activities: [],
+    companies: []
+  };
+
+  $scope.getMoreActiviesList = function () {
+
+  };
+  $scope.getMoreCompaniesList = function () {
+
+  };
+}])
+
+.controller('settingNotificationActivities', ['$scope', '$ionicHistory', function ($scope, $ionicHistory) {
+  $scope.$on("$ionicView.enter", function () {
+    console.log("into settingNotificationActivities");
+    console.log("currentView()");
+    console.log($ionicHistory.currentView());
+  });
+}])
+
+.controller('settingNotificationCompanies', ['$scope', '$ionicHistory', function ($scope, $ionicHistory) {
+  $scope.$on("$ionicView.enter", function () {
+    console.log("into settingNotificationCompanies");
+    console.log("currentView()");
+    console.log($ionicHistory.currentView());
+  });
 }]);

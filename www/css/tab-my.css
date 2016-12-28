@@ -257,3 +257,19 @@
   padding: 8px 14px;
   margin-bottom: 16px;
 }
+
+
+/* 通知部分 */
+
+.tabs-top>.tabs,
+.tabs.tabs-top {
+  top: 0px !important;
+}
+
+.tab-item {
+  max-width: 100%;
+}
+
+.scroll-content.ionic-scroll.has-tabs-top {
+  top: 44px;
+}
