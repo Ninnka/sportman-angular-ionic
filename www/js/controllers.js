@@ -536,7 +536,3 @@ angular.module('starter.controllers', [], function ($httpProvider) {
     console.log("updateId");
   };
 }]);
-
-// .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
-//   $scope.chat = Chats.get($stateParams.chatId);
-// })
