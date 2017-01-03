@@ -42,7 +42,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 })
 
 .controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher) {
-  console.log("init AppCtrl");
+  // console.log("init AppCtrl");
 
   $rootScope.clearHistory = function () {
     $ionicHistory.clearHistory();

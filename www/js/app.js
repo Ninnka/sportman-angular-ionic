@@ -3,8 +3,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'starter.services', 'starter.states', 'starter.states.my.setting', 'ngAnimate'])
-  .run(function ($ionicPlatform) {
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'starter.services', 'starter.filters', 'starter.states', 'starter.states.my.setting', 'ngAnimate', 'ngCordova'])
+  .run(function ($ionicPlatform, $cordovaStatusbar) {
     // console.log("run before ionicPlatform ready");
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -17,7 +17,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
+
+      $cordovaStatusbar.overlaysWebView(true);
+
+      // 样式: 无 : 0, 白色不透明: 1, 黑色半透明: 2, 黑色不透明: 3
+      $cordovaStatusbar.style(1);
+
+      // 背景颜色名字 : black, darkGray, lightGray, white, gray, red, green,
+      // blue, cyan, yellow, magenta, orange, purple, brown 注:需要开启状态栏占用视图.
+      // $cordovaStatusbar.styleColor('red');
+
+      $cordovaStatusbar.styleHex('#FB8041');
+
+      // $cordovaStatusbar.hide();
+
+      $cordovaStatusbar.show();
+
+      // var isVisible = $cordovaStatusbar.isVisible();
     });
+
   })
 
 .constant("constantParams", "constantParams value")
