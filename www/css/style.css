@@ -3,6 +3,12 @@
 
 /* 通用 */
 
+.button-large {
+  width: 80%;
+  line-height: 46px;
+  min-height: 46px;
+}
+
 .card>a {
   display: block;
 }

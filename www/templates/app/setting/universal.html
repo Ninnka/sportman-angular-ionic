@@ -1,5 +1,32 @@
 <ion-view view-title="通用">
   <ion-content>
-    通用
+
+    <ul class="list">
+      <li class="item item-toggle">
+        开启定位
+        <label class="toggle toggle-positive">
+           <input type="checkbox">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+      <li class="item item-toggle">
+        开启NFC功能（未开通）
+        <label class="toggle toggle-positive">
+           <input type="checkbox" disabled="disabled">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+    </ul>
+
+    <ul class="list">
+      <li class="item text-align-center assertive">
+        清理缓存
+      </li>
+    </ul>
+
   </ion-content>
 </ion-view>
