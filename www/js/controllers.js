@@ -431,12 +431,16 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 }])
 
 .controller('mySubscriptionActivities', ['$scope', '$rootScope', '$ionicHistory', function ($scope, $rootScope, $ionicHistory) {
+  console.log("init mySubscriptionActivities");
+
   $scope.$on("$ionicView.enter", function () {
     $rootScope.clearHistory();
   });
 }])
 
 .controller('mySubscriptionCompanies', ['$scope', '$rootScope', '$ionicHistory', function ($scope, $rootScope, $ionicHistory) {
+  console.log("init mySubscriptionCompanies");
+
   $scope.$on("$ionicView.enter", function () {
     $rootScope.clearHistory();
   });

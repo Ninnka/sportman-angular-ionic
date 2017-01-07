@@ -273,3 +273,52 @@
 .scroll-content.ionic-scroll.has-tabs-top {
   top: 44px;
 }
+
+.card-title-time {
+  line-height: 30px;
+  padding: 0 17px;
+  background: rgb(240, 240, 240);
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.text-align-center>span {
+  display: inline-block;
+}
+
+.card-content-img {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.card-content-img>img {
+  float: left;
+  width: 100%;
+}
+
+.img-with-title>span {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  line-height: 2.0;
+  color: white;
+  font-size: 20px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.item-thumbnail-right,
+.item-thumbnail-right .item-content {
+  min-height: 80px;
+}
+
+.item-thumbnail-right>img:first-child {
+  max-height: 60px;
+  max-width: 60px;
+}
+
+.text-align-right {
+  text-align: right;
+}

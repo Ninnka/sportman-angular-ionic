@@ -3,6 +3,47 @@
 
 /* 通用 */
 
+.card>a {
+  display: block;
+}
+
+.item h2 {
+  font-size: 18px;
+}
+
+.item p {
+  font-size: 16px;
+}
+
+.item-avatar>img:first-child {
+  border-radius: 0;
+}
+
+.tab-title.ng-binding {
+  font-size: 18px;
+}
+
+.item-title-left {
+  text-align: left;
+}
+
+.item-title-left>.item-title-md {
+  font-size: 18px;
+  color: #232323;
+}
+
+.padding-top-sm {
+  padding-top: 10px;
+}
+
+.margin-top-sm {
+  margin-top: 6px;
+}
+
+.margin-top-md {
+  margin-top: 10px;
+}
+
 .empty {
   height: 12px;
 }

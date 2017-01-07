@@ -1,5 +1,25 @@
 angular.module('starter.directives', [])
 
+.directive('cardSubscriptionItem', function () {
+  return {
+    restrict: "EA",
+    templateUrl: "",
+    replace: true,
+    scope: false,
+    controller: ""
+  };
+})
+
+.directive('bubbleSubscriptionItem', function () {
+  return {
+    restrict: "EA",
+    templateUrl: "",
+    replace: true,
+    scope: false,
+    controller: ""
+  };
+})
+
 // .directive("myContentDirective", function () {
 //   return {
 //     restrict: "EA",
