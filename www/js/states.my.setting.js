@@ -26,29 +26,10 @@ angular.module('starter.states.my.setting', [])
     })
     .state('appsetting_notification', {
       url: '/app/setting/notification',
-      abstract: true,
       views: {
         'index': {
           templateUrl: "templates/app/setting/notification.html",
           controller: "settingNotification"
-        }
-      }
-    })
-    .state('appsetting_notification.activities', {
-      url: '/activities',
-      views: {
-        'notification-activities': {
-          templateUrl: "templates/app/setting/notification/activities.html",
-          controller: "settingNotificationActivities"
-        }
-      }
-    })
-    .state('appsetting_notification.companies', {
-      url: '/companies',
-      views: {
-        'notification-companies': {
-          templateUrl: "templates/app/setting/notification/companies.html",
-          controller: "settingNotificationCompanies"
         }
       }
     })

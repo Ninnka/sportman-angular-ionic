@@ -42,7 +42,6 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 })
 
 .controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher) {
-  // console.log("init AppCtrl");
 
   $rootScope.clearHistory = function () {
     $ionicHistory.clearHistory();
@@ -65,14 +64,17 @@ angular.module('starter.controllers', [], function ($httpProvider) {
     $ionicViewSwitcher.nextDirection("back");
   };
 
-  $rootScope.toBackView = function () {
+  $rootScope.toBackView = function (target) {
     console.log("back");
-    $ionicHistory.goBack(-1);
+    if (target === undefined) {
+      $ionicHistory.goBack(-1);
+    } else {
+      $state.go(target);
+    }
     $rootScope.outAnimation();
   };
 
   $rootScope.logout = function () {
-    console.log("logout");
     // UsrInfoLocal.clear();
     // ls.clear();
     Logout.logoutCurrentAccount();
@@ -89,7 +91,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   if ($scope.globalUsrname !== "" && $scope.globalPassword !== "") {
     SignInOrUpFac.signIn($scope.globalUsrname, $scope.globalPassword)
       .then(function resolve(response) {
-        console.log("global sign in");
+        // console.log("global sign in");
         if (response.data.resultStatus === "success") {
           $rootScope.globalSignSymbol = true;
 
@@ -102,7 +104,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           $scope.uil.setPn(response.data.usrpn);
           $scope.uil.setGender(response.data.usrgender);
 
-          console.log("UsrInfoLocal.sportmanid: " + UsrInfoLocal.sportmanid);
+          // console.log("UsrInfoLocal.sportmanid: " + UsrInfoLocal.sportmanid);
 
           ls.set("usrpassword", response.data.usrpw);
           ls.set("usrname", response.data.usrnm);
@@ -134,8 +136,6 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 
   $scope.goodsListAll = ajaxGetData.ajaxGet("http://www.hehe168.com/mapi.php?act=getGoods")
     .then(function successCallback(res) {
-      console.log("res:");
-      console.log(res);
 
       $scope.bannerList = $scope.bannerList.concat(res.data.bannerList);
 
@@ -158,12 +158,12 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 
 // 分类页面的控制器
 .controller('CategoryCtrl', ['$scope', function ($scope) {
-  console.log("init CatetoryCrtl");
+  // console.log("init CatetoryCrtl");
 }])
 
 // 发现页面的控制器
 .controller('FindCtrl', ["$scope", "$http", "constantParams", "valueParams", "provideTest", "getData", "ajaxGetData", "studentsService", "$timeout", function ($scope, $http, constantParams, valueParams, provideTest, getData, ajaxGetData, studentsService, $timeout) {
-  console.log("init FindCtrl");
+  // console.log("init FindCtrl");
 
   // 测试用，可删除
   // console.log("constantParams: " + constantParams);
@@ -212,7 +212,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 
 // 购物车页面的控制器
 .controller('ShoppingCarCtrl', ["$scope", function ($scope) {
-  console.log("init ShoppingCarCtrl");
+  // console.log("init ShoppingCarCtrl");
 
   // 测试用，可删除
   $scope.getGoodsData = function () {};
@@ -272,7 +272,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
       animation: 'slide-in-up'
     })
     .then(function (modal) {
-      console.log("modal success");
+      // console.log("modal success");
       $scope.signModal = modal;
     }, function (err) {
       console.log("err");
@@ -289,15 +289,12 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   };
   $scope.$on("modal.show", function () {
     // todo
-    console.log("modal.show");
   });
   $scope.$on("modal.hidden", function () {
     // todo
-    console.log("modal.hidden");
   });
   $scope.$on("modal.removed", function () {
     // todo
-    console.log("modal.removed");
   });
 
   // 提交账户信息相关
@@ -341,7 +338,7 @@ angular.module('starter.controllers', [], function ($httpProvider) {
           ls.set("phonenumber", response.data.usrpn);
           ls.set("gender", response.data.usrgender);
 
-          console.log("on signinsuccess");
+          // console.log("on signinsuccess");
 
           // 清空本地登录信息存储
           $scope.usrinfo = undefined;
@@ -376,7 +373,6 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 
   // 注册回调方法
   $scope.signupSubmit = function () {
-    console.log("signupSubmit");
     SignInOrUpFac.signUp($scope.signupInfo.usrname, $scope.signupInfo.usrpassword)
       .then(function resolve(response) {
         console.log("sign up success");
@@ -393,7 +389,57 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 
 // 用户详细页控制器
 .controller('usrDetailCtrl', ['$scope', function ($scope) {
-  console.log("init usrDetailCtrl");
+
+}])
+
+// 我的收藏、历史，评论，推送
+
+.controller('myCommentCtrl', ['$scope', function ($scope) {
+
+}])
+
+.controller('myAlbum', ['$scope', function ($scope) {
+
+}])
+
+.controller('myHistory', ['$scope', function ($scope) {
+
+}])
+
+.controller('mySubscription', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {
+
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
+
+  $scope.tab = {
+    activities: true,
+    companies: false
+  };
+
+  $scope.contentList = {
+    activities: [],
+    companies: []
+  };
+
+  $scope.getMoreActiviesList = function () {
+
+  };
+  $scope.getMoreCompaniesList = function () {
+
+  };
+}])
+
+.controller('mySubscriptionActivities', ['$scope', '$rootScope', '$ionicHistory', function ($scope, $rootScope, $ionicHistory) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
+}])
+
+.controller('mySubscriptionCompanies', ['$scope', '$rootScope', '$ionicHistory', function ($scope, $rootScope, $ionicHistory) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
 }])
 
 // 测试directive的独立作用域和link函数
@@ -431,7 +477,6 @@ angular.module('starter.controllers', [], function ($httpProvider) {
   };
 
   $scope.submitInput = function () {
-    console.log("enterPw");
     console.log($scope.passwordModify.enterPW);
     if ($scope.passwordModify.compare()) {
       console.log("提交成功");
@@ -541,50 +586,4 @@ angular.module('starter.controllers', [], function ($httpProvider) {
 
 .controller('settingNotification', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {
 
-  // $scope.firstEnter = true;
-
-  // $scope.$on("$ionicView.enter", function () {
-  //   if ($scope.firstEnter === true) {
-  //     console.log("firstEnter notification");
-  //     $state.go("appsetting_notification_tab.activities");
-  //     $scope.firstEnter = false;
-  //   }
-  // });
-  $scope.toUpperStage = function () {
-    $state.go("appsetting");
-    $rootScope.outAnimation();
-  };
-
-  $scope.tab = {
-    activities: true,
-    companies: false
-  };
-
-  $scope.contentList = {
-    activities: [],
-    companies: []
-  };
-
-  $scope.getMoreActiviesList = function () {
-
-  };
-  $scope.getMoreCompaniesList = function () {
-
-  };
-}])
-
-.controller('settingNotificationActivities', ['$scope', '$ionicHistory', function ($scope, $ionicHistory) {
-  $scope.$on("$ionicView.enter", function () {
-    console.log("into settingNotificationActivities");
-    console.log("currentView()");
-    console.log($ionicHistory.currentView());
-  });
-}])
-
-.controller('settingNotificationCompanies', ['$scope', '$ionicHistory', function ($scope, $ionicHistory) {
-  $scope.$on("$ionicView.enter", function () {
-    console.log("into settingNotificationCompanies");
-    console.log("currentView()");
-    console.log($ionicHistory.currentView());
-  });
 }]);

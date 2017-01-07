@@ -3,7 +3,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'starter.services', 'starter.filters', 'starter.states', 'starter.states.my.setting', 'ngAnimate', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'starter.services', 'starter.filters', 'starter.states.tab.home', 'starter.states.tab.my', 'starter.states.my.setting', 'ngAnimate', 'ngCordova'])
   .run(function ($ionicPlatform, $cordovaStatusbar) {
     // console.log("run before ionicPlatform ready");
     $ionicPlatform.ready(function () {
