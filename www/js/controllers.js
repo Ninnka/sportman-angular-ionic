@@ -9,6 +9,8 @@ angular.module('starter.controllers', [], function () {
   };
 
   $rootScope.checkSignSymbolAndState = function (targetState) {
+    // $state.go(targetState);
+    // $rootScope.inAnimation();
     if ($rootScope.globalSignSymbol === true) {
       $state.go(targetState);
       $rootScope.inAnimation();
@@ -348,13 +350,79 @@ angular.module('starter.controllers', [], function () {
 
   }])
 
+
 // 用户详细页控制器
 .controller('usrDetailCtrl', ['$scope', function ($scope) {
 
 }])
 
-// 我的收藏、历史，评论，推送
 
+// 我的活动
+.controller('myCollectionsActivityCtrl', ['$scope', function ($scope) {
+
+}])
+
+.controller('myCollectionsActivityComingCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
+}])
+
+.controller('myCollectionsActivityInvestigatingCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
+}])
+
+.controller('myCollectionsActivityFinishedCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
+}])
+
+.controller('myCollectionsActivityAllCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
+}])
+
+
+// 我的场馆
+.controller('myCollectionsStadiumCtrl', ['$scope', function ($scope) {
+
+}])
+
+.controller('myCollectionsStadiumAvailableCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
+}])
+
+.controller('myCollectionsStadiumWaitingPaymentCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
+}])
+
+.controller('myCollectionsStadiumExpireCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
+}])
+
+.controller('myCollectionsStadiumAllCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
+}])
+
+// 我的收藏
+.controller('myCollectionStar', ['$scope', function ($scope) {
+
+}])
+
+
+// 历史，评论，相册，推送
 .controller('myCommentCtrl', ['$scope', function ($scope) {
 
 }])
@@ -367,6 +435,8 @@ angular.module('starter.controllers', [], function () {
 
 }])
 
+
+// 消息推送
 .controller('mySubscription', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {
 
   $scope.$on("$ionicView.enter", function () {
@@ -420,6 +490,13 @@ angular.module('starter.controllers', [], function () {
   };
 }])
 
+
+/**
+ * ----------------------------------------------------------------------------------------------------------------
+ * 设置部分
+ */
+
+// 密码部分
 .controller('settingAccountSecurityPasswordCtrl', ['$scope', 'UsrInfoLocal', function ($scope, UsrInfoLocal) {
   console.log("init settingAccountSecurityPasswordCtrl");
   $scope.uil = UsrInfoLocal;
@@ -452,6 +529,7 @@ angular.module('starter.controllers', [], function () {
 
 }])
 
+// 手机检测绑定
 .controller('settingLinkMobileCtrl', ['$scope', "ls", function ($scope, ls) {
 
   $scope.mobileInfo = {
@@ -477,6 +555,7 @@ angular.module('starter.controllers', [], function () {
   };
 }])
 
+// 绑定手机
 .controller('settingBindMobileCtrl', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {
 
   $scope.bindmobile = {
@@ -493,6 +572,7 @@ angular.module('starter.controllers', [], function () {
   };
 }])
 
+// 更换手机
 .controller('settingChangeMobileCtrl', ['$scope', '$rootScope', '$state', function ($scope, $rootScope, $state) {
   $scope.bindmobile = {
     phonenumber: ""
@@ -508,6 +588,12 @@ angular.module('starter.controllers', [], function () {
   };
 }])
 
+// 认证手机
+.controller('settingValidateMobileCtrl', ['$scope', function ($scope) {
+
+}])
+
+// 更新邮箱
 .controller('settingUpdateEmail', ['$scope', 'UsrInfoLocal', function ($scope, UsrInfoLocal) {
 
   $scope.bindSymbol = {
@@ -528,6 +614,7 @@ angular.module('starter.controllers', [], function () {
 
 }])
 
+// 更新id
 .controller('settingUpdateSportmanid', ['$scope', 'UsrInfoLocal', function ($scope, UsrInfoLocal) {
 
   $scope.bindSymbol = {
@@ -549,6 +636,32 @@ angular.module('starter.controllers', [], function () {
   };
 }])
 
-.controller('settingNotification', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {
+// 系统通知
+.controller('settingNotificationCtrl', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {
+
+}])
+
+// 隐私
+.controller('settingPrivacyCtrl', ['$scope', function ($scope) {
+
+}])
+
+// 通用设置
+.controller('settingUniversalCtrl', ['$scope', function ($scope) {
+
+}])
+
+// 反馈
+.controller('settingFeedbackCtrl', ['$scope', function ($scope) {
+
+}])
+
+// 关于
+.controller('settingAboutCtrl', ['$scope', function ($scope) {
 
 }]);
+
+/**
+ * 设置部分
+ * ----------------------------------------------------------------------------------------------------------------
+ */

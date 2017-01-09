@@ -29,7 +29,7 @@ angular.module('starter.states.my.setting', [])
       views: {
         'index': {
           templateUrl: "templates/app/setting/notification.html",
-          controller: "settingNotification"
+          controller: "settingNotificationCtrl"
         }
       }
     })
@@ -39,7 +39,7 @@ angular.module('starter.states.my.setting', [])
       views: {
         'index': {
           templateUrl: "templates/app/setting/privacy.html",
-          controller: ""
+          controller: "settingPrivacyCtrl"
         }
       }
     })
@@ -49,7 +49,7 @@ angular.module('starter.states.my.setting', [])
       views: {
         'index': {
           templateUrl: "templates/app/setting/universal.html",
-          controller: ""
+          controller: "settingUniversalCtrl"
         }
       }
     })
@@ -59,7 +59,7 @@ angular.module('starter.states.my.setting', [])
       views: {
         'index': {
           templateUrl: "templates/app/setting/feedback.html",
-          controller: ""
+          controller: "settingFeedbackCtrl"
         }
       }
     })
@@ -69,7 +69,7 @@ angular.module('starter.states.my.setting', [])
       views: {
         'index': {
           templateUrl: "templates/app/setting/about.html",
-          controller: ""
+          controller: "settingAboutCtrl"
         }
       }
     })
@@ -139,7 +139,7 @@ angular.module('starter.states.my.setting', [])
       views: {
         'index': {
           templateUrl: "templates/app/setting/account-security/link-mobile/validatemobile.html",
-          controller: ""
+          controller: "settingValidateMobileCtrl"
         }
       }
     });

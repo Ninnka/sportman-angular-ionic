@@ -118,6 +118,12 @@
   width: 34px;
 }
 
+.user-collections>a {
+  display: block;
+  text-decoration: none;
+  color: #232323;
+}
+
 .collections-title {
   text-align: center;
   font-size: 14px;
@@ -385,4 +391,28 @@
   /*margin: 0 auto;*/
   font-size: 18px;
   padding: 12px 16px;
+}
+
+.img-with-description {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.img-with-description>img {
+  margin: 12px 0 8px;
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.img-with-description>p {
+  text-align: center;
+  font-size: 22px;
+  color: red;
+  line-height: 1.5;
+}
+
+.item-wrap-a>a {
+  display: block;
+  text-decoration: none;
+  color: black;
 }
