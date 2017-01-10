@@ -416,3 +416,135 @@
   text-decoration: none;
   color: black;
 }
+
+
+/* 我的场馆 */
+
+.carvel-list>.item>a {
+  display: block;
+}
+
+.carvel-list>.item .item-title {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 4px auto;
+  padding: 10px 4px 10px 2px;
+  border-bottom: 1px solid rgba(180, 180, 180, 0.8);
+}
+
+.item-title>span:nth-child(1) {
+  font-size: 17px;
+  color: #232323;
+  max-width: 80%;
+  white-space: pre;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.item-title>span:nth-child(2) {
+  color: red;
+  font-size: 15px;
+}
+
+.carvel-list>.item {
+  margin-bottom: 12px;
+  padding-top: 8px;
+}
+
+.carvel-list>.item .item-content {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 8px auto;
+  padding: 4px;
+}
+
+.carvel-list>.item .item-content>img {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.carvel-list>.item .item-content>div.item-flexgrow {
+  margin-left: 16px;
+}
+
+.item-flexgrow {
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.carvel-list>.item .item-content p {
+  color: #333;
+  font-size: 16px;
+}
+
+.carvel-list>.item .button-right {
+  text-align: right;
+  border-top: 1px solid rgba(180, 180, 180, 0.8);
+  padding-top: 12px;
+  width: 90%;
+  margin: 8px auto 4px;
+}
+
+.carvel-list>.item .button-right>.button {
+  min-height: 36px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 15px;
+}
+
+
+/* 我的收藏 */
+
+.stream-list>.item>a {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stream-list>.item>a>img {
+  max-width: 140px;
+  max-height: 95px;
+  flex-grow: 0;
+}
+
+.stream-list>.item .item-content {
+  flex-grow: 1;
+  flex-shrink: 0;
+  margin-left: 16px;
+  max-width: 220px;
+}
+
+.stream-list>.item .item-content p,
+.stream-list>.item .item-content span {
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #353535;
+}
+
+.stream-list>.item .item-content .limit-text {
+  max-width: 160px;
+}
+
+.stream-list>.item .item-content .price {
+  color: red;
+}
+
+.stream-list>.item .item-content>div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stream-list>.item .item-content>div:nth-child(1)>span:nth-child(1) {
+  max-width: 70%;
+}
