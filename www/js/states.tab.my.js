@@ -163,6 +163,42 @@ angular.module('starter.states.tab.my', [])
       }
     })
 
+  // 我的评价
+  .state('my_comment', {
+    cache: false,
+    url: "/my/comment",
+    views: {
+      'index': {
+        templateUrl: "templates/tab-my/comment.html",
+        controller: ""
+      }
+    }
+  })
+
+  // 我的相册
+  .state('my_album', {
+    cache: false,
+    url: "/my/album",
+    views: {
+      'index': {
+        templateUrl: "templates/tab-my/album.html",
+        controller: ""
+      }
+    }
+  })
+
+  // 我的浏览历史
+  .state('my_browserhistory', {
+    cache: false,
+    url: "/my/browserhistory",
+    views: {
+      'index': {
+        templateUrl: "templates/tab-my/browserhistory.html",
+        controller: ""
+      }
+    }
+  })
+
   // 推送消息
   .state('my_subscription', {
       url: "/my/subscription",
