@@ -106,21 +106,12 @@ angular.module('starter.states.tab.my', [])
         }
       }
     })
-    .state('my_collections-stadium.watingpayment', {
-      url: "/watingpayment",
+    .state('my_collections-stadium.used', {
+      url: "/used",
       views: {
-        'collections-stadium-watingpayment': {
-          templateUrl: "templates/tab-my/collections/stadium/watingpayment.html",
-          controller: "myCollectionsStadiumWaitingPaymentCtrl"
-        }
-      }
-    })
-    .state('my_collections-stadium.expire', {
-      url: "/expire",
-      views: {
-        'collections-stadium-expire': {
-          templateUrl: "templates/tab-my/collections/stadium/expire.html",
-          controller: "myCollectionsStadiumExpireCtrl"
+        'collections-stadium-used': {
+          templateUrl: "templates/tab-my/collections/stadium/used.html",
+          controller: "myCollectionsStadiumUsedCtrl"
         }
       }
     })
@@ -187,17 +178,55 @@ angular.module('starter.states.tab.my', [])
     }
   })
 
-  // 我的浏览历史
-  .state('my_browserhistory', {
+  // 我的历史
+  .state('my_history', {
     cache: false,
-    url: "/my/browserhistory",
+    url: "/my/history",
     views: {
       'index': {
-        templateUrl: "templates/tab-my/browserhistory.html",
+        templateUrl: "templates/tab-my/history.html",
         controller: ""
       }
     }
   })
+
+  // 费用管理
+  .state('my_payment', {
+      url: "/my/payment",
+      views: {
+        'index': {
+          templateUrl: "templates/tab-my/payment.html",
+          controller: ""
+        }
+      }
+    })
+    .state('my_payment.activity', {
+      url: "/activity",
+      views: {
+        'payment-activity': {
+          templateUrl: "templates/tab-my/payment/activity.html",
+          controller: ""
+        }
+      }
+    })
+    .state('my_payment.stadium', {
+      url: "/stadium",
+      views: {
+        'payment-stadium': {
+          templateUrl: "templates/tab-my/payment/stadium.html",
+          controller: ""
+        }
+      }
+    })
+    .state('my_payment.paid', {
+      url: "/paid",
+      views: {
+        'payment-paid': {
+          templateUrl: "templates/tab-my/payment/paid.html",
+          controller: ""
+        }
+      }
+    })
 
   // 推送消息
   .state('my_subscription', {

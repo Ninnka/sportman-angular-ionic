@@ -548,3 +548,8 @@
 .stream-list>.item .item-content>div:nth-child(1)>span:nth-child(1) {
   max-width: 70%;
 }
+
+.ion-ajust-symbolsize>img {
+  max-width: 22px;
+  margin-left: 5px;
+}

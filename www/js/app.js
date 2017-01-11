@@ -104,21 +104,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
         }
       }
     })
-    .state('tab.home', {
-      url: '/home',
+    .state('tab.activity', {
+      url: '/activity',
       views: {
-        'tab-home': {
-          templateUrl: 'templates/tab-home.html',
-          controller: 'HomeCtrl'
+        'tab-activity': {
+          templateUrl: 'templates/tab-activity.html',
+          controller: 'ActivityCtrl'
         }
       }
     })
-    .state('tab.category', {
-      url: '/category',
+    .state('tab.stadium', {
+      url: '/stadium',
       views: {
-        'tab-category': {
-          templateUrl: 'templates/tab-category.html',
-          controller: 'CategoryCtrl'
+        'tab-stadium': {
+          templateUrl: 'templates/tab-stadium.html',
+          controller: 'StadiumCtrl'
         }
       }
     })
@@ -139,19 +139,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
           controller: 'MyCtrl'
         }
       }
-    })
-    .state('tab.shoppingcar', {
-      url: '/shoppingcar',
-      views: {
-        'tab-shoppingcar': {
-          templateUrl: 'templates/tab-shoppingcar.html',
-          controller: 'ShoppingCarCtrl'
-        }
-      }
     });
 
   // 默认跳转到tab/home页面
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/tab/activity');
 
   // 修改Android的样式
   $ionicConfigProvider.platform.ios.tabs.style('standard');

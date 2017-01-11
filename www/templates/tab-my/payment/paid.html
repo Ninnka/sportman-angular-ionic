@@ -1,4 +1,4 @@
-<ion-view view-title="待付款">
+<ion-view view-title="已付款">
 
   <ion-nav-buttons side="left">
     <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView('tab.my')"></i>
@@ -10,11 +10,29 @@
   <ion-content>
 
     <ul class="carvel-list">
+
+      <li class="item">
+        <a ng-href="">
+          <div class="item-title">
+            <span>TheLightRun——地球上最闪亮的夜跑球上最闪亮的</span>
+            <span>已付款</span>
+          </div>
+          <div class="item-content">
+            <img ng-src="img/stadium-tenis-icon2.png" alt="">
+            <div class="item-flexgrow">
+              <p>报名时间：2016-01-18 20:17</p</p>
+                <p>举行时间：2016-04-11</p>
+                <p>广州市天河区珠江新城花城广场</p>
+            </div>
+          </div>
+        </a>
+      </li>
+
       <li class="item">
         <a ng-href="">
           <div class="item-title">
             <span>大厅桌球</span>
-            <span>待付款</span>
+            <span>已付款</span>
           </div>
           <div class="item-content">
             <img ng-src="img/stadium-tenis-icon2.png" alt="">
@@ -24,11 +42,9 @@
               <p>广州市海珠区万寿素社街48号</p>
             </div>
           </div>
-          <div class="button-right" ng-show="true">
-            <button type="button" name="button" class="button button-outline button-positive">去付款</button>
-          </div>
         </a>
       </li>
+
     </ul>
 
 

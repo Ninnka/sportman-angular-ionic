@@ -86,7 +86,7 @@ angular.module('starter.controllers', [], function () {
 }])
 
 // 主页控制器
-.controller('HomeCtrl', ['$scope', 'ajaxGetData', '$ionicSlideBoxDelegate', function ($scope, ajaxGetData, $ionicSlideBoxDelegate) {
+.controller('ActivityCtrl', ['$scope', 'ajaxGetData', '$ionicSlideBoxDelegate', function ($scope, ajaxGetData, $ionicSlideBoxDelegate) {
   $scope.firstEnter = true;
   $scope.bannerList = [];
   $scope.mainGoodsList = [];
@@ -120,7 +120,7 @@ angular.module('starter.controllers', [], function () {
 }])
 
 // 分类页面的控制器
-.controller('CategoryCtrl', ['$scope', function ($scope) {
+.controller('StadiumCtrl', ['$scope', function ($scope) {
   // console.log("init CatetoryCrtl");
 }])
 
@@ -171,14 +171,6 @@ angular.module('starter.controllers', [], function () {
   // studentsService.modifySTC("STC modify");
   // studentsService.modifyInner("inner modify");
 
-  }])
-
-// 购物车页面的控制器
-.controller('ShoppingCarCtrl', ["$scope", function ($scope) {
-  // console.log("init ShoppingCarCtrl");
-
-  // 测试用，可删除
-  $scope.getGoodsData = function () {};
   }])
 
 // 我的主页 的控制器
@@ -404,7 +396,7 @@ angular.module('starter.controllers', [], function () {
   });
 }])
 
-.controller('myCollectionsStadiumExpireCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+.controller('myCollectionsStadiumUsedCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
   $scope.$on("$ionicView.enter", function () {
     $rootScope.clearHistory();
   });

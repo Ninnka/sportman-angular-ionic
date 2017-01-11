@@ -1,0 +1,36 @@
+<ion-view view-title="待付款场馆">
+
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView('tab.my')"></i>
+    <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
+        <span class="default-title" style="line-height: 35px;">Back</span>
+    </span>
+  </ion-nav-buttons>
+
+  <ion-content>
+
+    <ul class="carvel-list">
+      <li class="item">
+        <a ng-href="">
+          <div class="item-title">
+            <span>大厅桌球</span>
+            <span>待付款</span>
+          </div>
+          <div class="item-content">
+            <img ng-src="img/stadium-tenis-icon2.png" alt="">
+            <div class="item-flexgrow">
+              <p>预定场地：2个</p>
+              <p>时间：2016-01-01 15:00起</p>
+              <p>广州市海珠区万寿素社街48号</p>
+            </div>
+          </div>
+          <div class="button-right" ng-show="true">
+            <button type="button" name="button" class="button button-outline button-positive">去付款</button>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+  </ion-content>
+
+</ion-view>
