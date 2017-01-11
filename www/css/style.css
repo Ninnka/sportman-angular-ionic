@@ -3,6 +3,51 @@
 
 /* 通用 */
 
+.vertical-line {
+  width: 1px;
+  min-height: 60px;
+  flex-shrink: 0;
+  background: rgba(140, 140, 140, 0.4);
+}
+
+.horizon-grid {
+  background: #fff;
+  padding: 8px 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.horizon-grid>div {
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: center;
+}
+
+
+/*.horizon-grid>div:nth-child(1)>img {
+  border-left: 0;
+}*/
+
+.horizon-grid>div>img {
+  /*display: block;*/
+  max-width: 50%;
+  /*border-left: 1px solid rgba(180, 180, 180, 0.8);*/
+}
+
+.nav-button-wrapper>.button.nav-button {
+  min-height: 22px;
+  line-height: 22px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: white;
+  border-left: 1px dashed #fff;
+  padding: 1px 0 1px 12px;
+}
+
 .button-large {
   width: 80%;
   line-height: 46px;

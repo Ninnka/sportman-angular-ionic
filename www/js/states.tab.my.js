@@ -40,8 +40,8 @@ angular.module('starter.states.tab.my', [])
 
   // 我的活动
   .state('my_collections-activity', {
+      cache: false,
       url: "/my/collections-activity",
-      // abstract: true,
       views: {
         'index': {
           templateUrl: "templates/tab-my/collections-activity.html",
@@ -89,7 +89,7 @@ angular.module('starter.states.tab.my', [])
   // 我的场馆
   .state('my_collections-stadium', {
       url: "/my/collections-stadium",
-      // abstract: true,
+      cache: false,
       views: {
         'index': {
           templateUrl: "templates/tab-my/collections-stadium.html",
@@ -127,11 +127,12 @@ angular.module('starter.states.tab.my', [])
 
   // 我的收藏
   .state('my_collections-star', {
+      cache: false,
       url: "/my/collections-star",
       views: {
         'index': {
           templateUrl: "templates/tab-my/collections-star.html",
-          controller: ""
+          controller: "myCollectionStarCtrl"
         }
       }
     })
@@ -140,7 +141,7 @@ angular.module('starter.states.tab.my', [])
       views: {
         'collections-star-activity': {
           templateUrl: "templates/tab-my/collections/star/activity.html",
-          controller: ""
+          controller: "myCollectionStarActivityCtrl"
         }
       }
     })
@@ -149,34 +150,40 @@ angular.module('starter.states.tab.my', [])
       views: {
         'collections-star-stadium': {
           templateUrl: "templates/tab-my/collections/star/stadium.html",
-          controller: ""
+          controller: "myCollectionStarStadiumCtrl"
         }
       }
     })
 
   // 我的评价
   .state('my_comment', {
-    cache: false,
-    url: "/my/comment",
-    views: {
-      'index': {
-        templateUrl: "templates/tab-my/comment.html",
-        controller: ""
+      cache: false,
+      url: "/my/comment",
+      views: {
+        'index': {
+          templateUrl: "templates/tab-my/comment.html",
+          controller: "myCommentCtrl"
+        }
       }
-    }
-  })
-
-  // 我的相册
-  .state('my_album', {
-    cache: false,
-    url: "/my/album",
-    views: {
-      'index': {
-        templateUrl: "templates/tab-my/album.html",
-        controller: ""
+    })
+    .state('my_comment.uncomment', {
+      url: "/uncomment",
+      views: {
+        'uncomment': {
+          templateUrl: "templates/tab-my/comment/uncomment.html",
+          controller: "myCommentUncommentCtrl"
+        }
       }
-    }
-  })
+    })
+    .state('my_comment.commented', {
+      url: "/commented",
+      views: {
+        'commented': {
+          templateUrl: "templates/tab-my/comment/commented.html",
+          controller: "myCommentCommentedCtrl"
+        }
+      }
+    })
 
   // 我的历史
   .state('my_history', {
@@ -185,18 +192,19 @@ angular.module('starter.states.tab.my', [])
     views: {
       'index': {
         templateUrl: "templates/tab-my/history.html",
-        controller: ""
+        controller: "myHistoryCtrl"
       }
     }
   })
 
   // 费用管理
   .state('my_payment', {
+      cache: false,
       url: "/my/payment",
       views: {
         'index': {
           templateUrl: "templates/tab-my/payment.html",
-          controller: ""
+          controller: "myPaymentCtrl"
         }
       }
     })
@@ -205,7 +213,7 @@ angular.module('starter.states.tab.my', [])
       views: {
         'payment-activity': {
           templateUrl: "templates/tab-my/payment/activity.html",
-          controller: ""
+          controller: "myPaymentActivityCtrl"
         }
       }
     })
@@ -214,7 +222,7 @@ angular.module('starter.states.tab.my', [])
       views: {
         'payment-stadium': {
           templateUrl: "templates/tab-my/payment/stadium.html",
-          controller: ""
+          controller: "myPaymentStadiumCtrl"
         }
       }
     })
@@ -223,13 +231,14 @@ angular.module('starter.states.tab.my', [])
       views: {
         'payment-paid': {
           templateUrl: "templates/tab-my/payment/paid.html",
-          controller: ""
+          controller: "myPaymentPaidCtrl"
         }
       }
     })
 
   // 推送消息
   .state('my_subscription', {
+      cache: false,
       url: "/my/subscription",
       views: {
         'index': {
@@ -256,7 +265,6 @@ angular.module('starter.states.tab.my', [])
         }
       }
     });
-
 
 
 }]);

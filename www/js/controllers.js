@@ -1,6 +1,4 @@
-angular.module('starter.controllers', [], function () {
-
-})
+angular.module('starter.controllers', [])
 
 .controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher) {
 
@@ -350,8 +348,16 @@ angular.module('starter.controllers', [], function () {
 
 
 // 我的活动
-.controller('myCollectionsActivityCtrl', ['$scope', function ($scope) {
-
+.controller('myCollectionsActivityCtrl', ['$scope', '$rootScope', '$state', function ($scope, $rootScope, $state) {
+  $scope.review = function (type, id) {
+    console.log("type", type);
+    console.log("id", id);
+    $rootScope.inAnimation();
+    $state.go("review", {
+      type: type,
+      id: id
+    });
+  };
 }])
 
 .controller('myCollectionsActivityComingCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
@@ -370,6 +376,10 @@ angular.module('starter.controllers', [], function () {
   $scope.$on("$ionicView.enter", function () {
     $rootScope.clearHistory();
   });
+  $scope.info = {
+    type: "activity",
+    id: "109283"
+  };
 }])
 
 .controller('myCollectionsActivityAllCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
@@ -390,12 +400,6 @@ angular.module('starter.controllers', [], function () {
   });
 }])
 
-.controller('myCollectionsStadiumWaitingPaymentCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-  $scope.$on("$ionicView.enter", function () {
-    $rootScope.clearHistory();
-  });
-}])
-
 .controller('myCollectionsStadiumUsedCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
   $scope.$on("$ionicView.enter", function () {
     $rootScope.clearHistory();
@@ -409,21 +413,51 @@ angular.module('starter.controllers', [], function () {
 }])
 
 // 我的收藏
-.controller('myCollectionStar', ['$scope', function ($scope) {
+.controller('myCollectionStarCtrl', ['$scope', function ($scope) {
+
+}])
+
+.controller('myCollectionStarActivityCtrl', ['$scope', function ($scope) {
+
+}])
+
+.controller('myCollectionStarStadiumCtrl', ['$scope', function ($scope) {
 
 }])
 
 
-// 历史，评论，相册，推送
+// 我的评论
 .controller('myCommentCtrl', ['$scope', function ($scope) {
 
 }])
 
-.controller('myAlbum', ['$scope', function ($scope) {
+.controller('myCommentUncommentCtrl', ['$scope', function ($scope) {
 
 }])
 
-.controller('myHistory', ['$scope', function ($scope) {
+.controller('myCommentCommentedCtrl', ['$scope', function ($scope) {
+
+}])
+
+// 付款管理
+.controller('myPaymentCtrl', ['$scope', function ($scope) {
+
+}])
+
+.controller('myPaymentActivityCtrl', ['$scope', function ($scope) {
+
+}])
+
+.controller('myPaymentStadiumCtrl', ['$scope', function ($scope) {
+
+}])
+
+.controller('myPaymentPaidCtrl', ['$scope', function ($scope) {
+
+}])
+
+// 我的历史
+.controller('myHistoryCtrl', ['$scope', function ($scope) {
 
 }])
 
@@ -651,9 +685,23 @@ angular.module('starter.controllers', [], function () {
 // 关于
 .controller('settingAboutCtrl', ['$scope', function ($scope) {
 
-}]);
+}])
 
 /**
  * 设置部分
  * ----------------------------------------------------------------------------------------------------------------
  */
+
+/**
+ * ------------------------------------------------------------------------------------------------
+ * 通用部分
+ */
+.controller('reviewCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {
+  console.log("in review");
+  console.log("type", $stateParams.type);
+  console.log("id", $stateParams.id);
+  $scope.reviewinfo = {
+    type: $stateParams.type,
+    id: $stateParams.id
+  };
+}]);
