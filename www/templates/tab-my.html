@@ -1,9 +1,13 @@
 <ion-view view-title="我的">
 
+  <ion-nav-buttons side="left">
+    <img ng-src="img/locate.png" alt="" class="custom-nav-button-img">
+    <span>广州</span>
+  </ion-nav-buttons>
+
   <ion-nav-buttons side="right">
-    <a class="my-content-setting" nav-direction="forward" ng-click="checkSignSymbolAndState('appsetting')">
-      <img ng-src="img/setting.png" alt="" class="my-setting-img">
-    </a>
+    <img ng-src="img/scan.png" alt="" class="custom-nav-button-img">
+    <img ng-src="img/search.png" alt="" class="custom-nav-button-img">
   </ion-nav-buttons>
 
   <ion-content>
@@ -95,6 +99,19 @@
           <i class="icon ion-ajust-symbolsize">
             <img ng-src="img/subscription.png" alt="">
           </i> 消息推送
+          <i class="icon ion-chevron-right ion-ajust-arrow-right"></i>
+        </a>
+
+      </ul>
+
+      <ul class="list">
+
+        <a class="item item-icon-left item-icon-right" ng-click="checkSignSymbolAndState('appsetting')">
+          <!-- <i class="icon ion-chatbubble-working ion-color-fade ion-ajust-symbolsize"></i> 费用管理 -->
+          <i class="icon ion-ajust-symbolsize">
+            <img ng-src="img/setting.png" alt="">
+          </i> 设置
+
           <i class="icon ion-chevron-right ion-ajust-arrow-right"></i>
         </a>
 

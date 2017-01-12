@@ -14,8 +14,8 @@
   </ion-nav-buttons>
 
   <ion-content>
-
-    <div class="horizon-grid margin-top-md">
+    <div class="empty"></div>
+    <div class="horizon-grid">
       <div ng-click="">
         <img ng-src="img/satisfied-bad.png" alt="">
         <p>不满意</p>
@@ -36,6 +36,26 @@
         <img ng-src="img/satisfied-excellent.png" alt="">
         <p>相当满意</p>
       </div>
+    </div>
+
+    <div class="input-textarea">
+      <textarea name="name" rows="8" cols="80" placeholder="活动过程如何，气氛活跃吗，举办方如何？（写多才是真的活动达人~）"></textarea>
+      <p>
+        还需<span>16</span>字,即可发表
+      </p>
+    </div>
+    <div class="mul-img">
+      <div class="mul-img-content">
+        <div>
+          <img ng-src="img/use-camera.png" alt="">
+          <img ng-src="img/use-pic.png" alt="">
+        </div>
+        <p>上传图片可获得更多围观和称赞哦~</p>
+      </div>
+      <p>
+        匿名评价
+        <input type="checkbox" name="" value="">
+      </p>
     </div>
 
     <!-- <p>类型：{{reviewinfo.type}}</p>

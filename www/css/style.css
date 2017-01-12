@@ -3,6 +3,93 @@
 
 /* 通用 */
 
+.custom-nav-button-img {
+  max-width: 27px;
+  max-height: 27px;
+  margin: 4px 6px 0;
+}
+
+.custom-nav-button-img+span {
+  margin-top: 4px;
+  line-height: 28px;
+  max-width: 50px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.mul-img {
+  background: #fff;
+  overflow: hidden;
+}
+
+.mul-img>p {
+  text-align: right;
+  font-size: 16px;
+  color: #333;
+  margin: 8px 0;
+  margin-right: 4%;
+}
+
+.mul-img>p input[type=checkbox] {
+  width: 20px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+.mul-img-content {
+  border-bottom: 1px solid rgba(200, 200, 200, 0.7);
+}
+
+.mul-img-content>div {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+  ;
+  align-items: center;
+}
+
+.mul-img-content>p {
+  text-align: center;
+  font-size: 18px;
+  color: gray;
+  margin: 10px 0;
+}
+
+.mul-img-content>div>img {
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-width: 30%;
+  margin: 0 7%;
+}
+
+.mul-img-content>div .input-textarea {
+  margin: 20px 0 0 0;
+  background: #fff;
+}
+
+.input-textarea {
+  background: #fff;
+}
+
+.input-textarea>textarea {
+  width: 100%;
+  height: 200px;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.7);
+}
+
+.input-textarea>p {
+  padding: 6px 0;
+  text-align: right;
+  font-size: 17px;
+  margin: 0;
+}
+
+.input-textarea>p>span {
+  color: red;
+}
+
 .vertical-line {
   width: 1px;
   min-height: 60px;
@@ -19,6 +106,7 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0);
 }
 
 .horizon-grid>div {
@@ -27,15 +115,12 @@
   text-align: center;
 }
 
-
-/*.horizon-grid>div:nth-child(1)>img {
-  border-left: 0;
-}*/
-
 .horizon-grid>div>img {
-  /*display: block;*/
-  max-width: 50%;
-  /*border-left: 1px solid rgba(180, 180, 180, 0.8);*/
+  max-width: 30%;
+}
+
+.horizon-grid>div>p {
+  margin: 4px 0;
 }
 
 .nav-button-wrapper>.button.nav-button {
@@ -46,6 +131,7 @@
   color: white;
   border-left: 1px dashed #fff;
   padding: 1px 0 1px 12px;
+  border-radius: 0;
 }
 
 .button-large {

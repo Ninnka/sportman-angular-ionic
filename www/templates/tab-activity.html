@@ -1,5 +1,15 @@
 <ion-view view-title="主页">
 
+  <ion-nav-buttons side="left">
+    <img ng-src="img/locate.png" alt="" class="custom-nav-button-img">
+    <span>广州</span>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <img ng-src="img/scan.png" alt="" class="custom-nav-button-img">
+    <img ng-src="img/search.png" alt="" class="custom-nav-button-img">
+  </ion-nav-buttons>
+
   <ion-content>
     <ion-slide-box class="slide-box" on-slide-changed="slideHasChanged($index)" does-continue="true" slide-interval="2000" auto-play="true">
       <ion-slide ng-repeat="banneritem in bannerList">
@@ -34,7 +44,7 @@
       </div>
     </div>
 
-    <div class="thematic-wrapper">
+    <!-- <div class="thematic-wrapper">
       <p class="thematic-title">精品推荐</p>
       <ion-scroll scrollbar-x="false" scrollbar-y="false" zooming="false" direction="x" class="thematic">
         <div class="thematic-content">
@@ -60,7 +70,7 @@
           </a>
         </div>
       </ion-scroll>
-    </div>
+    </div> -->
 
     <div class="main-goods-list-wrapper">
       <ion-list class="goods-list-wrapper">
