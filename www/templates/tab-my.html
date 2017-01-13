@@ -1,15 +1,5 @@
 <ion-view view-title="我的">
 
-  <ion-nav-buttons side="left">
-    <img ng-src="img/locate.png" alt="" class="custom-nav-button-img">
-    <span>广州</span>
-  </ion-nav-buttons>
-
-  <ion-nav-buttons side="right">
-    <img ng-src="img/scan.png" alt="" class="custom-nav-button-img">
-    <img ng-src="img/search.png" alt="" class="custom-nav-button-img">
-  </ion-nav-buttons>
-
   <ion-content>
 
     <div class="my-content-wrapper">
@@ -64,7 +54,7 @@
 
       <ul class="list">
 
-        <a class="item item-icon-left item-icon-right" ng-href="#/my/comment" nav-direction="forward">
+        <a class="item item-icon-left item-icon-right" ng-href="#/my/review" nav-direction="forward">
           <!-- <i class="icon ion-chatbubble-working ion-color-fade ion-ajust-symbolsize"></i> 我的评价 -->
           <i class="icon ion-ajust-symbolsize">
             <img ng-src="img/comment.png" alt="">
@@ -77,6 +67,14 @@
           <i class="icon ion-ajust-symbolsize">
             <img ng-src="img/history.png" alt="">
           </i> 我的历史
+          <i class="icon ion-chevron-right ion-ajust-arrow-right"></i>
+        </a>
+
+        <a class="item item-icon-left item-icon-right" ng-href="#/my/recommend" nav-direction="forward">
+          <!-- <i class="icon ion-chatbubble-working ion-color-fade ion-ajust-symbolsize"></i> 我的评价 -->
+          <i class="icon ion-ajust-symbolsize">
+            <img ng-src="img/recommend.png" alt="">
+          </i> 我的推荐
           <i class="icon ion-chevron-right ion-ajust-arrow-right"></i>
         </a>
 

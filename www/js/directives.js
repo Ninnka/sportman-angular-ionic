@@ -139,4 +139,147 @@ angular.module('starter.directives', [])
       });
     }
   };
+})
+
+.directive('activity', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/activity.html",
+    link: function (scope, element, attrs) {
+
+    }
+  };
+})
+
+.directive('stadium', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/stadium.html",
+    link: function (scope, element, attrs) {
+
+    }
+  };
+})
+
+.directive('searchWaiting', function () {
+  return {
+    restrict: 'EA',
+    replace: false,
+    templateUrl: "templates/directive-tmpl/search-waiting.html",
+    link: function (scope, element, attrs) {
+
+    }
+  }
+})
+
+.directive('searchActivity', function () {
+  return {
+    restrict: 'EA',
+    replace: false,
+    templateUrl: "templates/directive-tmpl/search-activity.html",
+    link: function (scope, element, attrs) {
+
+    }
+  };
+})
+
+.directive('searchStadium', function () {
+  return {
+    restrict: 'EA',
+    replace: false,
+    templateUrl: "templates/directive-tmpl/search-stadium.html",
+    link: function (scope, element, attrs) {
+
+    }
+  };
+})
+
+.directive('activityCollection', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/activity-collection.html",
+    link: function (scope, element, attrs) {
+
+    }
+  };
+})
+
+.directive('activityReview', function () {
+  return {
+    restrict: 'EA',
+    replace: false,
+    templateUrl: "templates/directive-tmpl/activity-review.html",
+    link: function (scope, element, attrs) {
+
+    }
+  };
+})
+
+.directive('stadiumCollection', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/stadium-collection.html",
+    link: function (scope, element, attrs) {
+
+    }
+  };
+})
+
+.directive('stadiumReview', function () {
+  return {
+    restrict: 'EA',
+    replace: false,
+    templateUrl: "templates/directive-tmpl/stadium-review.html",
+    link: function (scope, element, attrs) {
+
+    }
+  };
+})
+
+.directive('review-btn', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/review-btn.html",
+    link: function (scope, element, attrs) {
+
+    }
+  };
+})
+
+.directive('review-text', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/review-text.html",
+    link: function (scope, element, attrs) {
+
+    }
+  };
+})
+
+.directive('my-history', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/my-history.html",
+    link: function (scope, element, attrs) {
+
+    }
+  }
+})
+
+.directive('pay-btn', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/pay-btn.html",
+    link: function (scope, element, attrs) {
+
+    }
+  }
 });

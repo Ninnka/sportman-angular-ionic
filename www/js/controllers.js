@@ -1,6 +1,47 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher) {
+.controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', '$cordovaBarcodeScanner', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher, $cordovaBarcodeScanner) {
+
+  // 打开相机扫码
+  $rootScope.openScanCamara = function () {
+    $cordovaBarcodeScanner.scan()
+      .then(function (barcodeData) {
+        // Success! Barcode data is here
+        // return info:
+        // 1.text
+        // 2.format
+        // 3.cancelled
+        for (var key in barcodeData) {
+          alert("key: " + key + "  value: " + barcodeData[key]);
+        }
+      }, function (error) {
+        // An error occurred
+        alert(error);
+      });
+  };
+
+  $rootScope.openSearch = function () {
+
+  };
+
+  $rootScope.preparePay = function (targetType, targetId, targetPay) {
+    $state.go("prepare-pay");
+    $rootScope.inAnimation();
+  };
+
+  $rootScope.pay = function () {
+    console.log("pay");
+  };
+
+  $rootScope.review = function (type, id) {
+    console.log("type", type);
+    console.log("id", id);
+    $rootScope.inAnimation();
+    $state.go("review", {
+      type: type,
+      id: id
+    });
+  };
 
   $rootScope.clearHistory = function () {
     $ionicHistory.clearHistory();
@@ -349,15 +390,7 @@ angular.module('starter.controllers', [])
 
 // 我的活动
 .controller('myCollectionsActivityCtrl', ['$scope', '$rootScope', '$state', function ($scope, $rootScope, $state) {
-  $scope.review = function (type, id) {
-    console.log("type", type);
-    console.log("id", id);
-    $rootScope.inAnimation();
-    $state.go("review", {
-      type: type,
-      id: id
-    });
-  };
+
 }])
 
 .controller('myCollectionsActivityComingCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
@@ -427,15 +460,15 @@ angular.module('starter.controllers', [])
 
 
 // 我的评论
-.controller('myCommentCtrl', ['$scope', function ($scope) {
+.controller('myReviewCtrl', ['$scope', function ($scope) {
 
 }])
 
-.controller('myCommentUncommentCtrl', ['$scope', function ($scope) {
+.controller('myUnreviewCtrl', ['$scope', function ($scope) {
 
 }])
 
-.controller('myCommentCommentedCtrl', ['$scope', function ($scope) {
+.controller('myReviewedCtrl', ['$scope', function ($scope) {
 
 }])
 
@@ -685,23 +718,9 @@ angular.module('starter.controllers', [])
 // 关于
 .controller('settingAboutCtrl', ['$scope', function ($scope) {
 
-}])
+}]);
 
 /**
  * 设置部分
  * ----------------------------------------------------------------------------------------------------------------
  */
-
-/**
- * ------------------------------------------------------------------------------------------------
- * 通用部分
- */
-.controller('reviewCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {
-  console.log("in review");
-  console.log("type", $stateParams.type);
-  console.log("id", $stateParams.id);
-  $scope.reviewinfo = {
-    type: $stateParams.type,
-    id: $stateParams.id
-  };
-}]);

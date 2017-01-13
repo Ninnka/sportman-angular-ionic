@@ -156,31 +156,31 @@ angular.module('starter.states.tab.my', [])
     })
 
   // 我的评价
-  .state('my_comment', {
+  .state('my_review', {
       cache: false,
-      url: "/my/comment",
+      url: "/my/review",
       views: {
         'index': {
-          templateUrl: "templates/tab-my/comment.html",
-          controller: "myCommentCtrl"
+          templateUrl: "templates/tab-my/review.html",
+          controller: "myReviewCtrl"
         }
       }
     })
-    .state('my_comment.uncomment', {
-      url: "/uncomment",
+    .state('my_review.unreview', {
+      url: "/unreview",
       views: {
-        'uncomment': {
-          templateUrl: "templates/tab-my/comment/uncomment.html",
-          controller: "myCommentUncommentCtrl"
+        'unreview': {
+          templateUrl: "templates/tab-my/review/unreview.html",
+          controller: "myUnreviewCtrl"
         }
       }
     })
-    .state('my_comment.commented', {
-      url: "/commented",
+    .state('my_review.reviewed', {
+      url: "/reviewed",
       views: {
-        'commented': {
-          templateUrl: "templates/tab-my/comment/commented.html",
-          controller: "myCommentCommentedCtrl"
+        'reviewed': {
+          templateUrl: "templates/tab-my/review/reviewed.html",
+          controller: "myReviewedCtrl"
         }
       }
     })

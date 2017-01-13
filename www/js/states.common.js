@@ -15,5 +15,25 @@ angular.module('starter.states.common', [])
           controller: "reviewCtrl"
         }
       }
+    })
+    .state('search', {
+      cache: false,
+      url: "/search",
+      views: {
+        'index': {
+          templateUrl: "templates/common/search.html",
+          controller: "searchCtrl"
+        }
+      }
+    })
+    .state('prepare-pay', {
+      cache: false,
+      url: "/prepare-pay",
+      views: {
+        'index': {
+          templateUrl: "templates/common/prepare-pay.html",
+          controller: "preparePayCtrl"
+        }
+      }
     });
 }]);

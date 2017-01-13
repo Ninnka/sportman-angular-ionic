@@ -1,0 +1,28 @@
+<div class="content-fix search-bar-wrapper">
+  <select>
+    <option value="activity" selected="selected">活动</option>
+    <option value="stadium">场馆</option>
+  </select>
+  <img ng-src="img/arrow-down.png" alt="">
+
+  <input type="text" name="" value="" class="search-bar">
+</div>
+<div class="content-wrapper">
+  <p class="theme-title">热门搜索</p>
+  <ul class="stream-grid">
+    <li ng-repeat="item in hotSearch" ng-click="">{{ item }}</li>
+  </ul>
+
+  <p class="theme-title">历史搜索</p>
+  <ul class="list">
+
+    <li ng-repeat="item in historySearch">
+      <a class="item item-icon-left" ng-href="">
+        <img ng-src="img/history-outline-dark.png" alt="">
+        <span>{{item}}</span>
+      </a>
+    </li>
+    <li class="item text-align-center" ng-show="hasHistorySearch" ng-click="clearHistorySearch()">清除历史</li>
+
+  </ul>
+</div>

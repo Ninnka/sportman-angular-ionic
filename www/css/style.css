@@ -123,6 +123,17 @@
   margin: 4px 0;
 }
 
+.horizon-grid>div>select,
+.horizon-grid>div>label {
+  vertical-align: middle;
+}
+
+.horizon-grid>div>select+img {
+  width: 10px;
+  height: 13px;
+  vertical-align: middle;
+}
+
 .nav-button-wrapper>.button.nav-button {
   min-height: 22px;
   line-height: 22px;
@@ -269,7 +280,7 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 }
 
 .bar-stable.bar.bar-header {
-  box-shadow: 0px 0px 6px 0px #BABABA;
+  box-shadow: 0px 1px 1px 0px #FB8041;
 }
 
 .bar.bar-stable .title {

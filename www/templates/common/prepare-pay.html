@@ -1,0 +1,41 @@
+<ion-view view-title="选择支付方式">
+
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
+    <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
+          <span class="default-title" style="line-height: 35px;">Back</span>
+    </span>
+  </ion-nav-buttons>
+
+  <ion-content>
+
+    <ul class="list">
+
+      <li class="item custom-item-padding">
+
+        <div class="img-left input-right">
+          <img ng-src="img/alipay.png" alt="">
+          <span>支付宝</span>
+          <input type="checkbox" name="" value="">
+        </div>
+
+        <div class="img-left input-right">
+          <img ng-src="img/weixinpay.png" alt="">
+          <span>微信支付</span>
+          <input type="checkbox" name="" value="">
+        </div>
+      </li>
+
+    </ul>
+
+    <p class="notifi-title">
+      <span>全额预付</span>
+      <span class="assertive">￥35</span>
+    </p>
+    <div class="button-center-wrapper">
+      <button type="button" name="button" class="button button-positive button-large">支付</button>
+    </div>
+
+  </ion-content>
+
+</ion-view>
