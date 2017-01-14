@@ -1,6 +1,17 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', '$cordovaBarcodeScanner', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher, $cordovaBarcodeScanner) {
+.controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', '$cordovaBarcodeScanner', '$document', '$window', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher, $cordovaBarcodeScanner, $document, $window) {
+
+  // 设置rem
+  var winX = $document[0].body.clientWidth;
+  var html = $document.find("html");
+  html[0].style["font-size"] = winX / 640 * 100 + "px";
+
+  $window.onresize = function () {
+    var winX = $document[0].body.clientWidth;
+    var html = $document.find("html");
+    html[0].style["font-size"] = winX / 640 * 100 + "px";
+  };
 
   // 打开相机扫码
   $rootScope.openScanCamara = function () {

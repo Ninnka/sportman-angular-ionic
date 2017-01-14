@@ -7,13 +7,3 @@ angular.module('starter.filters', [])
   };
   return filter;
 });
-
-// .filter('markfull', function () {
-//   var filter = function (mark) {
-//     var res = [];
-//     res.length = Math.floor(mark);
-//     console.log("res length:", res.length);
-//     return res;
-//   };
-//   return filter;
-// })

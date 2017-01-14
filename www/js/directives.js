@@ -218,6 +218,17 @@ angular.module('starter.directives', [])
   };
 })
 
+.directive('activityRecommend', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/activity-recommend.html",
+    link: function (scope, element, attrs) {
+
+    }
+  }
+})
+
 .directive('stadiumCollection', function () {
   return {
     restrict: 'EA',
@@ -238,6 +249,17 @@ angular.module('starter.directives', [])
 
     }
   };
+})
+
+.directive('stadiumRecommend', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/stadium-recommend.html",
+    link: function (scope, element, attrs) {
+
+    }
+  }
 })
 
 .directive('reviewBtn', function () {

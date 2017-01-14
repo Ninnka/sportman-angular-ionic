@@ -1,3 +1,12 @@
+.rem-item-font {
+  font-size: 0.256rem; }
+
+.tab-nav.tabs .scroll-content.ionic-scroll.has-tabs-top {
+  top: 49px !important; }
+
+.item-content p {
+  font-size: 0.24rem; }
+
 .content-fix {
   position: fixed; }
 
@@ -182,3 +191,48 @@
   font-size: 20px;
   margin-left: 6px;
   margin-top: -3px; }
+
+.horizon-grid {
+  background: #fff;
+  padding: 8px 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid transparent; }
+
+.horizon-grid > div {
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: center; }
+  .horizon-grid > div > img {
+    max-width: 30%; }
+  .horizon-grid > div > p {
+    margin: 4px 0; }
+  .horizon-grid > div > select, .horizon-grid > div label {
+    vertical-align: middle; }
+  .horizon-grid > div > select + img {
+    width: 10px;
+    height: 13px;
+    vertical-align: middle; }
+
+.horizon-grid .vertical-text-left-img {
+  vertical-align: middle;
+  width: 0.59rem; }
+
+.horizon-grid .vertical-text-main-sub {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  margin-top: 2px;
+  margin-left: 5px; }
+  .horizon-grid .vertical-text-main-sub > p:nth-child(1) {
+    margin-bottom: 4px;
+    font-size: 0.17rem;
+    color: #383838; }
+  .horizon-grid .vertical-text-main-sub > p:nth-child(2) {
+    margin-bottom: 0;
+    font-size: 0.14rem;
+    color: #232323; }

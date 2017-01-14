@@ -128,7 +128,7 @@
 
 .collections-title {
   text-align: center;
-  font-size: 14px;
+  font-size: 0.224rem;
 }
 
 
@@ -449,14 +449,14 @@
 }
 
 .carvel-list>.item .item-detail p {
-  text-indent: 20px;
+  text-indent: 0.32rem;
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 0.256rem;
   color: #232323;
 }
 
 .item-title>span:nth-child(1) {
-  font-size: 17px;
+  font-size: 0.30rem;
   color: #232323;
   max-width: 80%;
   white-space: pre;
@@ -466,7 +466,7 @@
 
 .item-title>span:nth-child(2) {
   color: red;
-  font-size: 15px;
+  font-size: 0.24rem;
 }
 
 .carvel-list>.item {
@@ -501,7 +501,7 @@
 
 .carvel-list>.item .item-content p {
   color: #333;
-  font-size: 16px;
+  font-size: 0.28rem;
 }
 
 .carvel-list>.item .button-right {
@@ -513,10 +513,10 @@
 }
 
 .carvel-list>.item .button-right>.button {
-  min-height: 36px;
-  height: 36px;
-  line-height: 36px;
-  font-size: 15px;
+  min-height: 0.576rem;
+  height: 0.576rem;
+  line-height: 0.576rem;
+  font-size: 0.24rem;
 }
 
 
@@ -526,21 +526,22 @@
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+  ;
   align-items: center;
 }
 
 .stream-list>.item>a>img {
-  max-width: 140px;
-  max-height: 95px;
+  max-width: 2rem;
+  max-height: 1.2rem;
   flex-grow: 0;
 }
 
 .stream-list>.item .item-content {
   flex-grow: 1;
   flex-shrink: 0;
-  margin-left: 16px;
-  max-width: 220px;
+  padding-left: 0.224rem;
+  font-size: 0.24rem;
 }
 
 .stream-list>.item .item-content p,
