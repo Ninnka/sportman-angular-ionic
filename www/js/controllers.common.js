@@ -42,4 +42,38 @@ angular.module('starter.controllers.common', [])
 
 .controller('preparePayCtrl', ['$scope', function ($scope) {
 
+}])
+
+.controller('reviewsCtrl', ['$scope', function ($scope) {
+
+  $scope.totalScore = 3.5;
+
+  $scope.featuresList = [
+    "场地干净 206",
+    "服务态度好 183",
+    "环境不错 98",
+    "位置好找 78",
+    "交通方便 72",
+    "停车方便 53",
+    "场地新 43",
+    "性价比高 43",
+    "停车方便 53"
+  ];
+
+  $scope.reviewsList = [
+    {
+      username: "ninnka",
+      useravatar: "http://i1.hdslb.com/bfs/face/96c4fbb4a280366cc4f431038be004abd7ca983b.jpg@75Q.webp",
+      userreview: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolorin reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      usermark: 2.5,
+      timestamp: 1484364348144
+    },
+    {
+      username: "ninnka",
+      useravatar: "http://i1.hdslb.com/bfs/face/96c4fbb4a280366cc4f431038be004abd7ca983b.jpg@75Q.webp",
+      userreview: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolorin reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      usermark: 2.5,
+      timestamp: 1484364348144
+    }
+  ];
 }]);

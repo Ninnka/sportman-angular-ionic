@@ -35,5 +35,19 @@ angular.module('starter.states.common', [])
           controller: "preparePayCtrl"
         }
       }
+    })
+    .state('reviews', {
+      cache: false,
+      url: '/reviews',
+      params: {
+        type: "",
+        id: 0
+      },
+      views: {
+        'index': {
+          templateUrl: "templates/common/reviews.html",
+          controller: "reviewsCtrl"
+        }
+      }
     });
 }]);

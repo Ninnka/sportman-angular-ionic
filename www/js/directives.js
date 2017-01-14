@@ -240,7 +240,7 @@ angular.module('starter.directives', [])
   };
 })
 
-.directive('review-btn', function () {
+.directive('reviewBtn', function () {
   return {
     restrict: 'EA',
     replace: true,
@@ -251,7 +251,7 @@ angular.module('starter.directives', [])
   };
 })
 
-.directive('review-text', function () {
+.directive('reviewText', function () {
   return {
     restrict: 'EA',
     replace: true,
@@ -262,7 +262,7 @@ angular.module('starter.directives', [])
   };
 })
 
-.directive('my-history', function () {
+.directive('myHistory', function () {
   return {
     restrict: 'EA',
     replace: true,
@@ -270,10 +270,10 @@ angular.module('starter.directives', [])
     link: function (scope, element, attrs) {
 
     }
-  }
+  };
 })
 
-.directive('pay-btn', function () {
+.directive('payBtn', function () {
   return {
     restrict: 'EA',
     replace: true,
@@ -281,5 +281,33 @@ angular.module('starter.directives', [])
     link: function (scope, element, attrs) {
 
     }
-  }
+  };
+})
+
+.directive('reviewStar', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/review-star.html",
+    scope: {
+      score: "@"
+    },
+    link: function (scope, element, attrs) {
+      var full = Math.floor(scope.score);
+      var half = scope.score - full;
+      var dark = 5 - Math.ceil(scope.score);
+      scope.fullarr = [];
+      for (var i = 0; i < full; i++) {
+        scope.fullarr.push(" ");
+      }
+      scope.halfarr = [];
+      for (var j = 0; j < half; j++) {
+        scope.halfarr.push(" ");
+      }
+      scope.darkarr = [];
+      for (var k = 0; k < dark; k++) {
+        scope.darkarr.push(" ");
+      }
+    }
+  };
 });

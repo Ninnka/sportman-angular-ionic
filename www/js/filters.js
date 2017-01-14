@@ -1,4 +1,4 @@
-angular.module('starter.filters',[])
+angular.module('starter.filters', [])
 
 .filter('removeslash', function () {
   var filter = function (input) {
@@ -7,3 +7,13 @@ angular.module('starter.filters',[])
   };
   return filter;
 });
+
+// .filter('markfull', function () {
+//   var filter = function (mark) {
+//     var res = [];
+//     res.length = Math.floor(mark);
+//     console.log("res length:", res.length);
+//     return res;
+//   };
+//   return filter;
+// })

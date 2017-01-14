@@ -154,8 +154,8 @@ angular.module('starter.controllers', [])
 }])
 
 // 主页商品详细页面控制器
-.controller('HomeGoodsDetailCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
-  $scope.viewTitle = $stateParams.itemname;
+.controller('DetailActivityCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+  $scope.viewTitle = "详细页面";
 }])
 
 // 分类页面的控制器
@@ -486,6 +486,11 @@ angular.module('starter.controllers', [])
 }])
 
 .controller('myPaymentPaidCtrl', ['$scope', function ($scope) {
+
+}])
+
+// 我的推荐
+.controller('myRecommendCtrl', ['$scope', function ($scope) {
 
 }])
 

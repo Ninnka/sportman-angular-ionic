@@ -197,6 +197,37 @@ angular.module('starter.states.tab.my', [])
     }
   })
 
+  .state('my_recommend', {
+    cache: false,
+    url: "/my/recommend",
+    views: {
+      'index': {
+        templateUrl: "templates/tab-my/recommend.html",
+        controller: "myRecommendCtrl"
+      }
+    }
+  })
+
+  .state('my_recommend.activity', {
+    url: '/activity',
+    views: {
+      'recommend-activity': {
+        templateUrl: "templates/tab-my/recommend/activity.html",
+        controller: ""
+      }
+    }
+  })
+
+  .state('my_recommend.stadium', {
+    url: '/stadium',
+    views: {
+      'recommend-stadium': {
+        templateUrl: "templates/tab-my/recommend/stadium.html",
+        controller: ""
+      }
+    }
+  })
+
   // 费用管理
   .state('my_payment', {
       cache: false,

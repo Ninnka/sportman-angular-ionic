@@ -1,6 +1,4 @@
 <ion-view view-title="{{viewTitle}}">
-  <!-- <div class="title title-center header-item" style="transform: translate3d(0px, 0px, 0px); left: 20%; right: 20%;">{{viewTitle}}</div> -->
-  <!-- style="max-width: 65% !important; left: 20% !important;" -->
 
   <ion-nav-buttons side="left">
     <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
@@ -11,6 +9,8 @@
 
   <ion-content class="padding">
     <p></p>
-    <button type="button" name="button" class="button button-positive" ng-click="toBackView()"></button>
+    <a ng-href="#/reviews">
+      <button type="button" name="button" class="button button-positive"></button>
+    </a>
   </ion-content>
 </ion-view>
