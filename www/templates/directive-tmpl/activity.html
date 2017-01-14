@@ -1,16 +1,16 @@
 <li class="item">
   <a ng-href="">
-    <img ng-src="img/marason-star.png" alt="">
+    <img ng-src="{{activity.activitypost}}" alt="">
     <div class="item-content">
       <div>
-        <span>广州马拉松</span>
-        <span>海珠区</span>
+        <span>{{activity.activityname}}</span>
+        <span>{{activity.activityposition}}</span>
       </div>
-      <p>广州体育委员会</p>
-      <p>参加人数/总人数：<span>11/30</span></p>
+      <p>{{activity.activityhost}}</p>
+      <p>参加人数/总人数：<span>{{activity.activityattence}}/{{activity.activitymountpeople}}</span></p>
       <div>
-        <span class="price">￥99</span>
-        <span>01-27</span>
+        <span class="price">￥{{activity.activityprice}}</span>
+        <span>{{activity.activitystarttime | date : 'yyyy-MM-dd'}}</span>
       </div>
     </div>
   </a>

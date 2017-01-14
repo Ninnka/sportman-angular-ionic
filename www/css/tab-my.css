@@ -456,7 +456,7 @@
 }
 
 .item-title>span:nth-child(1) {
-  font-size: 0.30rem;
+  font-size: 0.29rem;
   color: #232323;
   max-width: 80%;
   white-space: pre;
@@ -501,7 +501,7 @@
 
 .carvel-list>.item .item-content p {
   color: #333;
-  font-size: 0.28rem;
+  font-size: 0.24rem;
 }
 
 .carvel-list>.item .button-right {

@@ -1,16 +1,17 @@
 <li class="item">
   <a ng-href="">
     <div class="item-title">
-      <span>彩色跑跑跑跑跑跑</span>
-      <span>已结束</span>
+      <span>{{activity.activityname}}</span>
+      <span>{{activity.activitystatus}}</span>
     </div>
     <div class="item-content">
-      <img ng-src="img/colorrunning-icon.png" alt="">
+      <img ng-src="{{activity.activitypost}}" alt="">
       <div class="item-flexgrow">
-        <p>报名时间：2015-11-18 15:31</p>
-        <p>举行时间：2015-12-01</p>
-        <p>广州市天河区珠江新城花城广场</p>
+        <p>报名时间：{{activity.activityregistertime | date : 'yyyy-MM-dd hh:mm'}}</p>
+        <p>举行时间：{{activity.activitystarttime | date : 'yyyy-MM-dd hh:mm'}}</p>
+        <p>{{activity.activityposition}}</p>
       </div>
     </div>
+    <review-btn ng-show="activity.activitystatus === '已结束'"></review-btn>
   </a>
 </li>
