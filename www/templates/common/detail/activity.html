@@ -1,16 +1,96 @@
 <ion-view view-title="{{viewTitle}}">
 
   <ion-nav-buttons side="left">
-    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
+    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView('tab.activity')"></i>
     <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
         <span class="default-title" style="line-height: 35px;">Back</span>
     </span>
   </ion-nav-buttons>
 
-  <ion-content class="padding">
-    <p></p>
+  <ion-nav-buttons side="right">
+    <img ng-src="img/recommend-white.png" alt="" class="custom-nav-button-img">
+    <img ng-src="img/star-white.png" alt="" class="custom-nav-button-img">
+  </ion-nav-buttons>
+
+  <ion-content>
+    <div class="img-wrapper img-with-float-text float-bottom" style="background-image: url(img/activitypost.png)">
+      <div class="float-text-wrapper">
+        <img ng-src="img/marason-icon.png" alt="">
+        <div class="float-text">
+          <p>2016广州马拉松</p>
+          <p>活动官网:www.gzmarathon.com</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-with-button space-between">
+      <div>
+        <p>举行时间：2016年04月01日</p>
+        <p>花城广场（起点）</p>
+        <p class="assertive">￥100</p>
+      </div>
+      <a ng-href="#/registration/instruction" nav-direction="forward">
+        <button class="button button-positive">立即参加</button>
+      </a>
+    </div>
+
+    <div class="content-wrapper margin-top-md">
+      <div class="item item-divider">
+        报名详情
+      </div>
+      <div class="item item-text-wrap">
+        <p>报名日期：2016年01月06日 - 2016年03月01日</p>
+        <p>报名人数：550/1000</p>
+        <p>选手登记：在线登记</p>
+        <p>是否分组：是</p>
+        <p class="text-abvious">点击查看全部</p>
+      </div>
+    </div>
+
+    <div class="content-wrapper margin-top-md">
+      <div class="item item-divider">
+        举办方
+      </div>
+      <div class="item text-with-button space-between">
+        <div class="item-text-main">
+          <p>广州体育局</p>
+          <p>广州市天河区天河路299号天河体育中心</p>
+        </div>
+        <img src="img/call-maintheme.png" alt="" class="icon-custom">
+      </div>
+    </div>
+
+    <div class="content-wrapper margin-top-md">
+      <div class="item item-divider">
+        活动规程
+      </div>
+      <div class="item item-text-wrap">
+        <div class="long-text">
+          <pre>I. Race Events</pre>
+          <pre>1. Marathon (42.195 km)
+2. Half Marathon (21.0975 km)
+3. Mini Marathon (5 km) </pre>
+          <pre>II. Race Course </pre>
+          <pre>(I) Mini Marathon:
+Huacheng Square (Starting Point) → Linjiang Ave (Eastwards) → Tunnel →Linjiang Ave (Westwards) → Guangzhou Middle Ave.→ Tianhe North Rd. → North Gate, Tianhe Sports Center → Ring Road of Tianhe Stadium →South Gate Square, Tianhe Sports Center (Finishing Point)
+(II) Half Marathon
+Huacheng Square (Starting point) → Linjiang Ave (Eastwards) → U turn at Chebei South Rd. → Linjiang Ave. (Westwards) → Liede Ave → U turn at the top of Huacheng Ave Tunnel. → Liede Bridge →Yuejiang Rd. (Eastwards) → Intersection of Yuejiang Rd. and Huizhan Middle Rd. → Yuejiang Rd (Reserve Direction) → U turn at Yuejiang Rd (under Pazhou Bridge) → Yuejiang Middle Rd (North to the Poly International Plaza, Finishing Point)
+(III) Marathon:
+Huacheng Square (Starting point) → Linjiang Ave (Eastwards) → U turn at Chebei South Rd. → Linjiang Ave. (Westwards) → Liede Ave → U turn at the top of Huacheng Ave Tunnel. → Liede Bridge →Yuejiang Rd. (Eastwards) → U turn at the intersection of Yuejiang Rd. and Huizhan Middle Rd. → Yuejiang Rd (Westwards) → Binjiang East Rd. → U turn at Binjiang Rd. → Binjiang Rd → Yiyuan Rd. → Yizhou Rd. → Binjiang Rd (Westwards) → Hongde Rd. (Southwards) → People Bridge → Yanjiang Rd. (Eastwards) → Datong Rd. (Eastwards) → Tanyue Street → Qingbo Rd. → Hai Xin Sha → No. 1 Bridge of Hai Xin Sha → Linjiang Ave. → Huacheng Square (Finishing Point)
+......</pre>
+        </div>
+      </div>
+    </div>
+
     <a ng-href="#/reviews">
-      <button type="button" name="button" class="button button-positive"></button>
+      <p class="text-abvious margin-top-md">
+        点击查看评价
+      </p>
     </a>
+
+
+    <!-- <a >
+      <button type="button" name="button" class="button button-positive"></button>
+    </a> -->
   </ion-content>
 </ion-view>

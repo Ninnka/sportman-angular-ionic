@@ -4,6 +4,9 @@ angular.module('starter.controllers.common', [])
  * ------------------------------------------------------------------------------------------------
  * 通用部分
  */
+.controller('citySelectionCtrl', ['$scope', function ($scope) {
+  $scope.currentCity = "广州";
+}])
 
 .controller('searchCtrl', ['$scope', function ($scope) {
   $scope.hotSearch = [

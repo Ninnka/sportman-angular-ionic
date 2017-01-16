@@ -13,6 +13,12 @@ angular.module('starter.controllers', [])
     html[0].style["font-size"] = winX / 640 * 100 + "px";
   };
 
+  // 打开定位
+  $rootScope.openLocate = function () {
+    $state.go("city-selection");
+    $rootScope.inAnimation();
+  };
+
   // 打开相机扫码
   $rootScope.openScanCamara = function () {
     $cordovaBarcodeScanner.scan()
@@ -165,8 +171,28 @@ angular.module('starter.controllers', [])
 }])
 
 // 主页商品详细页面控制器
-.controller('DetailActivityCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+.controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+    console.log("clear");
+  });
+
   $scope.viewTitle = "详细页面";
+}])
+
+// 报名参加活动
+.controller('RegistrationInstructionCtrl', ['$scope', function ($scope) {
+
+}])
+
+.controller('RegistrationInformationCtrl', ['$scope', function ($scope) {
+
+}])
+
+.controller('RegistrationCompleteCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
 }])
 
 // 分类页面的控制器
