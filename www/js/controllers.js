@@ -204,13 +204,21 @@ angular.module('starter.controllers', [])
 }])
 
 // 报名参加活动
-.controller('RegistrationInstructionCtrl', ['$scope', function ($scope) {
+.controller('RegistrationInstructionCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+
+  $scope.isAgree = false;
+
   $scope.agreeTreaty = function () {
     // todo
+    if ($scope.isAgree) {
+      stateGo.goToState("registration-information");
+    } else {
+      alert("请阅读并同意协议后才能进行下一步操作")
+    }
   };
 }])
 
-.controller('RegistrationInformationCtrl', ['$scope', function ($scope) {
+.controller('RegistrationInformationCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
 
   $scope.information = {
     // todo
@@ -218,6 +226,7 @@ angular.module('starter.controllers', [])
 
   $scope.submitInformation = function () {
     // todo
+    stateGo.goToState("registration-complete");
   };
 }])
 

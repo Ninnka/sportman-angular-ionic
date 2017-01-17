@@ -6,27 +6,51 @@ $descibetext: #333;
 $positive: #1212aa;
 $linetransparent: rgba(150, 150, 150, .5);
 $warmnotifi: #fdfda6;
+$assertive: #ef473a;
 
 .content-fix {
   position: fixed;
+  z-index: 3;
+}
 
-  &.content-notifi {
-    background: $warmnotifi;
-    display: inline-block;
-    padding: 10px 0;
-    width: 100%;
+.fix-bottom {
+  bottom: 0;
+  left: 0;
+}
 
-    > .text-left {
-      vertical-align: middle;
-    }
+.item-block {
+  width: 100%;
+}
 
-    > .right-icon {
-      float: right;
-      margin-right: .2rem;
-      margin-top: .05rem;
-      max-width: .256rem;
-      vertical-align: middle;
-    }
+.item-block.item-custom-padding {
+  padding: .256rem;
+  font-size: .256rem;
+}
+
+.background-white {
+  background: $white;
+}
+
+.with-bottom-fix-item-block {
+  margin-bottom: .768rem;
+}
+
+.content-notifi {
+  background: $warmnotifi;
+  display: inline-block;
+  padding: 10px 0;
+  width: 100%;
+
+  > .text-left {
+    vertical-align: middle;
+  }
+
+  > .right-icon {
+    float: right;
+    margin-right: .2rem;
+    margin-top: .05rem;
+    max-width: .256rem;
+    vertical-align: middle;
   }
 }
 
@@ -83,7 +107,7 @@ $warmnotifi: #fdfda6;
   }
 }
 
-.text-with-button {
+.text-with-rightblock {
   align-items: center;
   background: $white;
   display: flex;
@@ -128,6 +152,11 @@ $warmnotifi: #fdfda6;
     max-width: .65rem;
     padding: 10px 0 10px .192rem;
   }
+
+  img.img-right {
+    max-width: 1.0rem;
+
+  }
 }
 @mixin text-abvious {
   text-align: center;
@@ -162,4 +191,31 @@ $warmnotifi: #fdfda6;
 
 .text-abvious {
   @include text-abvious;
+}
+
+.with-absolute-ele {
+  position: relative;
+}
+
+.absolute-img {
+  position: absolute;
+}
+
+.absolute-right {
+  right: 0;
+  top: 0;
+}
+
+.investigating-notifi {
+  max-width: .75rem;
+}
+
+p.assertive {
+  color: $assertive !important;
+}
+
+.item {
+  .button-right {
+    text-align: right;
+  }
 }

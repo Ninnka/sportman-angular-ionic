@@ -8,9 +8,60 @@
     </span> -->
   </ion-nav-buttons>
 
-  <ion-content>
-    报名引导
-    <a href="#/registration/information" nav-direction="forward">填写报名信息</a>
-  </ion-content>
+  <ion-nav-buttons side="right">
+    <a class="nav-button-wrapper" ng-click="agreeTreaty()">
+      <button type="button" name="button" class="button button-clear button-light nav-button">下一步</button>
+    </a>
+  </ion-nav-buttons>
 
+  <ion-content class="with-bottom-fix-item-block">
+    <div class="content-wrapper margin-top-md">
+      <div class="item item-divider">
+        报名须知
+      </div>
+      <div class="item item-text-wrap">
+        <div class="long-text">
+          <pre>比赛时间：2015年12月6日
+
+比赛项目：马拉松（42.195公里）、半程马拉松（21.0975公里）、迷你马拉松（约5公里）
+
+主办单位：中国田径协会、广州市人民政府
+
+承办单位：广州市体育局、越秀区人民政府、海珠区人民政府、荔湾区人民政府、天河区人民政府、广州市体育竞赛中心、广州市田径协会
+
+协办单位：智美体育集团、广州市城市建设投资集团有限公司、广州天河体育中心
+
+推广单位：智美赛事营运管理（浙江）有限公司
+
+二、报名资格
+
+(一)年龄要求
+
+1.马拉松项目年龄限20岁以上（1995年12月31日以前出生）
+
+2.半程马拉松项目年龄限18岁以上（1997年12月31日以前出生）
+
+3.迷你马拉松项目年龄限15岁以上（2000年12月31日以前出生）
+
+参赛选手须持有效证件（身份证、护照、军官证等）按照各项目的年龄规定进行报名。</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- <a href="#/registration/information" nav-direction="forward">填写报名信息</a> -->
+  </ion-content>
+  <div class="content-fix fix-bottom item item-block item-toggle assertive item-custom-padding">
+    已阅读并同意条约
+    <label class="toggle toggle-assertive">
+       <input type="checkbox" ng-model="isAgree">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+    <!-- <ul class="list">
+      <li class="item item-toggle">
+
+      </li>
+    </ul> -->
+  </div>
 </ion-view>

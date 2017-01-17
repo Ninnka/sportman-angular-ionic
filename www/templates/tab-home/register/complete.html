@@ -8,9 +8,90 @@
 
   <ion-content>
 
-    <div class="content-fix text-align-left content-notifi">
+    <div class="text-align-left content-notifi" ng-show="showNotification">
       <span class="assertive text-left">你已报名成功，请等待审核</span>
-      <img ng-src="img/delete-gray.png" alt="" class="right-icon">
+      <img ng-src="img/delete-gray.png" alt="" class="right-icon" ng-click="closeNotification()">
+    </div>
+
+    <div class="text-with-rightblock space-between  with-absolute-ele">
+      <div>
+        <p>2016广州马拉松</p>
+        <p class="assertive">2016-04-01 07:00 ~ 11:30</p>
+        <p>广州市天河区珠江新城花城广场（起点）</p>
+      </div>
+      <a ng-href="#/registration/instruction" nav-direction="forward">
+        <img ng-src="img/marason-icon.png" alt="" class="img-right">
+      </a>
+      <img ng-src="img/investigation.png" alt="" class="absolute-img absolute-right investigating-notifi" ng-show="true">
+      <img ng-src="img/pass.png" alt="" class="absolute-img absolute-right investigating-notifi" ng-show="false">
+    </div>
+
+    <div class="content-wrapper margin-top-md">
+      <div class="item item-divider">
+        个人参与信息
+      </div>
+      <div class="item text-align-center" ng-show="true">
+        通过审核后显示
+      </div>
+      <div class="item text-align-left" ng-show="false">
+        <p>选手号码：666</p>
+        <p>选手姓名：黄毛</p>
+      </div>
+    </div>
+
+    <div class="content-wrapper margin-top-md">
+      <div class="item item-divider">
+        举办方
+      </div>
+      <div class="item text-with-rightblock space-between">
+        <div class="item-text-main">
+          <p>广州体育局</p>
+          <p>广州市天河区天河路299号天河体育中心</p>
+        </div>
+        <img src="img/call-maintheme.png" alt="" class="icon-custom">
+      </div>
+    </div>
+
+    <div class="content-wrapper margin-top-md">
+      <div class="item item-divider">
+        支付信息
+      </div>
+      <div class="item text-align-left">
+        <p>实付金额：￥100</p>
+        <p>订单号：135846350044646</p>
+        <p>支付时间：2016-01-16 12:06:50</p>
+        <p class="assertive">*报名失败将自动退还所付金额</p>
+        <pay-btn ng-show="true"></pay-btn>
+      </div>
+    </div>
+
+    <div class="content-wrapper margin-top-md">
+      <div class="item item-divider">
+        参赛须知
+      </div>
+      <div class="item item-text-wrap">
+        <div class="long-text">
+          <pre>一、竞赛物品
+
+（一）赛前三天参赛选手需根据广汽丰田•2015广州马拉松赛官网公告要求，在规定时间内前往指定地点领取参赛号码布、感应计时芯片、《参赛指南》等竞赛物品。详见《广汽丰田•2015广州马拉松赛竞赛物品领取须知》。
+
+（二）参赛选手须本人亲自前往现场凭本人身份证原件、选手本人报名确认函、选手亲笔签字的《参赛声明》，领取竞赛物品，不允许代领。领取竞赛物品期间，参加马拉松或半程马拉松的选手还须提供以往半程以上马拉松比赛完赛证书或成绩证书原件及复印件（一份），参赛选手须保证提交的文件资料真实有效。
+
+（三）赛事组委会有权对不符合参赛资格、提供虚假参赛成绩证书或无以往参赛经历的参赛选手不予发放竞赛物品，并不予以退还报名费。
+
+（四）参赛服装
+
+参赛T尺码在参赛物品现场选择，现场发放；因部分尺码数量有限，组委会将于发放日每日上、下午平均定量发放部分尺码参赛T恤，请选手安排好时间，错峰领取，参赛T恤一经发放，组委会不予退换。
+
+二、保险
+
+本次比赛主办单位为所有参赛选手和工作人员投保人身意外险，《人身保险说明书》在参赛号码公布后可通过广州马拉松赛事官网查阅。
+
+
+
+*广州马拉松赛组委会对以上内容保留最终解释权*</pre>
+        </div>
+      </div>
     </div>
 
   </ion-content>

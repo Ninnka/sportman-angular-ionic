@@ -117,6 +117,15 @@ angular.module('starter.services', [])
   };
 })
 
+.factory("stateGo", function ($rootScope, $state) {
+  return {
+    goToState: function (target) {
+      $state.go(target);
+      $rootScope.inAnimation();
+    }
+  };
+})
+
 .service("studentsService", function () {
   var somethingCommon = "somethingCommon_init";
 

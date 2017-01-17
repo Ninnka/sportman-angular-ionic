@@ -4,7 +4,7 @@ $halftransparent: rgba(180, 180, 180, .7);
 $littletransparent: rgba(180, 180, 180, .9);
 
 .rem-item-font {
-  font-size: 0.256rem;
+  font-size: .256rem;
 }
 
 .tab-nav.tabs {
@@ -15,7 +15,7 @@ $littletransparent: rgba(180, 180, 180, .9);
 
 .item-content {
   p {
-    font-size: 0.24rem;
+    font-size: .24rem;
   }
 }
 
@@ -64,12 +64,14 @@ $littletransparent: rgba(180, 180, 180, .9);
 
     .item {
       padding: 8px 12px;
+
       img {
         margin-right: 16px;
         vertical-align: middle;
         max-width: 28px;
         max-height: 28px;
       }
+
       span {
         vertical-align: middle;
       }
@@ -85,34 +87,31 @@ $littletransparent: rgba(180, 180, 180, .9);
   margin: 0;
   text-indent: 12px;
 }
-
 @mixin horizon-imglist {
   // .horizon-img-list {
 
-    span {
-      vertical-align: middle;
-    }
+  span {
+    vertical-align: middle;
+  }
 
-    img{
-      max-width: 32px;
-      max-height: 32px;
-      margin-left: -1px;
-      vertical-align: middle;
-      margin-top: -5px;
-    }
+  img {
+    max-width: 32px;
+    max-height: 32px;
+    margin-left: -1px;
+    vertical-align: middle;
+    margin-top: -5px;
+  }
 
-    .notifi-text {
-      font-size: 24px;
-      margin: 0 5px;
-    }
+  .notifi-text {
+    font-size: 24px;
+    margin: 0 5px;
+  }
   // }
 }
 
 .content-wrapper {
-
   .theme-title {
-
-    .text-large{
+    .text-large {
       font-size: 24px;
     }
   }
@@ -121,6 +120,7 @@ $littletransparent: rgba(180, 180, 180, .9);
     @include horizon-imglist;
   }
 }
+
 .stream-grid {
   align-items: center;
   display: flex;
@@ -150,7 +150,6 @@ $littletransparent: rgba(180, 180, 180, .9);
 }
 
 .stream-grid.division-bottom {
-
   > div {
     font-size: 16px;
     line-height: 1.3;
@@ -164,6 +163,7 @@ $littletransparent: rgba(180, 180, 180, .9);
     color: $maintheme;
   }
 }
+
 .division-line-left {
   border-left: 1px solid $littletransparent;
 }
@@ -176,6 +176,7 @@ $littletransparent: rgba(180, 180, 180, .9);
       margin: 8px;
       vertical-align: middle;
     }
+
     span {
       vertical-align: middle;
       font-size: 18px;
@@ -183,8 +184,10 @@ $littletransparent: rgba(180, 180, 180, .9);
     }
 
   }
+
   .input-right {
     position: relative;
+
     input {
       margin-top: -9px;
       position: absolute;
@@ -199,7 +202,7 @@ $littletransparent: rgba(180, 180, 180, .9);
   }
 }
 
-.custom-item-padding{
+.custom-item-padding {
   padding: 6px 8px;
 }
 
@@ -208,7 +211,7 @@ $littletransparent: rgba(180, 180, 180, .9);
   color: #353535;
   font-size: 17px;
 
-  span:nth-child(1){
+  span:nth-child(1) {
     vertical-align: middle;
   }
 
@@ -219,16 +222,17 @@ $littletransparent: rgba(180, 180, 180, .9);
 
 }
 
-.button-center-wrapper{
+.button-center-wrapper {
   text-align: center;
-  button{
-    margin: 12px 0 12px 0;
+
+  button {
+    margin: 12px 0;
   }
 }
 
 .carvel-list > {
   .item-left-img {
-    > img{
+    > img {
       float: left;
       max-width: 48px;
       max-height: 48px;
@@ -236,8 +240,8 @@ $littletransparent: rgba(180, 180, 180, .9);
     }
   }
 
-  .item-right-content{
-    > div{
+  .item-right-content {
+    > div {
       box-sizing: border-box;
       // width: 100%;
       padding-left: 62px;
@@ -252,10 +256,12 @@ $littletransparent: rgba(180, 180, 180, .9);
 
 .horizon-img-with-text {
   @include horizon-imglist;
-  img{
+
+  img {
     max-width: 24px;
     max-height: 24px;
   }
+
   span {
     font-size: 20px;
     margin-left: 6px;
@@ -276,13 +282,13 @@ $littletransparent: rgba(180, 180, 180, .9);
 }
 
 .horizon-grid {
-
   > div {
     flex-grow: 1;
     flex-shrink: 1;
     text-align: center;
+    border-left: 1px solid $maintheme;
 
-    > img{
+    > img {
       max-width: 30%;
     }
 
@@ -290,19 +296,25 @@ $littletransparent: rgba(180, 180, 180, .9);
       margin: 4px 0;
     }
 
-    > select,label {
+    > select,
+    label {
       vertical-align: middle;
     }
-    > select + img{
+
+    > select + img {
       width: 10px;
       height: 13px;
       vertical-align: middle;
     }
 
+    &:first-child {
+      border-width: 0;
+    }
   }
-  .vertical-text-left-img{
+
+  .vertical-text-left-img {
     vertical-align: middle;
-    width: 0.59rem;
+    width: .59rem;
 
   }
 
@@ -315,13 +327,13 @@ $littletransparent: rgba(180, 180, 180, .9);
 
     > p:nth-child(1) {
       margin-bottom: 4px;
-      font-size: 0.17rem;
+      font-size: .17rem;
       color: #383838;
     }
 
     > p:nth-child(2) {
       margin-bottom: 0;
-      font-size: 0.14rem;
+      font-size: .14rem;
       color: #232323;
     }
   }

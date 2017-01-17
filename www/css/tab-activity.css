@@ -1,11 +1,11 @@
 .rem-item-font {
-  font-size: 0.256rem; }
+  font-size: .256rem; }
 
 .tab-nav.tabs .scroll-content.ionic-scroll.has-tabs-top {
   top: 49px !important; }
 
 .item-content p {
-  font-size: 0.24rem; }
+  font-size: .24rem; }
 
 .search-bar-wrapper {
   background: #fff;
@@ -151,7 +151,7 @@
 .button-center-wrapper {
   text-align: center; }
   .button-center-wrapper button {
-    margin: 12px 0 12px 0; }
+    margin: 12px 0; }
 
 .carvel-list > .item-left-img > img {
   float: left;
@@ -203,21 +203,25 @@
 .horizon-grid > div {
   flex-grow: 1;
   flex-shrink: 1;
-  text-align: center; }
+  text-align: center;
+  border-left: 1px solid #fb8041; }
   .horizon-grid > div > img {
     max-width: 30%; }
   .horizon-grid > div > p {
     margin: 4px 0; }
-  .horizon-grid > div > select, .horizon-grid > div label {
+  .horizon-grid > div > select,
+  .horizon-grid > div label {
     vertical-align: middle; }
   .horizon-grid > div > select + img {
     width: 10px;
     height: 13px;
     vertical-align: middle; }
+  .horizon-grid > div:first-child {
+    border-width: 0; }
 
 .horizon-grid .vertical-text-left-img {
   vertical-align: middle;
-  width: 0.59rem; }
+  width: .59rem; }
 
 .horizon-grid .vertical-text-main-sub {
   display: inline-block;
@@ -227,9 +231,9 @@
   margin-left: 5px; }
   .horizon-grid .vertical-text-main-sub > p:nth-child(1) {
     margin-bottom: 4px;
-    font-size: 0.17rem;
+    font-size: .17rem;
     color: #383838; }
   .horizon-grid .vertical-text-main-sub > p:nth-child(2) {
     margin-bottom: 0;
-    font-size: 0.14rem;
+    font-size: .14rem;
     color: #232323; }
