@@ -1,37 +1,24 @@
 <div class="horizon-grid">
   <div>
     <label for="area">地区：</label>
-    <select class="" name="area">
-      <option value="海珠区">海珠区</option>
-      <option value="天河区">天河区</option>
-      <option value="荔湾区">荔湾区</option>
-      <option value="越秀区">越秀区</option>
-      <option value="番禹区">番禹区</option>
-      <option value="花都区">花都区</option>
-      <option value="萝岗区">萝岗区</option>
-      <option value="白云区">白云区</option>
-      <option value="南沙区">南沙区</option>
-      <option value="黄埔区">黄埔区</option>
-      <option value="增城区">增城区</option>
-      <option value="从化区">从化区</option>
-      <option value="广州大学城">广州大学城</option>
-
-    </select>
-    <img ng-src="img/arrow-down.png" alt="">
+    <select class="" name="area" ng-options="area for area in areaList" ng-model="areaName"></select>
+    <!-- <img ng-src="img/arrow-down.png" alt=""> -->
   </div>
+
+  <div class="division-line-left">
+    <label for="type">类型：</label>
+    <select class="" name="type" ng-options="type for type in typeList" ng-model="typeName"></select>
+    <!-- <img ng-src="img/arrow-down.png" alt=""> -->
+
+  </div>
+
   <div class="division-line-left">
     <label for="price">价格：</label>
-    <select class="" name="price">
-      <option value="free">￥0</option>
-      <option value="low">￥1~￥49</option>
-      <option value="middle">￥50~￥149</option>
-      <option value="high">￥150以上</option>
-
-    </select>
-    <img ng-src="img/arrow-down.png" alt="">
+    <select class="" name="price" ng-options="price for price in priceList" ng-model="price"></select>
+    <!-- <img ng-src="img/arrow-down.png" alt=""> -->
   </div>
 </div>
 
 <ul class="stream-list">
-  <stadium></stadium>
+  <stadium ng-repeat="stadium in stadiumList" ng-click="toDetail()"></stadium>
 </ul>

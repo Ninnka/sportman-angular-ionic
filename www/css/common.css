@@ -1,6 +1,13 @@
 .item p {
   font-size: .256rem; }
 
+button,
+input,
+label,
+select,
+textarea {
+  font-size: .22rem; }
+
 .content-fix {
   position: fixed;
   z-index: 3; }

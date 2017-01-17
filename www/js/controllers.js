@@ -86,10 +86,6 @@ angular.module('starter.controllers', [])
       });
   };
 
-  $rootScope.openSearch = function () {
-
-  };
-
   $rootScope.preparePay = function (targetType, targetId, targetPay) {
     $state.go("prepare-pay");
     $rootScope.inAnimation();
@@ -291,9 +287,118 @@ angular.module('starter.controllers', [])
   };
 }])
 
-// 分类页面的控制器
-.controller('StadiumCtrl', ['$scope', function ($scope) {
-  // console.log("init CatetoryCrtl");
+// 场馆页面的控制器
+.controller('StadiumCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+
+  $scope.toDetail = function () {
+    stateGo.goToState("detail_stadium");
+  };
+
+  $scope.areaList = [
+    "",
+    "海珠区",
+    "天河区",
+    "荔湾区",
+    "越秀区",
+    "番禹区",
+    "花都区",
+    "萝岗区",
+    "白云区",
+    "南沙区",
+    "黄埔区",
+    "增城区",
+    "从化区"
+  ];
+  $scope.areaName = "";
+
+  $scope.typeList = [
+    "",
+    "篮球",
+    "足球",
+    "羽毛球",
+    "网球",
+    "台球",
+    "乒乓球",
+    "排球",
+    "射箭",
+    "滑雪",
+    "攀登",
+    "滑冰"
+  ];
+  $scope.typeName = "";
+
+  $scope.priceList = [
+    "",
+    "0",
+    "1~49",
+    "50~149",
+    "150~"
+  ];
+  $scope.price = "";
+
+  $scope.stadiumList = [
+    {
+      stadiumname: "胜利运动场（万寿路店）",
+      stadiumpost: "img/tabletenis-star.png",
+      stadiumtrade: "乒乓球、羽毛球",
+      stadiumopentime: "08:00-22:00",
+      stadiumposition: "海珠区",
+      stadiumprice: 9
+    },
+    {
+      stadiumname: "广州市射击射箭运动管理中心",
+      stadiumpost: "img/shot-stadium.png",
+      stadiumtrade: "台球、射箭、射击",
+      stadiumopentime: "08:00-19:00",
+      stadiumposition: "天河区",
+      stadiumprice: 99
+    },
+    {
+      stadiumname: "杰冠真人CS野战基地",
+      stadiumpost: "img/cs-stadium.png",
+      stadiumtrade: "仿真枪机野战",
+      stadiumopentime: "08:00-18:00",
+      stadiumposition: "海珠区",
+      stadiumprice: 299
+    },
+    {
+      stadiumname: "大世界保龄球馆",
+      stadiumpost: "img/bowling-stadium.png",
+      stadiumtrade: "仿真枪机野战",
+      stadiumopentime: "08:00-18:00",
+      stadiumposition: "海珠区",
+      stadiumprice: 199
+    },
+    {
+      stadiumname: "冰河湾真冰溜冰场",
+      stadiumpost: "img/skip-stadium.png",
+      stadiumtrade: "乒乓球、羽毛球",
+      stadiumopentime: "08:00-22:00",
+      stadiumposition: "海珠区",
+      stadiumprice: 9
+    },
+    {
+      stadiumname: "胜利运动场（万寿路店）",
+      stadiumpost: "img/tabletenis-star.png",
+      stadiumtrade: "乒乓球、羽毛球",
+      stadiumopentime: "08:00-22:00",
+      stadiumposition: "海珠区",
+      stadiumprice: 9
+    },
+    {
+      stadiumname: "广州市射击射箭运动管理中心",
+      stadiumpost: "img/shot-stadium.png",
+      stadiumtrade: "台球、射箭、射击",
+      stadiumopentime: "08:00-19:00",
+      stadiumposition: "天河区",
+      stadiumprice: 99
+    }
+  ];
+}])
+
+.controller('DetailStadiumCtrl', ['$scope', function ($scope) {
+
+  $scope.viewTitle = "详细页面";
 }])
 
 // 发现页面的控制器
