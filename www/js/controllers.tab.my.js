@@ -297,58 +297,61 @@ angular.module('starter.controllers.tab.my', [])
     $rootScope.clearHistory();
   });
 
-  $scope.activityList = [
-    {
-      activityname: "白云山野战场畅玩",
-      activityposition: "海珠区",
-      activitypost: "img/marason-star.png",
-      activityhost: "广州体育委员会",
-      activityattence: 11,
-      activitymountpeople: 30,
-      activityprice: 99,
-      activitystarttime: "1484396287893"
-    },
-    {
-      activityname: "广州马拉松",
-      activityposition: "白云区",
-      activitypost: "img/shot-star.png",
-      activityhost: "白云山野战场",
-      activityattence: 11,
-      activitymountpeople: 30,
-      activityprice: 199,
-      activitystarttime: "1484396287893"
-    },
-    {
-      activityname: "轮滑逛街活动",
-      activityposition: "白云区",
-      activitypost: "img/skip-star.png",
-      activityhost: "阿迪王专业体育用具",
-      activityattence: 11,
-      activitymountpeople: 30,
-      activityprice: 199,
-      activitystarttime: "1484396287893"
-    },
-    {
-      activityname: "荧光夜跑——地",
-      activityposition: "白云区",
-      activitypost: "img/tabletenis-star.png",
-      activityhost: "阿迪王专业体育用具",
-      activityattence: 11,
-      activitymountpeople: 30,
-      activityprice: 199,
-      activitystarttime: "1484396287893"
-    },
-    {
-      activityname: "荧光夜跑——地",
-      activityposition: "白云区",
-      activitypost: "img/tabletenis-star.png",
-      activityhost: "阿迪王专业体育用具",
-      activityattence: 11,
-      activitymountpeople: 30,
-      activityprice: 199,
-      activitystarttime: "1484396287893"
-    }
-  ];
+  $scope.$on("$ionicView.afterEnter", function () {
+    $scope.activityList = [
+      {
+        activityname: "白云山野战场畅玩",
+        activityposition: "海珠区",
+        activitypost: "img/marason-star.png",
+        activityhost: "广州体育委员会",
+        activityattence: 11,
+        activitymountpeople: 30,
+        activityprice: 99,
+        activitystarttime: "1484396287893"
+      },
+      {
+        activityname: "广州马拉松",
+        activityposition: "白云区",
+        activitypost: "img/shot-star.png",
+        activityhost: "白云山野战场",
+        activityattence: 11,
+        activitymountpeople: 30,
+        activityprice: 199,
+        activitystarttime: "1484396287893"
+      },
+      {
+        activityname: "轮滑逛街活动",
+        activityposition: "白云区",
+        activitypost: "img/skip-star.png",
+        activityhost: "阿迪王专业体育用具",
+        activityattence: 11,
+        activitymountpeople: 30,
+        activityprice: 199,
+        activitystarttime: "1484396287893"
+      },
+      {
+        activityname: "荧光夜跑——地",
+        activityposition: "白云区",
+        activitypost: "img/tabletenis-star.png",
+        activityhost: "阿迪王专业体育用具",
+        activityattence: 11,
+        activitymountpeople: 30,
+        activityprice: 199,
+        activitystarttime: "1484396287893"
+      },
+      {
+        activityname: "荧光夜跑——地",
+        activityposition: "白云区",
+        activitypost: "img/tabletenis-star.png",
+        activityhost: "阿迪王专业体育用具",
+        activityattence: 11,
+        activitymountpeople: 30,
+        activityprice: 199,
+        activitystarttime: "1484396287893"
+      }
+    ];
+  });
+
 }])
 
 .controller('myCollectionStarStadiumCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {

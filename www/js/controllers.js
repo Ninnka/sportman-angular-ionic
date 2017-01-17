@@ -142,7 +142,12 @@ angular.module('starter.controllers', [])
 }])
 
 // 主页控制器
-.controller('ActivityCtrl', ['$scope', 'ajaxGetData', '$ionicSlideBoxDelegate', function ($scope, ajaxGetData, $ionicSlideBoxDelegate) {
+.controller('ActivityCtrl', ['$scope', '$rootScope', 'ajaxGetData', '$ionicSlideBoxDelegate', function ($scope, $rootScope, ajaxGetData, $ionicSlideBoxDelegate) {
+
+  // $scope.$on("$ionicView.enter", function () {
+  //   $rootScope.clearHistory();
+  // });
+
   $scope.firstEnter = true;
   $scope.bannerList = [];
   $scope.mainGoodsList = [];
@@ -172,10 +177,9 @@ angular.module('starter.controllers', [])
 
 // 主页商品详细页面控制器
 .controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {
-  $scope.$on("$ionicView.enter", function () {
-    $rootScope.clearHistory();
-    console.log("clear");
-  });
+  // $scope.$on("$ionicView.enter", function () {
+  //   $rootScope.clearHistory();
+  // });
 
   $scope.viewTitle = "详细页面";
 }])
@@ -193,6 +197,12 @@ angular.module('starter.controllers', [])
   $scope.$on("$ionicView.enter", function () {
     $rootScope.clearHistory();
   });
+
+  $scope.showNotification = true;
+
+  $scope.closeNotification = function () {
+    $scope.showNotification = !$scope.showNotification;
+  };
 }])
 
 // 分类页面的控制器

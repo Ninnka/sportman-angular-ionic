@@ -1,10 +1,12 @@
 <ion-view view-title="{{viewTitle}}">
 
   <ion-nav-buttons side="left">
-    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView('tab.activity')"></i>
+    <ion-navbuttonsgo target="tab.activity"></ion-navbuttonsgo>
+
+    <!-- <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView('tab.activity')"></i>
     <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
         <span class="default-title" style="line-height: 35px;">Back</span>
-    </span>
+    </span> -->
   </ion-nav-buttons>
 
   <ion-nav-buttons side="right">
@@ -82,7 +84,7 @@ Huacheng Square (Starting point) → Linjiang Ave (Eastwards) → U turn at Cheb
       </div>
     </div>
 
-    <a ng-href="#/reviews">
+    <a ng-href="#/reviews" nav-direction="forward">
       <p class="text-abvious margin-top-md">
         点击查看评价
       </p>

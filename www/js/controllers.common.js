@@ -4,6 +4,18 @@ angular.module('starter.controllers.common', [])
  * ------------------------------------------------------------------------------------------------
  * 通用部分
  */
+.controller('ionNavButtonsGoCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', function ($scope, $rootScope, $state, $ionicHistory) {
+  $scope.toBackView = function () {
+    console.log("back in ionNavButtonsGoCtrl");
+    if ($scope.target === undefined || $scope.target === "") {
+      $ionicHistory.goBack(-1);
+    } else {
+      $state.go($scope.target);
+    }
+    $rootScope.outAnimation();
+  };
+}])
+
 .controller('citySelectionCtrl', ['$scope', function ($scope) {
   $scope.currentCity = "广州";
 }])

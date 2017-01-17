@@ -332,4 +332,16 @@ angular.module('starter.directives', [])
       }
     }
   };
+})
+
+.directive('ionNavbuttonsgo', function () {
+  return {
+    restrict: 'EA',
+    templateUrl: "templates/directive-tmpl/ion-nav-buttons-go.html",
+    replace: true,
+    scope: {
+      target: "@"
+    },
+    controller: "ionNavButtonsGoCtrl"
+  };
 });
