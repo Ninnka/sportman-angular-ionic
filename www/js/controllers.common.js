@@ -20,7 +20,7 @@ angular.module('starter.controllers.common', [])
   $scope.currentCity = "广州";
 }])
 
-.controller('searchCtrl', ['$scope', function ($scope) {
+.controller('searchActivityCtrl', ['$scope', function ($scope) {
   $scope.hotSearch = [
     '彩色跑',
     '荧光跑',
@@ -36,6 +36,31 @@ angular.module('starter.controllers.common', [])
     '胜利体育馆',
     '野外枪战',
     '荧光跑'
+  ];
+
+  $scope.hasHistorySearch = $scope.historySearch.length > 0;
+
+  $scope.clearHistorySearch = function () {
+
+  };
+}])
+
+.controller('searchStadiumCtrl', ['$scope', function ($scope) {
+  $scope.hotSearch = [
+    '运动场',
+    '运动场',
+    '运动场',
+    '运动场',
+    '运动场',
+    '运动场',
+    '运动场'
+  ];
+
+  $scope.historySearch = [
+    '运动场',
+    '运动场',
+    '运动场',
+    '运动场'
   ];
 
   $scope.hasHistorySearch = $scope.historySearch.length > 0;

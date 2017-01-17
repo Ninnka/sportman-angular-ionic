@@ -1,6 +1,55 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', '$cordovaBarcodeScanner', '$document', '$window', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher, $cordovaBarcodeScanner, $document, $window) {
+.controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', '$cordovaBarcodeScanner', '$document', '$window', '$cordovaGeolocation', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher, $cordovaBarcodeScanner, $document, $window, $cordovaGeolocation) {
+
+  // 监听地理位置
+  $scope.watchPosition = function () {
+    var posOptions = {
+      timeout: 10000,
+      enableHighAccuracy: false
+    };
+    $cordovaGeolocation
+      .getCurrentPosition(posOptions)
+      .then(function (position) {
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        alert("lat: " + lat);
+        alert("long: " + long);
+      }, function (err) {
+        // error
+        console.log("err:", err);
+      });
+
+
+    // var watchOptions = {
+    //   timeout: 3000,
+    //   enableHighAccuracy: false
+    // };
+    //
+    // var watch = $cordovaGeolocation.watchPosition(watchOptions);
+    // watch.then(
+    //   null,
+    //   function (err) {
+    //     // error
+    //   },
+    //   function (position) {
+    //     var lat = position.coords.latitude;
+    //     var long = position.coords.longitude;
+    //     alert("lat: "+lat);
+    //     alert("long: "+long);
+    //   });
+
+
+    // watch.clearWatch();
+    // // OR
+    // $cordovaGeolocation.clearWatch(watch)
+    //   .then(function (result) {
+    //     // success
+    //   }, function (error) {
+    //     // error
+    //   });
+  };
+  $scope.watchPosition();
 
   // 设置rem
   var winX = $document[0].body.clientWidth;

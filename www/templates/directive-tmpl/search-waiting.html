@@ -10,13 +10,13 @@
 <div class="content-wrapper">
   <p class="theme-title">热门搜索</p>
   <ul class="stream-grid">
-    <li ng-repeat="item in hotSearch" ng-click="">{{ item }}</li>
+    <li ng-repeat="item in hotSearch track by $index" ng-click="">{{ item }}</li>
   </ul>
 
   <p class="theme-title">历史搜索</p>
   <ul class="list">
 
-    <li ng-repeat="item in historySearch">
+    <li ng-repeat="item in historySearch track by $index">
       <a class="item item-icon-left" ng-href="">
         <img ng-src="img/history-outline-dark.png" alt="">
         <span>{{item}}</span>

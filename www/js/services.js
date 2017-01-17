@@ -126,6 +126,15 @@ angular.module('starter.services', [])
   };
 })
 
+.factory("getLocation", function () {
+  return {
+    // https://api.thinkpage.cn/v3/location/search.json?key=mqzzrlzwvkgw0762&q=
+    getLocation: function () {
+
+    }
+  };
+})
+
 .service("studentsService", function () {
   var somethingCommon = "somethingCommon_init";
 

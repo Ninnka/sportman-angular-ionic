@@ -16,13 +16,23 @@ angular.module('starter.states.common', [])
         }
       }
     })
-    .state('search', {
+    .state('search-activity', {
       cache: false,
-      url: "/search",
+      url: "/search/activity",
       views: {
         'index': {
-          templateUrl: "templates/common/search.html",
-          controller: "searchCtrl"
+          templateUrl: "templates/common/search/activity.html",
+          controller: "searchActivityCtrl"
+        }
+      }
+    })
+    .state('search-stadium', {
+      cache: false,
+      url: '/search/stadium',
+      views: {
+        'index': {
+          templateUrl: "templates/common/search/stadium.html",
+          controller: "searchStadiumCtrl"
         }
       }
     })

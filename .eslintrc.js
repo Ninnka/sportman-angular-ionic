@@ -87,7 +87,7 @@ module.exports = {
       "named": "ignore",
       "asyncArrow": "ignore"
 		}],
-    "no-unused-vars": [1, {
+    "no-unused-vars": [0, {
       "vars": "all",
       "args": "after-used"
 		}],

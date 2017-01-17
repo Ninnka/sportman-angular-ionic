@@ -1,3 +1,6 @@
+.item p {
+  font-size: .256rem; }
+
 .content-fix {
   position: fixed;
   z-index: 3; }
@@ -52,20 +55,22 @@
   .img-with-float-text > .float-text-wrapper {
     background-color: rgba(30, 30, 30, 0.5);
     bottom: 0;
-    height: 1.1rem;
+    height: 1.3rem;
     left: 0;
-    padding: .1rem .2rem;
+    padding: .1rem .2rem .2rem;
     position: absolute;
     text-align: left;
     width: 100%; }
     .img-with-float-text > .float-text-wrapper > img {
       max-height: 100%;
-      vertical-align: middle; }
+      vertical-align: top; }
     .img-with-float-text > .float-text-wrapper > .float-text {
       color: #fff;
       display: inline-block;
       margin-left: .3rem;
       vertical-align: middle; }
+      .img-with-float-text > .float-text-wrapper > .float-text p {
+        margin: 0 0 .064rem; }
       .img-with-float-text > .float-text-wrapper > .float-text p:nth-child(1) {
         font-size: .256rem; }
       .img-with-float-text > .float-text-wrapper > .float-text p:nth-child(2) {
