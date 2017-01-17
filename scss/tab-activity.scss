@@ -51,12 +51,10 @@ $littletransparent: rgba(180, 180, 180, .9);
   }
 }
 
-.content-wrapper.normal-light {
-  background: #fff;
-}
-
-.content-fix + .content-wrapper {
-  padding-top: 54px;
+.content-wrapper {
+  &.normal-light {
+    background: #fff;
+  }
 
   .list {
     margin: 16px auto 12px;

@@ -32,20 +32,18 @@
 .content-wrapper.normal-light {
   background: #fff; }
 
-.content-fix + .content-wrapper {
-  padding-top: 54px; }
-  .content-fix + .content-wrapper .list {
-    margin: 16px auto 12px;
-    width: 85%; }
-    .content-fix + .content-wrapper .list .item {
-      padding: 8px 12px; }
-      .content-fix + .content-wrapper .list .item img {
-        margin-right: 16px;
-        vertical-align: middle;
-        max-width: 28px;
-        max-height: 28px; }
-      .content-fix + .content-wrapper .list .item span {
-        vertical-align: middle; }
+.content-wrapper .list {
+  margin: 16px auto 12px;
+  width: 85%; }
+  .content-wrapper .list .item {
+    padding: 8px 12px; }
+    .content-wrapper .list .item img {
+      margin-right: 16px;
+      vertical-align: middle;
+      max-width: 28px;
+      max-height: 28px; }
+    .content-wrapper .list .item span {
+      vertical-align: middle; }
 
 .theme-title {
   color: #222;
