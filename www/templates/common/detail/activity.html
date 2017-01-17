@@ -17,19 +17,19 @@
   <ion-content>
     <div class="img-wrapper img-with-float-text float-bottom" style="background-image: url(img/activitypost.png)">
       <div class="float-text-wrapper">
-        <img ng-src="img/marason-icon.png" alt="">
+        <img ng-src="{{activity.acitivtypost}}" alt="">
         <div class="float-text">
-          <p>2016广州马拉松</p>
-          <p>活动官网:www.gzmarathon.com</p>
+          <p>{{activity.activityname}}</p>
+          <p>活动官网:{{activity.activitywebsite}}</p>
         </div>
       </div>
     </div>
 
     <div class="text-with-button space-between">
       <div>
-        <p>举行时间：2016年04月01日</p>
-        <p>花城广场（起点）</p>
-        <p class="assertive">￥100</p>
+        <p>举行时间：{{activity.activitystarttime}}</p>
+        <p>{{activity.activityposition}}</p>
+        <p class="assertive">￥{{activity.acitvityprice}}</p>
       </div>
       <a ng-href="#/registration/instruction" nav-direction="forward">
         <button class="button button-positive">立即参加</button>
@@ -55,8 +55,8 @@
       </div>
       <div class="item text-with-button space-between">
         <div class="item-text-main">
-          <p>广州体育局</p>
-          <p>广州市天河区天河路299号天河体育中心</p>
+          <p>{{activity.activityhost}}</p>
+          <p>{{activity.activityhostaddress}}</p>
         </div>
         <img src="img/call-maintheme.png" alt="" class="icon-custom">
       </div>
@@ -90,9 +90,5 @@ Huacheng Square (Starting point) → Linjiang Ave (Eastwards) → U turn at Cheb
       </p>
     </a>
 
-
-    <!-- <a >
-      <button type="button" name="button" class="button button-positive"></button>
-    </a> -->
   </ion-content>
 </ion-view>

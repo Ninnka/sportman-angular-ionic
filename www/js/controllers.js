@@ -177,20 +177,48 @@ angular.module('starter.controllers', [])
 
 // 主页商品详细页面控制器
 .controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {
-  // $scope.$on("$ionicView.enter", function () {
-  //   $rootScope.clearHistory();
-  // });
 
   $scope.viewTitle = "详细页面";
+
+  $scope.activity = {
+    activityid: "",
+    activityname: "2016广州马拉松",
+    acitivtypost: "img/marason-icon.png",
+    activitywebsite: "www.gzmarathon.com",
+    activitystarttime: "2016年04月01日",
+    activityposition: "花城广场（起点）",
+    acitvityprice: "100",
+    activityhost: "广州体育局",
+    activityhostaddress: "广州市天河区天河路299号天河体育中心",
+    activitycontact: "12345678910"
+  };
+
+  $scope.getActivityInfo = function () {
+    // todo
+  };
+
+  $scope.attendActivity = function () {
+    // todo
+  };
+
 }])
 
 // 报名参加活动
 .controller('RegistrationInstructionCtrl', ['$scope', function ($scope) {
-
+  $scope.agreeTreaty = function () {
+    // todo
+  };
 }])
 
 .controller('RegistrationInformationCtrl', ['$scope', function ($scope) {
 
+  $scope.information = {
+    // todo
+  };
+
+  $scope.submitInformation = function () {
+    // todo
+  };
 }])
 
 .controller('RegistrationCompleteCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
