@@ -21,6 +21,8 @@ angular.module('starter.controllers.common', [])
 }])
 
 .controller('searchActivityCtrl', ['$scope', function ($scope) {
+  $scope.key = "";
+
   $scope.hotSearch = [
     '彩色跑',
     '荧光跑',
@@ -43,9 +45,54 @@ angular.module('starter.controllers.common', [])
   $scope.clearHistorySearch = function () {
 
   };
+
+  $scope.activityList = [
+    {
+      activityname: "白云山野战场畅玩",
+      activityposition: "海珠区",
+      activitypost: "img/marason-star.png",
+      activityhost: "广州体育委员会",
+      activityattence: 11,
+      activitymountpeople: 30,
+      activityprice: 99,
+      activitystarttime: "1484396287893"
+    },
+    {
+      activityname: "广州马拉松",
+      activityposition: "白云区",
+      activitypost: "img/shot-star.png",
+      activityhost: "白云山野战场",
+      activityattence: 11,
+      activitymountpeople: 30,
+      activityprice: 199,
+      activitystarttime: "1484396287893"
+    },
+    {
+      activityname: "轮滑逛街活动",
+      activityposition: "白云区",
+      activitypost: "img/skip-star.png",
+      activityhost: "阿迪王专业体育用具",
+      activityattence: 11,
+      activitymountpeople: 30,
+      activityprice: 199,
+      activitystarttime: "1484396287893"
+    },
+    {
+      activityname: "荧光夜跑——地",
+      activityposition: "白云区",
+      activitypost: "img/tabletenis-star.png",
+      activityhost: "阿迪王专业体育用具",
+      activityattence: 11,
+      activitymountpeople: 30,
+      activityprice: 199,
+      activitystarttime: "1484396287893"
+    }
+  ];
 }])
 
 .controller('searchStadiumCtrl', ['$scope', function ($scope) {
+  $scope.key = "";
+
   $scope.hotSearch = [
     '运动场',
     '运动场',
@@ -68,6 +115,49 @@ angular.module('starter.controllers.common', [])
   $scope.clearHistorySearch = function () {
 
   };
+
+  $scope.stadiumList = [
+    {
+      stadiumname: "胜利运动场（万寿路店）",
+      stadiumpost: "img/tabletenis-star.png",
+      stadiumtrade: "乒乓球、羽毛球",
+      stadiumopentime: "08:00-22:00",
+      stadiumposition: "海珠区",
+      stadiumprice: 9
+    },
+    {
+      stadiumname: "广州市射击射箭运动管理中心",
+      stadiumpost: "img/shot-stadium.png",
+      stadiumtrade: "台球、射箭、射击",
+      stadiumopentime: "08:00-19:00",
+      stadiumposition: "天河区",
+      stadiumprice: 99
+    },
+    {
+      stadiumname: "杰冠真人CS野战基地",
+      stadiumpost: "img/cs-stadium.png",
+      stadiumtrade: "仿真枪机野战",
+      stadiumopentime: "08:00-18:00",
+      stadiumposition: "海珠区",
+      stadiumprice: 299
+    },
+    {
+      stadiumname: "大世界保龄球馆",
+      stadiumpost: "img/bowling-stadium.png",
+      stadiumtrade: "仿真枪机野战",
+      stadiumopentime: "08:00-18:00",
+      stadiumposition: "海珠区",
+      stadiumprice: 199
+    },
+    {
+      stadiumname: "冰河湾真冰溜冰场",
+      stadiumpost: "img/skip-stadium.png",
+      stadiumtrade: "乒乓球、羽毛球",
+      stadiumopentime: "08:00-22:00",
+      stadiumposition: "海珠区",
+      stadiumprice: 9
+    }
+  ];
 }])
 
 .controller('reviewCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {
@@ -80,7 +170,19 @@ angular.module('starter.controllers.common', [])
   };
 }])
 
-.controller('preparePayCtrl', ['$scope', function ($scope) {
+.controller('preparePayCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+
+  $scope.payinfo = {
+    type: $stateParams.type,
+    id: $stateParams.id,
+    selectMount: $stateParams.selectMount,
+    unitprice: $stateParams.unitprice
+  };
+
+  console.log("type:", $scope.payinfo.type);
+  console.log("id:", $scope.payinfo.id);
+  console.log("selectMount:", $scope.payinfo.selectMount);
+  console.log("unitprice:", $scope.payinfo.unitprice);
 
 }])
 

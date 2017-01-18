@@ -11,12 +11,19 @@
   </ion-nav-buttons>
 
   <ion-content>
+    <div class="list list-no-margin">
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="场馆" ng-model="key">
+        </label>
+        <button class="button button-small">
+          搜索
+        </button>
+      </div>
+    </div>
 
-    <div search-waiting></div>
-
-    <!-- <search-activity></search-activity> -->
-
-    <!-- <search-stadium></search-stadium> -->
+    <div search-waiting ng-show="key === ''"></div>
+    <search-stadium ng-show="key !== ''"></search-stadium>
 
   </ion-content>
 

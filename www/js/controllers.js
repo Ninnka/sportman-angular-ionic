@@ -51,6 +51,11 @@ angular.module('starter.controllers', [])
   };
   $scope.watchPosition();
 
+  // 打开电话应用
+  $scope.openTel = function () {
+
+  };
+
   // 设置rem
   var winX = $document[0].body.clientWidth;
   var html = $document.find("html");
@@ -479,7 +484,7 @@ angular.module('starter.controllers', [])
   ];
 }])
 
-.controller('BookselectStadiumCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+.controller('BookselectStadiumCtrl', ['$scope', '$stateParams', '$cordovaDialogs', 'stateGo', function ($scope, $stateParams, $cordovaDialogs, stateGo) {
   $scope.type = $stateParams.type;
   $scope.id = $stateParams.id;
 
@@ -487,7 +492,41 @@ angular.module('starter.controllers', [])
     selectMount: 1,
     selectStartTime: "",
     selectEndTime: ""
-  }
+  };
+
+  $scope.insSelectMount = function () {
+    $scope.selectinfo.selectMount = $scope.selectinfo.selectMount < 5 ? ++$scope.selectinfo.selectMount : 5;
+  };
+
+  $scope.decSelectMount = function () {
+    $scope.selectinfo.selectMount = $scope.selectinfo.selectMount > 1 ? --$scope.selectinfo.selectMount : 1;
+  };
+
+  $scope.openNumberDialog = function () {
+    $cordovaDialogs.prompt('输入预定的数量', '数量', ['确认', '取消'], $scope.selectinfo.selectMount)
+      .then(function (result) {
+        var input = result.input1;
+        // no button = 0, 'OK' = 1, 'Cancel' = 2
+        var btnIndex = result.buttonIndex;
+        alert("input: " + input);
+        alert("btnIndex: " + btnIndex);
+        var regexp = /[A-Za-z\.]/;
+        if (btnIndex == 1 && !regexp.test(input) && Number(input) >= 1 && Number(input) <= 5) {
+          $scope.selectinfo.selectMount = Number(input);
+        } else {
+          alert("数量必须在1-5");
+        }
+      });
+  };
+
+  $scope.submitSelectInfo = function () {
+    stateGo.goToState("prepare-pay", {
+      type: $scope.type,
+      id: $scope.id,
+      selectMount: $scope.selectinfo.selectMount,
+      unitprice: 10
+    });
+  };
 }])
 
 // 发现页面的控制器

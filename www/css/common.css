@@ -208,5 +208,8 @@ p.assertive {
 
 .right-block {
   right: .2rem;
-  top: 0.545rem;
+  top: .545rem;
   margin-top: -0.32rem; }
+
+.list-no-margin {
+  margin: 0; }
