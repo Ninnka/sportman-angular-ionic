@@ -259,7 +259,18 @@ angular.module('starter.directives', [])
     link: function (scope, element, attrs) {
 
     }
-  }
+  };
+})
+
+.directive('stadiumBook', function () {
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: "templates/directive-tmpl/stadium-book.html",
+    link: function (scope, element, attrs) {
+
+    }
+  };
 })
 
 .directive('reviewBtn', function () {

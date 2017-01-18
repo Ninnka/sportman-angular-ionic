@@ -553,7 +553,7 @@
 }
 
 .stream-list>.item .item-content .limit-text {
-  max-width: 160px;
+  max-width: 2.52rem;
 }
 
 .stream-list>.item .item-content .price {

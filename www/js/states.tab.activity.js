@@ -32,7 +32,7 @@ angular.module('starter.states.tab.activity', [])
       url: '/registration/instruction',
       views: {
         'index': {
-          templateUrl: 'templates/tab-home/register/instruction.html',
+          templateUrl: 'templates/tab-activity/register/instruction.html',
           controller: 'RegistrationInstructionCtrl'
         }
       }
@@ -42,7 +42,7 @@ angular.module('starter.states.tab.activity', [])
       url: '/registration/information',
       views: {
         'index': {
-          templateUrl: 'templates/tab-home/register/information.html',
+          templateUrl: 'templates/tab-activity/register/information.html',
           controller: 'RegistrationInformationCtrl'
         }
       }
@@ -52,7 +52,7 @@ angular.module('starter.states.tab.activity', [])
       url: '/registration/complete',
       views: {
         'index': {
-          templateUrl: 'templates/tab-home/register/complete.html',
+          templateUrl: 'templates/tab-activity/register/complete.html',
           controller: 'RegistrationCompleteCtrl'
         }
       }

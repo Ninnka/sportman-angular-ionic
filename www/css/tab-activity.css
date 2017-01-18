@@ -32,18 +32,15 @@
 .content-wrapper.normal-light {
   background: #fff; }
 
-.content-wrapper .list {
-  margin: 16px auto 12px;
-  width: 85%; }
-  .content-wrapper .list .item {
-    padding: 8px 12px; }
-    .content-wrapper .list .item img {
-      margin-right: 16px;
-      vertical-align: middle;
-      max-width: 28px;
-      max-height: 28px; }
-    .content-wrapper .list .item span {
-      vertical-align: middle; }
+.content-wrapper .list .item {
+  padding: 8px 12px; }
+  .content-wrapper .list .item img {
+    margin-right: 16px;
+    vertical-align: middle;
+    max-width: 28px;
+    max-height: 28px; }
+  .content-wrapper .list .item span {
+    vertical-align: middle; }
 
 .theme-title {
   color: #222;

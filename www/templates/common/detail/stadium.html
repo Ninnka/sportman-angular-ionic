@@ -4,7 +4,75 @@
     <ion-navbuttonsgo target="tab.stadium"></ion-navbuttonsgo>
   </ion-nav-buttons>
 
+  <ion-nav-buttons side="right">
+    <img ng-src="img/recommend-white.png" alt="" class="custom-nav-button-img">
+    <img ng-src="img/star-white.png" alt="" class="custom-nav-button-img">
+  </ion-nav-buttons>
+
   <ion-content>
-    stadium
+
+    <div class="img-wrapper img-with-float-text float-bottom" style="background-image: url(img/stadium-post.png)"></div>
+    <a ng-href="">
+      <div class="float-left-img with-right-text padding-roung-sm">
+        <img ng-src="img/stadium-hostavatar.png" alt="" class="left-img">
+        <div class="float-text">
+          <p class="text-main-dark">胜利运动场（万寿路店）</p>
+          <div class="">
+            <review-star score="{{totalScore}}" class="notifi-text assertive"></review-star>
+          </div>
+          <p class="text-sub-gray">营业时间：08:00 - 22:00</p>
+        </div>
+      </div>
+    </a>
+
+    <div class="item text-with-rightblock space-between">
+      <div class="item-text-main with-left-img flexbox">
+        <img ng-src="img/locate-icon-gray.png" alt="">
+        <span>广州市海珠区万寿素社街48号</span>
+      </div>
+      <img src="img/call-maintheme.png" alt="" class="icon-custom">
+    </div>
+
+    <div class="content-wrapper margin-top-md">
+      <div class="item item-divider">
+        场地预定
+      </div>
+      <ul class="list">
+        <li class="item with-right-icon" ng-click="bookStadium()">
+          <div>
+            <p class="text-main-dark text-main-notifi">乒乓球</p>
+            <p class="text-sub-gray">3种球桌</p>
+            <p class="assertive">9.0 ~ 98.0 ￥/小时</p>
+          </div>
+          <img ng-src="img/arrow-right-icon-gray.png" alt="" class="right-icon">
+        </li>
+        <li class="item with-right-icon" ng-click="bookStadium()">
+          <div>
+            <p class="text-main-dark text-main-notifi">羽毛球</p>
+            <p class="text-sub-gray">朔胶地质，宽敞，干净</p>
+            <p class="assertive">9.0 ~ 98.0 ￥/小时</p>
+          </div>
+          <img ng-src="img/arrow-right-icon-gray.png" alt="" class="right-icon">
+        </li>
+      </ul>
+    </div>
+
+    <div class="content-wrapper margin-top-md">
+      <div class="item item-divider">
+        更多信息
+      </div>
+      <div class="item">
+        <p>免费提供无线WIFI</p>
+        <p>免费提供30个停车位</p>
+        <p>可租购用具</p>
+      </div>
+    </div>
+
+    <a ng-href="#/reviews" nav-direction="forward">
+      <p class="text-abvious margin-top-md">
+        点击查看评价
+      </p>
+    </a>
+
   </ion-content>
 </ion-view>

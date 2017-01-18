@@ -119,8 +119,17 @@ angular.module('starter.services', [])
 
 .factory("stateGo", function ($rootScope, $state) {
   return {
-    goToState: function (target) {
-      $state.go(target);
+    goToState: function (target, data) {
+      // if (data !== undefined) {
+      // } else {
+      //   $state.go(target);
+      // }
+      // if (data !== undefined) {
+      //   console.log(data.type);
+      //   console.log(data.id);
+      // }
+      $state.go(target, data);
+
       $rootScope.inAnimation();
     }
   };

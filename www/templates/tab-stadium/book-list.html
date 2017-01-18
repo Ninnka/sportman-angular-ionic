@@ -1,0 +1,41 @@
+<ion-view view-title="预定场馆">
+
+  <ion-nav-buttons side="left">
+    <ion-navbuttonsgo></ion-navbuttonsgo>
+  </ion-nav-buttons>
+
+  <ion-content>
+
+    <div class="tab-block with-border-bottom text-align-center inside-left-img inside-right-text">
+      <img ng-src="img/tabletennis-icon-dark.png" alt="">
+      <span>乒乓球</span>
+    </div>
+
+    <ul class="stream-list margin-top-border">
+
+      <stadium-book ng-repeat="equipment in equipmentLsit track by $index"></stadium-book>
+
+      <!-- <li class="item">
+        <a ng-href="">
+          <img ng-src="img/skip-stadium.png" alt="">
+          <div class="item-content">
+            <div>
+              <span class="text-main-notifi">大厅桌球</span>
+            </div>
+            <div>
+              <span class="limit-text text-sub">器材：双鱼座化工板质球桌</span>
+            </div>
+            <div><span class="limit-text">地质：水泥地板</span></div>
+            <div>
+              <span class="limit-text">位置：运动场大厅</span>
+              <span class="price">价格：￥9</span>
+            </div>
+          </div>
+        </a>
+      </li> -->
+
+    </ul>
+
+  </ion-content>
+
+</ion-view>

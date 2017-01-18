@@ -228,7 +228,8 @@ angular.module('starter.controllers', [])
   $scope.activity = {
     activityid: "",
     activityname: "2016广州马拉松",
-    acitivtypost: "img/marason-icon.png",
+    activitypost: "img/activitypost.png",
+    acitivtyhostavatar: "img/marason-icon.png",
     activitywebsite: "www.gzmarathon.com",
     activitystarttime: "2016年04月01日",
     activityposition: "花城广场（起点）",
@@ -396,9 +397,97 @@ angular.module('starter.controllers', [])
   ];
 }])
 
-.controller('DetailStadiumCtrl', ['$scope', function ($scope) {
+.controller('DetailStadiumCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
 
   $scope.viewTitle = "详细页面";
+
+  $scope.totalScore = 3.5;
+
+  $scope.bookStadium = function () {
+    console.log("bookStadium");
+    stateGo.goToState("detail_stadium_book-list", {
+      type: "乒乓球",
+      id: 111111
+    });
+  };
+
+}])
+
+.controller('BooklistStadiumCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+  $scope.type = $stateParams.type;
+  $scope.id = $stateParams.id;
+  // console.log("type:", $stateParams.type);
+  // console.log("id:", $stateParams.id);
+
+  $scope.equipmentLsit = [
+    {
+      equipmentname: "大厅桌球",
+      equipmentdevice: "双鱼座化工板质球桌",
+      equipmentgeology: "水泥地板",
+      equipmentposition: "运动场大厅",
+      equipmentprice: 9,
+      equipmentremain: 18
+    },
+    {
+      equipmentname: "大厅桌球",
+      equipmentdevice: "双鱼座化工板质球桌",
+      equipmentgeology: "水泥地板",
+      equipmentposition: "运动场大厅",
+      equipmentprice: 19,
+      equipmentremain: 30
+    },
+    {
+      equipmentname: "大厅桌球",
+      equipmentdevice: "双鱼座化工板质球桌",
+      equipmentgeology: "水泥地板",
+      equipmentposition: "运动场大厅",
+      equipmentprice: 59,
+      equipmentremain: 10
+    },
+    {
+      equipmentname: "大厅桌球",
+      equipmentdevice: "双鱼座化工板质球桌",
+      equipmentgeology: "水泥地板",
+      equipmentposition: "运动场大厅",
+      equipmentprice: 9,
+      equipmentremain: 9
+    },
+    {
+      equipmentname: "大厅桌球",
+      equipmentdevice: "双鱼座化工板质球桌",
+      equipmentgeology: "水泥地板",
+      equipmentposition: "运动场大厅",
+      equipmentprice: 29,
+      equipmentremain: 39
+    },
+    {
+      equipmentname: "大厅桌球",
+      equipmentdevice: "双鱼座化工板质球桌",
+      equipmentgeology: "水泥地板",
+      equipmentposition: "运动场大厅",
+      equipmentprice: 119,
+      equipmentremain: 25
+    },
+    {
+      equipmentname: "大厅桌球",
+      equipmentdevice: "双鱼座化工板质球桌",
+      equipmentgeology: "水泥地板",
+      equipmentposition: "运动场大厅",
+      equipmentprice: 70,
+      equipmentremain: 40
+    }
+  ];
+}])
+
+.controller('BookselectStadiumCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+  $scope.type = $stateParams.type;
+  $scope.id = $stateParams.id;
+
+  $scope.selectinfo = {
+    selectMount: 1,
+    selectStartTime: "",
+    selectEndTime: ""
+  }
 }])
 
 // 发现页面的控制器

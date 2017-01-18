@@ -2,6 +2,7 @@ $white: #fff;
 $darkmask: rgba(30, 30, 30, .5);
 $deeptext: #232323;
 $subtext: #555;
+$textaftermain: #666;
 $descibetext: #333;
 $positive: #1212aa;
 $linetransparent: rgba(150, 150, 150, .5);
@@ -235,4 +236,74 @@ p.assertive {
   .button-right {
     text-align: right;
   }
+
+  > a {
+    text-decoration: none;
+  }
+}
+
+.item-text-main.with-left-img {
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  > img {
+    width: .35rem;
+    margin-right: .2rem;
+  }
+}
+
+.flexbox {
+  display: flex;
+}
+
+.item {
+  .text-main-notifi {
+    font-size: .29rem;
+
+    + .text-aftermain {
+      color: $textaftermain;
+      font-size: .22rem;
+    }
+  }
+
+  .text-sub {
+    color: $subtext;
+    font-size: .24rem;
+  }
+
+}
+
+.item.with-right-icon {
+
+  position: relative;
+
+  > img.right-icon {
+    position: absolute;
+    right: .3rem;
+    top: 50%;
+    margin-top: -0.1rem;
+    max-width: .2rem;
+    max-height: .2rem;
+    width: 5%;
+  }
+}
+
+.margin-top-border {
+  margin-top: 2px;
+}
+
+.with-block-absolute {
+  position: relative;
+}
+
+.block-absolute {
+  position: absolute;
+}
+
+.right-block {
+  right: .2rem;
+  top: .545rem;
+  margin-top: -0.32rem;
 }
