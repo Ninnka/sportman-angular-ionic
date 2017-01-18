@@ -109,7 +109,7 @@ textarea {
     flex-grow: 0;
     flex-shrink: 1;
     margin-right: .2rem; }
-  .text-with-rightblock > img.icon-custom {
+  .text-with-rightblock img.icon-custom {
     border-left: 1px solid rgba(150, 150, 150, 0.5);
     box-sizing: border-box;
     flex-shrink: 1;

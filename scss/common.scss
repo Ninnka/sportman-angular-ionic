@@ -163,7 +163,7 @@ textarea {
     margin-right: .2rem;
   }
 
-  > img.icon-custom {
+  img.icon-custom {
     border-left: 1px solid $linetransparent;
     box-sizing: border-box;
     flex-shrink: 1;
@@ -173,7 +173,6 @@ textarea {
 
   img.img-right {
     max-width: 1.0rem;
-
   }
 }
 @mixin text-abvious {
