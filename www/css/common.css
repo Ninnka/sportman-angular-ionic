@@ -8,6 +8,19 @@ select,
 textarea {
   font-size: .22rem; }
 
+.tabs {
+  height: .84rem; }
+
+.tab-item .icon {
+  height: .51rem;
+  font-size: .51rem; }
+
+.tabs-icon-bottom > .tabs .tab-item,
+.tabs-icon-bottom.tabs .tab-item,
+.tabs-icon-top > .tabs .tab-item,
+.tabs-icon-top.tabs .tab-item {
+  font-size: .16rem; }
+
 .content-fix {
   position: fixed;
   z-index: 3; }
@@ -158,11 +171,18 @@ textarea {
 p.assertive {
   color: #ef473a !important; }
 
-.item .button-right {
-  text-align: right; }
+.item {
+  padding: .256rem; }
+  .item .button-right {
+    text-align: right; }
+  .item > a {
+    text-decoration: none; }
 
-.item > a {
-  text-decoration: none; }
+.item-icon-right {
+  padding-right: .864rem; }
+
+.item-icon-left {
+  padding-left: .864rem; }
 
 .item-text-main.with-left-img {
   flex-wrap: nowrap;
@@ -271,3 +291,19 @@ p.assertive {
   left: 0;
   right: 0;
   margin: auto; }
+
+.searchbar {
+  display: inline-block !important;
+  height: .48rem !important;
+  vertical-align: middle !important; }
+
+.searchbtn {
+  display: inline-block !important;
+  margin-right: .1rem;
+  vertical-align: middle;
+  color: #fff;
+  height: auto;
+  line-height: .54rem; }
+
+.header-item {
+  font-size: .272rem !important; }

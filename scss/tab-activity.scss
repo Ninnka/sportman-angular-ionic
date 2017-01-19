@@ -3,6 +3,10 @@ $white: #fff;
 $halftransparent: rgba(180, 180, 180, .7);
 $littletransparent: rgba(180, 180, 180, .9);
 
+.locate-text {
+  font-size: .27rem;
+}
+
 .rem-item-font {
   font-size: .256rem;
 }
@@ -269,7 +273,7 @@ $littletransparent: rgba(180, 180, 180, .9);
 
 .horizon-grid {
   background: #fff;
-  padding: 8px 0;
+  padding: .12rem 0;
   width: 100%;
   display: flex;
   flex-wrap: nowrap;

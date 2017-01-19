@@ -5,15 +5,13 @@
         <span class="default-title" style="line-height: 35px;">Back</span>
     </span>
   </ion-nav-buttons>
-  <!-- <div class="bar bar-header item-input-inset">
-    <label class="item-input-wrapper">
-    <i class="icon ion-ios-search placeholder-icon"></i>
-    <input type="search" placeholder="Search">
-  </label>
-    <button class="button button-clear">
-    Cancel
-  </button>
-  </div> -->
+
+  <ion-nav-buttons side="right" class="searchbar-wrapper">
+    <div>
+      <input type="text" placeholder="请输入关键词" class="searchbar" ng-model="searchinfo.searchKey">
+      <span class="searchbtn">搜索</span>
+    </div>
+  </ion-nav-buttons>
 
   <ion-content delegate-handle="city-scroller">
 
@@ -28,7 +26,7 @@
       </div>
     </div> -->
 
-    <ul class="stream-list list-no-margin">
+    <ul class="stream-list list-no-margin" ng-show="!searchinfo.searchKey">
       <a id="A" class="item item-no-padding item-index">A</a>
       <li class="item item-no-padding item-subindex">Anqw</li>
       <li class="item item-no-padding item-subindex">Anqw</li>
@@ -120,7 +118,7 @@
 
   </ion-content>
 
-  <ul id="city-selector" class="flexbox block-absolute absolute-right flex-use-col-direction city-selector-wrapper" on-drag="onDrag($event)" on-tap="onTap($event)">
+  <ul id="city-selector" class="flexbox block-absolute absolute-right flex-use-col-direction city-selector-wrapper" on-drag="onDrag($event)" on-tap="onTap($event)" ng-show="!searchinfo.searchKey">
     <li class="fullwidth">A</li>
     <li class="fullwidth">B</li>
     <li class="fullwidth">C</li>

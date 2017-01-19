@@ -223,7 +223,7 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 }
 
 .ion-ajust-arrow-right {
-  font-size: 18px !important;
+  font-size: 0.28rem !important;
   color: #666 !important;
 }
 
@@ -379,7 +379,7 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
  */
 
 .slide-box {
-  height: 160px;
+  height: 2.6rem;
 }
 
 .slide-box img {
@@ -434,7 +434,7 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
   flex-wrap: nowrap;
   flex-direction: row;
   margin: 4px 0;
-  padding: 12px 4px !important;
+  padding: .14rem .06rem !important;
 }
 
 .goods-item-icon-wrapper {

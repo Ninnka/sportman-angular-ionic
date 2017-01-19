@@ -7,7 +7,7 @@ angular.module('starter.controllers.common', [])
 .controller('ionNavButtonsGoCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', function ($scope, $rootScope, $state, $ionicHistory) {
   $scope.toBackView = function () {
     console.log("back in ionNavButtonsGoCtrl");
-    if ($scope.target === undefined || $scope.target === "") {
+    if ($scope.target === undefined || $scope.target === '') {
       $ionicHistory.goBack(-1);
     } else {
       $state.go($scope.target);
@@ -17,12 +17,15 @@ angular.module('starter.controllers.common', [])
 }])
 
 .controller('citySelectionCtrl', ['$scope', '$document', '$ionicScrollDelegate', '$location', '$timeout', function ($scope, $document, $ionicScrollDelegate, $location, $timeout) {
-  $scope.currentCity = "广州";
-  $scope.currentHash = "";
+  $scope.currentCity = '广州';
+  $scope.currentHash = '';
   $scope.showhint = false;
 
-  var lis = $document.find("#city-selector li");
-  console.log("lis length:", lis.length);
+  $scope.searchinfo = {
+    searchKey: ''
+  };
+
+  var lis = $document.find('#city-selector li');
   var scroller = $ionicScrollDelegate.$getByHandle('city-scroller');
 
   var timer;
