@@ -16,8 +16,47 @@ angular.module('starter.controllers.common', [])
   };
 }])
 
-.controller('citySelectionCtrl', ['$scope', function ($scope) {
+.controller('citySelectionCtrl', ['$scope', '$document', '$ionicScrollDelegate', '$location', '$timeout', function ($scope, $document, $ionicScrollDelegate, $location, $timeout) {
   $scope.currentCity = "广州";
+  $scope.currentHash = "";
+  $scope.showhint = false;
+
+  var lis = $document.find("#city-selector li");
+  console.log("lis length:", lis.length);
+  var scroller = $ionicScrollDelegate.$getByHandle('city-scroller');
+
+  var timer;
+
+  $scope.onDrag = function ($event) {
+    clearTimeout(timer);
+    timer = $timeout(function () {
+      $scope.showhint = false;
+    }, 1500);
+    $scope.showhint = true;
+    $scope.dy = $event.gesture.touches[0].clientY;
+    for (var i = 0; i < lis.length; i++) {
+      if ($scope.dy > lis[i].offsetTop && $scope.dy <= lis[i].offsetTop + lis.eq(i)
+        .outerHeight()) {
+        var targetHash = $scope.currentHash = String.fromCharCode(65 + i);
+        $location.hash(targetHash);
+        scroller.anchorScroll();
+        break;
+      }
+    }
+  };
+
+  $scope.onTap = function ($event) {
+    $scope.dy = $event.gesture.touches[0].clientY;
+    for (var i = 0; i < lis.length; i++) {
+      if ($scope.dy > lis[i].offsetTop && $scope.dy <= lis[i].offsetTop + lis.eq(i)
+        .outerHeight()) {
+        var targetHash = $scope.currentHash = String.fromCharCode(65 + i);
+        $location.hash(targetHash);
+        scroller.anchorScroll();
+        break;
+      }
+    }
+  };
 }])
 
 .controller('searchActivityCtrl', ['$scope', function ($scope) {

@@ -1,13 +1,156 @@
-<ion-view view-title="当前城市-{{currentCity}}">
+<ion-view>
   <ion-nav-buttons side="left">
     <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
     <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
         <span class="default-title" style="line-height: 35px;">Back</span>
     </span>
   </ion-nav-buttons>
+  <!-- <div class="bar bar-header item-input-inset">
+    <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+    <input type="search" placeholder="Search">
+  </label>
+    <button class="button button-clear">
+    Cancel
+  </button>
+  </div> -->
 
-  <ion-content>
-    城市选择
+  <ion-content delegate-handle="city-scroller">
+
+    <!-- <div class="list list-no-margin">
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="场馆" ng-model="key">
+        </label>
+        <button class="button button-small">
+          搜索
+        </button>
+      </div>
+    </div> -->
+
+    <ul class="stream-list list-no-margin">
+      <a id="A" class="item item-no-padding item-index">A</a>
+      <li class="item item-no-padding item-subindex">Anqw</li>
+      <li class="item item-no-padding item-subindex">Anqw</li>
+      <li class="item item-no-padding item-subindex">Anqw</li>
+      <li class="item item-no-padding item-subindex">Anqw</li>
+      <li class="item item-no-padding item-subindex">Anqw</li>
+
+      <a id="B" class="item item-no-padding item-index">B</a>
+      <li class="item item-no-padding item-subindex">Buiwq</li>
+      <li class="item item-no-padding item-subindex">Buyqw</li>
+      <li class="item item-no-padding item-subindex">Bioqw</li>
+      <li class="item item-no-padding item-subindex">Buoiqw</li>
+      <li class="item item-no-padding item-subindex">Biuqw</li>
+
+      <a id="C" class="item item-no-padding item-index">C</a>
+      <li class="item item-no-padding item-subindex">Cuiwq</li>
+      <li class="item item-no-padding item-subindex">Cuyqw</li>
+      <li class="item item-no-padding item-subindex">Cioqw</li>
+      <li class="item item-no-padding item-subindex">Cuoiqw</li>
+      <li class="item item-no-padding item-subindex">Ciuqw</li>
+
+      <a id="D" class="item item-no-padding item-index">D</a>
+      <li class="item item-no-padding item-subindex">Duiwq</li>
+      <li class="item item-no-padding item-subindex">Duyqw</li>
+      <li class="item item-no-padding item-subindex">Dioqw</li>
+      <li class="item item-no-padding item-subindex">Duoiqw</li>
+      <li class="item item-no-padding item-subindex">Diuqw</li>
+
+      <a id="E" class="item item-no-padding item-index">E</a>
+      <li class="item item-no-padding item-subindex">Euiwq</li>
+      <li class="item item-no-padding item-subindex">Euyqw</li>
+      <li class="item item-no-padding item-subindex">Eioqw</li>
+      <li class="item item-no-padding item-subindex">Euoiqw</li>
+      <li class="item item-no-padding item-subindex">Eiuqw</li>
+
+      <a id="F" class="item item-no-padding item-index">F</a>
+      <li class="item item-no-padding item-subindex">Fuiwq</li>
+      <li class="item item-no-padding item-subindex">Fuyqw</li>
+      <li class="item item-no-padding item-subindex">Fioqw</li>
+      <li class="item item-no-padding item-subindex">Fuoiqw</li>
+      <li class="item item-no-padding item-subindex">Fiuqw</li>
+
+      <a id="G" class="item item-no-padding item-index">G</a>
+      <li class="item item-no-padding item-subindex">Guiwq</li>
+      <li class="item item-no-padding item-subindex">Guyqw</li>
+      <li class="item item-no-padding item-subindex">Gioqw</li>
+      <li class="item item-no-padding item-subindex">Guoiqw</li>
+      <li class="item item-no-padding item-subindex">Giuqw</li>
+      <a id="H" class="item item-no-padding item-index">H</a>
+      <a id="I" class="item item-no-padding item-index">I</a>
+      <a id="J" class="item item-no-padding item-index">J</a>
+      <a id="K" class="item item-no-padding item-index">K</a>
+      <a id="L" class="item item-no-padding item-index">L</a>
+
+      <a id="M" class="item item-no-padding item-index">M</a>
+      <li class="item item-no-padding item-subindex">mainuiwq</li>
+      <li class="item item-no-padding item-subindex">mainuyqw</li>
+      <li class="item item-no-padding item-subindex">mainioqw</li>
+      <li class="item item-no-padding item-subindex">mainuoiqw</li>
+      <li class="item item-no-padding item-subindex">mainiuqw</li>
+      <a id="N" class="item item-no-padding item-index">N</a>
+      <a id="O" class="item item-no-padding item-index">O</a>
+
+      <a id="P" class="item item-no-padding item-index">P</a>
+      <li class="item item-no-padding item-subindex">Puiwq</li>
+      <li class="item item-no-padding item-subindex">Puyqw</li>
+      <li class="item item-no-padding item-subindex">Pioqw</li>
+      <li class="item item-no-padding item-subindex">Puoiqw</li>
+      <li class="item item-no-padding item-subindex">Piuqw</li>
+      <a id="Q" class="item item-no-padding item-index">Q</a>
+      <a id="R" class="item item-no-padding item-index">R</a>
+      <a id="R" class="item item-no-padding item-index">R</a>
+      <a id="S" class="item item-no-padding item-index">S</a>
+      <a id="T" class="item item-no-padding item-index">T</a>
+      <a id="U" class="item item-no-padding item-index">U</a>
+      <a id="V" class="item item-no-padding item-index">V</a>
+      <a id="W" class="item item-no-padding item-index">W</a>
+
+      <a id="X" class="item item-no-padding item-index">X</a>
+      <li class="item item-no-padding item-subindex">Xuiwq</li>
+      <li class="item item-no-padding item-subindex">Xuyqw</li>
+      <li class="item item-no-padding item-subindex">Xioqw</li>
+      <li class="item item-no-padding item-subindex">Xuoiqw</li>
+      <li class="item item-no-padding item-subindex">Xiuqw</li>
+      <a id="Y" class="item item-no-padding item-index">Y</a>
+      <a id="Z" class="item item-no-padding item-index">Z</a>
+
+    </ul>
+
   </ion-content>
+
+  <ul id="city-selector" class="flexbox block-absolute absolute-right flex-use-col-direction city-selector-wrapper" on-drag="onDrag($event)" on-tap="onTap($event)">
+    <li class="fullwidth">A</li>
+    <li class="fullwidth">B</li>
+    <li class="fullwidth">C</li>
+    <li class="fullwidth">D</li>
+    <li class="fullwidth">E</li>
+    <li class="fullwidth">F</li>
+    <li class="fullwidth">G</li>
+    <li class="fullwidth">H</li>
+    <li class="fullwidth">I</li>
+    <li class="fullwidth">J</li>
+    <li class="fullwidth">K</li>
+    <li class="fullwidth">L</li>
+    <li class="fullwidth">M</li>
+    <li class="fullwidth">N</li>
+    <li class="fullwidth">O</li>
+    <li class="fullwidth">P</li>
+    <li class="fullwidth">Q</li>
+    <li class="fullwidth">R</li>
+    <li class="fullwidth">S</li>
+    <li class="fullwidth">T</li>
+    <li class="fullwidth">U</li>
+    <li class="fullwidth">V</li>
+    <li class="fullwidth">W</li>
+    <li class="fullwidth">X</li>
+    <li class="fullwidth">Y</li>
+    <li class="fullwidth">Z</li>
+  </ul>
+
+  <div class="block-absolute screen-center city-selector-hint" ng-show="showhint">
+    {{currentHash}}
+  </div>
 
 </ion-view>

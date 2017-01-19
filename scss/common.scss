@@ -8,6 +8,8 @@ $positive: #1212aa;
 $linetransparent: rgba(150, 150, 150, .5);
 $warmnotifi: #fdfda6;
 $assertive: #ef473a;
+$mainTheme: #fb8041;
+$mainThemeTransparent: rgab(251,128,65,0.5);
 
 .item p {
   font-size: .256rem;
@@ -297,8 +299,23 @@ p.assertive {
   position: relative;
 }
 
+.flex-use-wrap {
+  flex-wrap: wrap;
+}
+
 .block-absolute {
   position: absolute;
+
+  > li {
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: center;
+    font-size: .27rem;
+  }
+}
+
+.fullwidth {
+  width: 100%;
 }
 
 .right-block {
@@ -309,4 +326,63 @@ p.assertive {
 
 .list-no-margin {
   margin: 0;
+}
+
+.item-no-padding {
+  padding: 0;
+}
+
+.stream-list {
+  a.item-index {
+    font-size: .256rem;
+    background: #DADADA;
+    line-height: 1.5;
+    padding-left: .1rem;
+  }
+
+  li.item-subindex {
+    line-height: 2.2;
+    font-size: .29rem;
+    text-indent: .08rem;
+    padding-left: .18rem;
+  }
+}
+
+.flex-use-col-direction {
+  flex-direction: column;
+}
+
+.city-selector-wrapper {
+  width: .28rem;
+  z-index: 5;
+  height: 100%;
+
+  background: rgba(230,230,230,.5);
+  padding-top: 47px;
+
+  &:active {
+    background: $mainThemeTransparent;
+  }
+}
+
+.city-selector-hint {
+  z-index: 4;
+  max-width: 32%;
+  width: 1.28rem;
+  min-height: 1.09rem;
+  padding: .35rem .15rem;
+  text-align: center;
+  font-size: .45rem;
+  color: $mainTheme;
+  height: auto;
+  display: inline-table;
+  border: 1px solid $mainTheme;
+}
+
+.screen-center {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
