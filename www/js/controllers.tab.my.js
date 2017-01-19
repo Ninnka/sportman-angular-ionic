@@ -1,5 +1,62 @@
 angular.module('starter.controllers.tab.my', [])
 
+// 我的主页 的控制器
+.controller('MyCtrl', ['$scope', '$rootScope', 'UsrInfoLocal', function ($scope, $rootScope, UsrInfoLocal) {
+
+  // 控制个人信息视图显示
+  $scope.my = {
+    form: true,
+    content: false
+  };
+
+  // 本地用户信息共享部分
+  $scope.uil = UsrInfoLocal;
+
+  // 观察全局变量
+  $scope.$watch("globalSignSymbol", function (newValue, oldValue, scope) {
+    console.log("change");
+    if (newValue === true) {
+      console.log("newValue: true");
+      $scope.my.content = true;
+      $scope.my.form = false;
+    } else if (newValue === false) {
+      console.log("newValue: false");
+      $scope.my.content = false;
+      $scope.my.form = true;
+    }
+  }, true);
+
+  // 我的页面进入检测事件
+  $scope.$on("$ionicView.enter", function () {
+    console.log("enter my");
+    $rootScope.clearHistory();
+    if (UsrInfoLocal.empty === true) {
+      console.log("empty");
+      $rootScope.globalSignSymbol = false;
+      $scope.my.content = false;
+      $scope.my.form = true;
+      $scope.usrinfo = {
+        usrname: "",
+        usrpassword: ""
+      };
+    }
+  });
+
+  }])
+
+// 测试directive的独立作用域和link函数
+// 用在了shoppingcar.html上，删除时注意!
+.controller('myDirectiveCtrl', ['$scope', '$element', '$attrs', '$transclude', function ($scope, $element, $attrs, $transclude) {
+  $scope.collectionCount = "100";
+  $scope.historyCount = {
+    yesterday: "300",
+    today: "200"
+  };
+  $scope.showvalue = function () {
+    console.log("showvalue: " + $scope.value);
+  };
+}])
+
 // 登录注册页面的控制器
 .controller('SignInUpCtrl', ['$scope', '$timeout', '$ionicModal', '$rootScope', 'ls', 'SignInOrUpFac', 'UsrInfoLocal', '$ionicHistory', function ($scope, $timeout, $ionicModal, $rootScope, ls, SignInOrUpFac, UsrInfoLocal, $ionicHistory) {
 
