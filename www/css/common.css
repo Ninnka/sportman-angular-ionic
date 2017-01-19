@@ -13,7 +13,8 @@ textarea {
 
 .tab-item .icon {
   height: .51rem;
-  font-size: .51rem; }
+  font-size: .45rem;
+  line-height: 1; }
 
 .tabs-icon-bottom > .tabs .tab-item,
 .tabs-icon-bottom.tabs .tab-item,
