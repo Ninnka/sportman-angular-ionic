@@ -203,6 +203,7 @@ angular.module('starter.controllers.tab.activity', [])
   $scope.mainGoodsList = [];
 
   $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
     if (!$scope.firstEnter) {
       $ionicSlideBoxDelegate.start();
     }
@@ -210,9 +211,7 @@ angular.module('starter.controllers.tab.activity', [])
 
   $scope.goodsListAll = ajaxGetData.ajaxGet("http://www.hehe168.com/mapi.php?act=getGoods")
     .then(function successCallback(res) {
-
       $scope.bannerList = $scope.bannerList.concat(res.data.bannerList);
-
       $scope.mainGoodsList = $scope.mainGoodsList.concat(res.data.shareList);
 
       $ionicSlideBoxDelegate.update();

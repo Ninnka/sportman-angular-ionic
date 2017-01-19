@@ -15,7 +15,9 @@
   <ion-content>
     <ion-slide-box class="slide-box" on-slide-changed="slideHasChanged($index)" does-continue="true" slide-interval="2000" auto-play="true">
       <ion-slide ng-repeat="banneritem in bannerList">
-        <img ng-src="{{banneritem.logo}}" src="{{banneritem.logo}}" alt="">
+        <a ng-href="#/detail/activity" nav-direction="forward">
+          <img ng-src="{{banneritem.logo}}" src="{{banneritem.logo}}" alt="">
+        </a>
       </ion-slide>
     </ion-slide-box>
 

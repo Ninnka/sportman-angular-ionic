@@ -1,7 +1,11 @@
 angular.module('starter.controllers.tab.stadium', [])
 
 // 场馆页面的控制器
-.controller('StadiumCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+.controller('StadiumCtrl', ['$scope', 'stateGo', '$rootScope', function ($scope, stateGo, $rootScope) {
+
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
 
   $scope.toDetail = function () {
     stateGo.goToState("detail_stadium");

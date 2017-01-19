@@ -1,8 +1,11 @@
 angular.module('starter.controllers.tab.find', [])
 
 // 发现页面的控制器
-.controller('FindCtrl', ["$scope", "$http", "constantParams", "valueParams", "provideTest", "getData", "ajaxGetData", "studentsService", "$timeout", function ($scope, $http, constantParams, valueParams, provideTest, getData, ajaxGetData, studentsService, $timeout) {
-  // console.log("init FindCtrl");
+.controller('FindCtrl', ["$scope", '$rootScope', "$http", "constantParams", "valueParams", "provideTest", "getData", "ajaxGetData", "studentsService", "$timeout", function ($scope, $rootScope, $http, constantParams, valueParams, provideTest, getData, ajaxGetData, studentsService, $timeout) {
+
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
 
   // 测试用，可删除
   // console.log("constantParams: " + constantParams);

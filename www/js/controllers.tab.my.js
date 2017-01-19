@@ -3,6 +3,11 @@ angular.module('starter.controllers.tab.my', [])
 // 我的主页 的控制器
 .controller('MyCtrl', ['$scope', '$rootScope', 'UsrInfoLocal', function ($scope, $rootScope, UsrInfoLocal) {
 
+  // 设置页面进入监听事件
+  $scope.$on("$ionicView.enter", function () {
+    $rootScope.clearHistory();
+  });
+
   // 控制个人信息视图显示
   $scope.my = {
     form: true,
