@@ -133,7 +133,8 @@ textarea {
     max-width: 1.0rem; }
 
 .content-wrapper > .item-divider {
-  font-size: .28rem; }
+  font-size: .28rem;
+  background: #fcfcfc; }
 
 .content-wrapper > .item-text-wrap p {
   color: #333;

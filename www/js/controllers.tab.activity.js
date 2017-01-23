@@ -183,7 +183,7 @@ angular.module('starter.controllers.tab.activity', [])
             ls.set("sportmanid", response.data.data[0].sportmanid);
 
             ls.set("email", response.data.data[0].email);
-            ls.set("phonenumber", response.data.data[0].password);
+            ls.set("phonenumber", response.data.data[0].mobile);
             ls.set("gender", response.data.data[0].gender);
 
           } else {
@@ -194,15 +194,16 @@ angular.module('starter.controllers.tab.activity', [])
   }])
 
   // 主页控制器
-  .controller('ActivityCtrl', ['$scope', '$rootScope', 'ajaxGetData', '$ionicSlideBoxDelegate', function ($scope, $rootScope, ajaxGetData, $ionicSlideBoxDelegate) {
+  .controller('ActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', '$ionicSlideBoxDelegate', 'stateGo', function ($scope, $rootScope, getData, api, $ionicSlideBoxDelegate, stateGo) {
 
     // $scope.$on("$ionicView.enter", function () {
     //   $rootScope.clearHistory();
     // });
 
     $scope.firstEnter = true;
+    $scope.activityList = [];
     $scope.bannerList = [];
-    $scope.mainGoodsList = [];
+    // $scope.mainGoodsList = [];
 
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
@@ -211,38 +212,44 @@ angular.module('starter.controllers.tab.activity', [])
       }
     });
 
-    $scope.goodsListAll = ajaxGetData.ajaxGet("http://www.hehe168.com/mapi.php?act=getGoods")
-      .then(function successCallback(res) {
-        $scope.bannerList = $scope.bannerList.concat(res.data.bannerList);
-        $scope.mainGoodsList = $scope.mainGoodsList.concat(res.data.shareList);
+    $scope.getActivityData = function () {
+      getData.get(api.activity_home)
+        .then(function successCallback(res) {
+          console.log(res);
+          $scope.bannerList = res.data.bannerList;
+          $scope.activityList = $scope.activityList.concat(res.data.activityList);
 
-        $ionicSlideBoxDelegate.update();
-
-        return res.data;
-      }, function errorCallback(err) {
-        console.log("err:");
-        console.log(err);
-      });
+          $ionicSlideBoxDelegate.update();
+        }, function errorCallback(err) {
+          console.log("err:");
+          console.log(err);
+        });
+    };
+    $scope.getActivityData();
     $scope.firstEnter = false;
+
+    $scope.toDetail = function () {
+      stateGo.goToState('detail_activity');
+    };
   }])
 
   // 主页商品详细页面控制器
   .controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {
 
-    $scope.viewTitle = "详细页面";
+    $scope.viewTitle = "活动详细";
 
     $scope.activity = {
-      activityid: "",
-      activityname: "2016广州马拉松",
-      activitypost: "img/activitypost.png",
-      acitivtyhostavatar: "img/marason-icon.png",
-      activitywebsite: "www.gzmarathon.com",
-      activitystarttime: "2016年04月01日",
-      activityposition: "花城广场（起点）",
-      acitvityprice: "100",
-      activityhost: "广州体育局",
-      activityhostaddress: "广州市天河区天河路299号天河体育中心",
-      activitycontact: "12345678910"
+      id: "",
+      name: "2016广州马拉松",
+      post: "img/activitypost.png",
+      hostavatar: "img/marason-icon.png",
+      website: "www.gzmarathon.com",
+      starttime: "2016年04月01日",
+      position: "花城广场（起点）",
+      price: "100",
+      host: "广州体育局",
+      hostaddress: "广州市天河区天河路299号天河体育中心",
+      contact: "12345678910"
     };
 
     $scope.getActivityInfo = function () {

@@ -202,6 +202,7 @@ textarea {
 .content-wrapper {
   > .item-divider {
     font-size: .28rem;
+    background: #fcfcfc;
   }
 
   > .item-text-wrap {
@@ -383,7 +384,7 @@ p.assertive {
   z-index: 5;
   height: 100%;
 
-  background: rgba(230,230,230,.5);
+  background: rgba(230, 230, 230, .5);
   padding-top: 47px;
 
   &:active {

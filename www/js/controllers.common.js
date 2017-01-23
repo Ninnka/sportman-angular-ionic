@@ -64,7 +64,7 @@ angular.module('starter.controllers.common', [])
         }
       }
     };
-}])
+  }])
 
   .controller('searchActivityCtrl', ['$scope', function ($scope) {
     $scope.key = "";
@@ -94,47 +94,47 @@ angular.module('starter.controllers.common', [])
 
     $scope.activityList = [
       {
-        activityname: "白云山野战场畅玩",
-        activityposition: "海珠区",
-        activitypost: "img/marason-star.png",
-        activityhost: "广州体育委员会",
-        activityattence: 11,
-        activitymountpeople: 30,
-        activityprice: 99,
-        activitystarttime: "1484396287893"
+        name: "白云山野战场畅玩",
+        position: "海珠区",
+        post: "img/marason-star.png",
+        host: "广州体育委员会",
+        currentnumber: 11,
+        totalnumber: 30,
+        price: 99,
+        starttime: "1484396287893"
     },
       {
-        activityname: "广州马拉松",
-        activityposition: "白云区",
-        activitypost: "img/shot-star.png",
-        activityhost: "白云山野战场",
-        activityattence: 11,
-        activitymountpeople: 30,
-        activityprice: 199,
-        activitystarttime: "1484396287893"
+        name: "广州马拉松",
+        position: "白云区",
+        post: "img/shot-star.png",
+        host: "白云山野战场",
+        currentnumber: 11,
+        totalnumber: 30,
+        price: 199,
+        starttime: "1484396287893"
     },
       {
-        activityname: "轮滑逛街活动",
-        activityposition: "白云区",
-        activitypost: "img/skip-star.png",
-        activityhost: "阿迪王专业体育用具",
-        activityattence: 11,
-        activitymountpeople: 30,
-        activityprice: 199,
-        activitystarttime: "1484396287893"
+        name: "轮滑逛街活动",
+        position: "白云区",
+        post: "img/skip-star.png",
+        host: "阿迪王专业体育用具",
+        currentnumber: 11,
+        totalnumber: 30,
+        price: 199,
+        starttime: "1484396287893"
     },
       {
-        activityname: "荧光夜跑——地",
-        activityposition: "白云区",
-        activitypost: "img/tabletenis-star.png",
-        activityhost: "阿迪王专业体育用具",
-        activityattence: 11,
-        activitymountpeople: 30,
-        activityprice: 199,
-        activitystarttime: "1484396287893"
-    }
-  ];
-}])
+        name: "荧光夜跑——地",
+        position: "白云区",
+        post: "img/tabletenis-star.png",
+        host: "阿迪王专业体育用具",
+        currentnumber: 11,
+        totalnumber: 30,
+        price: 199,
+        starttime: "1484396287893"
+      }
+    ];
+  }])
 
   .controller('searchStadiumCtrl', ['$scope', function ($scope) {
     $scope.key = "";
@@ -202,9 +202,9 @@ angular.module('starter.controllers.common', [])
         stadiumopentime: "08:00-22:00",
         stadiumposition: "海珠区",
         stadiumprice: 9
-    }
-  ];
-}])
+      }
+    ];
+  }])
 
   .controller('reviewCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {
     console.log("in review");
@@ -214,7 +214,7 @@ angular.module('starter.controllers.common', [])
       type: $stateParams.type,
       id: $stateParams.id
     };
-}])
+  }])
 
   .controller('preparePayCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
 

@@ -73,7 +73,7 @@ module.exports = {
 			"property"
 		],
     "eqeqeq": [
-			2,
+			1,
 			"smart"
 		],
     "func-style": [2, "declaration", {

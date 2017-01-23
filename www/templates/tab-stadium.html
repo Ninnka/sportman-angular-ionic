@@ -13,6 +13,29 @@
   </ion-nav-buttons>
 
   <ion-content>
-    <search-stadium></search-stadium>
+    <div class="horizon-grid">
+      <div>
+        <label for="area">地区：</label>
+        <select class="" name="area" ng-options="area for area in areaList" ng-model="areaName"></select>
+        <!-- <img ng-src="img/arrow-down.png" alt=""> -->
+      </div>
+
+      <div class="division-line-left">
+        <label for="type">类型：</label>
+        <select class="" name="type" ng-options="type for type in typeList" ng-model="typeName"></select>
+        <!-- <img ng-src="img/arrow-down.png" alt=""> -->
+
+      </div>
+
+      <div class="division-line-left">
+        <label for="price">价格：</label>
+        <select class="" name="price" ng-options="price for price in priceList" ng-model="price"></select>
+        <!-- <img ng-src="img/arrow-down.png" alt=""> -->
+      </div>
+    </div>
+
+    <ul class="stream-list">
+      <stadium ng-repeat="stadium in stadiumList" ng-click="toDetail()"></stadium>
+    </ul>
   </ion-content>
 </ion-view>

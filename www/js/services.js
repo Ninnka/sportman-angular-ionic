@@ -81,7 +81,7 @@ angular.module('starter.services', [])
         ls.clear();
       }
     };
-}])
+  }])
 
   .factory("ls", function ($window) {
     return {
@@ -106,16 +106,16 @@ angular.module('starter.services', [])
     };
   })
 
-  .factory("ajaxGetData", function ($http) {
+  .factory("getData", ['$http', function ($http) {
     return {
-      ajaxGet: function (url) {
+      get: function (url) {
         return $http({
           method: "GET",
           url
         });
       }
     };
-  })
+  }])
 
   .factory("stateGo", function ($rootScope, $state) {
     return {
@@ -144,6 +144,13 @@ angular.module('starter.services', [])
     };
   })
 
+  .factory('api', function () {
+    return {
+      activity_home: "http://localhost/sportman/activity_home.php",
+      stadium_home: "http://localhost/sportman/stadium_home.php"
+    };
+  })
+
   .service("studentsService", function () {
     var somethingCommon = "somethingCommon_init";
 
@@ -159,22 +166,22 @@ angular.module('starter.services', [])
     };
   })
 
-  .factory("getData", function () {
-    return {
-      p1: {
-        pname: "p1",
-        page: "12"
-      },
-      p2: {
-        pname: "p2",
-        page: "13"
-      },
-      p3: {
-        pname: "p3",
-        page: "14"
-      }
-    };
-  })
+  // .factory("getData", function () {
+  //   return {
+  //     p1: {
+  //       pname: "p1",
+  //       page: "12"
+  //     },
+  //     p2: {
+  //       pname: "p2",
+  //       page: "13"
+  //     },
+  //     p3: {
+  //       pname: "p3",
+  //       page: "14"
+  //     }
+  //   };
+  // })
 
   .provider("otherProviderData", function () {
     console.log("initial otherProviderData instance");

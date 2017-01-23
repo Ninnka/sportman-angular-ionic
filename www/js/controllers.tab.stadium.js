@@ -1,17 +1,17 @@
 angular.module('starter.controllers.tab.stadium', [])
 
-// 场馆页面的控制器
-.controller('StadiumCtrl', ['$scope', 'stateGo', '$rootScope', function ($scope, stateGo, $rootScope) {
+  // 场馆页面的控制器
+  .controller('StadiumCtrl', ['$scope', 'stateGo', '$rootScope', function ($scope, stateGo, $rootScope) {
 
-  $scope.$on("$ionicView.enter", function () {
-    $rootScope.clearHistory();
-  });
+    $scope.$on("$ionicView.enter", function () {
+      $rootScope.clearHistory();
+    });
 
-  $scope.toDetail = function () {
-    stateGo.goToState("detail_stadium");
-  };
+    $scope.toDetail = function () {
+      stateGo.goToState("detail_stadium");
+    };
 
-  $scope.areaList = [
+    $scope.areaList = [
     "",
     "海珠区",
     "天河区",
@@ -26,9 +26,9 @@ angular.module('starter.controllers.tab.stadium', [])
     "增城区",
     "从化区"
   ];
-  $scope.areaName = "";
+    $scope.areaName = "";
 
-  $scope.typeList = [
+    $scope.typeList = [
     "",
     "篮球",
     "足球",
@@ -42,208 +42,213 @@ angular.module('starter.controllers.tab.stadium', [])
     "攀登",
     "滑冰"
   ];
-  $scope.typeName = "";
+    $scope.typeName = "";
 
-  $scope.priceList = [
+    $scope.priceList = [
     "",
     "0",
     "1~49",
     "50~149",
     "150~"
   ];
-  $scope.price = "";
+    $scope.price = "";
 
-  $scope.stadiumList = [
-    {
-      stadiumname: "胜利运动场（万寿路店）",
-      stadiumpost: "img/tabletenis-star.png",
-      stadiumtrade: "乒乓球、羽毛球",
-      stadiumopentime: "08:00-22:00",
-      stadiumposition: "海珠区",
-      stadiumprice: 9
+    $scope.stadiumList = [
+      {
+        name: "胜利运动场（万寿路店）",
+        post: "img/tabletenis-star.png",
+        trade: "乒乓球、羽毛球",
+        opentime: "08:00-22:00",
+        position: "海珠区",
+        price: 9
     },
-    {
-      stadiumname: "广州市射击射箭运动管理中心",
-      stadiumpost: "img/shot-stadium.png",
-      stadiumtrade: "台球、射箭、射击",
-      stadiumopentime: "08:00-19:00",
-      stadiumposition: "天河区",
-      stadiumprice: 99
+      {
+        name: "广州市射击射箭运动管理中心",
+        post: "img/shot-stadium.png",
+        trade: "台球、射箭、射击",
+        opentime: "08:00-19:00",
+        position: "天河区",
+        price: 99
     },
-    {
-      stadiumname: "杰冠真人CS野战基地",
-      stadiumpost: "img/cs-stadium.png",
-      stadiumtrade: "仿真枪机野战",
-      stadiumopentime: "08:00-18:00",
-      stadiumposition: "海珠区",
-      stadiumprice: 299
+      {
+        name: "杰冠真人CS野战基地",
+        post: "img/cs-stadium.png",
+        trade: "仿真枪机野战",
+        opentime: "08:00-18:00",
+        position: "海珠区",
+        price: 299
     },
-    {
-      stadiumname: "大世界保龄球馆",
-      stadiumpost: "img/bowling-stadium.png",
-      stadiumtrade: "仿真枪机野战",
-      stadiumopentime: "08:00-18:00",
-      stadiumposition: "海珠区",
-      stadiumprice: 199
+      {
+        name: "大世界保龄球馆",
+        post: "img/bowling-stadium.png",
+        trade: "仿真枪机野战",
+        opentime: "08:00-18:00",
+        position: "海珠区",
+        price: 199
     },
-    {
-      stadiumname: "冰河湾真冰溜冰场",
-      stadiumpost: "img/skip-stadium.png",
-      stadiumtrade: "乒乓球、羽毛球",
-      stadiumopentime: "08:00-22:00",
-      stadiumposition: "海珠区",
-      stadiumprice: 9
+      {
+        name: "冰河湾真冰溜冰场",
+        post: "img/skip-stadium.png",
+        trade: "乒乓球、羽毛球",
+        opentime: "08:00-22:00",
+        position: "海珠区",
+        price: 9
     },
-    {
-      stadiumname: "胜利运动场（万寿路店）",
-      stadiumpost: "img/tabletenis-star.png",
-      stadiumtrade: "乒乓球、羽毛球",
-      stadiumopentime: "08:00-22:00",
-      stadiumposition: "海珠区",
-      stadiumprice: 9
+      {
+        name: "胜利运动场（万寿路店）",
+        post: "img/tabletenis-star.png",
+        trade: "乒乓球、羽毛球",
+        opentime: "08:00-22:00",
+        position: "海珠区",
+        price: 9
     },
-    {
-      stadiumname: "广州市射击射箭运动管理中心",
-      stadiumpost: "img/shot-stadium.png",
-      stadiumtrade: "台球、射箭、射击",
-      stadiumopentime: "08:00-19:00",
-      stadiumposition: "天河区",
-      stadiumprice: 99
+      {
+        name: "广州市射击射箭运动管理中心",
+        post: "img/shot-stadium.png",
+        trade: "台球、射箭、射击",
+        opentime: "08:00-19:00",
+        position: "天河区",
+        price: 99
     }
   ];
 }])
 
-.controller('DetailStadiumCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+  .controller('DetailStadiumCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
 
-  $scope.viewTitle = "详细页面";
+    $scope.viewTitle = "详细页面";
 
-  $scope.totalScore = 3.5;
+    // $scope.totalscore = $scope.stadium.totalscore;
+    $scope.type = "stadium";
+    // $scope.id = $scope.stadium.id;
+    // $scope.trade_id = "";
 
-  $scope.bookStadium = function () {
-    console.log("bookStadium");
-    stateGo.goToState("detail_stadium_book-list", {
-      type: "乒乓球",
-      id: 111111
-    });
-  };
-
-  $scope.addStar = function () {
-    // todo
-  };
-
-  $scope.addRecommend = function () {
-    // todo
-  };
-
-}])
-
-.controller('BooklistStadiumCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
-  $scope.type = $stateParams.type;
-  $scope.id = $stateParams.id;
-  // console.log("type:", $stateParams.type);
-  // console.log("id:", $stateParams.id);
-
-  $scope.equipmentLsit = [
-    {
-      equipmentname: "大厅桌球",
-      equipmentdevice: "双鱼座化工板质球桌",
-      equipmentgeology: "水泥地板",
-      equipmentposition: "运动场大厅",
-      equipmentprice: 9,
-      equipmentremain: 18
-    },
-    {
-      equipmentname: "大厅桌球",
-      equipmentdevice: "双鱼座化工板质球桌",
-      equipmentgeology: "水泥地板",
-      equipmentposition: "运动场大厅",
-      equipmentprice: 19,
-      equipmentremain: 30
-    },
-    {
-      equipmentname: "大厅桌球",
-      equipmentdevice: "双鱼座化工板质球桌",
-      equipmentgeology: "水泥地板",
-      equipmentposition: "运动场大厅",
-      equipmentprice: 59,
-      equipmentremain: 10
-    },
-    {
-      equipmentname: "大厅桌球",
-      equipmentdevice: "双鱼座化工板质球桌",
-      equipmentgeology: "水泥地板",
-      equipmentposition: "运动场大厅",
-      equipmentprice: 9,
-      equipmentremain: 9
-    },
-    {
-      equipmentname: "大厅桌球",
-      equipmentdevice: "双鱼座化工板质球桌",
-      equipmentgeology: "水泥地板",
-      equipmentposition: "运动场大厅",
-      equipmentprice: 29,
-      equipmentremain: 39
-    },
-    {
-      equipmentname: "大厅桌球",
-      equipmentdevice: "双鱼座化工板质球桌",
-      equipmentgeology: "水泥地板",
-      equipmentposition: "运动场大厅",
-      equipmentprice: 119,
-      equipmentremain: 25
-    },
-    {
-      equipmentname: "大厅桌球",
-      equipmentdevice: "双鱼座化工板质球桌",
-      equipmentgeology: "水泥地板",
-      equipmentposition: "运动场大厅",
-      equipmentprice: 70,
-      equipmentremain: 40
-    }
-  ];
-}])
-
-.controller('BookselectStadiumCtrl', ['$scope', '$stateParams', '$cordovaDialogs', 'stateGo', function ($scope, $stateParams, $cordovaDialogs, stateGo) {
-  $scope.type = $stateParams.type;
-  $scope.id = $stateParams.id;
-
-  $scope.selectinfo = {
-    selectMount: 1,
-    selectStartTime: "",
-    selectEndTime: ""
-  };
-
-  $scope.insSelectMount = function () {
-    $scope.selectinfo.selectMount = $scope.selectinfo.selectMount < 5 ? ++$scope.selectinfo.selectMount : 5;
-  };
-
-  $scope.decSelectMount = function () {
-    $scope.selectinfo.selectMount = $scope.selectinfo.selectMount > 1 ? --$scope.selectinfo.selectMount : 1;
-  };
-
-  $scope.openNumberDialog = function () {
-    $cordovaDialogs.prompt('输入预定的数量', '数量', ['确认', '取消'], $scope.selectinfo.selectMount)
-      .then(function (result) {
-        var input = result.input1;
-        // no button = 0, 'OK' = 1, 'Cancel' = 2
-        var btnIndex = result.buttonIndex;
-        alert("input: " + input);
-        alert("btnIndex: " + btnIndex);
-        var regexp = /[A-Za-z\.]/;
-        if (btnIndex == 1 && !regexp.test(input) && Number(input) >= 1 && Number(input) <= 5) {
-          $scope.selectinfo.selectMount = Number(input);
-        } else {
-          alert("数量必须在1-5");
-        }
+    $scope.bookStadium = function (trade_id) {
+      console.log("bookStadium");
+      stateGo.goToState("detail_stadium_book-list", {
+        type: $scope.type,
+        id: $scope.stadium.id,
+        trade_id: trade_id,
+        equipmentList: $scope.stadium.equipmentList
       });
-  };
+    };
 
-  $scope.submitSelectInfo = function () {
-    stateGo.goToState("prepare-pay", {
-      type: $scope.type,
-      id: $scope.id,
-      selectMount: $scope.selectinfo.selectMount,
-      unitprice: 10
-    });
-  };
+    $scope.addStar = function () {
+      // todo
+    };
+
+    $scope.addRecommend = function () {
+      // todo
+    };
+
+    $scope.stadium = {
+      id: 1,
+      name: '胜利运动场（万寿路店）',
+      post: 'img/stadium-post.png',
+      trade: '乒乓球，羽毛球',
+      opentime: '08:00 - 22:00',
+      area: '海珠区',
+      price: '9',
+      hostavatar: 'img/stadium-hostavatar.png',
+      totalscore: '4',
+      position: '广州市海珠区万寿素社街48号',
+      contact: '12345678910',
+      tradedetail: '{"tradeList":[{"id":1,"name":"乒乓球","feature":"3种球桌","price":9},{"id":2,"name":"羽毛球","feature":"朔胶地质，宽敞，干净","price":29}]}',
+      moreinfo: '免费提供无线WIFI+-+免费提供30个停车位+-+可租购用具',
+      equipmentList: '{"equipmentList":[{"id":1,"name":"乒乓球","data":[{"name":"大厅乒乓球","device":"双鱼座化工板质球桌","geology":"水泥地板","position":"运动场大厅","price":9,"remain":18}]},{"id":2,"name":"羽毛球","data":[{"name":"露天羽毛球","device":"尤尼吉斯网","geology":"水泥地板","position":"运动场大厅","price":29,"remain":8}]}]}'
+      // "equipmentList":[{"name":"大厅乒乓球","device":"双鱼座化工板质球桌","geology":"水泥地板","position":"运动场大厅","price":9,"remain":18},{"name":"露天乒乓球","device":"双喜化工板质球桌","geology":"水泥地板","position":"露天运动广场","price":19,"remain":18},{"name":"混合乒乓球","device":"双鱼座化工板质球桌","geology":"塑料地板","position":"运动场大厅","price":9,"remain":18}]
+      // ,{"name":"露天乒乓球","device":"双喜化工板质球桌","geology":"水泥地板","position":"露天运动广场","price":19,"remain":18},{"name":"混合乒乓球","device":"双鱼座化工板质球桌","geology":"塑料地板","position":"运动场大厅","price":9,"remain":18}
+    };
+  }])
+
+  .controller('BooklistStadiumCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+    $scope.type = $stateParams.type;
+    $scope.id = $stateParams.id;
+    $scope.equipmentListStr = $stateParams.equipmentList;
+    $scope.trade_id = $stateParams.trade_id;
+    $scope.equipmen_type = "";
+    if ($scope.equipmentListStr !== null && $scope.equipmentListStr !== "") {
+      $scope.equipment = JSON.parse($scope.equipmentListStr)
+        .equipmentList;
+    }
+    for (var i = 0; i < $scope.equipment.length; i++) {
+      if ($scope.equipment[i].id == $scope.trade_id) {
+        $scope.equipmentList = $scope.equipment[i].data;
+        $scope.equipmen_type = $scope.equipment[i].name;
+      }
+    }
+    console.log("equipmentList:", $scope.equipmentList);
+    // console.log("type:", $stateParams.type);
+    // console.log("id:", $stateParams.id);
+
+    //   $scope.equipmentList = [
+    //     {
+    //       name: "大厅桌球",
+    //       device: "双鱼座化工板质球桌",
+    //       geology: "水泥地板",
+    //       position: "运动场大厅",
+    //       price: 9,
+    //       remain: 18
+    //   },
+    //     {
+    //       name: "大厅桌球",
+    //       device: "双鱼座化工板质球桌",
+    //       geology: "水泥地板",
+    //       position: "运动场大厅",
+    //       price: 19,
+    //       remain: 30
+    //   },
+    //     {
+    //       name: "大厅桌球",
+    //       device: "双鱼座化工板质球桌",
+    //       geology: "水泥地板",
+    //       position: "运动场大厅",
+    //       price: 59,
+    //       remain: 10
+    //   }
+    // ];
+}])
+
+  .controller('BookselectStadiumCtrl', ['$scope', '$stateParams', '$cordovaDialogs', 'stateGo', function ($scope, $stateParams, $cordovaDialogs, stateGo) {
+    $scope.type = $stateParams.type;
+    $scope.id = $stateParams.id;
+
+    $scope.selectinfo = {
+      selectMount: 1,
+      selectStartTime: "",
+      selectEndTime: ""
+    };
+
+    $scope.insSelectMount = function () {
+      $scope.selectinfo.selectMount = $scope.selectinfo.selectMount < 5 ? ++$scope.selectinfo.selectMount : 5;
+    };
+
+    $scope.decSelectMount = function () {
+      $scope.selectinfo.selectMount = $scope.selectinfo.selectMount > 1 ? --$scope.selectinfo.selectMount : 1;
+    };
+
+    $scope.openNumberDialog = function () {
+      $cordovaDialogs.prompt('输入预定的数量', '数量', ['确认', '取消'], $scope.selectinfo.selectMount)
+        .then(function (result) {
+          var input = result.input1;
+          // no button = 0, 'OK' = 1, 'Cancel' = 2
+          var btnIndex = result.buttonIndex;
+          alert("input: " + input);
+          alert("btnIndex: " + btnIndex);
+          var regexp = /[A-Za-z\.]/;
+          if (btnIndex == 1 && !regexp.test(input) && Number(input) >= 1 && Number(input) <= 5) {
+            $scope.selectinfo.selectMount = Number(input);
+          } else {
+            alert("数量必须在1-5");
+          }
+        });
+    };
+
+    $scope.submitSelectInfo = function () {
+      stateGo.goToState("prepare-pay", {
+        type: $scope.type,
+        id: $scope.id,
+        selectMount: $scope.selectinfo.selectMount,
+        unitprice: 10
+      });
+    };
 }]);

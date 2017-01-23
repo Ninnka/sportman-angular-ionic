@@ -1,16 +1,16 @@
 <li class="item">
   <a ng-href="">
-    <img ng-src="{{activity.activitypost}}" alt="">
+    <img ng-src="{{activity.post}}" alt="">
     <div class="item-content">
       <div>
-        <span>{{activity.activityname}}</span>
-        <span>{{activity.activityposition}}</span>
+        <span>{{activity.name}}</span>
+        <span>{{activity.position}}</span>
       </div>
-      <p>{{activity.activityhost}}</p>
-      <p>参加人数/总人数：<span>{{activity.activityattence}}/{{activity.activitymountpeople}}</span></p>
+      <p>{{activity.host}}</p>
+      <p>参加人数/总人数：<span>{{activity.currentnumber}}/{{activity.totalnumber}}</span></p>
       <div>
-        <span class="price">￥{{activity.activityprice}}</span>
-        <span>{{activity.activitystarttime | date : 'yyyy-MM-dd'}}</span>
+        <span class="price">￥{{activity.price}}</span>
+        <span>{{activity.starttime | date : 'yyyy-MM-dd'}}</span>
       </div>
     </div>
   </a>

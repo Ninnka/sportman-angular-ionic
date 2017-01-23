@@ -135,7 +135,7 @@ angular.module('starter.controllers.tab.my', [])
             ls.set("sportmanid", response.data.data[0].sportmanid);
 
             ls.set("email", response.data.data[0].email);
-            ls.set("phonenumber", response.data.data[0].password);
+            ls.set("phonenumber", response.data.data[0].mobile);
             ls.set("gender", response.data.data[0].gender);
 
             // console.log("on signinsuccess");
@@ -205,12 +205,12 @@ angular.module('starter.controllers.tab.my', [])
 
     $scope.activityList = [
       {
-        activityname: "彩色跑",
-        activitystatus: "待举行",
-        activitypost: "img/colorrunning-icon.png",
-        activityregistertime: "1484396287893",
-        activitystarttime: "1484396287893",
-        activityposition: "广州市天河区珠江新城花城广场"
+        name: "彩色跑",
+        status: "待举行",
+        post: "img/colorrunning-icon.png",
+        registertime: "1484396287893",
+        starttime: "1484396287893",
+        position: "广州市天河区珠江新城花城广场"
       }
     ];
   }])
@@ -221,12 +221,12 @@ angular.module('starter.controllers.tab.my', [])
     });
     $scope.activityList = [
       {
-        activityname: "2016广州马拉松",
-        activitystatus: "审核中",
-        activitypost: "img/marason-icon.png",
-        activityregistertime: "1484396287893",
-        activitystarttime: "1484396287893",
-        activityposition: "广州市天河区珠江新城花城广场"
+        name: "2016广州马拉松",
+        status: "审核中",
+        post: "img/marason-icon.png",
+        registertime: "1484396287893",
+        starttime: "1484396287893",
+        position: "广州市天河区珠江新城花城广场"
       }
     ];
   }])
@@ -241,12 +241,12 @@ angular.module('starter.controllers.tab.my', [])
     };
     $scope.activityList = [
       {
-        activityname: "彩色跑",
-        activitystatus: "已结束",
-        activitypost: "img/colorrunning-icon.png",
-        activityregistertime: "1484396287893",
-        activitystarttime: "1484396287893",
-        activityposition: "广州市天河区珠江新城花城广场"
+        name: "彩色跑",
+        status: "已结束",
+        post: "img/colorrunning-icon.png",
+        registertime: "1484396287893",
+        starttime: "1484396287893",
+        position: "广州市天河区珠江新城花城广场"
       }
     ];
   }])
@@ -257,28 +257,28 @@ angular.module('starter.controllers.tab.my', [])
     });
     $scope.activityList = [
       {
-        activityname: "TheLightRun——地球上最闪亮的夜跑球上最闪亮的",
-        activitystatus: "待举行",
-        activitypost: "img/running-icon.png",
-        activityregistertime: "1484396287893",
-        activitystarttime: "1484396287893",
-        activityposition: "广州市天河区珠江新城花城广场"
+        name: "TheLightRun——地球上最闪亮的夜跑球上最闪亮的",
+        status: "待举行",
+        post: "img/running-icon.png",
+        registertime: "1484396287893",
+        starttime: "1484396287893",
+        position: "广州市天河区珠江新城花城广场"
     },
       {
-        activityname: "2016广州马拉松",
-        activitystatus: "审核中",
-        activitypost: "img/marason-icon.png",
-        activityregistertime: "1484396287893",
-        activitystarttime: "1484396287893",
-        activityposition: "广州市天河区珠江新城花城广场"
+        name: "2016广州马拉松",
+        status: "审核中",
+        post: "img/marason-icon.png",
+        registertime: "1484396287893",
+        starttime: "1484396287893",
+        position: "广州市天河区珠江新城花城广场"
     },
       {
-        activityname: "彩色跑",
-        activitystatus: "已结束",
-        activitypost: "img/colorrunning-icon.png",
-        activityregistertime: "1484396287893",
-        activitystarttime: "1484396287893",
-        activityposition: "广州市天河区珠江新城花城广场"
+        name: "彩色跑",
+        status: "已结束",
+        post: "img/colorrunning-icon.png",
+        registertime: "1484396287893",
+        starttime: "1484396287893",
+        position: "广州市天河区珠江新城花城广场"
     }
     ];
   }])
@@ -296,12 +296,12 @@ angular.module('starter.controllers.tab.my', [])
 
     $scope.stadiumList = [
       {
-        stadiumname: "大厅桌球",
-        stadiumstatus: "待使用",
-        stadiumpost: "img/stadium-tenis-icon1.png",
-        stadiummount: 2,
-        stadiumstarttime: "1484396287893",
-        stadiumposition: "广州市天河区珠江新城花城广场"
+        name: "大厅桌球",
+        status: "待使用",
+        post: "img/stadium-tenis-icon1.png",
+        mount: 2,
+        starttime: "1484396287893",
+        position: "广州市天河区珠江新城花城广场"
       }
     ];
   }])
@@ -313,12 +313,12 @@ angular.module('starter.controllers.tab.my', [])
 
     $scope.stadiumList = [
       {
-        stadiumname: "室内篮球",
-        stadiumstatus: "已使用",
-        stadiumpost: "img/stadium-tenis-icon3.png",
-        stadiummount: 1,
-        stadiumstarttime: "1484396287893",
-        stadiumposition: "广州市天河区珠江新城花城广场"
+        name: "室内篮球",
+        status: "已使用",
+        post: "img/stadium-tenis-icon3.png",
+        mount: 1,
+        starttime: "1484396287893",
+        position: "广州市天河区珠江新城花城广场"
       }
     ];
   }])
@@ -330,20 +330,20 @@ angular.module('starter.controllers.tab.my', [])
 
     $scope.stadiumList = [
       {
-        stadiumname: "大厅桌球",
-        stadiumstatus: "待使用",
-        stadiumpost: "img/stadium-tenis-icon1.png",
-        stadiummount: 2,
-        stadiumstarttime: "1484396287893",
-        stadiumposition: "广州市天河区珠江新城花城广场"
+        name: "大厅桌球",
+        status: "待使用",
+        post: "img/stadium-tenis-icon1.png",
+        mount: 2,
+        starttime: "1484396287893",
+        position: "广州市天河区珠江新城花城广场"
     },
       {
-        stadiumname: "室内篮球",
-        stadiumstatus: "已使用",
-        stadiumpost: "img/stadium-tenis-icon3.png",
-        stadiummount: 1,
-        stadiumstarttime: "1484396287893",
-        stadiumposition: "广州市天河区珠江新城花城广场"
+        name: "室内篮球",
+        status: "已使用",
+        post: "img/stadium-tenis-icon3.png",
+        mount: 1,
+        starttime: "1484396287893",
+        position: "广州市天河区珠江新城花城广场"
       }
     ];
   }])
@@ -361,54 +361,54 @@ angular.module('starter.controllers.tab.my', [])
     $scope.$on("$ionicView.afterEnter", function () {
       $scope.activityList = [
         {
-          activityname: "白云山野战场畅玩",
-          activityposition: "海珠区",
-          activitypost: "img/marason-star.png",
-          activityhost: "广州体育委员会",
-          activityattence: 11,
-          activitymountpeople: 30,
-          activityprice: 99,
-          activitystarttime: "1484396287893"
+          name: "白云山野战场畅玩",
+          position: "海珠区",
+          post: "img/marason-star.png",
+          host: "广州体育委员会",
+          currentnumber: 11,
+          totalnumber: 30,
+          price: 99,
+          starttime: "1484396287893"
       },
         {
-          activityname: "广州马拉松",
-          activityposition: "白云区",
-          activitypost: "img/shot-star.png",
-          activityhost: "白云山野战场",
-          activityattence: 11,
-          activitymountpeople: 30,
-          activityprice: 199,
-          activitystarttime: "1484396287893"
+          name: "广州马拉松",
+          position: "白云区",
+          post: "img/shot-star.png",
+          host: "白云山野战场",
+          currentnumber: 11,
+          totalnumber: 30,
+          price: 199,
+          starttime: "1484396287893"
       },
         {
-          activityname: "轮滑逛街活动",
-          activityposition: "白云区",
-          activitypost: "img/skip-star.png",
-          activityhost: "阿迪王专业体育用具",
-          activityattence: 11,
-          activitymountpeople: 30,
-          activityprice: 199,
-          activitystarttime: "1484396287893"
+          name: "轮滑逛街活动",
+          position: "白云区",
+          post: "img/skip-star.png",
+          host: "阿迪王专业体育用具",
+          currentnumber: 11,
+          totalnumber: 30,
+          price: 199,
+          starttime: "1484396287893"
       },
         {
-          activityname: "荧光夜跑——地",
-          activityposition: "白云区",
-          activitypost: "img/tabletenis-star.png",
-          activityhost: "阿迪王专业体育用具",
-          activityattence: 11,
-          activitymountpeople: 30,
-          activityprice: 199,
-          activitystarttime: "1484396287893"
+          name: "荧光夜跑——地",
+          position: "白云区",
+          post: "img/tabletenis-star.png",
+          host: "阿迪王专业体育用具",
+          currentnumber: 11,
+          totalnumber: 30,
+          price: 199,
+          starttime: "1484396287893"
       },
         {
-          activityname: "荧光夜跑——地",
-          activityposition: "白云区",
-          activitypost: "img/tabletenis-star.png",
-          activityhost: "阿迪王专业体育用具",
-          activityattence: 11,
-          activitymountpeople: 30,
-          activityprice: 199,
-          activitystarttime: "1484396287893"
+          name: "荧光夜跑——地",
+          position: "白云区",
+          post: "img/tabletenis-star.png",
+          host: "阿迪王专业体育用具",
+          currentnumber: 11,
+          totalnumber: 30,
+          price: 199,
+          starttime: "1484396287893"
         }
       ];
     });
@@ -421,44 +421,44 @@ angular.module('starter.controllers.tab.my', [])
 
     $scope.stadiumList = [
       {
-        stadiumname: "胜利运动场（万寿路店）",
-        stadiumpost: "img/tabletenis-star.png",
-        stadiumtrade: "乒乓球、羽毛球",
-        stadiumopentime: "08:00-22:00",
-        stadiumposition: "海珠区",
-        stadiumprice: 9
+        name: "胜利运动场（万寿路店）",
+        post: "img/tabletenis-star.png",
+        trade: "乒乓球、羽毛球",
+        opentime: "08:00-22:00",
+        position: "海珠区",
+        price: 9
     },
       {
-        stadiumname: "广州市射击射箭运动管理中心",
-        stadiumpost: "img/shot-stadium.png",
-        stadiumtrade: "台球、射箭、射击",
-        stadiumopentime: "08:00-19:00",
-        stadiumposition: "天河区",
-        stadiumprice: 99
+        name: "广州市射击射箭运动管理中心",
+        post: "img/shot-stadium.png",
+        trade: "台球、射箭、射击",
+        opentime: "08:00-19:00",
+        position: "天河区",
+        price: 99
     },
       {
-        stadiumname: "杰冠真人CS野战基地",
-        stadiumpost: "img/cs-stadium.png",
-        stadiumtrade: "仿真枪机野战",
-        stadiumopentime: "08:00-18:00",
-        stadiumposition: "海珠区",
-        stadiumprice: 299
+        name: "杰冠真人CS野战基地",
+        post: "img/cs-stadium.png",
+        trade: "仿真枪机野战",
+        opentime: "08:00-18:00",
+        position: "海珠区",
+        price: 299
     },
       {
-        stadiumname: "大世界保龄球馆",
-        stadiumpost: "img/bowling-stadium.png",
-        stadiumtrade: "仿真枪机野战",
-        stadiumopentime: "08:00-18:00",
-        stadiumposition: "海珠区",
-        stadiumprice: 199
+        name: "大世界保龄球馆",
+        post: "img/bowling-stadium.png",
+        trade: "仿真枪机野战",
+        opentime: "08:00-18:00",
+        position: "海珠区",
+        price: 199
     },
       {
-        stadiumname: "冰河湾真冰溜冰场",
-        stadiumpost: "img/skip-stadium.png",
-        stadiumtrade: "乒乓球、羽毛球",
-        stadiumopentime: "08:00-22:00",
-        stadiumposition: "海珠区",
-        stadiumprice: 9
+        name: "冰河湾真冰溜冰场",
+        post: "img/skip-stadium.png",
+        trade: "乒乓球、羽毛球",
+        opentime: "08:00-22:00",
+        position: "海珠区",
+        price: 9
       }
     ];
   }])

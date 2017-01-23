@@ -10,21 +10,21 @@
   </ion-nav-buttons>
 
   <ion-content>
-    <div class="img-wrapper img-with-float-text float-bottom" style="background-image: url({{activity.activitypost}})">
+    <div class="img-wrapper img-with-float-text float-bottom" style="background-image: url({{activity.post}})">
       <div class="float-text-wrapper">
-        <img ng-src="{{activity.acitivtyhostavatar}}" alt="">
+        <img ng-src="{{activity.hostavatar}}" alt="">
         <div class="float-text">
-          <p>{{activity.activityname}}</p>
-          <p>活动官网:{{activity.activitywebsite}}</p>
+          <p>{{activity.name}}</p>
+          <p>活动官网:{{activity.website}}</p>
         </div>
       </div>
     </div>
 
     <div class="text-with-rightblock space-between">
       <div>
-        <p>举行时间：{{activity.activitystarttime}}</p>
-        <p>{{activity.activityposition}}</p>
-        <p class="assertive">￥{{activity.acitvityprice}}</p>
+        <p>举行时间：{{activity.starttime}}</p>
+        <p>{{activity.position}}</p>
+        <p class="assertive">￥{{activity.price}}</p>
       </div>
       <a ng-href="#/registration/instruction" nav-direction="forward">
         <button class="button button-positive">立即参加</button>
@@ -50,10 +50,10 @@
       </div>
       <div class="item text-with-rightblock space-between">
         <div class="item-text-main">
-          <p>{{activity.activityhost}}</p>
-          <p>{{activity.activityhostaddress}}</p>
+          <p>{{activity.host}}</p>
+          <p>{{activity.hostaddress}}</p>
         </div>
-        <a href="tel:{{activity.activitycontact}}">
+        <a href="tel:{{activity.contact}}">
           <img src="img/call-maintheme.png" alt="" class="icon-custom">
         </a>
       </div>

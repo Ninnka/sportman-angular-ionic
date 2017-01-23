@@ -16,7 +16,7 @@
     <ion-slide-box class="slide-box" on-slide-changed="slideHasChanged($index)" does-continue="true" slide-interval="2000" auto-play="true">
       <ion-slide ng-repeat="banneritem in bannerList">
         <a ng-href="#/detail/activity" nav-direction="forward">
-          <img ng-src="{{banneritem.logo}}" src="{{banneritem.logo}}" alt="">
+          <img ng-src="{{banneritem.post}}" alt="">
         </a>
       </ion-slide>
     </ion-slide-box>
@@ -93,7 +93,11 @@
       </ion-scroll>
     </div> -->
 
-    <div class="main-goods-list-wrapper">
+    <ul class="stream-list">
+      <activity ng-repeat="activity in activityList" ng-click="toDetail()"></activity>
+    </ul>
+
+    <!-- <div class="main-goods-list-wrapper">
       <ion-list class="goods-list-wrapper">
         <ion-item class="goods-item" ng-repeat="goodsitem in mainGoodsList" href="#/detail/activity" ng-click="inAnimation()">
           <div class="goods-item-icon-wrapper">
@@ -106,7 +110,7 @@
           </div>
         </ion-item>
       </ion-list>
-    </div>
+    </div> -->
 
   </ion-content>
 </ion-view>

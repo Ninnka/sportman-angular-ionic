@@ -21,7 +21,9 @@ angular.module('starter.states.tab.stadium', [])
       url: '/detail/stadium/book-list',
       params: {
         id: 0,
-        type: ""
+        type: "",
+        equipmentList: "",
+        trade_id: ""
       },
       views: {
         'index': {

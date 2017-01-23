@@ -1,17 +1,17 @@
 <li class="item">
   <a ng-href="">
     <div class="item-title">
-      <span>{{stadium.stadiumname}}</span>
-      <span>{{stadium.stadiumstatus}}</span>
+      <span>{{stadium.name}}</span>
+      <span>{{stadium.status}}</span>
     </div>
     <div class="item-content">
-      <img ng-src="{{stadium.stadiumpost}}" alt="">
+      <img ng-src="{{stadium.post}}" alt="">
       <div class="item-flexgrow">
-        <p>预定场地：{{stadium.stadiummount}}个</p>
-        <p>时间：{{stadium.stadiumstarttime | date : 'yyyy-MM-dd hh:mm'}}</p>
-        <p>{{stadium.stadiumposition}}</p>
+        <p>预定场地：{{stadium.mount}}个</p>
+        <p>时间：{{stadium.starttime | date : 'yyyy-MM-dd hh:mm'}}</p>
+        <p>{{stadium.position}}</p>
       </div>
     </div>
-    <review-btn ng-show="stadium.stadiumstatus === '已使用'"></review-btn>
+    <review-btn ng-show="stadium.status === '已使用'"></review-btn>
   </a>
 </li>

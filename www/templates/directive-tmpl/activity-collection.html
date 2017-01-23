@@ -1,17 +1,17 @@
 <li class="item">
   <a ng-href="">
     <div class="item-title">
-      <span>{{activity.activityname}}</span>
-      <span>{{activity.activitystatus}}</span>
+      <span>{{activity.name}}</span>
+      <span>{{activity.status}}</span>
     </div>
     <div class="item-content">
-      <img ng-src="{{activity.activitypost}}" alt="">
+      <img ng-src="{{activity.post}}" alt="">
       <div class="item-flexgrow">
-        <p>报名时间：{{activity.activityregistertime | date : 'yyyy-MM-dd hh:mm'}}</p>
-        <p>举行时间：{{activity.activitystarttime | date : 'yyyy-MM-dd hh:mm'}}</p>
-        <p>{{activity.activityposition}}</p>
+        <p>报名时间：{{activity.registertime | date : 'yyyy-MM-dd hh:mm'}}</p>
+        <p>举行时间：{{activity.starttime | date : 'yyyy-MM-dd hh:mm'}}</p>
+        <p>{{activity.position}}</p>
       </div>
     </div>
-    <review-btn ng-show="activity.activitystatus === '已结束'"></review-btn>
+    <review-btn ng-show="activity.status === '已结束'"></review-btn>
   </a>
 </li>
