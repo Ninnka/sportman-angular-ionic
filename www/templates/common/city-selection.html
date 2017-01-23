@@ -118,7 +118,7 @@
 
   </ion-content>
 
-  <ul id="city-selector" class="flexbox block-absolute absolute-right flex-use-col-direction city-selector-wrapper" on-drag="onDrag($event)" on-tap="onTap($event)" ng-show="!searchinfo.searchKey">
+  <ul id="city-selector" class="flexbox block-absolute absolute-right flex-use-col-direction city-selector-wrapper" on-drag="onDrag($event)" on-tap="onTap($event)" on-release="onRelease()" ng-show="!searchinfo.searchKey">
     <li class="fullwidth">A</li>
     <li class="fullwidth">B</li>
     <li class="fullwidth">C</li>

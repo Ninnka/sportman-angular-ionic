@@ -399,10 +399,10 @@ p.assertive {
   padding: .35rem .15rem;
   text-align: center;
   font-size: .45rem;
-  color: $mainTheme;
+  color: $white;
   height: auto;
   display: inline-table;
-  border: 1px solid $mainTheme;
+  background: $darkmask;
 }
 
 .screen-center {

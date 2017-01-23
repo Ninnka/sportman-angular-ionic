@@ -281,10 +281,10 @@ p.assertive {
   padding: .35rem .15rem;
   text-align: center;
   font-size: .45rem;
-  color: #fb8041;
+  color: #fff;
   height: auto;
   display: inline-table;
-  border: 1px solid #fb8041; }
+  background: rgba(30, 30, 30, 0.5); }
 
 .screen-center {
   top: 0;
