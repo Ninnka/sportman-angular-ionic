@@ -17,7 +17,7 @@ angular.module('starter.states.tab.activity', [])
       cache: false,
       url: '/detail/activity',
       params: {
-        title: "",
+        type: "",
         id: 0
       },
       views: {

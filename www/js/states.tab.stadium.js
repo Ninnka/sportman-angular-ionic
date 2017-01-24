@@ -6,7 +6,7 @@ angular.module('starter.states.tab.stadium', [])
       cache: false,
       url: '/detail/stadium',
       params: {
-        title: "",
+        type: "",
         id: 0
       },
       views: {

@@ -323,24 +323,30 @@ angular.module('starter.directives', [])
       replace: true,
       templateUrl: "templates/directive-tmpl/review-star.html",
       scope: {
-        score: "@"
+        score: '@'
       },
       link: function (scope, element, attrs) {
-        var full = Math.floor(Number(scope.score));
-        var half = scope.score - full;
-        var dark = 5 - Math.ceil(scope.score);
         scope.fullarr = [];
-        for (var i = 0; i < full; i++) {
-          scope.fullarr.push(" ");
-        }
         scope.halfarr = [];
-        for (var j = 0; j < half; j++) {
-          scope.halfarr.push(" ");
-        }
         scope.darkarr = [];
-        for (var k = 0; k < dark; k++) {
-          scope.darkarr.push(" ");
-        }
+
+        scope.$watch('score', function (newValue, oldValue, scope) {
+          var full = Math.floor(Number(scope.score));
+          var half = scope.score - full;
+          var dark = 5 - Math.ceil(scope.score);
+          scope.fullarr = [];
+          scope.halfarr = [];
+          scope.darkarr = [];
+          for (var i = 0; i < full; i++) {
+            scope.fullarr.push(" ");
+          }
+          for (var j = 0; j < half; j++) {
+            scope.halfarr.push(" ");
+          }
+          for (var k = 0; k < dark; k++) {
+            scope.darkarr.push(" ");
+          }
+        });
       }
     };
   })
@@ -367,10 +373,12 @@ angular.module('starter.directives', [])
       },
       link: function (scope, element, attrs) {
         scope.tradeList = {};
-        if (scope.tradedetail !== "") {
-          var data = JSON.parse(scope.tradedetail);
-          scope.tradeList = data.tradeList;
-        }
+        scope.$watch('tradedetail', function (newValue, oldValue, scope) {
+          if (scope.tradedetail !== "") {
+            var data = JSON.parse(scope.tradedetail);
+            scope.tradeList = data.tradeList;
+          }
+        });
       }
     };
   })
@@ -385,9 +393,11 @@ angular.module('starter.directives', [])
       },
       link: function (scope, element, attrs) {
         scope.moreinfoArr = [];
-        if (scope.moreinfo !== "") {
-          scope.moreinfoArr = scope.moreinfo.split("+-+");
-        }
+        scope.$watch('moreinfo', function (newValue, oldValue, scope) {
+          if (scope.moreinfo !== '') {
+            scope.moreinfoArr = scope.moreinfo.split('+-+');
+          }
+        });
       }
     };
   });

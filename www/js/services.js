@@ -113,6 +113,13 @@ angular.module('starter.services', [])
           method: "GET",
           url
         });
+      },
+      post: function (url, data) {
+        return $http({
+          method: "POST",
+          url,
+          data: data
+        });
       }
     };
   }])
@@ -147,7 +154,9 @@ angular.module('starter.services', [])
   .factory('api', function () {
     return {
       activity_home: "http://localhost/sportman/activity_home.php",
-      stadium_home: "http://localhost/sportman/stadium_home.php"
+      activity_detail: "http://localhost/sportman/activity_detail.php",
+      stadium_home: "http://localhost/sportman/stadium_home.php",
+      stadium_detail: "http://localhost/sportman/stadium_detail.php"
     };
   })
 

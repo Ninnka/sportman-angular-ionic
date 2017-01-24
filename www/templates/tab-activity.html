@@ -21,33 +21,6 @@
       </ion-slide>
     </ion-slide-box>
 
-    <!-- <div class="recommended-nav-wrapper">
-      <div class="nav-item-wrapper">
-        <a class="nav-item-new">
-          <img ng-src="img/new.png" alt="">
-        </a>
-        <p>最新</p>
-      </div>
-      <div class="nav-item-wrapper">
-        <a class="nav-item-hot">
-          <img alt="" ng-src="img/Popular.png">
-        </a>
-        <p>热门</p>
-      </div>
-      <div class="nav-item-wrapper">
-        <a class="nav-item-nearly">
-          <img ng-src="img/near-me.png" alt="">
-        </a>
-        <p>附近</p>
-      </div>
-      <div class="nav-item-wrapper">
-        <a class="nav-item-public">
-          <img ng-src="img/recom.png" alt="">
-        </a>
-        <p>推荐</p>
-      </div>
-    </div> -->
-
     <div class="horizon-grid">
       <div>
         <img ng-src="img/hot.png" alt="" class="vertical-text-left-img">
@@ -94,23 +67,8 @@
     </div> -->
 
     <ul class="stream-list">
-      <activity ng-repeat="activity in activityList" ng-click="toDetail()"></activity>
+      <activity ng-repeat="activity in activityList" ng-click="toDetail(activity.id)"></activity>
     </ul>
-
-    <!-- <div class="main-goods-list-wrapper">
-      <ion-list class="goods-list-wrapper">
-        <ion-item class="goods-item" ng-repeat="goodsitem in mainGoodsList" href="#/detail/activity" ng-click="inAnimation()">
-          <div class="goods-item-icon-wrapper">
-            <img ng-src="{{goodsitem.icon}}" alt="">
-          </div>
-          <div class="goods-item-info-wrapper">
-            <p class="goods-item-info-name">{{goodsitem.name}}</p>
-            <p class="goods-item-info-price">现价：￥ {{goodsitem.price}}</p>
-            <p class="goods-item-info-originprice">原价：￥ {{goodsitem.original_price}}</p>
-          </div>
-        </ion-item>
-      </ion-list>
-    </div> -->
 
   </ion-content>
 </ion-view>

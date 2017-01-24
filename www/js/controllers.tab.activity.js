@@ -166,25 +166,25 @@ angular.module('starter.controllers.tab.activity', [])
             // console.log("success");
             $rootScope.globalSignSymbol = true;
 
-            $scope.uil.setUm(response.data.data[0].name);
-            $scope.uil.setSpmid(response.data.data[0].sportmanid);
-            $scope.uil.setAvatar(response.data.data[0].avatar);
+            $scope.uil.setUm(response.data.resultData[0].name);
+            $scope.uil.setSpmid(response.data.resultData[0].sportmanid);
+            $scope.uil.setAvatar(response.data.resultData[0].avatar);
             $scope.uil.setEmpty(false);
 
-            $scope.uil.setEmail(response.data.data[0].email);
-            $scope.uil.setPn(response.data.data[0].password);
-            $scope.uil.setGender(response.data.data[0].gender);
+            $scope.uil.setEmail(response.data.resultData[0].email);
+            $scope.uil.setPn(response.data.resultData[0].password);
+            $scope.uil.setGender(response.data.resultData[0].gender);
 
             // console.log("UsrInfoLocal.sportmanid: " + UsrInfoLocal.sportmanid);
 
-            ls.set("usrpassword", response.data.data[0].password);
-            ls.set("usrname", response.data.data[0].name);
-            ls.set("avatar", response.data.data[0].avatar);
-            ls.set("sportmanid", response.data.data[0].sportmanid);
+            ls.set("usrpassword", response.data.resultData[0].password);
+            ls.set("usrname", response.data.resultData[0].name);
+            ls.set("avatar", response.data.resultData[0].avatar);
+            ls.set("sportmanid", response.data.resultData[0].sportmanid);
 
-            ls.set("email", response.data.data[0].email);
-            ls.set("phonenumber", response.data.data[0].mobile);
-            ls.set("gender", response.data.data[0].gender);
+            ls.set("email", response.data.resultData[0].email);
+            ls.set("phonenumber", response.data.resultData[0].mobile);
+            ls.set("gender", response.data.resultData[0].gender);
 
           } else {
             console.log("global fail");
@@ -216,8 +216,8 @@ angular.module('starter.controllers.tab.activity', [])
       getData.get(api.activity_home)
         .then(function successCallback(res) {
           console.log(res);
-          $scope.bannerList = res.data.bannerList;
-          $scope.activityList = $scope.activityList.concat(res.data.activityList);
+          $scope.bannerList = res.data.resultData.bannerList;
+          $scope.activityList = $scope.activityList.concat(res.data.resultData.activityList);
 
           $ionicSlideBoxDelegate.update();
         }, function errorCallback(err) {
@@ -228,33 +228,37 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.getActivityData();
     $scope.firstEnter = false;
 
-    $scope.toDetail = function () {
-      stateGo.goToState('detail_activity');
+    $scope.toDetail = function (activity_id) {
+      stateGo.goToState('detail_activity', {
+        type: "activity",
+        id: activity_id
+      });
     };
   }])
 
   // 主页商品详细页面控制器
-  .controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {
+  .controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'api', function ($scope, $rootScope, $stateParams, getData, api) {
 
     $scope.viewTitle = "活动详细";
+    $scope.activity_id = $stateParams.id;
+    $scope.type = $stateParams.type;
+    // console.log("$scope.activity_id:", $scope.activity_id);
+    // console.log("$scope.type:", $scope.type);
 
-    $scope.activity = {
-      id: "",
-      name: "2016广州马拉松",
-      post: "img/activitypost.png",
-      hostavatar: "img/marason-icon.png",
-      website: "www.gzmarathon.com",
-      starttime: "2016年04月01日",
-      position: "花城广场（起点）",
-      price: "100",
-      host: "广州体育局",
-      hostaddress: "广州市天河区天河路299号天河体育中心",
-      contact: "12345678910"
-    };
+    $scope.activity = {};
 
     $scope.getActivityInfo = function () {
-      // todo
+      getData.post(api.activity_detail, {
+          id: $scope.activity_id
+        })
+        .then(function resolve(res) {
+          // console.log("res.data:", res.data);
+          $scope.activity = res.data.resultData;
+        }, function reject(err) {
+          console.log("err:", err);
+        });
     };
+    $scope.getActivityInfo();
 
     $scope.attendActivity = function () {
       // todo
@@ -279,7 +283,7 @@ angular.module('starter.controllers.tab.activity', [])
       if ($scope.isAgree) {
         stateGo.goToState("registration-information");
       } else {
-        alert("请阅读并同意协议后才能进行下一步操作")
+        alert("请阅读并同意协议后才能进行下一步操作");
       }
     };
   }])

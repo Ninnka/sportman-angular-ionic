@@ -1,14 +1,17 @@
 angular.module('starter.controllers.tab.stadium', [])
 
   // 场馆页面的控制器
-  .controller('StadiumCtrl', ['$scope', 'stateGo', '$rootScope', function ($scope, stateGo, $rootScope) {
+  .controller('StadiumCtrl', ['$scope', 'stateGo', '$rootScope', 'getData', 'api', function ($scope, stateGo, $rootScope, getData, api) {
 
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
     });
 
-    $scope.toDetail = function () {
-      stateGo.goToState("detail_stadium");
+    $scope.toDetail = function (stadium_id) {
+      stateGo.goToState("detail_stadium", {
+        type: "stadium",
+        id: stadium_id
+      });
     };
 
     $scope.areaList = [
@@ -53,74 +56,85 @@ angular.module('starter.controllers.tab.stadium', [])
   ];
     $scope.price = "";
 
-    $scope.stadiumList = [
-      {
-        name: "胜利运动场（万寿路店）",
-        post: "img/tabletenis-star.png",
-        trade: "乒乓球、羽毛球",
-        opentime: "08:00-22:00",
-        position: "海珠区",
-        price: 9
-    },
-      {
-        name: "广州市射击射箭运动管理中心",
-        post: "img/shot-stadium.png",
-        trade: "台球、射箭、射击",
-        opentime: "08:00-19:00",
-        position: "天河区",
-        price: 99
-    },
-      {
-        name: "杰冠真人CS野战基地",
-        post: "img/cs-stadium.png",
-        trade: "仿真枪机野战",
-        opentime: "08:00-18:00",
-        position: "海珠区",
-        price: 299
-    },
-      {
-        name: "大世界保龄球馆",
-        post: "img/bowling-stadium.png",
-        trade: "仿真枪机野战",
-        opentime: "08:00-18:00",
-        position: "海珠区",
-        price: 199
-    },
-      {
-        name: "冰河湾真冰溜冰场",
-        post: "img/skip-stadium.png",
-        trade: "乒乓球、羽毛球",
-        opentime: "08:00-22:00",
-        position: "海珠区",
-        price: 9
-    },
-      {
-        name: "胜利运动场（万寿路店）",
-        post: "img/tabletenis-star.png",
-        trade: "乒乓球、羽毛球",
-        opentime: "08:00-22:00",
-        position: "海珠区",
-        price: 9
-    },
-      {
-        name: "广州市射击射箭运动管理中心",
-        post: "img/shot-stadium.png",
-        trade: "台球、射箭、射击",
-        opentime: "08:00-19:00",
-        position: "天河区",
-        price: 99
-    }
-  ];
+    $scope.stadiumList = [];
+
+    $scope.getStaidumData = function () {
+      getData.get(api.stadium_home)
+        .then(function resolve(res) {
+          console.log("res.data", res.data);
+          $scope.stadiumList = res.data.resultData;
+        }, function reject(err) {
+          console.log("err", err);
+        });
+    };
+    $scope.getStaidumData();
+
+    //   $scope.stadiumList = [
+    //     {
+    //       name: "胜利运动场（万寿路店）",
+    //       post: "img/tabletenis-star.png",
+    //       trade: "乒乓球、羽毛球",
+    //       opentime: "08:00 - 22:00",
+    //       position: "海珠区",
+    //       price: 9
+    //   },
+    //     {
+    //       name: "广州市射击射箭运动管理中心",
+    //       post: "img/shot-stadium.png",
+    //       trade: "台球、射箭、射击",
+    //       opentime: "08:00 - 19:00",
+    //       position: "天河区",
+    //       price: 99
+    //   },
+    //     {
+    //       name: "杰冠真人CS野战基地",
+    //       post: "img/cs-stadium.png",
+    //       trade: "仿真枪机野战",
+    //       opentime: "08:00 - 18:00",
+    //       position: "海珠区",
+    //       price: 299
+    //   },
+    //     {
+    //       name: "大世界保龄球馆",
+    //       post: "img/bowling-stadium.png",
+    //       trade: "保龄球",
+    //       opentime: "08:00 - 18:00",
+    //       position: "海珠区",
+    //       price: 199
+    //   },
+    //     {
+    //       name: "冰河湾真冰溜冰场",
+    //       post: "img/skip-stadium.png",
+    //       trade: "溜冰",
+    //       opentime: "08:00 - 22:00",
+    //       position: "海珠区",
+    //       price: 9
+    //   },
+    //     {
+    //       name: "胜利运动场（万寿路店）",
+    //       post: "img/tabletenis-star.png",
+    //       trade: "乒乓球、羽毛球",
+    //       opentime: "08:00 - 22:00",
+    //       position: "海珠区",
+    //       price: 9
+    //   },
+    //     {
+    //       name: "广州市射击射箭运动管理中心",
+    //       post: "img/shot-stadium.png",
+    //       trade: "台球、射箭、射击",
+    //       opentime: "08:00-19:00",
+    //       position: "天河区",
+    //       price: 99
+    //   }
+    // ];
 }])
 
-  .controller('DetailStadiumCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+  .controller('DetailStadiumCtrl', ['$scope', '$stateParams', 'stateGo', 'getData', 'api', function ($scope, $stateParams, stateGo, getData, api) {
 
-    $scope.viewTitle = "详细页面";
+    $scope.viewTitle = "场馆详情";
 
-    // $scope.totalscore = $scope.stadium.totalscore;
-    $scope.type = "stadium";
-    // $scope.id = $scope.stadium.id;
-    // $scope.trade_id = "";
+    $scope.type = $stateParams.type;
+    $scope.stadium_id = $stateParams.id;
 
     $scope.bookStadium = function (trade_id) {
       console.log("bookStadium");
@@ -140,21 +154,33 @@ angular.module('starter.controllers.tab.stadium', [])
       // todo
     };
 
+    $scope.getStadiumInfo = function () {
+      getData.post(api.stadium_detail, {
+          id: $scope.stadium_id
+        })
+        .then(function resolve(res) {
+          $scope.stadium = res.data.resultData;
+        }, function reject(err) {
+          console.log('err:', err);
+        });
+    };
+    $scope.getStadiumInfo();
+
     $scope.stadium = {
-      id: 1,
-      name: '胜利运动场（万寿路店）',
-      post: 'img/stadium-post.png',
-      trade: '乒乓球，羽毛球',
-      opentime: '08:00 - 22:00',
-      area: '海珠区',
-      price: '9',
-      hostavatar: 'img/stadium-hostavatar.png',
-      totalscore: '4',
-      position: '广州市海珠区万寿素社街48号',
-      contact: '12345678910',
-      tradedetail: '{"tradeList":[{"id":1,"name":"乒乓球","feature":"3种球桌","price":9},{"id":2,"name":"羽毛球","feature":"朔胶地质，宽敞，干净","price":29}]}',
-      moreinfo: '免费提供无线WIFI+-+免费提供30个停车位+-+可租购用具',
-      equipmentList: '{"equipmentList":[{"id":1,"name":"乒乓球","data":[{"name":"大厅乒乓球","device":"双鱼座化工板质球桌","geology":"水泥地板","position":"运动场大厅","price":9,"remain":18}]},{"id":2,"name":"羽毛球","data":[{"name":"露天羽毛球","device":"尤尼吉斯网","geology":"水泥地板","position":"运动场大厅","price":29,"remain":8}]}]}'
+      // id: 1,
+      // name: '胜利运动场（万寿路店）',
+      // post: 'img/stadium-post.png',
+      // trade: '乒乓球，羽毛球',
+      // opentime: '08:00 - 22:00',
+      // area: '海珠区',
+      // price: '9',
+      // hostavatar: 'img/stadium-hostavatar.png',
+      // totalscore: '4',
+      // position: '广州市海珠区万寿素社街48号',
+      // contact: '12345678910',
+      // tradedetail: '{"tradeList":[{"id":1,"name":"乒乓球","feature":"3种球桌","price":9},{"id":2,"name":"羽毛球","feature":"朔胶地质，宽敞，干净","price":29}]}',
+      // moreinfo: '免费提供无线WIFI+-+免费提供30个停车位+-+可租购用具',
+      // equipmentList: '{"equipmentList":[{"id":1,"name":"乒乓球","data":[{"name":"大厅乒乓球","device":"双鱼座化工板质球桌","geology":"水泥地板","position":"运动场大厅","price":9,"remain":18}]},{"id":2,"name":"羽毛球","data":[{"name":"露天羽毛球","device":"尤尼吉斯网","geology":"水泥地板","position":"运动场大厅","price":29,"remain":8}]}]}'
       // "equipmentList":[{"name":"大厅乒乓球","device":"双鱼座化工板质球桌","geology":"水泥地板","position":"运动场大厅","price":9,"remain":18},{"name":"露天乒乓球","device":"双喜化工板质球桌","geology":"水泥地板","position":"露天运动广场","price":19,"remain":18},{"name":"混合乒乓球","device":"双鱼座化工板质球桌","geology":"塑料地板","position":"运动场大厅","price":9,"remain":18}]
       // ,{"name":"露天乒乓球","device":"双喜化工板质球桌","geology":"水泥地板","position":"露天运动广场","price":19,"remain":18},{"name":"混合乒乓球","device":"双鱼座化工板质球桌","geology":"塑料地板","position":"运动场大厅","price":9,"remain":18}
     };
@@ -176,9 +202,6 @@ angular.module('starter.controllers.tab.stadium', [])
         $scope.equipmen_type = $scope.equipment[i].name;
       }
     }
-    console.log("equipmentList:", $scope.equipmentList);
-    // console.log("type:", $stateParams.type);
-    // console.log("id:", $stateParams.id);
 
     //   $scope.equipmentList = [
     //     {

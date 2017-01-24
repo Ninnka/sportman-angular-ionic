@@ -119,24 +119,24 @@ angular.module('starter.controllers.tab.my', [])
           if (response.data.resultStatus === "success") {
             $scope.resultFail = false;
 
-            $scope.uil.setUm(response.data.data[0].name);
-            $scope.uil.setSpmid(response.data.data[0].sportmanid);
-            $scope.uil.setAvatar(response.data.data[0].avatar);
+            $scope.uil.setUm(response.data.resultData[0].name);
+            $scope.uil.setSpmid(response.dataresultDdata[0].sportmanid);
+            $scope.uil.setAvatar(response.data.resultData[0].avatar);
             $scope.uil.setEmpty(false);
 
-            $scope.uil.setEmail(response.data.data[0].email);
-            $scope.uil.setPn(response.data.data[0].password);
-            $scope.uil.setGender(response.data.data[0].gender);
+            $scope.uil.setEmail(response.data.resultData[0].email);
+            $scope.uil.setPn(response.data.resultData[0].password);
+            $scope.uil.setGender(response.data.resultData[0].gender);
 
             // storage in local
-            ls.set("usrpassword", response.data.data[0].password);
-            ls.set("usrname", response.data.data[0].name);
-            ls.set("avatar", response.data.data[0].avatar);
-            ls.set("sportmanid", response.data.data[0].sportmanid);
+            ls.set("usrpassword", response.data.resultData[0].password);
+            ls.set("usrname", response.data.resultData[0].name);
+            ls.set("avatar", response.data.resultData[0].avatar);
+            ls.set("sportmanid", response.data.resultData[0].sportmanid);
 
-            ls.set("email", response.data.data[0].email);
-            ls.set("phonenumber", response.data.data[0].mobile);
-            ls.set("gender", response.data.data[0].gender);
+            ls.set("email", response.data.resultData[0].email);
+            ls.set("phonenumber", response.data.resultData[0].mobile);
+            ls.set("gender", response.data.resultData[0].gender);
 
             // console.log("on signinsuccess");
 
@@ -175,7 +175,7 @@ angular.module('starter.controllers.tab.my', [])
     $scope.signupSubmit = function () {
       SignInOrUpFac.signUp($scope.signupInfo.usrname, $scope.signupInfo.usrpassword)
         .then(function resolve(response) {
-          console.log(response.data.data);
+          console.log(response.data.resultData);
           console.log(response.data.resultStatus);
           // console.log(response);
         }, function reject(err) {
@@ -425,7 +425,7 @@ angular.module('starter.controllers.tab.my', [])
         post: "img/tabletenis-star.png",
         trade: "乒乓球、羽毛球",
         opentime: "08:00-22:00",
-        position: "海珠区",
+        area: "海珠区",
         price: 9
     },
       {
@@ -433,7 +433,7 @@ angular.module('starter.controllers.tab.my', [])
         post: "img/shot-stadium.png",
         trade: "台球、射箭、射击",
         opentime: "08:00-19:00",
-        position: "天河区",
+        area: "天河区",
         price: 99
     },
       {
@@ -441,7 +441,7 @@ angular.module('starter.controllers.tab.my', [])
         post: "img/cs-stadium.png",
         trade: "仿真枪机野战",
         opentime: "08:00-18:00",
-        position: "海珠区",
+        area: "海珠区",
         price: 299
     },
       {
@@ -449,7 +449,7 @@ angular.module('starter.controllers.tab.my', [])
         post: "img/bowling-stadium.png",
         trade: "仿真枪机野战",
         opentime: "08:00-18:00",
-        position: "海珠区",
+        area: "海珠区",
         price: 199
     },
       {
@@ -457,7 +457,7 @@ angular.module('starter.controllers.tab.my', [])
         post: "img/skip-stadium.png",
         trade: "乒乓球、羽毛球",
         opentime: "08:00-22:00",
-        position: "海珠区",
+        area: "海珠区",
         price: 9
       }
     ];
