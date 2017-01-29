@@ -130,12 +130,21 @@
   border-radius: 0;
 }
 
+.item-avatar.avatar-absolute-left {
+  padding-left: 1.2rem;
+}
+
+.item-avatar.avatar-absolute-left>img:first-child {
+  max-width: 0.64rem;
+  max-height: 0.64rem;
+}
+
 .item-title-left {
   text-align: left;
 }
 
 .item-title-left>.item-title-md {
-  font-size: 18px;
+  font-size: 0.288rem;
   color: #232323;
 }
 

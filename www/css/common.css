@@ -8,6 +8,9 @@ select,
 textarea {
   font-size: .22rem; }
 
+.icon-note-rem {
+  font-size: .256rem; }
+
 .tabs {
   height: .84rem; }
 

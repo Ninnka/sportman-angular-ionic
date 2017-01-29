@@ -283,11 +283,11 @@
 }
 
 .card-title-time {
-  line-height: 30px;
-  padding: 0 17px;
+  line-height: 0.48rem;
+  padding: 0 0.27rem;
   background: rgb(240, 240, 240);
-  font-size: 16px;
-  border-radius: 4px;
+  font-size: 0.256rem;
+  border-radius: 0.064rem;
 }
 
 .text-align-center>span {
@@ -312,19 +312,19 @@
   bottom: 0;
   line-height: 2.0;
   color: white;
-  font-size: 20px;
+  font-size: 0.32rem;
   width: 100%;
   background: rgba(0, 0, 0, 0.45);
 }
 
 .item-thumbnail-right,
 .item-thumbnail-right .item-content {
-  min-height: 80px;
+  min-height: 1.28rem;
 }
 
 .item-thumbnail-right>img:first-child {
-  max-height: 60px;
-  max-width: 60px;
+  max-height: 0.96rem;
+  max-width: 0.96rem;
 }
 
 .text-align-right {

@@ -120,7 +120,7 @@ angular.module('starter.controllers.tab.my', [])
             $scope.resultFail = false;
 
             $scope.uil.setUm(response.data.resultData[0].name);
-            $scope.uil.setSpmid(response.dataresultDdata[0].sportmanid);
+            $scope.uil.setSpmid(response.data.resultData[0].sportmanid);
             $scope.uil.setAvatar(response.data.resultData[0].avatar);
             $scope.uil.setEmpty(false);
 
@@ -363,7 +363,7 @@ angular.module('starter.controllers.tab.my', [])
         {
           name: "白云山野战场畅玩",
           position: "海珠区",
-          post: "img/marason-star.png",
+          thumbnail: "img/marason-star.png",
           host: "广州体育委员会",
           currentnumber: 11,
           totalnumber: 30,
@@ -373,7 +373,7 @@ angular.module('starter.controllers.tab.my', [])
         {
           name: "广州马拉松",
           position: "白云区",
-          post: "img/shot-star.png",
+          thumbnail: "img/shot-star.png",
           host: "白云山野战场",
           currentnumber: 11,
           totalnumber: 30,
@@ -383,7 +383,7 @@ angular.module('starter.controllers.tab.my', [])
         {
           name: "轮滑逛街活动",
           position: "白云区",
-          post: "img/skip-star.png",
+          thumbnail: "img/skip-star.png",
           host: "阿迪王专业体育用具",
           currentnumber: 11,
           totalnumber: 30,
@@ -393,7 +393,7 @@ angular.module('starter.controllers.tab.my', [])
         {
           name: "荧光夜跑——地",
           position: "白云区",
-          post: "img/tabletenis-star.png",
+          thumbnail: "img/tabletenis-star.png",
           host: "阿迪王专业体育用具",
           currentnumber: 11,
           totalnumber: 30,
@@ -403,7 +403,7 @@ angular.module('starter.controllers.tab.my', [])
         {
           name: "荧光夜跑——地",
           position: "白云区",
-          post: "img/tabletenis-star.png",
+          thumbnail: "img/tabletenis-star.png",
           host: "阿迪王专业体育用具",
           currentnumber: 11,
           totalnumber: 30,
@@ -422,7 +422,7 @@ angular.module('starter.controllers.tab.my', [])
     $scope.stadiumList = [
       {
         name: "胜利运动场（万寿路店）",
-        post: "img/tabletenis-star.png",
+        thumbnail: "img/tabletenis-star.png",
         trade: "乒乓球、羽毛球",
         opentime: "08:00-22:00",
         area: "海珠区",
@@ -430,7 +430,7 @@ angular.module('starter.controllers.tab.my', [])
     },
       {
         name: "广州市射击射箭运动管理中心",
-        post: "img/shot-stadium.png",
+        thumbnail: "img/shot-stadium.png",
         trade: "台球、射箭、射击",
         opentime: "08:00-19:00",
         area: "天河区",
@@ -438,7 +438,7 @@ angular.module('starter.controllers.tab.my', [])
     },
       {
         name: "杰冠真人CS野战基地",
-        post: "img/cs-stadium.png",
+        thumbnail: "img/cs-stadium.png",
         trade: "仿真枪机野战",
         opentime: "08:00-18:00",
         area: "海珠区",
@@ -446,7 +446,7 @@ angular.module('starter.controllers.tab.my', [])
     },
       {
         name: "大世界保龄球馆",
-        post: "img/bowling-stadium.png",
+        thumbnail: "img/bowling-stadium.png",
         trade: "仿真枪机野战",
         opentime: "08:00-18:00",
         area: "海珠区",
@@ -454,7 +454,7 @@ angular.module('starter.controllers.tab.my', [])
     },
       {
         name: "冰河湾真冰溜冰场",
-        post: "img/skip-stadium.png",
+        thumbnail: "img/skip-stadium.png",
         trade: "乒乓球、羽毛球",
         opentime: "08:00-22:00",
         area: "海珠区",
