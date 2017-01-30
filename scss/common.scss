@@ -11,8 +11,12 @@ $assertive: #ef473a;
 $mainTheme: #fb8041;
 $mainThemeTransparent: rgab(251,128,65,0.5);
 
-.item p {
+.item {
   font-size: .256rem;
+
+  p {
+    font-size: .256rem;
+  }
 }
 
 button,
@@ -42,6 +46,15 @@ textarea {
 .tabs-icon-top > .tabs .tab-item,
 .tabs-icon-top.tabs .tab-item {
   font-size: .16rem;
+}
+
+.button {
+  padding: 0 .192rem;
+  min-width: .832rem;
+  min-height: .752rem;
+  border-radius: .064rem;
+  font-size: .256rem;
+  line-height: .672rem;
 }
 
 .content-fix {

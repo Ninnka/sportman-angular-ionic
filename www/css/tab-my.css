@@ -19,8 +19,6 @@
   border-top: 1px solid #EAEAEA;
   border-bottom: 1px solid #CCC;
   color: white;
-  /*background: #FFF;*/
-  /*color: rgb(70, 70, 70);*/
 }
 
 .my-content-user-presentation * {
@@ -91,7 +89,7 @@
 
 .my-content-user-collections {
   background: white;
-  height: 100px;
+  height: 1.5rem;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -107,7 +105,7 @@
 }
 
 .user-collections {
-  height: 60px;
+  height: .96rem;
   border-right: 1px solid #CCC;
   text-align: center;
 }
@@ -117,7 +115,7 @@
 }
 
 .user-collections img {
-  width: 34px;
+  width: .544rem;
 }
 
 .user-collections>a {
@@ -345,7 +343,6 @@
 .bubble-item>img {
   max-width: 0.64rem;
   max-height: 0.64rem;
-  /*padding: 20px;*/
   border-radius: 20px;
   float: left;
 }
@@ -357,7 +354,6 @@
   padding: 0.16rem;
   border-radius: 0.16rem;
   border: 1px solid rgba(100, 100, 100, 0.2);
-  /*box-shadow: 0 0 10px 0 rgb(200, 200, 200);*/
 }
 
 .bubble-item>div p:nth-child(2) {
@@ -390,7 +386,6 @@
   text-align: left;
   width: 100%;
   height: 60%;
-  /*margin: 0 auto;*/
   font-size: 18px;
   padding: 12px 16px;
 }
@@ -570,8 +565,8 @@
 }
 
 .ion-ajust-symbolsize>img {
-  max-width: 22px;
-  margin-left: 5px;
+  max-width: .352rem;
+  margin-left: .08rem;
 }
 
 .content-topborder {
