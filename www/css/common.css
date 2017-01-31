@@ -35,6 +35,9 @@ textarea {
   font-size: .256rem;
   line-height: .672rem; }
 
+.scroll-content {
+  background: #f5f5f5; }
+
 .content-fix {
   position: fixed;
   z-index: 3; }

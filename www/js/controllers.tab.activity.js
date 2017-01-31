@@ -237,13 +237,13 @@ angular.module('starter.controllers.tab.activity', [])
   }])
 
   // 主页商品详细页面控制器
-  .controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'api', function ($scope, $rootScope, $stateParams, getData, api) {
+  .controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'stateGo', 'api', function ($scope, $rootScope, $stateParams, getData, stateGo, api) {
 
     $scope.viewTitle = "活动详细";
     $scope.activity_id = $stateParams.id;
     $scope.type = $stateParams.type;
-    // console.log("$scope.activity_id:", $scope.activity_id);
-    // console.log("$scope.type:", $scope.type);
+    console.log("$scope.activity_id:", $scope.activity_id);
+    console.log("$scope.type:", $scope.type);
 
     $scope.activity = {};
 
@@ -260,35 +260,60 @@ angular.module('starter.controllers.tab.activity', [])
     };
     $scope.getActivityInfo();
 
+    // 参加活动
     $scope.attendActivity = function () {
+      // todo
+      stateGo.goToState('registration-instruction', {
+        id: $scope.activity_id,
+        type: $scope.type
+      });
+    };
+
+    // 退出活动
+    $scope.exitActivity = function () {
       // todo
     };
 
+    // 添加点赞
     $scope.addStar = function () {
       // todo
     };
 
+    // 添加推荐
     $scope.addRecommend = function () {
       // todo
     };
   }])
 
   // 报名参加活动
-  .controller('RegistrationInstructionCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+  .controller('RegistrationInstructionCtrl', ['$scope', '$stateParams', 'stateGo', function ($scope, $stateParams, stateGo) {
+
+    $scope.activity_id = $stateParams.id;
+    $scope.type = $stateParams.type;
+    console.log("$scope.activity_id:", $scope.activity_id);
+    console.log("$scope.type:", $scope.type);
 
     $scope.isAgree = false;
 
     $scope.agreeTreaty = function () {
       // todo
       if ($scope.isAgree) {
-        stateGo.goToState("registration-information");
+        stateGo.goToState("registration-information", {
+          id: $scope.activity_id,
+          type: $scope.type
+        });
       } else {
         alert("请阅读并同意协议后才能进行下一步操作");
       }
     };
   }])
 
-  .controller('RegistrationInformationCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+  .controller('RegistrationInformationCtrl', ['$scope', '$stateParams', 'stateGo', function ($scope, $stateParams, stateGo) {
+
+    $scope.activity_id = $stateParams.id;
+    $scope.type = $stateParams.type;
+    console.log("$scope.activity_id:", $scope.activity_id);
+    console.log("$scope.type:", $scope.type);
 
     $scope.information = {
       // todo
@@ -296,18 +321,33 @@ angular.module('starter.controllers.tab.activity', [])
 
     $scope.submitInformation = function () {
       // todo
-      stateGo.goToState("registration-complete");
+      stateGo.goToState("registration-complete", {
+        id: $scope.activity_id,
+        type: $scope.type
+      });
     };
   }])
 
-  .controller('RegistrationCompleteCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  .controller('RegistrationCompleteCtrl', ['$scope', '$rootScope', '$stateParams', 'stateGo', function ($scope, $rootScope, $stateParams, stateGo) {
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
     });
+
+    $scope.activity_id = $stateParams.id;
+    $scope.type = $stateParams.type;
+    console.log("$scope.activity_id:", $scope.activity_id);
+    console.log("$scope.type:", $scope.type);
 
     $scope.showNotification = true;
 
     $scope.closeNotification = function () {
       $scope.showNotification = !$scope.showNotification;
+    };
+
+    $scope.complete = function () {
+      stateGo.goToState('detail_activity', {
+        id: $scope.activity_id,
+        type: $scope.type
+      }, "back");
     };
   }]);

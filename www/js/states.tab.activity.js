@@ -30,6 +30,10 @@ angular.module('starter.states.tab.activity', [])
     .state('registration-instruction', {
       cache: false,
       url: '/registration/instruction',
+      params: {
+        type: "",
+        id: 0
+      },
       views: {
         'index': {
           templateUrl: 'templates/tab-activity/register/instruction.html',
@@ -40,6 +44,10 @@ angular.module('starter.states.tab.activity', [])
     .state('registration-information', {
       cache: false,
       url: '/registration/information',
+      params: {
+        type: "",
+        id: 0
+      },
       views: {
         'index': {
           templateUrl: 'templates/tab-activity/register/information.html',
@@ -50,6 +58,10 @@ angular.module('starter.states.tab.activity', [])
     .state('registration-complete', {
       cache: false,
       url: '/registration/complete',
+      params: {
+        type: "",
+        id: 0
+      },
       views: {
         'index': {
           templateUrl: 'templates/tab-activity/register/complete.html',

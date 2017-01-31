@@ -126,7 +126,7 @@ angular.module('starter.services', [])
 
   .factory("stateGo", function ($rootScope, $state) {
     return {
-      goToState: function (target, data) {
+      goToState: function (target, data, animation) {
         // if (data !== undefined) {
         // } else {
         //   $state.go(target);
@@ -136,8 +136,11 @@ angular.module('starter.services', [])
         //   console.log(data.id);
         // }
         $state.go(target, data);
-
-        $rootScope.inAnimation();
+        if (animation === "back") {
+          $rootScope.outAnimation();
+        } else {
+          $rootScope.inAnimation();
+        }
       }
     };
   })
@@ -153,6 +156,7 @@ angular.module('starter.services', [])
 
   .factory('api', function () {
     return {
+      sportman_pic_prefix: "http://ok7pzw2ak.bkt.clouddn.com/",
       activity_home: "http://localhost/sportman/activity_home.php",
       activity_detail: "http://localhost/sportman/activity_detail.php",
       stadium_home: "http://localhost/sportman/stadium_home.php",
