@@ -230,10 +230,10 @@
   margin-top: 2px;
   margin-left: 5px; }
   .horizon-grid .vertical-text-main-sub > p:nth-child(1) {
-    margin-bottom: 4px;
-    font-size: .17rem;
+    margin-bottom: 0;
+    font-size: .20rem;
     color: #383838; }
   .horizon-grid .vertical-text-main-sub > p:nth-child(2) {
     margin-bottom: 0;
-    font-size: .14rem;
+    font-size: .17rem;
     color: #232323; }

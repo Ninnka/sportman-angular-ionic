@@ -329,14 +329,14 @@ $littletransparent: rgba(180, 180, 180, .9);
     margin-left: 5px;
 
     > p:nth-child(1) {
-      margin-bottom: 4px;
-      font-size: .17rem;
+      margin-bottom: 0;
+      font-size: .20rem;
       color: #383838;
     }
 
     > p:nth-child(2) {
       margin-bottom: 0;
-      font-size: .14rem;
+      font-size: .17rem;
       color: #232323;
     }
   }
