@@ -14,16 +14,16 @@
     <div class="list list-no-margin">
       <div class="item item-input-inset">
         <label class="item-input-wrapper">
-          <input type="text" placeholder="场馆" ng-model="key">
+          <input class="item-input-block" type="text" placeholder="场馆" ng-model="searchInfo.key">
         </label>
-        <button class="button button-small">
+        <button class="button search-button button-positive button-small" ng-click="search()">
           搜索
         </button>
       </div>
     </div>
 
-    <div search-waiting ng-show="key === ''"></div>
-    <search-stadium ng-show="key !== ''"></search-stadium>
+    <div search-waiting ng-show="searchInfo.key === '' && stadiumList.length === 0"></div>
+    <search-stadium ng-show="stadiumList.length > 0"></search-stadium>
 
   </ion-content>
 

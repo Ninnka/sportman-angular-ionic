@@ -108,10 +108,11 @@ angular.module('starter.services', [])
 
   .factory("getData", ['$http', function ($http) {
     return {
-      get: function (url) {
+      get: function (url, params) {
         return $http({
           method: "GET",
-          url
+          url,
+          params: params
         });
       },
       post: function (url, data) {
@@ -160,7 +161,10 @@ angular.module('starter.services', [])
       activity_home: "http://localhost/sportman/activity_home.php",
       activity_detail: "http://localhost/sportman/activity_detail.php",
       stadium_home: "http://localhost/sportman/stadium_home.php",
-      stadium_detail: "http://localhost/sportman/stadium_detail.php"
+      stadium_detail: "http://localhost/sportman/stadium_detail.php",
+      stadium_detail_equipment: "http://localhost/sportman/stadium_detail_equipment.php",
+      search_activity: "http://localhost/sportman/search_activity.php",
+      search_stadium: "http://localhost/sportman/search_stadium.php"
     };
   })
 

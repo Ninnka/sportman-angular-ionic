@@ -6,7 +6,6 @@ angular.module('starter.controllers.common', [])
    */
   .controller('ionNavButtonsGoCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', function ($scope, $rootScope, $state, $ionicHistory) {
     $scope.toBackView = function () {
-      console.log("back in ionNavButtonsGoCtrl");
       if ($scope.target === undefined || $scope.target === '') {
         $ionicHistory.goBack(-1);
       } else {
@@ -66,78 +65,55 @@ angular.module('starter.controllers.common', [])
     };
   }])
 
-  .controller('searchActivityCtrl', ['$scope', function ($scope) {
-    $scope.key = "";
+  .controller('searchActivityCtrl', ['$scope', 'getData', 'api', function ($scope, getData, api) {
+    $scope.searchInfo = {
+      key: ""
+    };
+    $scope.activityList = [];
 
     $scope.hotSearch = [
-    '彩色跑',
-    '荧光跑',
-    '野外枪战',
-    '乒乓球',
-    '羽毛球',
-    '白云山射击场',
-    '胜利体育馆'
-  ];
+      '彩色跑',
+      '荧光跑',
+      '野外枪战',
+      '乒乓球',
+      '羽毛球',
+      '白云山射击场',
+      '胜利体育馆'
+    ];
 
     $scope.historySearch = [
-    '彩色跑',
-    '胜利体育馆',
-    '野外枪战',
-    '荧光跑'
-  ];
-
-    $scope.hasHistorySearch = $scope.historySearch.length > 0;
+      '彩色跑',
+      '胜利体育馆',
+      '野外枪战',
+      '荧光跑'
+    ];
 
     $scope.clearHistorySearch = function () {
-
+      $scope.historySearch = [];
     };
 
-    $scope.activityList = [
-      {
-        name: "白云山野战场畅玩",
-        position: "海珠区",
-        post: "img/marason-star.png",
-        host: "广州体育委员会",
-        currentnumber: 11,
-        totalnumber: 30,
-        price: 99,
-        starttime: "1484396287893"
-    },
-      {
-        name: "广州马拉松",
-        position: "白云区",
-        post: "img/shot-star.png",
-        host: "白云山野战场",
-        currentnumber: 11,
-        totalnumber: 30,
-        price: 199,
-        starttime: "1484396287893"
-    },
-      {
-        name: "轮滑逛街活动",
-        position: "白云区",
-        post: "img/skip-star.png",
-        host: "阿迪王专业体育用具",
-        currentnumber: 11,
-        totalnumber: 30,
-        price: 199,
-        starttime: "1484396287893"
-    },
-      {
-        name: "荧光夜跑——地",
-        position: "白云区",
-        post: "img/tabletenis-star.png",
-        host: "阿迪王专业体育用具",
-        currentnumber: 11,
-        totalnumber: 30,
-        price: 199,
-        starttime: "1484396287893"
+    $scope.search = function () {
+      if ($scope.searchInfo.key !== "") {
+        getData.get(api.search_activity, {
+            name: $scope.searchInfo.key
+          })
+          .then(function resolve(res) {
+            console.log("res.data:", res.data);
+            $scope.activityList = res.data.resultData;
+          }, function reject(err) {
+            console.log("err:", err);
+          });
+      } else {
+        alert('搜索内容不能为空');
       }
-    ];
+    };
   }])
 
-  .controller('searchStadiumCtrl', ['$scope', function ($scope) {
-    $scope.key = "";
+  .controller('searchStadiumCtrl', ['$scope', 'getData', 'api', function ($scope, getData, api) {
+    $scope.searchInfo = {
+      key: ""
+    };
+    $scope.stadiumList = [];
 
     $scope.hotSearch = [
     '运动场',
@@ -156,54 +132,26 @@ angular.module('starter.controllers.common', [])
     '运动场'
   ];
 
-    $scope.hasHistorySearch = $scope.historySearch.length > 0;
-
     $scope.clearHistorySearch = function () {
-
+      $scope.historySearch = [];
     };
 
-    $scope.stadiumList = [
-      {
-        stadiumname: "胜利运动场（万寿路店）",
-        stadiumpost: "img/tabletenis-star.png",
-        stadiumtrade: "乒乓球、羽毛球",
-        stadiumopentime: "08:00-22:00",
-        stadiumposition: "海珠区",
-        stadiumprice: 9
-    },
-      {
-        stadiumname: "广州市射击射箭运动管理中心",
-        stadiumpost: "img/shot-stadium.png",
-        stadiumtrade: "台球、射箭、射击",
-        stadiumopentime: "08:00-19:00",
-        stadiumposition: "天河区",
-        stadiumprice: 99
-    },
-      {
-        stadiumname: "杰冠真人CS野战基地",
-        stadiumpost: "img/cs-stadium.png",
-        stadiumtrade: "仿真枪机野战",
-        stadiumopentime: "08:00-18:00",
-        stadiumposition: "海珠区",
-        stadiumprice: 299
-    },
-      {
-        stadiumname: "大世界保龄球馆",
-        stadiumpost: "img/bowling-stadium.png",
-        stadiumtrade: "仿真枪机野战",
-        stadiumopentime: "08:00-18:00",
-        stadiumposition: "海珠区",
-        stadiumprice: 199
-    },
-      {
-        stadiumname: "冰河湾真冰溜冰场",
-        stadiumpost: "img/skip-stadium.png",
-        stadiumtrade: "乒乓球、羽毛球",
-        stadiumopentime: "08:00-22:00",
-        stadiumposition: "海珠区",
-        stadiumprice: 9
+    $scope.search = function () {
+      if ($scope.searchInfo.key !== "") {
+        getData.get(api.search_stadium, {
+            name: $scope.searchInfo.key
+          })
+          .then(function resolve(res) {
+            console.log("res.data:", res.data);
+            $scope.stadiumList = res.data.resultData;
+          }, function reject(err) {
+            console.log("err:", err);
+          });
+      } else {
+        alert('搜索内容不能为空');
       }
-    ];
+    };
+
   }])
 
   .controller('reviewCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {

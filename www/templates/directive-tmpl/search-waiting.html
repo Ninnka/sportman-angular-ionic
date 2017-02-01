@@ -13,7 +13,7 @@
     <li ng-repeat="item in hotSearch track by $index" ng-click="">{{ item }}</li>
   </ul>
 
-  <p class="theme-title">历史搜索</p>
+  <p class="theme-title" ng-show="historySearch.length > 0">历史搜索</p>
   <ul class="list">
 
     <li ng-repeat="item in historySearch track by $index">
@@ -22,7 +22,7 @@
         <span>{{item}}</span>
       </a>
     </li>
-    <li class="item text-align-center" ng-show="hasHistorySearch" ng-click="clearHistorySearch()">清除历史</li>
+    <li class="item text-align-center" ng-show="historySearch.length > 0" ng-click="clearHistorySearch()">清除历史</li>
 
   </ul>
 </div>

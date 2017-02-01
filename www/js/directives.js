@@ -363,25 +363,16 @@ angular.module('starter.directives', [])
     };
   })
 
-  .directive('tradeDetail', function () {
-    return {
-      restrict: 'EA',
-      templateUrl: 'templates/directive-tmpl/tradedetail.html',
-      replace: true,
-      scope: {
-        tradedetail: "@"
-      },
-      link: function (scope, element, attrs) {
-        scope.tradeList = {};
-        scope.$watch('tradedetail', function (newValue, oldValue, scope) {
-          if (scope.tradedetail !== "") {
-            var data = JSON.parse(scope.tradedetail);
-            scope.tradeList = data.tradeList;
-          }
-        });
-      }
-    };
-  })
+  // .directive('tradeDetail', function () {
+  //   return {
+  //     restrict: 'EA',
+  //     templateUrl: 'templates/directive-tmpl/tradedetail.html',
+  //     replace: true,
+  //     link: function (scope, element, attrs) {
+  //
+  //     }
+  //   };
+  // })
 
   .directive('moreInfo', function () {
     return {

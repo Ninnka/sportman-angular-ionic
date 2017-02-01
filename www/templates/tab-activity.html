@@ -6,7 +6,6 @@
   </ion-nav-buttons>
 
   <ion-nav-buttons side="right">
-    <!-- <img ng-src="img/scan.png" alt="" class="custom-nav-button-img" ng-click="openScanCamara()"> -->
     <a nav-direction="forward" ng-href="#/search/activity">
       <img ng-src="img/search.png" alt="" class="custom-nav-button-img">
     </a>
@@ -14,9 +13,9 @@
 
   <ion-content>
     <ion-slide-box class="slide-box" on-slide-changed="slideHasChanged($index)" does-continue="true" slide-interval="2000" auto-play="true">
-      <ion-slide ng-repeat="banneritem in bannerList">
-        <a ng-href="#/detail/activity" nav-direction="forward">
-          <img ng-src="{{banneritem.post}}" alt="">
+      <ion-slide ng-repeat="bannerItem in bannerList">
+        <a ng-click="toDetail(bannerItem.id_activity)">
+          <img ng-src="{{bannerItem.post}}" alt="">
         </a>
       </ion-slide>
     </ion-slide-box>

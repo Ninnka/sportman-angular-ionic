@@ -130,19 +130,20 @@ angular.module('starter.controllers.tab.stadium', [])
 }])
 
   .controller('DetailStadiumCtrl', ['$scope', '$stateParams', 'stateGo', 'getData', 'api', function ($scope, $stateParams, stateGo, getData, api) {
+    $scope.stadium = {};
 
     $scope.viewTitle = "场馆详情";
 
     $scope.type = $stateParams.type;
     $scope.stadium_id = $stateParams.id;
 
-    $scope.bookStadium = function (trade_id) {
-      console.log("bookStadium");
+    $scope.bookStadium = function (trade_id, trade_name) {
+      console.log("bookStadiu trade_name:", trade_name);
       stateGo.goToState("detail_stadium_book-list", {
         type: $scope.type,
+        name: trade_name,
         id: $scope.stadium.id,
-        trade_id: trade_id,
-        equipmentList: $scope.stadium.equipmentList
+        trade_id: trade_id
       });
     };
 
@@ -166,69 +167,29 @@ angular.module('starter.controllers.tab.stadium', [])
     };
     $scope.getStadiumInfo();
 
-    $scope.stadium = {
-      // id: 1,
-      // name: '胜利运动场（万寿路店）',
-      // post: 'img/stadium-post.png',
-      // trade: '乒乓球，羽毛球',
-      // opentime: '08:00 - 22:00',
-      // area: '海珠区',
-      // price: '9',
-      // hostavatar: 'img/stadium-hostavatar.png',
-      // totalscore: '4',
-      // position: '广州市海珠区万寿素社街48号',
-      // contact: '12345678910',
-      // tradedetail: '{"tradeList":[{"id":1,"name":"乒乓球","feature":"3种球桌","price":9},{"id":2,"name":"羽毛球","feature":"朔胶地质，宽敞，干净","price":29}]}',
-      // moreinfo: '免费提供无线WIFI+-+免费提供30个停车位+-+可租购用具',
-      // equipmentList: '{"equipmentList":[{"id":1,"name":"乒乓球","data":[{"name":"大厅乒乓球","device":"双鱼座化工板质球桌","geology":"水泥地板","position":"运动场大厅","price":9,"remain":18}]},{"id":2,"name":"羽毛球","data":[{"name":"露天羽毛球","device":"尤尼吉斯网","geology":"水泥地板","position":"运动场大厅","price":29,"remain":8}]}]}'
-      // "equipmentList":[{"name":"大厅乒乓球","device":"双鱼座化工板质球桌","geology":"水泥地板","position":"运动场大厅","price":9,"remain":18},{"name":"露天乒乓球","device":"双喜化工板质球桌","geology":"水泥地板","position":"露天运动广场","price":19,"remain":18},{"name":"混合乒乓球","device":"双鱼座化工板质球桌","geology":"塑料地板","position":"运动场大厅","price":9,"remain":18}]
-      // ,{"name":"露天乒乓球","device":"双喜化工板质球桌","geology":"水泥地板","position":"露天运动广场","price":19,"remain":18},{"name":"混合乒乓球","device":"双鱼座化工板质球桌","geology":"塑料地板","position":"运动场大厅","price":9,"remain":18}
-    };
   }])
 
-  .controller('BooklistStadiumCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+  .controller('BooklistStadiumCtrl', ['$scope', '$stateParams', 'getData', 'api', function ($scope, $stateParams, getData, api) {
+    $scope.equipmentList = [];
+
     $scope.type = $stateParams.type;
     $scope.id = $stateParams.id;
-    $scope.equipmentListStr = $stateParams.equipmentList;
     $scope.trade_id = $stateParams.trade_id;
-    $scope.equipmen_type = "";
-    if ($scope.equipmentListStr !== null && $scope.equipmentListStr !== "") {
-      $scope.equipment = JSON.parse($scope.equipmentListStr)
-        .equipmentList;
-    }
-    for (var i = 0; i < $scope.equipment.length; i++) {
-      if ($scope.equipment[i].id == $scope.trade_id) {
-        $scope.equipmentList = $scope.equipment[i].data;
-        $scope.equipmen_type = $scope.equipment[i].name;
-      }
-    }
+    $scope.equipmen_type = $stateParams.name;
 
-    //   $scope.equipmentList = [
-    //     {
-    //       name: "大厅桌球",
-    //       device: "双鱼座化工板质球桌",
-    //       geology: "水泥地板",
-    //       position: "运动场大厅",
-    //       price: 9,
-    //       remain: 18
-    //   },
-    //     {
-    //       name: "大厅桌球",
-    //       device: "双鱼座化工板质球桌",
-    //       geology: "水泥地板",
-    //       position: "运动场大厅",
-    //       price: 19,
-    //       remain: 30
-    //   },
-    //     {
-    //       name: "大厅桌球",
-    //       device: "双鱼座化工板质球桌",
-    //       geology: "水泥地板",
-    //       position: "运动场大厅",
-    //       price: 59,
-    //       remain: 10
-    //   }
-    // ];
+
+    $scope.getEquipmentList = function () {
+      getData.post(api.stadium_detail_equipment, {
+          id: $scope.trade_id
+        })
+        .then(function resolve(res) {
+          $scope.equipmentList = res.data.resultData;
+        }, function reject(err) {
+          console.log("err:", err);
+        });
+    };
+    $scope.getEquipmentList();
+
 }])
 
   .controller('BookselectStadiumCtrl', ['$scope', '$stateParams', '$cordovaDialogs', 'stateGo', function ($scope, $stateParams, $cordovaDialogs, stateGo) {

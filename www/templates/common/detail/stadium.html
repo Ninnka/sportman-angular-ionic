@@ -38,7 +38,15 @@
         场地预定
       </div>
       <ul class="list">
-        <trade-detail tradedetail="{{stadium.tradedetail}}" ng-show="stadium.tradedetail !== ''"></trade-detail>
+        <!-- <trade-detail ng-show="stadium.tradedetail !== ''"></trade-detail> -->
+        <li class="item with-right-icon" ng-repeat="trade in stadium.tradedetail track by $index" ng-click="bookStadium(trade.id, trade.name)">
+          <div>
+            <p class="text-main-dark text-main-notifi">{{trade.name}}</p>
+            <p class="text-sub-gray">{{trade.feature}}</p>
+            <p class="assertive">{{trade.price}} ￥/小时</p>
+          </div>
+          <img ng-src="img/arrow-right-icon-gray.png" alt="" class="right-icon">
+        </li>
       </ul>
     </div>
 

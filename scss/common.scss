@@ -456,3 +456,19 @@ p.assertive {
 .header-item {
   font-size: .272rem !important;
 }
+
+.button.search-button {
+  min-width: .6rem;
+  min-height: .4rem;
+  width: .8rem;
+  height: .5rem;
+  font-size: .22rem;
+  line-height: .5rem;
+  padding: 0 .1rem;
+}
+
+.item-input-wrapper {
+  .item-input-block {
+    width: 100%;
+  }
+}
