@@ -157,14 +157,27 @@ angular.module('starter.services', [])
 
   .factory('api', function () {
     return {
-      sportman_pic_prefix: "http://ok7pzw2ak.bkt.clouddn.com/",
-      activity_home: "http://localhost/sportman/activity_home.php",
-      activity_detail: "http://localhost/sportman/activity_detail.php",
-      stadium_home: "http://localhost/sportman/stadium_home.php",
-      stadium_detail: "http://localhost/sportman/stadium_detail.php",
-      stadium_detail_equipment: "http://localhost/sportman/stadium_detail_equipment.php",
-      search_activity: "http://localhost/sportman/search_activity.php",
-      search_stadium: "http://localhost/sportman/search_stadium.php"
+      sportman_pic_prefix: 'http://ok7pzw2ak.bkt.clouddn.com/',
+      activity_home: 'http://localhost/sportman/activity_home.php',
+      activity_detail: 'http://localhost/sportman/activity_detail.php',
+      stadium_home: 'http://localhost/sportman/stadium_home.php',
+      stadium_detail: 'http://localhost/sportman/stadium_detail.php',
+      stadium_detail_equipment: 'http://localhost/sportman/stadium_detail_equipment.php',
+      search_activity: 'http://localhost/sportman/search_activity.php',
+      search_stadium: 'http://localhost/sportman/search_stadium.php',
+      setting_sportmanid: 'http://localhost/sportman/setting_sportmanid.php',
+      setting_changepassword: 'http://localhost/sportman/setting_changepassword.php',
+      setting_changemobile: 'http://localhost/sportman/setting_changemobile.php',
+      setting_email: 'http://localhost/sportman/setting_email.php',
+      user_activity_recommend: 'http://localhost/sportman/user_activity_recommend.php',
+      user_activity: 'http://localhost/sportman/user_activity.php',
+      user_stadium: 'http://localhost/sportman/user_stadium.php',
+      user_stadium_recommend: 'http://localhost/sportman/user_stadium_recommend.php',
+      user_activity_star: 'http://localhost/sportman/user_activity_star.php',
+      user_review: 'http://localhost/sportman/user_review.php',
+      user_payment_activity: 'http://localhost/sportman/user_payment_activity.php',
+      user_payment_stadium: 'http://localhost/sportman/user_payment_stadium.php',
+      user_payment_all: 'http://localhost/sportman/user_payment_all.php'
     };
   })
 
