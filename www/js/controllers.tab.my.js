@@ -119,6 +119,7 @@ angular.module('starter.controllers.tab.my', [])
           if (response.data.resultStatus === "success") {
             $scope.resultFail = false;
 
+            $scope.uil.setid(response.data.resultData[0].id);
             $scope.uil.setUm(response.data.resultData[0].name);
             $scope.uil.setSpmid(response.data.resultData[0].sportmanid);
             $scope.uil.setAvatar(response.data.resultData[0].avatar);
@@ -129,6 +130,7 @@ angular.module('starter.controllers.tab.my', [])
             $scope.uil.setGender(response.data.resultData[0].gender);
 
             // storage in local
+            ls.set("id", response.data.resultData[0].id);
             ls.set("usrpassword", response.data.resultData[0].password);
             ls.set("usrname", response.data.resultData[0].name);
             ls.set("avatar", response.data.resultData[0].avatar);

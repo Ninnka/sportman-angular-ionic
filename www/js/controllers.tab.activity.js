@@ -166,6 +166,7 @@ angular.module('starter.controllers.tab.activity', [])
             // console.log("success");
             $rootScope.globalSignSymbol = true;
 
+            $scope.uil.setid(response.data.resultData[0].id);
             $scope.uil.setUm(response.data.resultData[0].name);
             $scope.uil.setSpmid(response.data.resultData[0].sportmanid);
             $scope.uil.setAvatar(response.data.resultData[0].avatar);
@@ -177,6 +178,7 @@ angular.module('starter.controllers.tab.activity', [])
 
             // console.log("UsrInfoLocal.sportmanid: " + UsrInfoLocal.sportmanid);
 
+            ls.set("id", response.data.resultData[0].id);
             ls.set("usrpassword", response.data.resultData[0].password);
             ls.set("usrname", response.data.resultData[0].name);
             ls.set("avatar", response.data.resultData[0].avatar);
@@ -194,7 +196,7 @@ angular.module('starter.controllers.tab.activity', [])
   }])
 
   // 主页控制器
-  .controller('ActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', '$ionicSlideBoxDelegate', 'stateGo', function ($scope, $rootScope, getData, api, $ionicSlideBoxDelegate, stateGo) {
+  .controller('ActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', '$ionicSlideBoxDelegate', 'stateGo', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, $ionicSlideBoxDelegate, stateGo, UsrInfoLocal) {
 
     // $scope.$on("$ionicView.enter", function () {
     //   $rootScope.clearHistory();
@@ -228,31 +230,32 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.getActivityData();
     $scope.firstEnter = false;
 
-    $scope.toDetail = function (activity_id) {
+    $scope.toDetail = function (id_activity) {
       stateGo.goToState('detail_activity', {
         type: "activity",
-        id: activity_id
+        id_activity: id_activity
       });
     };
   }])
 
   // 主页商品详细页面控制器
-  .controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'stateGo', 'api', function ($scope, $rootScope, $stateParams, getData, stateGo, api) {
+  .controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'stateGo', 'api', 'UsrInfoLocal', function ($scope, $rootScope, $stateParams, getData, stateGo, api, UsrInfoLocal) {
 
     $scope.viewTitle = "活动详细";
-    $scope.activity_id = $stateParams.id;
+    $scope.id_activity = $stateParams.id_activity;
     $scope.type = $stateParams.type;
-    console.log("$scope.activity_id:", $scope.activity_id);
-    console.log("$scope.type:", $scope.type);
+    // console.log("$scope.id_activity:", $scope.id_activity);
+    // console.log("$scope.type:", $scope.type);
 
     $scope.activity = {};
 
     $scope.getActivityInfo = function () {
       getData.post(api.activity_detail, {
-          id: $scope.activity_id
+          id: UsrInfoLocal.id,
+          id_activity: $scope.id_activity
         })
         .then(function resolve(res) {
-          // console.log("res.data:", res.data);
+          console.log("res.data:", res.data);
           $scope.activity = res.data.resultData;
         }, function reject(err) {
           console.log("err:", err);
@@ -264,7 +267,7 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.attendActivity = function () {
       // todo
       stateGo.goToState('registration-instruction', {
-        id: $scope.activity_id,
+        id_activity: $scope.id_activity,
         type: $scope.type
       });
     };
@@ -288,10 +291,10 @@ angular.module('starter.controllers.tab.activity', [])
   // 报名参加活动
   .controller('RegistrationInstructionCtrl', ['$scope', '$stateParams', 'stateGo', function ($scope, $stateParams, stateGo) {
 
-    $scope.activity_id = $stateParams.id;
+    $scope.id_activity = $stateParams.id_activity;
     $scope.type = $stateParams.type;
-    console.log("$scope.activity_id:", $scope.activity_id);
-    console.log("$scope.type:", $scope.type);
+    // console.log("$scope.activity_id:", $scope.activity_id);
+    // console.log("$scope.type:", $scope.type);
 
     $scope.isAgree = false;
 
@@ -299,7 +302,7 @@ angular.module('starter.controllers.tab.activity', [])
       // todo
       if ($scope.isAgree) {
         stateGo.goToState("registration-information", {
-          id: $scope.activity_id,
+          id_activity: $scope.id_activity,
           type: $scope.type
         });
       } else {
@@ -310,10 +313,8 @@ angular.module('starter.controllers.tab.activity', [])
 
   .controller('RegistrationInformationCtrl', ['$scope', '$stateParams', 'stateGo', function ($scope, $stateParams, stateGo) {
 
-    $scope.activity_id = $stateParams.id;
+    $scope.id_activity = $stateParams.id_activity;
     $scope.type = $stateParams.type;
-    console.log("$scope.activity_id:", $scope.activity_id);
-    console.log("$scope.type:", $scope.type);
 
     $scope.information = {
       // todo
@@ -322,7 +323,7 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.submitInformation = function () {
       // todo
       stateGo.goToState("registration-complete", {
-        id: $scope.activity_id,
+        id_activity: $scope.id_activity,
         type: $scope.type
       });
     };
@@ -333,10 +334,8 @@ angular.module('starter.controllers.tab.activity', [])
       $rootScope.clearHistory();
     });
 
-    $scope.activity_id = $stateParams.id;
+    $scope.id_activity = $stateParams.id_activity;
     $scope.type = $stateParams.type;
-    console.log("$scope.activity_id:", $scope.activity_id);
-    console.log("$scope.type:", $scope.type);
 
     $scope.showNotification = true;
 
@@ -346,7 +345,7 @@ angular.module('starter.controllers.tab.activity', [])
 
     $scope.complete = function () {
       stateGo.goToState('detail_activity', {
-        id: $scope.activity_id,
+        id_activity: $scope.id_activity,
         type: $scope.type
       }, "back");
     };

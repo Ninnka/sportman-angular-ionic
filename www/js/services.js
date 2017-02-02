@@ -1,6 +1,7 @@
 angular.module('starter.services', [])
 
   .service("UsrInfoLocal", [function () {
+    this.id = "";
     this.um = "";
     this.sportmanid = "";
     this.avatar = "";
@@ -8,6 +9,9 @@ angular.module('starter.services', [])
     this.pn = "";
     this.gender = "";
     this.empty = true;
+    this.setid = function (id) {
+      this.id = id;
+    };
     this.setUm = function (um) {
       this.um = um;
     };
@@ -30,6 +34,7 @@ angular.module('starter.services', [])
       this.empty = flag;
     };
     this.clear = function () {
+      this.setid("");
       this.setUm("");
       this.setSpmid("");
       this.setAvatar("");

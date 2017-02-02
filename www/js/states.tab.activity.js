@@ -18,7 +18,7 @@ angular.module('starter.states.tab.activity', [])
       url: '/detail/activity',
       params: {
         type: "",
-        id: 0
+        id_activity: 0
       },
       views: {
         'index': {
@@ -32,7 +32,7 @@ angular.module('starter.states.tab.activity', [])
       url: '/registration/instruction',
       params: {
         type: "",
-        id: 0
+        id_activity: 0
       },
       views: {
         'index': {
@@ -46,7 +46,7 @@ angular.module('starter.states.tab.activity', [])
       url: '/registration/information',
       params: {
         type: "",
-        id: 0
+        id_activity: 0
       },
       views: {
         'index': {
@@ -60,7 +60,7 @@ angular.module('starter.states.tab.activity', [])
       url: '/registration/complete',
       params: {
         type: "",
-        id: 0
+        id_activity: 0
       },
       views: {
         'index': {
