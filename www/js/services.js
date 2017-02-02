@@ -177,7 +177,11 @@ angular.module('starter.services', [])
       user_review: 'http://localhost/sportman/user_review.php',
       user_payment_activity: 'http://localhost/sportman/user_payment_activity.php',
       user_payment_stadium: 'http://localhost/sportman/user_payment_stadium.php',
-      user_payment_all: 'http://localhost/sportman/user_payment_all.php'
+      user_payment_all: 'http://localhost/sportman/user_payment_all.php',
+      activity_addstar: 'http://localhost/sportman/activity_addstar.php',
+      stadium_addstar: 'http://localhost/sportman/stadium_addstar.php',
+      activity_addrecommend: 'http://localhost/sportman/activity_addrecommend.php',
+      stadium_addrecommend: 'http://localhost/sportman/stadium_addrecommend.php'
     };
   })
 
