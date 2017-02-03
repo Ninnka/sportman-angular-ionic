@@ -184,11 +184,17 @@ angular.module('starter.services', [])
       user_payment_stadium: 'http://localhost/sportman/user_payment_stadium.php',
       user_payment_all: 'http://localhost/sportman/user_payment_all.php',
       activity_addstar: 'http://localhost/sportman/activity_addstar.php',
-      stadium_addstar: 'http://localhost/sportman/stadium_addstar.php',
       activity_addrecommend: 'http://localhost/sportman/activity_addrecommend.php',
+      activity_removestar: 'http://localhost/sportman/activity_removestar.php',
+      activity_removerecommend: 'http://localhost/sportman/activity_removerecommend.php',
+      activity_createpayment: 'http://localhost/sportman/activity_createpayment.php',
+      activity_deletepayment: 'http://localhost/sportman/activity_deletepayment.php',
+      stadium_addstar: 'http://localhost/sportman/stadium_addstar.php',
       stadium_addrecommend: 'http://localhost/sportman/stadium_addrecommend.php',
-      activity_addpayment: 'http://localhost/sportman/activity_addpayment.php',
-      stadium_addpayment: 'http://localhost/sportman/stadium_addpayment.php'
+      stadium_removestar: 'http://localhost/sportman/stadium_removestar.php',
+      stadium_removerecommend: 'http://localhost/sportman/stadium_removerecommend.php',
+      stadium_createpayment: 'http://localhost/sportman/stadium_createpayment.php',
+      stadium_deletepayment: 'http://localhost/sportman/stadium_deletepayment.php'
     };
   })
 
