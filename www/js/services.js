@@ -194,7 +194,11 @@ angular.module('starter.services', [])
       stadium_removestar: 'http://localhost/sportman/stadium_removestar.php',
       stadium_removerecommend: 'http://localhost/sportman/stadium_removerecommend.php',
       stadium_createpayment: 'http://localhost/sportman/stadium_createpayment.php',
-      stadium_deletepayment: 'http://localhost/sportman/stadium_deletepayment.php'
+      stadium_deletepayment: 'http://localhost/sportman/stadium_deletepayment.php',
+      activity_addreview: 'http://localhost/sportman/activity_addreview.php',
+      stadium_addreview: 'http://localhost/sportman/stadium_addreview.php',
+      activity_reviewlist: 'http://localhost/sportman/activity_reviewlist.php',
+      stadium_reviewlist: 'http://localhost/sportman/stadium_reviewlist.php'
     };
   })
 

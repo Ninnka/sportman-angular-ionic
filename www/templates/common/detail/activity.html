@@ -65,18 +65,10 @@
       </div>
       <div class="item item-text-wrap">
         <div class="long-text">
-          <pre>I. Race Events</pre>
-          <pre>1. Marathon (42.195 km)
-2. Half Marathon (21.0975 km)
-3. Mini Marathon (5 km) </pre>
-          <pre>II. Race Course </pre>
-          <pre>(I) Mini Marathon:
-Huacheng Square (Starting Point) → Linjiang Ave (Eastwards) → Tunnel →Linjiang Ave (Westwards) → Guangzhou Middle Ave.→ Tianhe North Rd. → North Gate, Tianhe Sports Center → Ring Road of Tianhe Stadium →South Gate Square, Tianhe Sports Center (Finishing Point)
-(II) Half Marathon
-Huacheng Square (Starting point) → Linjiang Ave (Eastwards) → U turn at Chebei South Rd. → Linjiang Ave. (Westwards) → Liede Ave → U turn at the top of Huacheng Ave Tunnel. → Liede Bridge →Yuejiang Rd. (Eastwards) → Intersection of Yuejiang Rd. and Huizhan Middle Rd. → Yuejiang Rd (Reserve Direction) → U turn at Yuejiang Rd (under Pazhou Bridge) → Yuejiang Middle Rd (North to the Poly International Plaza, Finishing Point)
-(III) Marathon:
-Huacheng Square (Starting point) → Linjiang Ave (Eastwards) → U turn at Chebei South Rd. → Linjiang Ave. (Westwards) → Liede Ave → U turn at the top of Huacheng Ave Tunnel. → Liede Bridge →Yuejiang Rd. (Eastwards) → U turn at the intersection of Yuejiang Rd. and Huizhan Middle Rd. → Yuejiang Rd (Westwards) → Binjiang East Rd. → U turn at Binjiang Rd. → Binjiang Rd → Yiyuan Rd. → Yizhou Rd. → Binjiang Rd (Westwards) → Hongde Rd. (Southwards) → People Bridge → Yanjiang Rd. (Eastwards) → Datong Rd. (Eastwards) → Tanyue Street → Qingbo Rd. → Hai Xin Sha → No. 1 Bridge of Hai Xin Sha → Linjiang Ave. → Huacheng Square (Finishing Point)
-......</pre>
+          <div ng-repeat="regulartion in activity.regulartion track by $index">
+            <pre>{{regulartion.order_id}}. {{regulartion.title}}</pre>
+            <pre>{{regulartion.content}}</pre>
+          </div>
         </div>
       </div>
     </div>
