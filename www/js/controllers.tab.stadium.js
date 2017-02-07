@@ -61,13 +61,20 @@ angular.module('starter.controllers.tab.stadium', [])
     $scope.getStaidumData = function () {
       getData.get(api.stadium_home)
         .then(function resolve(res) {
-          console.log("res.data", res.data);
-          $scope.stadiumList = res.data.resultData;
+          // console.log("res.data", res.data);
+          $scope.stadiumList = $scope.stadiumList.concat(res.data.resultData);
+          $scope.$broadcast('scroll.infiniteScrollComplete');
         }, function reject(err) {
           console.log("err", err);
         });
     };
     $scope.getStaidumData();
+
+    $scope.loadMoreSymbol = true;
+
+    $scope.loadMoreData = function () {
+      $scope.getStaidumData();
+    };
 
     //   $scope.stadiumList = [
     //     {

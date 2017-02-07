@@ -217,23 +217,6 @@ angular.module('starter.services', [])
     };
   })
 
-  // .factory("getData", function () {
-  //   return {
-  //     p1: {
-  //       pname: "p1",
-  //       page: "12"
-  //     },
-  //     p2: {
-  //       pname: "p2",
-  //       page: "13"
-  //     },
-  //     p3: {
-  //       pname: "p3",
-  //       page: "14"
-  //     }
-  //   };
-  // })
-
   .provider("otherProviderData", function () {
     console.log("initial otherProviderData instance");
     this.$get = function () {

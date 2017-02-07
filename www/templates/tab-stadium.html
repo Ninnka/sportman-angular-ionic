@@ -37,5 +37,7 @@
     <ul class="stream-list">
       <stadium ng-repeat="stadium in stadiumList" ng-click="toDetail(stadium.id)"></stadium>
     </ul>
+
+    <ion-infinite-scroll ng-if="loadMoreSymbol" on-infinite="loadMoreData()" distance="1%" immediate-check="false"></ion-infinite-scroll>
   </ion-content>
 </ion-view>

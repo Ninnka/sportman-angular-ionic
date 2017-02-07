@@ -11,7 +11,7 @@
     </a>
   </ion-nav-buttons>
 
-  <ion-content>
+  <ion-content delegate-handle="activity_home-scroller">
     <ion-slide-box class="slide-box" on-slide-changed="slideHasChanged($index)" does-continue="true" slide-interval="2000" auto-play="true">
       <ion-slide ng-repeat="bannerItem in bannerList">
         <a ng-click="toDetail(bannerItem.id_activity)">
@@ -37,37 +37,11 @@
       </div>
     </div>
 
-    <!-- <div class="thematic-wrapper">
-      <p class="thematic-title">精品推荐</p>
-      <ion-scroll scrollbar-x="false" scrollbar-y="false" zooming="false" direction="x" class="thematic">
-        <div class="thematic-content">
-          <a class="thematic-item-wrapper">
-            <img ng-src="http://img10.360buyimg.com/n4/s130x130_jfs/t3046/266/4474424408/618161/f2cbbcf/5844d109N00395079.jpg!q90.webp" alt="">
-            <p>【京东超市】佳洁士（Crest）3D炫白双效牙膏180g6支装 鹿晗咖啡箱（新老包装随机发货）</p>
-          </a>
-          <a class="thematic-item-wrapper">
-            <img ng-src="http://img11.360buyimg.com/n4/s130x130_jfs/t2773/81/3883922335/60107/344c3834/579eca00N10071b6f.jpg!q90.webp" alt="">
-            <p>华为荣耀盒子Pro 旗舰高清网络机顶盒 电视盒子 4K 杜比+DTS 智能语音 跨屏续播 互补式双天线wifi + 网口</p>
-          </a>
-          <a class="thematic-item-wrapper">
-            <img ng-src="http://img12.360buyimg.com/n4/s130x130_jfs/t2875/11/3548075177/238664/ec9b5330/57903cb1Nf85dc33d.jpg!q90.webp" alt="">
-            <p>惠普（HP）HP346 G3（Y0T51PA）14英寸商务笔记本（i5-5200U 4G 7200转500G 2G独显Win10）香槟金</p>
-          </a>
-          <a class="thematic-item-wrapper">
-            <img ng-src="http://img14.360buyimg.com/n4/s130x130_jfs/t3118/231/1098346103/169767/9ad87fa8/57c67ae5N0ed026c3.jpg!q90.webp" alt="">
-            <p>酷派 cool1 dual 桀骜银 3+32GB版 移动联通电信4G手机 双卡双待</p>
-          </a>
-          <a class="thematic-item-wrapper">
-            <img ng-src="http://img13.360buyimg.com/n4/s130x130_jfs/t2320/129/1248184651/84120/3cbfed38/564ee78cNe6982209.jpg!q90.webp" alt="">
-            <p>日本 Lion/狮王 酵素牙膏 清新薄荷 /儿童 木糖醇米奇防蛀牙膏 CLINICA酵素 清爽薄荷</p>
-          </a>
-        </div>
-      </ion-scroll>
-    </div> -->
-
     <ul class="stream-list">
-      <activity ng-repeat="activity in activityList" ng-click="toDetail(activity.id)"></activity>
+      <activity ng-repeat="activity in activityList track by $index" ng-click="toDetail(activity.id)"></activity>
     </ul>
+
+    <ion-infinite-scroll ng-if="loadMoreSymbol" on-infinite="loadMoreData()" distance="1%" immediate-check="false"></ion-infinite-scroll>
 
   </ion-content>
 </ion-view>

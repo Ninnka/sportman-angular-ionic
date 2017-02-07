@@ -196,7 +196,7 @@ angular.module('starter.controllers.tab.activity', [])
   }])
 
   // 主页控制器
-  .controller('ActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', '$ionicSlideBoxDelegate', 'stateGo', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, $ionicSlideBoxDelegate, stateGo, UsrInfoLocal) {
+  .controller('ActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', '$ionicSlideBoxDelegate', 'stateGo', 'UsrInfoLocal', '$ionicScrollDelegate', function ($scope, $rootScope, getData, api, $ionicSlideBoxDelegate, stateGo, UsrInfoLocal, $ionicScrollDelegate) {
 
     // $scope.$on("$ionicView.enter", function () {
     //   $rootScope.clearHistory();
@@ -205,7 +205,15 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.firstEnter = true;
     $scope.activityList = [];
     $scope.bannerList = [];
-    // $scope.mainGoodsList = [];
+
+    $scope.loadMoreSymbol = true;
+
+    var scroller = $ionicScrollDelegate.$getByHandle('activity_home-scroller');
+
+    $scope.moreDataCanbeLoaded = function () {
+      // todo
+      return true;
+    };
 
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
@@ -220,7 +228,7 @@ angular.module('starter.controllers.tab.activity', [])
           console.log(res);
           $scope.bannerList = res.data.resultData.bannerList;
           $scope.activityList = $scope.activityList.concat(res.data.resultData.activityList);
-
+          // scroller.resize();
           $ionicSlideBoxDelegate.update();
         }, function errorCallback(err) {
           console.log("err:");
@@ -236,6 +244,20 @@ angular.module('starter.controllers.tab.activity', [])
         id_activity: id_activity
       });
     };
+
+    $scope.loadMoreData = function () {
+      console.log("loadMoreData");
+      getData.get(api.activity_home)
+        .then(function successCallback(res) {
+          // console.log(res);
+          $scope.activityList = $scope.activityList.concat(res.data.resultData.activityList);
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        }, function errorCallback(err) {
+          console.log("err:");
+          console.log(err);
+        });
+    };
+
   }])
 
   // 主页商品详细页面控制器
@@ -244,8 +266,6 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.viewTitle = "活动详细";
     $scope.id_activity = $stateParams.id_activity;
     $scope.type = $stateParams.type;
-    // console.log("$scope.id_activity:", $scope.id_activity);
-    // console.log("$scope.type:", $scope.type);
 
     $scope.activity = {};
 
@@ -293,8 +313,6 @@ angular.module('starter.controllers.tab.activity', [])
 
     $scope.id_activity = $stateParams.id_activity;
     $scope.type = $stateParams.type;
-    // console.log("$scope.activity_id:", $scope.activity_id);
-    // console.log("$scope.type:", $scope.type);
 
     $scope.isAgree = false;
 
