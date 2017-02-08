@@ -156,11 +156,13 @@ angular.module('starter.controllers.common', [])
 
   .controller('reviewCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {
     console.log("in review");
-    console.log("type", $stateParams.type);
-    console.log("id", $stateParams.id);
-    $scope.reviewinfo = {
-      type: $stateParams.type,
-      id: $stateParams.id
+    console.log("id_user", $stateParams.id_user);
+    console.log("id_activity", $stateParams.id_activity);
+    $scope.reviewInfo = {
+      id_user: $stateParams.id_user,
+      id_activity: $stateParams.id_activity,
+      review: '',
+      score: 0
     };
   }])
 

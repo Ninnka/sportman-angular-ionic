@@ -12,6 +12,9 @@
   </ion-nav-buttons>
 
   <ion-content delegate-handle="activity_home-scroller">
+
+    <ion-refresher pulling-text="下拉刷新" on-refresh="refreshNewData()"></ion-refresher>
+
     <ion-slide-box class="slide-box" on-slide-changed="slideHasChanged($index)" does-continue="true" slide-interval="2000" auto-play="true">
       <ion-slide ng-repeat="bannerItem in bannerList">
         <a ng-click="toDetail(bannerItem.id_activity)">
@@ -41,7 +44,7 @@
       <activity ng-repeat="activity in activityList track by $index" ng-click="toDetail(activity.id)"></activity>
     </ul>
 
-    <ion-infinite-scroll ng-if="loadMoreSymbol" on-infinite="loadMoreData()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+    <ion-infinite-scroll ng-if="loadMoreSymbol" on-infinite="loadMoreData()" distance="2%" immediate-check="false"></ion-infinite-scroll>
 
   </ion-content>
 </ion-view>

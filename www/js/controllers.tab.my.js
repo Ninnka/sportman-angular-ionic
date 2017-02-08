@@ -200,89 +200,109 @@ angular.module('starter.controllers.tab.my', [])
 
   }])
 
-  .controller('myCollectionsActivityComingCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  .controller('myCollectionsActivityComingCtrl', ['$scope', '$rootScope', 'stateGo', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, stateGo, getData, api, UsrInfoLocal) {
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
     });
 
-    $scope.activityList = [
-      {
-        name: "彩色跑",
-        status: "待举行",
-        post: "img/colorrunning-icon.png",
-        registertime: "1484396287893",
-        starttime: "1484396287893",
-        position: "广州市天河区珠江新城花城广场"
-      }
-    ];
-  }])
+    $scope.activityList = [];
 
-  .controller('myCollectionsActivityInvestigatingCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-    $scope.$on("$ionicView.enter", function () {
-      $rootScope.clearHistory();
-    });
-    $scope.activityList = [
-      {
-        name: "2016广州马拉松",
-        status: "审核中",
-        post: "img/marason-icon.png",
-        registertime: "1484396287893",
-        starttime: "1484396287893",
-        position: "广州市天河区珠江新城花城广场"
-      }
-    ];
-  }])
-
-  .controller('myCollectionsActivityFinishedCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-    $scope.$on("$ionicView.enter", function () {
-      $rootScope.clearHistory();
-    });
-    $scope.info = {
-      type: "activity",
-      id: "109283"
+    $scope.getActivityInfo = function () {
+      getData.post(api.user_activity, {
+          id: UsrInfoLocal.id,
+          status: '待举行'
+        })
+        .then(function resolve(res) {
+          // console.log("res.data:", res.data);
+          $scope.activityList = res.data.resultData;
+        }, function reject(err) {
+          console.log("err:", err);
+        });
     };
-    $scope.activityList = [
-      {
-        name: "彩色跑",
-        status: "已结束",
-        post: "img/colorrunning-icon.png",
-        registertime: "1484396287893",
-        starttime: "1484396287893",
-        position: "广州市天河区珠江新城花城广场"
-      }
-    ];
+    $scope.getActivityInfo();
   }])
 
-  .controller('myCollectionsActivityAllCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  .controller('myCollectionsActivityInvestigatingCtrl', ['$scope', '$rootScope', 'stateGo', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, stateGo, getData, api, UsrInfoLocal) {
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
     });
-    $scope.activityList = [
-      {
-        name: "TheLightRun——地球上最闪亮的夜跑球上最闪亮的",
-        status: "待举行",
-        post: "img/running-icon.png",
-        registertime: "1484396287893",
-        starttime: "1484396287893",
-        position: "广州市天河区珠江新城花城广场"
-    },
-      {
-        name: "2016广州马拉松",
-        status: "审核中",
-        post: "img/marason-icon.png",
-        registertime: "1484396287893",
-        starttime: "1484396287893",
-        position: "广州市天河区珠江新城花城广场"
-    },
-      {
-        name: "彩色跑",
-        status: "已结束",
-        post: "img/colorrunning-icon.png",
-        registertime: "1484396287893",
-        starttime: "1484396287893",
-        position: "广州市天河区珠江新城花城广场"
-    }
-    ];
+    $scope.activityList = [];
+
+    $scope.getActivityInfo = function () {
+      getData.post(api.user_activity, {
+          id: UsrInfoLocal.id,
+          status: '审核中'
+        })
+        .then(function resolve(res) {
+          // console.log("res.data:", res.data);
+          $scope.activityList = res.data.resultData;
+        }, function reject(err) {
+          console.log("err:", err);
+        });
+    };
+    $scope.getActivityInfo();
+  }])
+
+  .controller('myCollectionsActivityFinishedCtrl', ['$scope', '$rootScope', 'stateGo', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, stateGo, getData, api, UsrInfoLocal) {
+    $scope.$on("$ionicView.enter", function () {
+      $rootScope.clearHistory();
+    });
+
+    $scope.review = function (id_user, id_activity) {
+      console.log("go to review");
+      stateGo.goToState('review', {
+        id_user: id_user,
+        id_activity: id_activity
+      });
+    };
+
+    $scope.activityList = [];
+
+    $scope.getActivityInfo = function () {
+      getData.post(api.user_activity, {
+          id: UsrInfoLocal.id,
+          status: '已结束'
+        })
+        .then(function resolve(res) {
+          // console.log("res.data:", res.data);
+          $scope.activityList = res.data.resultData;
+        }, function reject(err) {
+          console.log("err:", err);
+        });
+    };
+    $scope.getActivityInfo();
+  }])
+
+  .controller('myCollectionsActivityAllCtrl', ['$scope', '$rootScope', 'stateGo', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, stateGo, getData, api, UsrInfoLocal) {
+    $scope.$on("$ionicView.enter", function () {
+      $rootScope.clearHistory();
+    });
+
+    $scope.show_status = true;
+
+    $scope.review = function (id_user, id_activity) {
+      console.log("go to review");
+      stateGo.goToState('review', {
+        id_user: id_user,
+        id_activity: id_activity
+      });
+    };
+
+    $scope.activityList = [];
+
+    $scope.getActivityInfo = function () {
+      getData.post(api.user_activity, {
+          id: UsrInfoLocal.id,
+          status: 'all'
+        })
+        .then(function resolve(res) {
+          // console.log("res.data:", res.data);
+          $scope.activityList = res.data.resultData;
+        }, function reject(err) {
+          console.log("err:", err);
+        });
+    };
+    $scope.getActivityInfo();
   }])
 
 
@@ -301,8 +321,8 @@ angular.module('starter.controllers.tab.my', [])
         name: "大厅桌球",
         status: "待使用",
         post: "img/stadium-tenis-icon1.png",
-        mount: 2,
-        starttime: "1484396287893",
+        quantity: 2,
+        booktime: "1484396287893",
         position: "广州市天河区珠江新城花城广场"
       }
     ];
@@ -353,7 +373,7 @@ angular.module('starter.controllers.tab.my', [])
   // 我的收藏
   .controller('myCollectionStarCtrl', ['$scope', function ($scope) {
 
-}])
+  }])
 
   .controller('myCollectionStarActivityCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
     $scope.$on("$ionicView.enter", function () {

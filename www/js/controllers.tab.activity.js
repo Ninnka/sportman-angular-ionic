@@ -100,16 +100,6 @@ angular.module('starter.controllers.tab.activity', [])
       console.log("pay");
     };
 
-    $rootScope.review = function (type, id) {
-      console.log("type", type);
-      console.log("id", id);
-      $rootScope.inAnimation();
-      $state.go("review", {
-        type: type,
-        id: id
-      });
-    };
-
     $rootScope.clearHistory = function () {
       $ionicHistory.clearHistory();
     };
@@ -256,6 +246,11 @@ angular.module('starter.controllers.tab.activity', [])
           console.log("err:");
           console.log(err);
         });
+    };
+
+    $scope.refreshNewData = function () {
+      console.log("refreshNewData");
+      $scope.$broadcast('scroll.refreshComplete');
     };
 
   }])

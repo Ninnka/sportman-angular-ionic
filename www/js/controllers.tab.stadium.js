@@ -76,6 +76,11 @@ angular.module('starter.controllers.tab.stadium', [])
       $scope.getStaidumData();
     };
 
+    $scope.refreshNewData = function () {
+      console.log("refreshNewData");
+      $scope.$broadcast('scroll.refreshComplete');
+    };
+
     //   $scope.stadiumList = [
     //     {
     //       name: "胜利运动场（万寿路店）",

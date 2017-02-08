@@ -2,7 +2,7 @@
   <a ng-href="">
     <div class="item-title">
       <span>{{activity.name}}</span>
-      <span>{{activity.status}}</span>
+      <span ng-show="show_status">{{activity.status}}</span>
     </div>
     <div class="item-content">
       <img ng-src="{{activity.post}}" alt="">

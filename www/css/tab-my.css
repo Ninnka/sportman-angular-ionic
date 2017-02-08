@@ -465,7 +465,7 @@
 }
 
 .carvel-list>.item {
-  padding-top: 8px;
+  padding: .128rem .064rem;
 }
 
 .carvel-list>.item .item-content {
