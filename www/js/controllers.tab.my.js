@@ -201,25 +201,31 @@ angular.module('starter.controllers.tab.my', [])
   }])
 
   .controller('myCollectionsActivityComingCtrl', ['$scope', '$rootScope', 'stateGo', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, stateGo, getData, api, UsrInfoLocal) {
-    $scope.$on("$ionicView.enter", function () {
-      $rootScope.clearHistory();
-    });
-
     $scope.activityList = [];
+    $scope.getDataPromise = '';
+    $scope.hasFirstLoad = false;
 
     $scope.getActivityInfo = function () {
-      getData.post(api.user_activity, {
-          id: UsrInfoLocal.id,
-          status: '待举行'
-        })
-        .then(function resolve(res) {
-          // console.log("res.data:", res.data);
-          $scope.activityList = res.data.resultData;
-        }, function reject(err) {
-          console.log("err:", err);
-        });
+      $scope.getDataPromise = getData.post(api.user_activity, {
+        id: UsrInfoLocal.id,
+        status: '待举行'
+      });
     };
     $scope.getActivityInfo();
+
+    $scope.$on("$ionicView.enter", function () {
+      $rootScope.clearHistory();
+      if (!$scope.hasFirstLoad) {
+        console.log("firstLoad");
+        $scope.hasFirstLoad = true;
+        $scope.getDataPromise
+          .then(function resolve(res) {
+            $scope.activityList = res.data.resultData;
+          }, function reject(err) {
+            console.log("err:", err);
+          });
+      }
+    });
   }])
 
   .controller('myCollectionsActivityInvestigatingCtrl', ['$scope', '$rootScope', 'stateGo', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, stateGo, getData, api, UsrInfoLocal) {
@@ -234,7 +240,6 @@ angular.module('starter.controllers.tab.my', [])
           status: '审核中'
         })
         .then(function resolve(res) {
-          // console.log("res.data:", res.data);
           $scope.activityList = res.data.resultData;
         }, function reject(err) {
           console.log("err:", err);
@@ -305,69 +310,84 @@ angular.module('starter.controllers.tab.my', [])
     $scope.getActivityInfo();
   }])
 
-
   // 我的场馆
   .controller('myCollectionsStadiumCtrl', ['$scope', function ($scope) {
 
   }])
 
-  .controller('myCollectionsStadiumAvailableCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  .controller('myCollectionsStadiumAvailableCtrl', ['$scope', '$rootScope', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, UsrInfoLocal) {
+    $scope.stadiumList = [];
+    $scope.getDataPromise = '';
+    $scope.hasFirstLoad = false;
+
+    $scope.getStadiumList = function () {
+      $scope.getDataPromise = getData.post(api.user_stadium, {
+        id: UsrInfoLocal.id,
+        status: '待使用'
+      });
+    };
+    $scope.getStadiumList();
+
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
+      if (!$scope.hasFirstLoad) {
+        console.log("firstLoad");
+        $scope.hasFirstLoad = true;
+        $scope.getDataPromise
+          .then(function resolve(res) {
+            console.log("res.data:", res.data);
+            $scope.stadiumList = res.data.resultData;
+          }, function reject(err) {
+            console.log("err:", err);
+          });
+      }
     });
 
-    $scope.stadiumList = [
-      {
-        name: "大厅桌球",
-        status: "待使用",
-        post: "img/stadium-tenis-icon1.png",
-        quantity: 2,
-        booktime: "1484396287893",
-        position: "广州市天河区珠江新城花城广场"
-      }
-    ];
   }])
 
-  .controller('myCollectionsStadiumUsedCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  .controller('myCollectionsStadiumUsedCtrl', ['$scope', '$rootScope', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, UsrInfoLocal) {
+    $scope.stadiumList = [];
+
+    $scope.getStadiumList = function () {
+      getData.post(api.user_stadium, {
+          id: UsrInfoLocal.id,
+          status: '已使用'
+        })
+        .then(function resolve(res) {
+          console.log("res.data:", res.data);
+          $scope.stadiumList = res.data.resultData;
+        }, function reject(err) {
+          console.log("err:", err);
+        });
+    };
+    $scope.getStadiumList();
+
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
     });
-
-    $scope.stadiumList = [
-      {
-        name: "室内篮球",
-        status: "已使用",
-        post: "img/stadium-tenis-icon3.png",
-        mount: 1,
-        starttime: "1484396287893",
-        position: "广州市天河区珠江新城花城广场"
-      }
-    ];
   }])
 
-  .controller('myCollectionsStadiumAllCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  .controller('myCollectionsStadiumAllCtrl', ['$scope', '$rootScope', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, UsrInfoLocal) {
+    $scope.stadiumList = [];
+    $scope.show_status = true;
+
+    $scope.getStadiumList = function () {
+      getData.post(api.user_stadium, {
+          id: UsrInfoLocal.id,
+          status: 'all'
+        })
+        .then(function resolve(res) {
+          console.log("res.data:", res.data);
+          $scope.stadiumList = res.data.resultData;
+        }, function reject(err) {
+          console.log("err:", err);
+        });
+    };
+    $scope.getStadiumList();
+
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
     });
-
-    $scope.stadiumList = [
-      {
-        name: "大厅桌球",
-        status: "待使用",
-        post: "img/stadium-tenis-icon1.png",
-        mount: 2,
-        starttime: "1484396287893",
-        position: "广州市天河区珠江新城花城广场"
-    },
-      {
-        name: "室内篮球",
-        status: "已使用",
-        post: "img/stadium-tenis-icon3.png",
-        mount: 1,
-        starttime: "1484396287893",
-        position: "广州市天河区珠江新城花城广场"
-      }
-    ];
   }])
 
   // 我的收藏

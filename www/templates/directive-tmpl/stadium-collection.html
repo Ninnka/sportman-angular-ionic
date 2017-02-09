@@ -2,13 +2,13 @@
   <a ng-href="">
     <div class="item-title">
       <span>{{stadium.name}}</span>
-      <span>{{stadium.status}}</span>
+      <span ng-show="show_status">{{stadium.status}}</span>
     </div>
     <div class="item-content">
       <img ng-src="{{stadium.post}}" alt="">
       <div class="item-flexgrow">
-        <p>预定场地：{{stadium.mount}}个</p>
-        <p>时间：{{stadium.starttime | date : 'yyyy-MM-dd hh:mm'}}</p>
+        <p>预定场地：{{stadium.quantity}}个</p>
+        <p>时间：{{stadium.booktime | date : 'yyyy-MM-dd hh:mm'}}</p>
         <p>{{stadium.position}}</p>
       </div>
     </div>
