@@ -458,12 +458,51 @@ angular.module('starter.controllers.tab.my', [])
 
   }])
 
-  .controller('myUnreviewCtrl', ['$scope', function ($scope) {
+  .controller('myUnreviewCtrl', ['$scope', '$rootScope', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, UsrInfoLocal) {
+    $scope.unReviewList = [];
+    $scope.getDataPromise = '';
+    $scope.hasFirstLoad = false;
 
+    $scope.getUnReviewList = function () {
+      $scope.getDataPromise = getData.post(api.user_review, {
+        id: UsrInfoLocal.id,
+        status: '未评价'
+      });
+    };
+    $scope.getUnReviewList();
+
+    $scope.$on('$ionicView.enter', function () {
+      $rootScope.clearHistory();
+    });
+
+    $scope.$on('$ionicView.afterEnter', function () {
+      if (!$scope.hasFirstLoad) {
+        $scope.hasFirstLoad = true;
+        $scope.getDataPromise
+          .then(function resolve(res) {
+            $scope.unReviewList = $scope.unReviewList.concat(res.data.resultData);
+          }, function reject(err) {
+            console.log('err:', err);
+          });
+      }
+    });
   }])
 
-  .controller('myReviewedCtrl', ['$scope', function ($scope) {
+  .controller('myReviewedCtrl', ['$scope', '$rootScope', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, UsrInfoLocal) {
+    $scope.reviewList = [];
 
+    $scope.getReviewList = function () {
+      getData.post(api.user_review, {
+          id: UsrInfoLocal.id,
+          status: '未评价'
+        })
+        .then(function resolve(res) {
+          $scope.reviewList = $scope.reviewList.concat(res.data.resultData);
+        }, function reject(err) {
+          console.log('err:', err);
+        });
+    };
+    // $scope.getReviewList();
   }])
 
   // 付款管理
