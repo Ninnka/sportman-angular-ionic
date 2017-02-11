@@ -215,6 +215,9 @@ angular.module('starter.controllers.tab.my', [])
 
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
+    });
+
+    $scope.$on('$ionicView.afterEnter', function () {
       if (!$scope.hasFirstLoad) {
         console.log("firstLoad");
         $scope.hasFirstLoad = true;
@@ -330,6 +333,9 @@ angular.module('starter.controllers.tab.my', [])
 
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
+    });
+
+    $scope.$on('$ionicView.afterEnter', function () {
       if (!$scope.hasFirstLoad) {
         console.log("firstLoad");
         $scope.hasFirstLoad = true;
@@ -395,114 +401,55 @@ angular.module('starter.controllers.tab.my', [])
 
   }])
 
-  .controller('myCollectionStarActivityCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  .controller('myCollectionStarActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, UsrInfoLocal) {
+
+    $scope.activityList = [];
+    $scope.getDataPromise = '';
+    $scope.hasFirstLoad = false;
+
+    $scope.getActivityList = function () {
+      $scope.getDataPromise = getData.post(api.user_activity_star, {
+        id: UsrInfoLocal.id
+      });
+    };
+    $scope.getActivityList();
+
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
     });
 
     $scope.$on("$ionicView.afterEnter", function () {
-      $scope.activityList = [
-        {
-          name: "白云山野战场畅玩",
-          position: "海珠区",
-          thumbnail: "img/marason-star.png",
-          host: "广州体育委员会",
-          currentnumber: 11,
-          totalnumber: 30,
-          price: 99,
-          starttime: "1484396287893"
-      },
-        {
-          name: "广州马拉松",
-          position: "白云区",
-          thumbnail: "img/shot-star.png",
-          host: "白云山野战场",
-          currentnumber: 11,
-          totalnumber: 30,
-          price: 199,
-          starttime: "1484396287893"
-      },
-        {
-          name: "轮滑逛街活动",
-          position: "白云区",
-          thumbnail: "img/skip-star.png",
-          host: "阿迪王专业体育用具",
-          currentnumber: 11,
-          totalnumber: 30,
-          price: 199,
-          starttime: "1484396287893"
-      },
-        {
-          name: "荧光夜跑——地",
-          position: "白云区",
-          thumbnail: "img/tabletenis-star.png",
-          host: "阿迪王专业体育用具",
-          currentnumber: 11,
-          totalnumber: 30,
-          price: 199,
-          starttime: "1484396287893"
-      },
-        {
-          name: "荧光夜跑——地",
-          position: "白云区",
-          thumbnail: "img/tabletenis-star.png",
-          host: "阿迪王专业体育用具",
-          currentnumber: 11,
-          totalnumber: 30,
-          price: 199,
-          starttime: "1484396287893"
-        }
-      ];
+      if (!$scope.hasFirstLoad) {
+        $scope.hasFirstLoad = true;
+        $scope.getDataPromise
+          .then(function resolve(res) {
+            $scope.activityList = $scope.activityList.concat(res.data.resultData);
+          }, function reject(err) {
+            console.log('err:', err);
+          });
+      }
     });
   }])
 
-  .controller('myCollectionStarStadiumCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  .controller('myCollectionStarStadiumCtrl', ['$scope', '$rootScope', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, UsrInfoLocal) {
+    $scope.stadiumList = [];
+
+    $scope.getStadiumList = function () {
+      getData.post(api.user_stadium_star, {
+          id: UsrInfoLocal.id
+        })
+        .then(function resolve(res) {
+          $scope.stadiumList = $scope.stadiumList.concat(res.data.resultData);
+        }, function reject(err) {
+          console.log('err:', err);
+        });
+    };
+    $scope.getStadiumList();
+
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
     });
 
-    $scope.stadiumList = [
-      {
-        name: "胜利运动场（万寿路店）",
-        thumbnail: "img/tabletenis-star.png",
-        trade: "乒乓球、羽毛球",
-        opentime: "08:00-22:00",
-        area: "海珠区",
-        price: 9
-    },
-      {
-        name: "广州市射击射箭运动管理中心",
-        thumbnail: "img/shot-stadium.png",
-        trade: "台球、射箭、射击",
-        opentime: "08:00-19:00",
-        area: "天河区",
-        price: 99
-    },
-      {
-        name: "杰冠真人CS野战基地",
-        thumbnail: "img/cs-stadium.png",
-        trade: "仿真枪机野战",
-        opentime: "08:00-18:00",
-        area: "海珠区",
-        price: 299
-    },
-      {
-        name: "大世界保龄球馆",
-        thumbnail: "img/bowling-stadium.png",
-        trade: "仿真枪机野战",
-        opentime: "08:00-18:00",
-        area: "海珠区",
-        price: 199
-    },
-      {
-        name: "冰河湾真冰溜冰场",
-        thumbnail: "img/skip-stadium.png",
-        trade: "乒乓球、羽毛球",
-        opentime: "08:00-22:00",
-        area: "海珠区",
-        price: 9
-      }
-    ];
   }])
 
 
