@@ -161,7 +161,7 @@
         // 要求 for-in 循环中有一个 if 语句
         "guard-for-in": 2,
         // 禁用 alert、confirm 和 prompt
-        "no-alert": 0,
+        "no-alert": 1,
         // 禁用 arguments.caller 或 arguments.callee
         "no-caller": 2,
         // 不允许在 case 子句中使用词法声明

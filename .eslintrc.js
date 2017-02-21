@@ -95,7 +95,7 @@ module.exports = {
     "max-depth": 2,
     "max-params": [2, 10],
     "new-parens": 2,
-    "no-alert": 2,
+    "no-alert": 1,
     "no-array-constructor": 2,
     "no-bitwise": 2,
     "no-caller": 2,
@@ -153,8 +153,8 @@ module.exports = {
     "no-use-before-define": 1,
     "no-loop-func": 1,
     "no-var": 0
-      // "babel/arrow-parens": [2, "as-needed"],
-      // "babel/generator-star-spacing": [2, "before"]
+    // "babel/arrow-parens": [2, "as-needed"],
+    // "babel/generator-star-spacing": [2, "before"]
   },
   // "settings": {
   //     "import/ignore": [
