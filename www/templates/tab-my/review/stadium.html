@@ -1,0 +1,37 @@
+<ion-view view-title="我的评价">
+
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
+    <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
+        <span class="default-title" style="line-height: 35px;">Back</span>
+    </span>
+  </ion-nav-buttons>
+
+  <ion-content>
+
+    <ul class="carvel-list">
+
+      <li class="item" ng-repeat="reviewStadium in reviewStadiumList track by $index">
+        <a>
+          <div class="item-title">
+            <span>{{reviewStadium.name}}</span>
+          </div>
+          <div class="item-content">
+            <img ng-src="{{reviewStadium.thumbnail}}" alt="">
+            <div class="item-flexgrow">
+              <p>营业时间：{{reviewStadium.opentime}}</p>
+              <p>主营：{{reviewStadium.trade}}</p>
+              <p>{{reviewStadium.position}}</p>
+            </div>
+          </div>
+          <div class="item-content content-topborder mul-text" ng-show="true">
+            <p>{{reviewStadium.review}}</p>
+          </div>
+        </a>
+      </li>
+
+    </ul>
+
+  </ion-content>
+
+</ion-view>
