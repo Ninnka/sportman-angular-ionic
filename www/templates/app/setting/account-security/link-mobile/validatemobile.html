@@ -12,7 +12,7 @@
       <div class="list bgW">
         <label class="item item-input item-stacked-label">
           <span class="input-label">电话号码</span>
-          <input type="text" placeholder="12345654321" disabled="disabled">
+          <input type="text" placeholder="{{mobile}}" disabled="disabled">
         </label>
         <div class="item">
           <span>验证码</span>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="validatemobile-submitbtn-wrapper">
-      <button type="button" name="button" class="button button-assertive">提交</button>
+      <button type="button" name="button" class="button button-assertive" ng-click="bindMobile()">提交</button>
       <button type="button" name="button" class="button button-positive">重新发送</button>
     </div>
 

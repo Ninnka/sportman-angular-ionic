@@ -1,9 +1,9 @@
 <li class="item">
   <a ng-href="">
-    <p class="item-title-text">2016-01-11</p>
+    <p class="item-title-text">{{history.timestamp | date : 'yyyy-MM-dd'}}</p>
     <div class="item-detail">
-      <p>参加活动</p>
-      <p>TheLightRun——地球上最闪亮的夜跑球上最闪亮的</p>
+      <p>{{history.action}}</p>
+      <p>{{history.theme}}</p>
     </div>
   </a>
 </li>

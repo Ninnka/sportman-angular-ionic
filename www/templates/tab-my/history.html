@@ -10,7 +10,8 @@
 
   <ion-content>
     <ul class="carvel-list">
-      <li class="item">
+      <my-history ng-repeat="history in historyList track by $index"></my-history>
+      <!-- <li class="item">
         <a ng-href="">
           <p class="item-title-text">2016-01-11</p>
           <div class="item-detail">
@@ -36,7 +37,7 @@
             <p>白云山野外生存训练</p>
           </div>
         </a>
-      </li>
+      </li> -->
     </ul>
 
   </ion-content>

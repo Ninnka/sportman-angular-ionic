@@ -10,7 +10,8 @@
     <div class="list bgW">
       <label for="" class="item item-input item-stacked-label">
         <span class="input-label">Sportmanid</span>
-        <input type="text" placeholder="{{idPlaceholder}}" disabled="{{bindSymbol.hasBind}}">
+        <input type="text" placeholder="{{idPlaceholder}}" ng-if="!bindSymbol.hasBind" ng-model="bindSportmanid.sportmanid">
+        <input type="text" placeholder="{{idPlaceholder}}" ng-if="bindSymbol.hasBind" disabled="bindSymbol.hasBind">
       </label>
     </div>
 
