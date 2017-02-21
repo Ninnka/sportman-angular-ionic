@@ -264,6 +264,7 @@ angular.module('starter.controllers.tab.activity', [])
 
     $scope.activity = {};
 
+
     $scope.getActivityInfo = function () {
       getData.post(api.activity_detail, {
           id: UsrInfoLocal.id,
@@ -272,6 +273,8 @@ angular.module('starter.controllers.tab.activity', [])
         .then(function resolve(res) {
           console.log("res.data:", res.data);
           $scope.activity = res.data.resultData;
+          $scope.iconStar = $scope.activity.stared ? 'img/star-yellow.png' : 'img/star-white.png';
+          $scope.iconRecommend = $scope.activity.recommended ? 'img/recommend-yellow.png' : 'img/recommend-white.png';
         }, function reject(err) {
           console.log("err:", err);
         });
@@ -292,14 +295,52 @@ angular.module('starter.controllers.tab.activity', [])
       // todo
     };
 
-    // 添加点赞
+    // 添加或删除点赞
     $scope.addStar = function () {
-      // todo
+      var starActionApi = '';
+      if (!$scope.activity.stared) {
+        starActionApi = api.activity_addstar;
+      } else {
+        starActionApi = api.activity_removestar;
+      }
+      getData.post(starActionApi, {
+        id: UsrInfoLocal.id,
+        id_activity: $scope.id_activity
+      }).then(function resolve(res) {
+        if (res.data.resultData === '取消收藏成功') {
+          $scope.activity.stared = 0;
+        }
+        if (res.data.resultData === '收藏成功') {
+          $scope.activity.stared = 1;
+        }
+        $scope.iconStar = $scope.activity.stared ? 'img/star-yellow.png' : 'img/star-white.png';
+      }, function reject(err) {
+        console.log(err);
+      });
     };
 
     // 添加推荐
     $scope.addRecommend = function () {
-      // todo
+      var recommendActionApi = '';
+      if (!$scope.activity.recommended) {
+        recommendActionApi = api.activity_addrecommend;
+      } else {
+        recommendActionApi = api.activity_removerecommend;
+      }
+      getData.post(recommendActionApi, {
+        id: UsrInfoLocal.id,
+        id_activity: $scope.id_activity
+      }).then(function resolve(res) {
+        if (res.data.resultData === '取消推荐成功') {
+          $scope.activity.recommended = 0;
+        }
+        if (res.data.resultData === '推荐成功') {
+          $scope.activity.recommended = 1;
+        }
+        $scope.iconRecommend = $scope.activity.recommended ? 'img/recommend-yellow.png' : 'img/recommend-white.png';
+      }, function reject(err) {
+        console.log(err);
+      });
     };
   }])
 

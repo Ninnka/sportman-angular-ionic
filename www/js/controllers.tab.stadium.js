@@ -15,45 +15,45 @@ angular.module('starter.controllers.tab.stadium', [])
     };
 
     $scope.areaList = [
-    "",
-    "海珠区",
-    "天河区",
-    "荔湾区",
-    "越秀区",
-    "番禹区",
-    "花都区",
-    "萝岗区",
-    "白云区",
-    "南沙区",
-    "黄埔区",
-    "增城区",
-    "从化区"
-  ];
+      "",
+      "海珠区",
+      "天河区",
+      "荔湾区",
+      "越秀区",
+      "番禹区",
+      "花都区",
+      "萝岗区",
+      "白云区",
+      "南沙区",
+      "黄埔区",
+      "增城区",
+      "从化区"
+    ];
     $scope.areaName = "";
 
     $scope.typeList = [
-    "",
-    "篮球",
-    "足球",
-    "羽毛球",
-    "网球",
-    "台球",
-    "乒乓球",
-    "排球",
-    "射箭",
-    "滑雪",
-    "攀登",
-    "滑冰"
-  ];
+      "",
+      "篮球",
+      "足球",
+      "羽毛球",
+      "网球",
+      "台球",
+      "乒乓球",
+      "排球",
+      "射箭",
+      "滑雪",
+      "攀登",
+      "滑冰"
+    ];
     $scope.typeName = "";
 
     $scope.priceList = [
-    "",
-    "0",
-    "1~49",
-    "50~149",
-    "150~"
-  ];
+      "",
+      "0",
+      "1~49",
+      "50~149",
+      "150~"
+    ];
     $scope.price = "";
 
     $scope.stadiumList = [];
@@ -139,15 +139,15 @@ angular.module('starter.controllers.tab.stadium', [])
     //       price: 99
     //   }
     // ];
-}])
+  }])
 
-  .controller('DetailStadiumCtrl', ['$scope', '$stateParams', 'stateGo', 'getData', 'api', function ($scope, $stateParams, stateGo, getData, api) {
+  .controller('DetailStadiumCtrl', ['$scope', '$stateParams', 'stateGo', 'getData', 'api', 'UsrInfoLocal', function ($scope, $stateParams, stateGo, getData, api, UsrInfoLocal) {
     $scope.stadium = {};
 
     $scope.viewTitle = "场馆详情";
 
     $scope.type = $stateParams.type;
-    $scope.stadium_id = $stateParams.id;
+    $scope.id_stadium = $stateParams.id;
 
     $scope.bookStadium = function (trade_id, trade_name) {
       console.log("bookStadiu trade_name:", trade_name);
@@ -160,19 +160,60 @@ angular.module('starter.controllers.tab.stadium', [])
     };
 
     $scope.addStar = function () {
-      // todo
+      var starActionApi = '';
+      if (!$scope.stadium.stared) {
+        starActionApi = api.stadium_addstar;
+      } else {
+        starActionApi = api.stadium_removestar;
+      }
+      getData.post(starActionApi, {
+        id: UsrInfoLocal.id,
+        id_stadium: $scope.id_stadium
+      }).then(function resolve(res) {
+        if (res.data.resultData === '取消收藏成功') {
+          $scope.stadium.stared = 0;
+        }
+        if (res.data.resultData === '收藏成功') {
+          $scope.stadium.stared = 1;
+        }
+        $scope.iconStar = $scope.stadium.stared ? 'img/star-yellow.png' : 'img/star-white.png';
+      }, function reject(err) {
+        console.log(err);
+      });
     };
 
     $scope.addRecommend = function () {
-      // todo
+      var recommendActionApi = '';
+      if (!$scope.stadium.recommended) {
+        recommendActionApi = api.stadium_addrecommend;
+      } else {
+        recommendActionApi = api.stadium_removerecommend;
+      }
+      getData.post(recommendActionApi, {
+        id: UsrInfoLocal.id,
+        id_stadium: $scope.id_stadium
+      }).then(function resolve(res) {
+        if (res.data.resultData === '取消推荐成功') {
+          $scope.stadium.recommended = 0;
+        }
+        if (res.data.resultData === '推荐成功') {
+          $scope.stadium.recommended = 1;
+        }
+        $scope.iconRecommend = $scope.stadium.recommended ? 'img/recommend-yellow.png' : 'img/recommend-white.png';
+      }, function reject(err) {
+        console.log(err);
+      });
     };
 
     $scope.getStadiumInfo = function () {
       getData.post(api.stadium_detail, {
-          id: $scope.stadium_id
+          id: UsrInfoLocal.id,
+          id_stadium: $scope.id_stadium
         })
         .then(function resolve(res) {
           $scope.stadium = res.data.resultData;
+          $scope.iconStar = $scope.stadium.stared ? 'img/star-yellow.png' : 'img/star-white.png';
+          $scope.iconRecommend = $scope.stadium.recommended ? 'img/recommend-yellow.png' : 'img/recommend-white.png';
         }, function reject(err) {
           console.log('err:', err);
         });
