@@ -17,6 +17,10 @@
   text-overflow: ellipsis;
 }
 
+.full-block {
+  width: 100%;
+}
+
 .mul-img {
   background: #fff;
   overflow: hidden;

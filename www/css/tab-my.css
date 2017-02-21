@@ -243,6 +243,9 @@
 
 .updateemail-notification-text-hnb {
   color: #771212;
+  text-align: center;
+  font-size: .256rem;
+  padding-top: .3rem;
 }
 
 .updateemail-notification-text {
@@ -438,14 +441,14 @@
   text-align: left;
   width: 90%;
   margin: 4px auto;
-  padding: 10px 4px 10px 2px;
+  padding: 5px 4px 5px 4px;
   border-bottom: 1px solid rgba(180, 180, 180, 0.8);
   color: #333;
 }
 
 .carvel-list>.item .item-detail p {
-  text-indent: 0.32rem;
-  margin-top: 10px;
+  text-indent: 0.52rem;
+  margin: 10px 0 5px;
   font-size: 0.256rem;
   color: #232323;
 }
