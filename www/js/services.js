@@ -43,7 +43,7 @@ angular.module('starter.services', [])
       this.setGender("");
       this.setEmpty(true);
     };
-}])
+  }])
 
   .factory("SignInOrUpApi", function () {
     return {
