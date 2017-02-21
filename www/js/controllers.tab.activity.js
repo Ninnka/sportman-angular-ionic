@@ -125,10 +125,12 @@ angular.module('starter.controllers.tab.activity', [])
 
     $rootScope.toBackView = function (target) {
       console.log("back");
-      if (target === undefined) {
-        $ionicHistory.goBack(-1);
+      var target = target ? target : {};
+      var step = target.step ? target.step : -1;
+      if (target.name === undefined) {
+        $ionicHistory.goBack(step);
       } else {
-        $state.go(target);
+        $state.go(target.name);
       }
       $rootScope.outAnimation();
     };

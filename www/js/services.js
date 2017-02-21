@@ -147,6 +147,9 @@ angular.module('starter.services', [])
         } else {
           $rootScope.inAnimation();
         }
+      },
+      goToBack: function (target) {
+        $rootScope.toBackView(target);
       }
     };
   })
@@ -181,6 +184,7 @@ angular.module('starter.services', [])
       user_stadium_star: 'http://localhost/sportman/user_stadium_star.php',
       user_stadium_recommend: 'http://localhost/sportman/user_stadium_recommend.php',
       user_review: 'http://localhost/sportman/user_review.php',
+      user_history: 'http://localhost/sportman/user_history.php',
       user_payment_activity: 'http://localhost/sportman/user_payment_activity.php',
       user_payment_stadium: 'http://localhost/sportman/user_payment_stadium.php',
       user_payment_all: 'http://localhost/sportman/user_payment_all.php',

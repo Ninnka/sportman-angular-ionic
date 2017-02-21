@@ -196,7 +196,13 @@ angular.module('starter.controllers.tab.my', [])
 
 
   // 我的活动
-  .controller('myCollectionsActivityCtrl', ['$scope', '$rootScope', '$state', function ($scope, $rootScope, $state) {
+  .controller('myCollectionsActivityCtrl', ['$scope', '$rootScope', '$state', 'stateGo', function ($scope, $rootScope, $state, stateGo) {
+
+    $scope.toBackView = function () {
+      stateGo.goToBack({
+        name: 'tab.my'
+      });
+    };
 
   }])
 
@@ -314,7 +320,13 @@ angular.module('starter.controllers.tab.my', [])
   }])
 
   // 我的场馆
-  .controller('myCollectionsStadiumCtrl', ['$scope', function ($scope) {
+  .controller('myCollectionsStadiumCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+
+    $scope.toBackView = function () {
+      stateGo.goToBack({
+        name: 'tab.my'
+      });
+    };
 
   }])
 
@@ -397,7 +409,13 @@ angular.module('starter.controllers.tab.my', [])
   }])
 
   // 我的收藏
-  .controller('myCollectionStarCtrl', ['$scope', function ($scope) {
+  .controller('myCollectionStarCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+
+    $scope.toBackView = function () {
+      stateGo.goToBack({
+        name: 'tab.my'
+      });
+    };
 
   }])
 
@@ -454,22 +472,28 @@ angular.module('starter.controllers.tab.my', [])
 
 
   // 我的评论
-  .controller('myReviewCtrl', ['$scope', function ($scope) {
+  .controller('myReviewCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+
+    $scope.toBackView = function () {
+      stateGo.goToBack({
+        name: 'tab.my'
+      });
+    };
 
   }])
 
-  .controller('myUnreviewCtrl', ['$scope', '$rootScope', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, UsrInfoLocal) {
-    $scope.unReviewList = [];
+  .controller('myReviewActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, UsrInfoLocal) {
+    $scope.reviewActivityList = [];
     $scope.getDataPromise = '';
     $scope.hasFirstLoad = false;
 
-    $scope.getUnReviewList = function () {
+    $scope.getReviewActivityList = function () {
       $scope.getDataPromise = getData.post(api.user_review, {
         id: UsrInfoLocal.id,
-        status: '未评价'
+        type: 'activity'
       });
     };
-    $scope.getUnReviewList();
+    $scope.getReviewActivityList();
 
     $scope.$on('$ionicView.enter', function () {
       $rootScope.clearHistory();
@@ -480,7 +504,7 @@ angular.module('starter.controllers.tab.my', [])
         $scope.hasFirstLoad = true;
         $scope.getDataPromise
           .then(function resolve(res) {
-            $scope.unReviewList = $scope.unReviewList.concat(res.data.resultData);
+            $scope.reviewActivityList = $scope.reviewActivityList.concat(res.data.resultData);
           }, function reject(err) {
             console.log('err:', err);
           });
@@ -488,25 +512,57 @@ angular.module('starter.controllers.tab.my', [])
     });
   }])
 
-  .controller('myReviewedCtrl', ['$scope', '$rootScope', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, UsrInfoLocal) {
-    $scope.reviewList = [];
+  .controller('myReviewStadiumCtrl', ['$scope', '$rootScope', 'getData', 'api', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, UsrInfoLocal) {
+    $scope.reviewStadiumList = [];
 
-    $scope.getReviewList = function () {
+    $scope.getReviewStadiumList = function () {
       getData.post(api.user_review, {
-          id: UsrInfoLocal.id,
-          status: '未评价'
-        })
-        .then(function resolve(res) {
-          $scope.reviewList = $scope.reviewList.concat(res.data.resultData);
-        }, function reject(err) {
-          console.log('err:', err);
-        });
+        id: UsrInfoLocal.id,
+        type: 'stadium'
+      }).then(function resolve(res) {
+        $scope.reviewStadiumList = $scope.reviewStadiumList.concat(res.data.resultData);
+      }, function reject(err) {
+        console.log('err:', err);
+      });
     };
-    // $scope.getReviewList();
+    $scope.getReviewStadiumList();
+  }])
+
+  // 我的历史
+  .controller('myHistoryCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', function ($scope, getData, api, UsrInfoLocal) {
+    $scope.historyList = [];
+    $scope.getDataPromise = '';
+    $scope.hasFirstLoad = false;
+
+    $scope.getHistoryList = function () {
+      $scope.getDataPromise = getData.post(api.user_history, {
+        id: UsrInfoLocal.id
+      });
+    };
+    $scope.getHistoryList();
+
+    $scope.$on('$ionicView.afterEnter', function () {
+      if (!$scope.hasFirstLoad) {
+        $scope.hasFirstLoad = true;
+        $scope.getDataPromise
+          .then(function resolve(res) {
+            console.log('res.data:', res.data);
+            $scope.historyList = $scope.historyList.concat(res.data.resultData);
+          }, function reject(err) {
+            console.log('err:', err);
+          });
+      }
+    });
   }])
 
   // 付款管理
-  .controller('myPaymentCtrl', ['$scope', function ($scope) {
+  .controller('myPaymentCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+
+    $scope.toBackView = function () {
+      stateGo.goToBack({
+        name: 'tab.my'
+      });
+    };
 
   }])
 
@@ -523,18 +579,32 @@ angular.module('starter.controllers.tab.my', [])
   }])
 
   // 我的推荐
-  .controller('myRecommendCtrl', ['$scope', function ($scope) {
+  .controller('myRecommendCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+
+    $scope.toBackView = function () {
+      stateGo.goToBack({
+        name: 'tab.my'
+      });
+    };
 
   }])
 
-  // 我的历史
-  .controller('myHistoryCtrl', ['$scope', function ($scope) {
+  .controller('myRecommendActivityCtrl', ['$scope', function ($scope) {
 
   }])
 
+  .controller('myRecommendStadiumCtrl', ['$scope', function ($scope) {
+
+  }])
 
   // 消息推送
-  .controller('mySubscription', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {
+  .controller('mySubscription', ['$scope', '$state', '$rootScope', 'stateGo', function ($scope, $state, $rootScope, stateGo) {
+
+    $scope.toBackView = function () {
+      stateGo.goToBack({
+        name: 'tab.my'
+      });
+    };
 
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
