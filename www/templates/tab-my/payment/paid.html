@@ -8,9 +8,10 @@
   </ion-nav-buttons>
 
   <ion-content>
-
+    <div class="carvel-list-ctrl ctrl-activity">
+      <span>活动列表</span>
+    </div>
     <ul class="carvel-list">
-
       <li class="item" ng-repeat="paidActivity in paidActivityList track by $index">
         <a>
           <div class="item-title">
@@ -26,7 +27,12 @@
           </div>
         </a>
       </li>
+    </ul>
 
+    <ul class="carvel-list">
+      <div class="carvel-list-ctrl ctrl-stadium">
+        <span>场馆列表</span>
+      </div>
       <li class="item" ng-repeat="paidStadium in paidStadiumList track by $index">
         <a>
           <div class="item-title">
@@ -42,7 +48,6 @@
           </div>
         </a>
       </li>
-
     </ul>
 
 

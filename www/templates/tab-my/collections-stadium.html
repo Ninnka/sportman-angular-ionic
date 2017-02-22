@@ -1,28 +1,26 @@
 <ion-view view-title="我的场馆">
 
-  <!-- <ion-nav-buttons side="left">
-    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView('tab.my')"></i>
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
     <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
-          <span class="default-title" style="line-height: 35px;">Back</span>
+        <span class="default-title" style="line-height: 35px;">Back</span>
     </span>
-  </ion-nav-buttons> -->
+  </ion-nav-buttons>
 
-  <ion-content>
-    <ion-tabs class="tabs-striped tabs-top tabs-color-assertive">
+  <ion-tabs class="tabs-striped tabs-top tabs-color-assertive absolute-top-header">
 
-      <ion-tab title="待使用" href="#/my/collections-stadium/available">
-        <ion-nav-view name="collections-stadium-available"></ion-nav-view>
-      </ion-tab>
+    <ion-tab title="待使用" href="#/my/collections-stadium/available">
+      <ion-nav-view name="collections-stadium-available"></ion-nav-view>
+    </ion-tab>
 
-      <ion-tab title="已使用" href="#/my/collections-stadium/used">
-        <ion-nav-view name="collections-stadium-used"></ion-nav-view>
-      </ion-tab>
+    <ion-tab title="已使用" href="#/my/collections-stadium/used">
+      <ion-nav-view name="collections-stadium-used"></ion-nav-view>
+    </ion-tab>
 
-      <ion-tab title="全部" href="#/my/collections-stadium/all">
-        <ion-nav-view name="collections-stadium-all"></ion-nav-view>
-      </ion-tab>
+    <ion-tab title="全部" href="#/my/collections-stadium/all">
+      <ion-nav-view name="collections-stadium-all"></ion-nav-view>
+    </ion-tab>
 
-    </ion-tabs>
-  </ion-content>
+  </ion-tabs>
 
 </ion-view>

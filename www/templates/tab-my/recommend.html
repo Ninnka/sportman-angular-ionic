@@ -1,19 +1,22 @@
 <ion-view>
 
-  <ion-content>
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
+    <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
+        <span class="default-title" style="line-height: 35px;">Back</span>
+    </span>
+  </ion-nav-buttons>
 
-    <ion-tabs class="tabs-striped tabs-top tabs-color-assertive">
+  <ion-tabs class="tabs-striped tabs-top tabs-color-assertive absolute-top-header">
 
-      <ion-tab title="推荐的活动" href="#/my/recommend/activity">
-        <ion-nav-view name="recommend-activity"></ion-nav-view>
-      </ion-tab>
+    <ion-tab title="推荐的活动" href="#/my/recommend/activity">
+      <ion-nav-view name="recommend-activity"></ion-nav-view>
+    </ion-tab>
 
-      <ion-tab title="推荐的场馆" href="#/my/recommend/stadium">
-        <ion-nav-view name="recommend-stadium"></ion-nav-view>
-      </ion-tab>
+    <ion-tab title="推荐的场馆" href="#/my/recommend/stadium">
+      <ion-nav-view name="recommend-stadium"></ion-nav-view>
+    </ion-tab>
 
-    </ion-tabs>
-
-  </ion-content>
+  </ion-tabs>
 
 </ion-view>

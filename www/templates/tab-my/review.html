@@ -1,19 +1,22 @@
 <ion-view view-title="">
 
-  <ion-content>
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
+    <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
+        <span class="default-title" style="line-height: 35px;">Back</span>
+    </span>
+  </ion-nav-buttons>
 
-    <ion-tabs class="tabs-striped tabs-top tabs-color-assertive">
+  <ion-tabs class="tabs-striped tabs-top tabs-color-assertive absolute-top-header">
 
-      <ion-tab title="活动评价" href="#/my/review/review-activity">
-        <ion-nav-view name="review-activity"></ion-nav-view>
-      </ion-tab>
+    <ion-tab title="活动评价" href="#/my/review/review-activity">
+      <ion-nav-view name="review-activity"></ion-nav-view>
+    </ion-tab>
 
-      <ion-tab title="场馆评价" href="#/my/review/review-stadium">
-        <ion-nav-view name="review-stadium"></ion-nav-view>
-      </ion-tab>
+    <ion-tab title="场馆评价" href="#/my/review/review-stadium">
+      <ion-nav-view name="review-stadium"></ion-nav-view>
+    </ion-tab>
 
-    </ion-tabs>
-
-  </ion-content>
+  </ion-tabs>
 
 </ion-view>

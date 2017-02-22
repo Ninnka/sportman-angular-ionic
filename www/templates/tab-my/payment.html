@@ -1,23 +1,26 @@
 <ion-view view-title="订单管理">
 
-  <ion-content>
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
+    <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
+        <span class="default-title" style="line-height: 35px;">Back</span>
+    </span>
+  </ion-nav-buttons>
 
-    <ion-tabs class="tabs-striped tabs-top tabs-color-assertive">
+  <ion-tabs class="tabs-striped tabs-top tabs-color-assertive absolute-top-header">
 
-      <ion-tab title="待付款活动" href="#/my/payment/activity">
-        <ion-nav-view name="payment-activity"></ion-nav-view>
-      </ion-tab>
+    <ion-tab title="待付款活动" href="#/my/payment/activity">
+      <ion-nav-view name="payment-activity"></ion-nav-view>
+    </ion-tab>
 
-      <ion-tab title="待付款场馆" href="#/my/payment/stadium">
-        <ion-nav-view name="payment-stadium"></ion-nav-view>
-      </ion-tab>
+    <ion-tab title="待付款场馆" href="#/my/payment/stadium">
+      <ion-nav-view name="payment-stadium"></ion-nav-view>
+    </ion-tab>
 
-      <ion-tab title="已付款" href="#/my/payment/paid">
-        <ion-nav-view name="payment-paid"></ion-nav-view>
-      </ion-tab>
+    <ion-tab title="已付款" href="#/my/payment/paid">
+      <ion-nav-view name="payment-paid"></ion-nav-view>
+    </ion-tab>
 
-    </ion-tabs>
-
-  </ion-content>
+  </ion-tabs>
 
 </ion-view>

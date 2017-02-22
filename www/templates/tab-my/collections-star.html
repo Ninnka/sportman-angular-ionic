@@ -1,26 +1,22 @@
 <ion-view view-title="我的收藏">
 
-  <!-- <ion-nav-buttons side="left">
-    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView('tab.my')"></i>
+  <ion-nav-buttons side="left">
+    <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
     <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
-          <span class="default-title" style="line-height: 35px;">Back</span>
+        <span class="default-title" style="line-height: 35px;">Back</span>
     </span>
-  </ion-nav-buttons> -->
+  </ion-nav-buttons>
 
-  <ion-content>
+  <ion-tabs class="tabs-striped tabs-top tabs-color-assertive absolute-top-header">
 
-    <ion-tabs class="tabs-striped tabs-top tabs-color-assertive">
+    <ion-tab title="活动类" href="#/my/collections-star/activity">
+      <ion-nav-view name="collections-star-activity"></ion-nav-view>
+    </ion-tab>
 
-      <ion-tab title="活动类" href="#/my/collections-star/activity">
-        <ion-nav-view name="collections-star-activity"></ion-nav-view>
-      </ion-tab>
+    <ion-tab title="场馆类" href="#/my/collections-star/stadium">
+      <ion-nav-view name="collections-star-stadium"></ion-nav-view>
+    </ion-tab>
 
-      <ion-tab title="场馆类" href="#/my/collections-star/stadium">
-        <ion-nav-view name="collections-star-stadium"></ion-nav-view>
-      </ion-tab>
-
-    </ion-tabs>
-
-  </ion-content>
+  </ion-tabs>
 
 </ion-view>

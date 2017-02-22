@@ -2,10 +2,6 @@
 
   <ion-nav-buttons side="left">
     <ion-navbuttonsgo></ion-navbuttonsgo>
-    <!-- <i class="icon ion-ios-arrow-back button back-button buttons button-clear header-item" ng-click="toBackView()"></i>
-    <span class="back-text" style="transform: translate3d(0px, 0px, 0px);">
-          <span class="default-title" style="line-height: 35px;">Back</span>
-    </span> -->
   </ion-nav-buttons>
 
   <ion-content>
@@ -14,22 +10,22 @@
       <div class="theme-title horizon-img-list text-align-center">
         <span class="text-large">总体评价：</span>
         <br>
-        <review-star score="{{totalScore}}" class="notifi-text assertive"></review-star>
+        <review-star score="{{totalscore}}" class="notifi-text assertive"></review-star>
       </div>
       <div class="stream-grid division-bottom">
-        <div ng-repeat="feature in featuresList track by $index" class="stream-grid-item">
-          {{feature}}
+        <div ng-repeat="feature in featureList track by $index" class="stream-grid-item">
+          {{feature.feature}} {{feature.agree}}
         </div>
       </div>
       <div class="carvel-list">
 
-        <div ng-repeat="review in reviewsList" class="item item-left-img item-right-content">
-          <img ng-src="{{review.useravatar}}" alt="">
+        <div ng-repeat="review in reviewList" class="item item-left-img item-right-content">
+          <img ng-src="{{review.avatar}}" alt="">
           <div>
-            <p>{{review.username}}</p>
-            <review-star score="{{review.usermark}}"></review-star>
+            <p>{{review.name}}</p>
+            <review-star score="{{review.score}}"></review-star>
             <p id="wrap-text">
-              {{review.userreview}}
+              {{review.review}}
             </p>
             <p class="text-align-right margin-top-md">{{review.timestamp | date : 'yyyy-MM-dd hh:mm'}}</p>
           </div>
