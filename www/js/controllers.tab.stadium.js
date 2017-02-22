@@ -220,6 +220,14 @@ angular.module('starter.controllers.tab.stadium', [])
     };
     $scope.getStadiumInfo();
 
+    // 查看评论
+    $scope.viewReview = function () {
+      stateGo.goToState('reviews', {
+        type: 'stadium',
+        id: $scope.stadium.id
+      });
+    };
+
   }])
 
   .controller('BooklistStadiumCtrl', ['$scope', '$stateParams', 'getData', 'api', function ($scope, $stateParams, getData, api) {

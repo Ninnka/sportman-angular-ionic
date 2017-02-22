@@ -91,10 +91,10 @@ angular.module('starter.controllers.tab.activity', [])
         });
     };
 
-    $rootScope.preparePay = function (targetType, targetId, targetPay) {
-      $state.go("prepare-pay");
-      $rootScope.inAnimation();
-    };
+    // $rootScope.preparePay = function (targetType, targetId, targetPay) {
+    //   $state.go("prepare-pay");
+    //   $rootScope.inAnimation();
+    // };
 
     $rootScope.pay = function () {
       console.log("pay");
@@ -342,6 +342,14 @@ angular.module('starter.controllers.tab.activity', [])
         $scope.iconRecommend = $scope.activity.recommended ? 'img/recommend-yellow.png' : 'img/recommend-white.png';
       }, function reject(err) {
         console.log(err);
+      });
+    };
+
+    // 查看评论
+    $scope.viewReview = function () {
+      stateGo.goToState('reviews', {
+        type: 'activity',
+        id: $scope.activity.id
       });
     };
   }])

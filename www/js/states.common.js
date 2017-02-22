@@ -41,10 +41,8 @@ angular.module('starter.states.common', [])
         cache: false,
         url: "/prepare-pay",
         params: {
-          type: "",
           id: 0,
-          selectMount: 1,
-          unitprice: 0
+          type: ''
         },
         views: {
           'index': {

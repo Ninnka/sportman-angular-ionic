@@ -230,7 +230,7 @@ angular.module('starter.states.tab.my', [])
 
       // 费用管理
       .state('my_payment', {
-        cache: false,
+        cache: true,
         url: "/my/payment",
         views: {
           'index': {
@@ -241,6 +241,7 @@ angular.module('starter.states.tab.my', [])
       })
       .state('my_payment.activity', {
         url: "/activity",
+        cache: true,
         views: {
           'payment-activity': {
             templateUrl: "templates/tab-my/payment/activity.html",
@@ -250,6 +251,7 @@ angular.module('starter.states.tab.my', [])
       })
       .state('my_payment.stadium', {
         url: "/stadium",
+        cache: true,
         views: {
           'payment-stadium': {
             templateUrl: "templates/tab-my/payment/stadium.html",

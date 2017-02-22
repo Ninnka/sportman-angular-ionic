@@ -166,52 +166,75 @@ angular.module('starter.controllers.common', [])
     };
   }])
 
-  .controller('preparePayCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+  .controller('preparePayCtrl', ['$scope', '$stateParams', 'stateGo', 'getData', 'api', '$ionicPopup', '$ionicLoading', function ($scope, $stateParams, stateGo, getData, api, $ionicPopup, $ionicLoading) {
 
     $scope.payinfo = {
-      type: $stateParams.type,
       id: $stateParams.id,
-      selectMount: $stateParams.selectMount,
-      unitprice: $stateParams.unitprice
+      type: $stateParams.type
     };
 
-    console.log("type:", $scope.payinfo.type);
-    console.log("id:", $scope.payinfo.id);
-    console.log("selectMount:", $scope.payinfo.selectMount);
-    console.log("unitprice:", $scope.payinfo.unitprice);
+    $scope.pay = function () {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: true,
+        maxWidth: 200,
+        showDelay: 0
+      });
+      let payUrl = $scope.payinfo.type === 'activity' ? api.activity_pay : api.stadium_pay;
+      getData.post(payUrl, {
+        id: $scope.payinfo.id
+      }).then(function resolve(res) {
+        $ionicLoading.hide();
+        $scope.showResult(res.data.resultStatus === 'success' ? '支付成功' : '支付失败');
+        stateGo.goToBack({
+          step: -1
+        });
+      }, function reject(err) {
+        $scope.showResult('支付失败', '发生网络错误');
+        stateGo.goToBack({
+          step: -1
+        });
+      });
+    };
 
-}])
+    $scope.showResult = function (result, reason) {
+      var alertPopup = $ionicPopup.alert({
+        title: result,
+        template: reason
+      });
+      alertPopup.then(function (res) {});
+    };
+  }])
 
-  .controller('reviewsCtrl', ['$scope', function ($scope) {
+  .controller('reviewsCtrl', ['$scope', '$stateParams', 'getData', 'api', function ($scope, $stateParams, getData, api) {
 
-    $scope.totalScore = 3.5;
+    $scope.id = $stateParams.id;
+    $scope.type = $stateParams.type;
 
-    $scope.featuresList = [
-    "场地干净 206",
-    "服务态度好 183",
-    "环境不错 98",
-    "位置好找 78",
-    "交通方便 72",
-    "停车方便 53",
-    "场地新 43",
-    "性价比高 43",
-    "停车方便 53"
-  ];
+    $scope.totalscore = 0;
+    $scope.featureList = [];
+    $scope.reviewList = [];
 
-    $scope.reviewsList = [
-      {
-        username: "ninnka",
-        useravatar: "http://i1.hdslb.com/bfs/face/96c4fbb4a280366cc4f431038be004abd7ca983b.jpg@75Q.webp",
-        userreview: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolorin reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        usermark: 2.5,
-        timestamp: 1484364348144
-    },
-      {
-        username: "ninnka",
-        useravatar: "http://i1.hdslb.com/bfs/face/96c4fbb4a280366cc4f431038be004abd7ca983b.jpg@75Q.webp",
-        userreview: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolorin reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        usermark: 2.5,
-        timestamp: 1484364348144
-    }
-  ];
-}]);
+    $scope.getReviewData = function () {
+      let apiUrl = $scope.type === 'activity' ? api.activity_reviewlist : api.stadium_reviewlist;
+      getData.get(api.activity_reviewlist, {
+        id_activity: $scope.id
+      }).then(function resolve(res) {
+        console.log('res:', res);
+        $scope.featureList = res.data.resultData.featureList;
+        $scope.reviewList = res.data.resultData.reviewList;
+        let totalscore = res.data.resultData.totalscore;
+        let bol = totalscore.match('.');
+        if (bol) {
+          $scope.totalscore = Math.floor(totalscore) + 0.5;
+        } else {
+          $scope.totalscore = totalscore;
+        }
+      }, function reject(err) {
+        console.log('err:', err);
+      });
+    };
+    $scope.getReviewData();
+
+  }]);

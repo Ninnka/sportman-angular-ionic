@@ -188,12 +188,10 @@ angular.module('starter.controllers.tab.my', [])
 
   }])
 
-
   // 用户详细页控制器
   .controller('usrDetailCtrl', ['$scope', function ($scope) {
 
   }])
-
 
   // 我的活动
   .controller('myCollectionsActivityCtrl', ['$scope', '$rootScope', '$state', 'stateGo', function ($scope, $rootScope, $state, stateGo) {
@@ -608,11 +606,18 @@ angular.module('starter.controllers.tab.my', [])
   }])
 
   // 付款管理
-  .controller('myPaymentCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+  .controller('myPaymentCtrl', ['$scope', 'stateGo', 'getData', 'api', function ($scope, stateGo, getData, api) {
 
     $scope.toBackView = function () {
       stateGo.goToBack({
         name: 'tab.my'
+      });
+    };
+
+    $scope.preparePay = function (id, type) {
+      stateGo.goToState('prepare-pay', {
+        id: id,
+        type: type
       });
     };
 
@@ -632,6 +637,7 @@ angular.module('starter.controllers.tab.my', [])
 
     $scope.$on('$ionicView.afterEnter', function () {
       if (!$scope.hasFirstLoad) {
+        console.log('no first');
         $scope.hasFirstLoad = true;
         $scope.getDataPromise
           .then(function resolve(res) {
@@ -641,6 +647,7 @@ angular.module('starter.controllers.tab.my', [])
           });
       }
     });
+
   }])
 
   .controller('myPaymentStadiumCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', function ($scope, getData, api, UsrInfoLocal) {
@@ -671,7 +678,7 @@ angular.module('starter.controllers.tab.my', [])
       }, function reject(err) {
         console.log('err:', err);
       });
-    }
+    };
     $scope.getPaymentList();
   }])
 
