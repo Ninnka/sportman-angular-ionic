@@ -9,7 +9,7 @@
 
   <ion-content>
     <ul class="stream-list">
-      <activity-recommend></activity-recommend>
+      <activity-recommend ng-repeat="recommendActivity in recommendActivityList track by $index"></activity-recommend>
     </ul>
 
   </ion-content>
