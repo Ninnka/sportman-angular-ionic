@@ -1,12 +1,12 @@
 <li class="item">
   <a ng-href="">
-    <img ng-src="img/marason-star.png" alt="">
+    <img ng-src="{{recommendActivity.thumbnail}}" alt="">
     <div class="item-content">
       <div>
-        <span>广州马拉松</span>
+        <span>{{recommendActivity.name}}</span>
       </div>
-      <p>广州体育委员会</p>
-      <p>海珠区</p>
+      <p>{{recommendActivity.host}}</p>
+      <p>{{recommendActivity.area}}</p>
     </div>
   </a>
 </li>
