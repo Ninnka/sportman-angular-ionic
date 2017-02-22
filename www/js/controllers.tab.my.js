@@ -555,29 +555,6 @@ angular.module('starter.controllers.tab.my', [])
     });
   }])
 
-  // 付款管理
-  .controller('myPaymentCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
-
-    $scope.toBackView = function () {
-      stateGo.goToBack({
-        name: 'tab.my'
-      });
-    };
-
-  }])
-
-  .controller('myPaymentActivityCtrl', ['$scope', function ($scope) {
-
-  }])
-
-  .controller('myPaymentStadiumCtrl', ['$scope', function ($scope) {
-
-  }])
-
-  .controller('myPaymentPaidCtrl', ['$scope', function ($scope) {
-
-  }])
-
   // 我的推荐
   .controller('myRecommendCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
 
@@ -589,12 +566,113 @@ angular.module('starter.controllers.tab.my', [])
 
   }])
 
-  .controller('myRecommendActivityCtrl', ['$scope', function ($scope) {
+  .controller('myRecommendActivityCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', function ($scope, getData, api, UsrInfoLocal) {
+    $scope.recommendActivityList = [];
+    $scope.getDataPromise = '';
+    $scope.hasFirstLoad = false;
+
+    $scope.getRecommendActivityList = function () {
+      $scope.getDataPromise = getData.post(api.user_activity_recommend, {
+        id: UsrInfoLocal.id
+      });
+    };
+    $scope.getRecommendActivityList();
+
+    $scope.$on('$ionicView.afterEnter', function () {
+      if (!$scope.hasFirstLoad) {
+        $scope.hasFirstLoad = true;
+        $scope.getDataPromise
+          .then(function resolve(res) {
+            $scope.recommendActivityList = $scope.recommendActivityList.concat(res.data.resultData);
+          }, function reject(err) {
+            console.log('err:', err);
+          });
+      }
+    });
+  }])
+
+  .controller('myRecommendStadiumCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', function ($scope, getData, api, UsrInfoLocal) {
+    $scope.recommendStadiumList = [];
+
+    $scope.getRecommendStadiumList = function () {
+      getData.post(api.user_stadium_recommend, {
+        id: UsrInfoLocal.id
+      }).then(function resolve(res) {
+        $scope.recommendStadiumList = $scope.recommendStadiumList.concat(res.data.resultData);
+      }, function reject(err) {
+        console.log('err:', err);
+      });
+    }
+    $scope.getRecommendStadiumList();
 
   }])
 
-  .controller('myRecommendStadiumCtrl', ['$scope', function ($scope) {
+  // 付款管理
+  .controller('myPaymentCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
 
+    $scope.toBackView = function () {
+      stateGo.goToBack({
+        name: 'tab.my'
+      });
+    };
+
+  }])
+
+  .controller('myPaymentActivityCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', function ($scope, getData, api, UsrInfoLocal) {
+    $scope.paymentActivityList = [];
+    $scope.getDataPromise = '';
+    $scope.hasFirstLoad = false;
+
+    $scope.getPaymentActivityList = function () {
+      $scope.getDataPromise = getData.post(api.user_payment_activity, {
+        id: UsrInfoLocal.id
+      });
+    };
+    $scope.getPaymentActivityList();
+
+    $scope.$on('$ionicView.afterEnter', function () {
+      if (!$scope.hasFirstLoad) {
+        $scope.hasFirstLoad = true;
+        $scope.getDataPromise
+          .then(function resolve(res) {
+            $scope.paymentActivityList = $scope.paymentActivityList.concat(res.data.resultData);
+          }, function reject(err) {
+            console.log('err:', err);
+          });
+      }
+    });
+  }])
+
+  .controller('myPaymentStadiumCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', function ($scope, getData, api, UsrInfoLocal) {
+    $scope.paymentStadiumList = [];
+
+    $scope.getPaymentStadiumList = function () {
+      getData.post(api.user_payment_stadium, {
+        id: UsrInfoLocal.id
+      }).then(function resolve(res) {
+        $scope.paymentStadiumList = $scope.paymentStadiumList.concat(res.data.resultData);
+      }, function reject(err) {
+        console.log('err:', err);
+      });
+    };
+    $scope.getPaymentStadiumList();
+  }])
+
+  .controller('myPaymentPaidCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', function ($scope, getData, api, UsrInfoLocal) {
+    $scope.paidActivityList = [];
+    $scope.paidStadiumList = [];
+
+    $scope.getPaymentList = function () {
+      getData.post(api.user_payment_all, {
+        id: UsrInfoLocal.id
+      }).then(function resolve(res) {
+        $scope.paidActivityList = $scope.paidActivityList.concat(res.data.resultData.paid_activity);
+        $scope.paidStadiumList = $scope.paidStadiumList.concat(res.data.resultData.paid_stadium);
+      }, function reject(err) {
+        console.log('err:', err);
+      });
+    }
+    $scope.getPaymentList();
   }])
 
   // 消息推送
