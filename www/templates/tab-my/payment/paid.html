@@ -11,35 +11,33 @@
 
     <ul class="carvel-list">
 
-      <li class="item">
-        <a ng-href="">
+      <li class="item" ng-repeat="paidActivity in paidActivityList track by $index">
+        <a>
           <div class="item-title">
-            <span>TheLightRun——地球上最闪亮的夜跑球上最闪亮的</span>
-            <span>已付款</span>
+            <span>{{paidActivity.name}}</span>
           </div>
           <div class="item-content">
-            <img ng-src="img/stadium-tenis-icon2.png" alt="">
+            <img ng-src="{{paidActivity.thumbnail}}" alt="">
             <div class="item-flexgrow">
-              <p>报名时间：2016-01-18 20:17</p>
-              <p>举行时间：2016-04-11</p>
-              <p>广州市天河区珠江新城花城广场</p>
+              <p>报名时间：{{paidActivity.registertime | date : 'yy-MM-dd hh:mm'}}</p>
+              <p>举行时间：{{paidActivity.starttime | date : 'yy-MM-dd'}}</p>
+              <p>{{paidActivity.position}}</p>
             </div>
           </div>
         </a>
       </li>
 
-      <li class="item">
-        <a ng-href="">
+      <li class="item" ng-repeat="paidStadium in paidStadiumList track by $index">
+        <a>
           <div class="item-title">
-            <span>大厅桌球</span>
-            <span>已付款</span>
+            <span>{{paidStadium.name}}</span>
           </div>
           <div class="item-content">
-            <img ng-src="img/stadium-tenis-icon2.png" alt="">
+            <img ng-src="{{paidStadium.thumbnail}}" alt="">
             <div class="item-flexgrow">
-              <p>预定场地：2个</p>
-              <p>时间：2016-01-01 15:00起</p>
-              <p>广州市海珠区万寿素社街48号</p>
+              <p>预定场地：{{paidStadium.quantity}}个</p>
+              <p>时间：{{paidStadium.bookstarttime | date : 'yy-MM-dd hh:mm'}}起</p>
+              <p>{{paidStadium.position}}</p>
             </div>
           </div>
         </a>
