@@ -272,7 +272,7 @@
 
 .tabs-top>.tabs,
 .tabs.tabs-top {
-  top: 0px !important;
+  /*top: 0px !important;*/
 }
 
 .tab-item {
@@ -419,6 +419,13 @@
 
 
 /* 我的场馆 */
+
+.carvel-list-ctrl {
+  background: white;
+  padding: .2rem .12rem;
+  margin-top: .2rem;
+  font-size: .288rem;
+}
 
 .carvel-list>.item>a {
   display: block;

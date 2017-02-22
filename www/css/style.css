@@ -3,6 +3,23 @@
 
 /* 通用 */
 
+.overhidden {
+  overflow: hidden;
+}
+
+.top-tab-wrapper {
+  height: .865rem;
+  width: 100%;
+}
+
+.absolute-top-header {
+  top: .704rem;
+}
+
+.margin-tab-header {
+  margin-top: 1.57rem;
+}
+
 .custom-nav-button-img {
   max-width: 23px;
   max-height: 27px;
