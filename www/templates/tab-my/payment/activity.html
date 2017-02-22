@@ -10,18 +10,17 @@
   <ion-content>
 
     <ul class="carvel-list">
-      <li class="item">
-        <a ng-href="">
+      <li class="item" ng-repeat="paymentActivity in paymentActivityList track by $index">
+        <a>
           <div class="item-title">
-            <span>TheLightRun——地球上最闪亮的夜跑球上最闪亮的</span>
-            <span>待付款</span>
+            <span>{{paymentActivity.name}}</span>
           </div>
           <div class="item-content">
-            <img ng-src="img/running-icon.png" alt="">
+            <img ng-src="{{paymentActivity.thumbnail}}" alt="">
             <div class="item-flexgrow">
-              <p>报名时间：2016-01-18 20:17</p>
-              <p>举行时间：2016-04-11</p>
-              <p>广州市天河区珠江新城花城广场</p>
+              <p>报名时间：{{paymentActivity.registertime | date : 'yy-MM-dd'}}</p>
+              <p>举行时间：{{paymentActivity.starttime | date : 'yy-MM-dd'}}</p>
+              <p>{{paymentActivity.position}}</p>
             </div>
           </div>
           <div class="button-right" ng-show="true">
