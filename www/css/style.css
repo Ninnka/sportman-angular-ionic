@@ -1,7 +1,206 @@
-/* Empty. Add your own CSS if you like */
-
-
 /* 通用 */
+
+.agree-feature-wrapper {
+  padding: .2rem;
+  background: white;
+}
+
+.add-feature-wrapper {
+  padding: .2rem;
+  background: white;
+}
+
+.add-feature-title {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-feature-title>p {
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin: 0;
+}
+
+.add-feature-title>span {
+  align-self: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: .36rem;
+  height: .576rem;
+  line-height: .576rem;
+  color: 444;
+  padding: 0 .08rem;
+}
+
+.payment-wrapper {
+  padding: .1rem .2rem;
+  background: white;
+  margin-bottom: .2rem;
+}
+
+.payment-wrapper>p {
+  font-size: .256rem;
+  color: #666;
+  padding: .2rem 0 .2rem;
+}
+
+.payment-wrapper>p:last-child {
+  margin-bottom: 0;
+}
+
+.payment-wrapper>p:not(:last-child) {
+  border-bottom: 1px solid rgba(180, 180, 180, .7);
+}
+
+.payment-desc {
+  margin-left: .18rem;
+  flex-grow: 1;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.payment-desc>p:nth-child(1) {
+  font-size: .27rem;
+  color: #444;
+}
+
+.payment-desc>p:nth-child(2) {
+  font-size: .23rem;
+  color: #666;
+}
+
+.payment-desc>p {
+  margin: 0;
+}
+
+.payment-price {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-price>span:nth-child(1) {
+  color: red;
+  font-size: .29rem;
+}
+
+.payment-price>span:nth-child(2) {
+  color: #666;
+  font-size: .27rem;
+}
+
+.poundage {
+  justify-content: space-between;
+}
+
+.remark {
+  justify-content: flex-start;
+}
+
+.poundage>span {
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+
+.remark>span:nth-child(1) {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.remark>span:nth-child(2) {
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin-left: .16rem;
+  font-size: .22rem;
+  color: #666;
+}
+
+.flex-box {
+  display: flex;
+}
+
+.pay-box {
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: .1rem .1rem;
+}
+
+.pay-info {
+  font-size: .27rem;
+  padding: .1rem;
+  flex-basis: 3rem;
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+
+.pay-info>span:nth-child(2) {
+  color: red;
+}
+
+.button-pay {
+  height: .5rem;
+  line-height: .5rem;
+  flex-basis: 2rem;
+  flex-grow: 0;
+  flex-shrink: 1;
+  margin-right: .2rem;
+}
+
+.payment-from-wrapper {
+  background: white;
+  padding: .15rem .2rem;
+}
+
+.payment-from-wrapper>p {
+  color: #666;
+}
+
+.list-item-bordertop-only>.item {
+  border-width: 0;
+  /*border-top-width: 1px;*/
+}
+
+#weixinpay {
+  font-size: .48rem;
+  color: #0cbb22;
+}
+
+#alipay {
+  font-size: .48rem;
+  color: #1296db;
+}
+
+#mywallet {
+  width: .52rem;
+  height: .52rem;
+}
+
+.icon-with-text~span {
+  font-size: .256rem;
+  margin-left: .12rem;
+  color: #454545;
+}
+
+.pay-select {
+  width: .48rem;
+  height: .48rem;
+}
+
+.payment-item {
+  padding: .1rem 0 .25rem;
+  border-bottom: 1px solid rgba(180, 180, 180, .7);
+}
+
+.payment-item>img {
+  height: 1.2rem;
+  flex-shrink: 1;
+  flex-grow: 0;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.payment-item {}
 
 .overhidden {
   overflow: hidden;
@@ -103,7 +302,7 @@
 .input-textarea>p {
   padding: 6px 0;
   text-align: right;
-  font-size: 17px;
+  font-size: .25rem;
   margin: 0;
 }
 

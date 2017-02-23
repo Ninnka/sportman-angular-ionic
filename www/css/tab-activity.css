@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .locate-text {
   font-size: .27rem; }
 
@@ -106,6 +107,24 @@
   border: 1px solid #fb8041;
   border-radius: .048rem;
   color: #fb8041; }
+  .stream-grid.division-bottom > div.active {
+    border: 1px solid red;
+    background: red;
+    color: white; }
+  .stream-grid.division-bottom > div.fullblock {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; }
+  .stream-grid.division-bottom > div .newfeature {
+    width: 100%;
+    flex-grow: 1;
+    flex-shrink: 1; }
+  .stream-grid.division-bottom > div .closenewfeature {
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-size: .3rem;
+    color: #444；; }
 
 .division-line-left {
   border-left: 1px solid rgba(180, 180, 180, 0.9); }
