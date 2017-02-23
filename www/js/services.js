@@ -205,7 +205,11 @@ angular.module('starter.services', [])
       activity_reviewlist: 'http://localhost/sportman/activity_reviewlist.php',
       stadium_reviewlist: 'http://localhost/sportman/stadium_reviewlist.php',
       activity_pay: 'http://localhost/sportman/activity_pay.php',
-      stadium_pay: 'http://localhost/sportman/stadium_pay.php'
+      stadium_pay: 'http://localhost/sportman/stadium_pay.php',
+      activity_getpayment: 'http://localhost/sportman/activity_getpayment.php',
+      stadium_getpayment: 'http://localhost/sportman/stadium_getpayment.php',
+      activity_getfeature: 'http://localhost/sportman/activity_getfeature.php',
+      stadium_getfeature: 'http://localhost/sportman/stadium_getfeature.php'
     };
   })
 
