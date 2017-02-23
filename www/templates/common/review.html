@@ -7,59 +7,41 @@
     </span>
   </ion-nav-buttons>
 
-  <ion-nav-buttons side="right">
-    <a class="nav-button-wrapper" nav-direction="forward" ng-click="">
-      <button type="button" name="button" class="button button-clear button-light nav-button">发布</button>
-    </a>
-  </ion-nav-buttons>
-
   <ion-content>
-    <div class="empty"></div>
-    <div class="horizon-grid">
-      <div ng-click="">
-        <img ng-src="img/satisfied-bad.png" alt="">
-        <p>不满意</p>
-      </div>
-      <span class="vertical-line"></span>
-      <div ng-click="">
-        <img ng-src="img/satisfied-normal.png" alt="">
-        <p>一般</p>
-      </div>
-      <span class="vertical-line"></span>
 
-      <div ng-click="">
-        <img ng-src="img/satisfied-ok.png" alt="">
-        <p>满意</p>
-      </div>
-      <span class="vertical-line"></span>
-      <div ng-click="">
-        <img ng-src="img/satisfied-excellent.png" alt="">
-        <p>相当满意</p>
+    <div class="agree-feature-wrapper">
+      <p>目前该活动的评价：</p>
+      <div class="stream-grid division-bottom">
+        <div ng-repeat="feature in featureList track by $index" class="stream-grid-item" ng-click="agreeFeature(feature.id)" ng-class="isAgree(feature.id) ? 'active' : ''">
+          {{feature.feature}} {{feature.agree}}
+        </div>
       </div>
     </div>
+
+    <div class="add-feature-wrapper">
+      <div class="add-feature-title flex-box">
+        <p>还有更多评价？点击 + 来自定义标签</p>
+        <span ng-click="addFeature()">+</span>
+      </div>
+      <div class="stream-grid division-bottom">
+        <div ng-repeat="newFeature in newFeatureList track by $index" class="stream-grid-item fullblock">
+          <input type="text" placeholder="输入特点" ng-model="newFeature.feature" class="newfeature">
+          <span class="closenewfeature" ng-click="deleteFeature($index)"> X </span>
+        </div>
+      </div>
+    </div>
+
 
     <div class="input-textarea">
-      <textarea name="name" rows="8" cols="80" placeholder="活动过程如何，气氛活跃吗，举办方如何？（写多才是真的活动达人~）"></textarea>
+      <textarea name="name" rows="8" cols="80" placeholder="活动过程如何，气氛活跃吗，举办方如何？（写多才是真的活动达人~）" ng-model="reviewInfo.review"></textarea>
       <p>
-        还需<span>16</span>字,即可发表
-      </p>
-    </div>
-    <div class="mul-img">
-      <div class="mul-img-content">
-        <div>
-          <img ng-src="img/use-camera.png" alt="">
-          <img ng-src="img/use-pic.png" alt="">
-        </div>
-        <p>上传图片可获得更多围观和称赞哦~</p>
-      </div>
-      <p>
-        匿名评价
-        <input type="checkbox" name="" value="">
+        还需<span>{{16 -reviewInfo.review.length >= 0 ? 16 -reviewInfo.review.length : 0}}</span>字,即可发表
       </p>
     </div>
 
-    <!-- <p>类型：{{reviewinfo.type}}</p>
-    <p>编号：{{reviewinfo.id}}</p> -->
+    <div class="button-center-wrapper margin-top-md">
+      <div class="button button-positive button-large" ng-click="submitReview()">发布</div>
+    </div>
 
   </ion-content>
 

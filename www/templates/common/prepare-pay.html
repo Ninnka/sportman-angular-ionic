@@ -9,31 +9,80 @@
 
   <ion-content>
 
-    <ul class="list">
-
-      <li class="item custom-item-padding">
-
-        <div class="img-left input-right">
-          <img ng-src="img/alipay.png" alt="">
-          <span>支付宝</span>
-          <input type="checkbox" name="" value="">
+    <div class="payment-wrapper">
+      <p class="payment-type">{{payinfo.type === 'activity' ? '参加活动' : '预定场馆'}}</p>
+      <div class="payment-item flex-box" ng-if="payinfo.type === 'activity'">
+        <img ng-src="{{paymentItem.thumbnail}}" alt="">
+        <div class="flex-box payment-desc">
+          <p>{{paymentItem.name}}</p>
+          <p>地址：{{paymentItem.position}}</p>
+          <div class="flex-box payment-price">
+            <span>￥ {{paymentItem.price}}</span>
+            <span>x 1</span>
+          </div>
         </div>
+      </div>
+      <div class="payment-item flex-box" ng-if="payinfo.type === 'stadium'">
+        <img ng-src="{{paymentItem.thumbnail}}" alt="">
+        <div class="flex-box payment-desc">
+          <p>{{paymentItem.name}}</p>
+          <p>类型：{{paymentItem.tradename}}</p>
+          <div class="flex-box payment-price">
+            <span>￥ {{paymentItem.price}}</span>
+            <span>x {{paymentItem.quantity}}</span>
+          </div>
+        </div>
+      </div>
+      <p class="poundage flex-box">
+        <span>运费</span>
+        <span>￥0</span>
+      </p>
+      <p class="remark flex-box">
+        <span>备注：</span>
+        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+      </p>
+    </div>
 
-        <div class="img-left input-right">
-          <img ng-src="img/weixinpay.png" alt="">
+
+    <div class="payment-from-wrapper">
+      <p>支付方式</p>
+      <div class="list list-item-bordertop-only">
+
+        <a class="item item-icon-left item-icon-right" ng-click="selectPay(0)">
+          <i class="icon icon-weixinpay icon-with-text" id="weixinpay"></i>
           <span>微信支付</span>
-          <input type="checkbox" name="" value="">
-        </div>
-      </li>
+          <i class="icon">
+            <img ng-src="{{selectPayIndex === 0 ? 'img/isselect.png' : 'img/unselect.png'}}" alt="" class="pay-select">
+          </i>
+        </a>
 
-    </ul>
+        <a class="item item-icon-left item-icon-right" ng-click="selectPay(1)">
+          <i class="icon icon-alipay icon-with-text" id="alipay"></i>
+          <span>支付宝</span>
+          <i class="icon">
+            <img ng-src="{{selectPayIndex === 1 ? 'img/isselect.png' : 'img/unselect.png'}}" alt="" class="pay-select">
+          </i>
+        </a>
 
-    <p class="notifi-title">
-      <span>全额预付</span>
-      <span class="assertive">￥35</span>
-    </p>
-    <div class="button-center-wrapper">
-      <button type="button" name="button" class="button button-positive button-large" ng-click="pay()">支付</button>
+        <a class="item item-icon-left item-icon-right" ng-click="selectPay(2)">
+          <i class="icon icon-with-text">
+            <img ng-src="img/mywallet.png" alt="" id="mywallet">
+          </i>
+          <span>我的钱包</span>
+          <i class="icon">
+            <img ng-src="{{selectPayIndex === 2 ? 'img/isselect.png' : 'img/unselect.png'}}" alt="" class="pay-select">
+          </i>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="pay-box flex-box">
+      <div class="pay-info">
+        <span>合计：</span>
+        <span>￥ 120.55</span>
+      </div>
+      <button type="button" name="button" class="button button-positive button-pay" ng-click="pay()">支付</button>
     </div>
 
   </ion-content>
