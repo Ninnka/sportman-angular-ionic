@@ -154,16 +154,85 @@ angular.module('starter.controllers.common', [])
 
   }])
 
-  .controller('reviewCtrl', ['$scope', '$rootScope', '$stateParams', function ($scope, $rootScope, $stateParams) {
-    console.log("in review");
-    console.log("id_user", $stateParams.id_user);
-    console.log("id_activity", $stateParams.id_activity);
+  .controller('reviewCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'api', '$ionicPopup', function ($scope, $rootScope, $stateParams, getData, api, $ionicPopup) {
+
+    $scope.featureList = [];
+    $scope.newFeatureList = [];
+    $scope.agreeFeatureList = [];
+
     $scope.reviewInfo = {
       id_user: $stateParams.id_user,
       id_activity: $stateParams.id_activity,
+      id_stadium: $stateParams.id_stadium,
       review: '',
-      score: 0
+      score: 5,
+      agreefeature: $scope.agreeFeatureList,
+      addedfeature: $scope.newFeatureList
     };
+
+    $scope.getFeature = function () {
+      let symbolUrl = $scope.reviewInfo.id_activity !== 0 ? api.activity_getfeature : api.stadium_getfeature;
+      let id = $scope.reviewInfo.id_activity !== 0 ? $scope.reviewInfo.id_activity : $scope.reviewInfo.id_stadium;
+      getData.post(symbolUrl, {
+        id: id
+      }).then(function resolve(res) {
+        $scope.featureList = res.data.resultData;
+      }, function reject(err) {
+        console.log('err:', err);
+      });
+    };
+    $scope.getFeature();
+
+    $scope.addFeature = function () {
+      let nf = {
+        feature: ''
+      };
+      $scope.newFeatureList.push(nf);
+    };
+
+    $scope.deleteFeature = function (i) {
+      $scope.newFeatureList.splice(i, 1);
+    };
+
+    $scope.agreeFeature = function (id) {
+      let index = $scope.agreeFeatureList.indexOf(id);
+      if (index === -1) {
+        $scope.agreeFeatureList.push(id);
+      } else {
+        $scope.agreeFeatureList.splice(index, 1);
+      }
+    };
+
+    $scope.isAgree = function (id) {
+      let index = $scope.agreeFeatureList.indexOf(id);
+      if (index === -1) {
+        return false;
+      }
+      return true;
+    };
+
+    $scope.submitReview = function () {
+      if ($scope.reviewInfo.review.length < 16) {
+        $scope.showPop('发表失败', '评论字数不足');
+        return false;
+      }
+      let reviewUrl = $scope.reviewInfo.id_activity !== 0 ? api.activity_addreview : api.stadium_addreview;
+      getData.post(reviewUrl, $scope.reviewInfo)
+        .then(function resolve(res) {
+          $scope.showResult(res.data.resultStatus === 'success' ? '评论成功' : '评论失败');
+        }, function reject(err) {
+          console.log('err:', err);
+        });
+    };
+
+    $scope.showPop = function (result, reason) {
+      var alertPopup = $ionicPopup.alert({
+        title: result,
+        template: reason
+      });
+      alertPopup.then(function (res) {});
+    };
+
   }])
 
   .controller('preparePayCtrl', ['$scope', '$stateParams', 'stateGo', 'getData', 'api', '$ionicPopup', '$ionicLoading', function ($scope, $stateParams, stateGo, getData, api, $ionicPopup, $ionicLoading) {
@@ -172,6 +241,26 @@ angular.module('starter.controllers.common', [])
       id: $stateParams.id,
       type: $stateParams.type
     };
+
+    $scope.selectPayIndex = 0;
+
+    $scope.selectPay = function (i) {
+      $scope.selectPayIndex = i;
+    };
+
+    $scope.paymentItem = {};
+
+    $scope.getPaymentInfo = function () {
+      let paymentUrl = $scope.payinfo.type === 'activity' ? api.activity_getpayment : api.stadium_getpayment;
+      getData.post(paymentUrl, {
+        id: $scope.payinfo.id
+      }).then(function resolve(res) {
+        $scope.paymentItem = res.data.resultData;
+      }, function reject(err) {
+        console.log('err:', err);
+      });
+    };
+    $scope.getPaymentInfo();
 
     $scope.pay = function () {
       $ionicLoading.show({
