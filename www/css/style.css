@@ -1,5 +1,9 @@
 /* 通用 */
 
+.position-absolute {
+  position: absolute;
+}
+
 .agree-feature-wrapper {
   padding: .2rem;
   background: white;
