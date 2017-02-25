@@ -1,0 +1,43 @@
+.socialbg-wrapper {
+  font-size: 0;
+  height: auto;
+  max-height: 3.468rem;
+  overflow: hidden;
+  position: relative;
+
+  .socialbg {
+    max-width: 100%;
+  }
+
+  > .user-avatar {
+    align-items: center;
+    background: rgba(0,0,0,.5);
+    bottom: 0;
+    justify-content: flex-start;
+    left: 0;
+    padding: .1rem;
+    width: 100%;
+
+    > img {
+      height: .9rem;
+      margin-left: .1rem;
+      width: .9rem;
+    }
+
+    > span {
+      align-self: flex-end;
+      color: white;
+      font-size: .29rem;
+      margin-bottom: .12rem;
+      margin-left: .25rem;
+    }
+  }
+}
+
+.social-list {
+  background: white;
+
+  > .social-item {
+    padding: .017rem;
+  }
+}
