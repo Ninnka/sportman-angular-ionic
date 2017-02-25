@@ -154,7 +154,7 @@ angular.module('starter.controllers.common', [])
 
   }])
 
-  .controller('reviewCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'api', '$ionicPopup', function ($scope, $rootScope, $stateParams, getData, api, $ionicPopup) {
+  .controller('reviewCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'api', '$ionicPopup', 'stateGo', function ($scope, $rootScope, $stateParams, getData, api, $ionicPopup, stateGo) {
 
     $scope.featureList = [];
     $scope.newFeatureList = [];
@@ -162,8 +162,8 @@ angular.module('starter.controllers.common', [])
 
     $scope.reviewInfo = {
       id_user: $stateParams.id_user,
-      id_activity: $stateParams.id_activity,
-      id_stadium: $stateParams.id_stadium,
+      id_item: $stateParams.id_item,
+      id_type: $stateParams.id_type,
       review: '',
       score: 5,
       agreefeature: $scope.agreeFeatureList,
@@ -171,10 +171,9 @@ angular.module('starter.controllers.common', [])
     };
 
     $scope.getFeature = function () {
-      let symbolUrl = $scope.reviewInfo.id_activity !== 0 ? api.activity_getfeature : api.stadium_getfeature;
-      let id = $scope.reviewInfo.id_activity !== 0 ? $scope.reviewInfo.id_activity : $scope.reviewInfo.id_stadium;
+      let symbolUrl = $scope.reviewInfo.id_type === 'activity' ? api.activity_getfeature : api.stadium_getfeature;
       getData.post(symbolUrl, {
-        id: id
+        id: $scope.reviewInfo.id_item
       }).then(function resolve(res) {
         $scope.featureList = res.data.resultData;
       }, function reject(err) {
@@ -216,11 +215,17 @@ angular.module('starter.controllers.common', [])
         $scope.showPop('发表失败', '评论字数不足');
         return false;
       }
-      let reviewUrl = $scope.reviewInfo.id_activity !== 0 ? api.activity_addreview : api.stadium_addreview;
+      let reviewUrl = $scope.reviewInfo.id_type === 'activity' ? api.activity_addreview : api.stadium_addreview;
       getData.post(reviewUrl, $scope.reviewInfo)
         .then(function resolve(res) {
-          $scope.showResult(res.data.resultStatus === 'success' ? '评论成功' : '评论失败');
+          $scope.showPop('', res.data.resultData);
+          if (res.data.resultStatus === 'success') {
+            stateGo.goToBack({
+              step: -1
+            });
+          }
         }, function reject(err) {
+          $scope.showPop('发表失败', '发生未知的网络错误');
           console.log('err:', err);
         });
     };
@@ -294,6 +299,19 @@ angular.module('starter.controllers.common', [])
       });
       alertPopup.then(function (res) {});
     };
+  }])
+
+  .controller('reviewBtnCtrl', ['$scope', 'stateGo', function ($scope, stateGo) {
+
+    $scope.review = function (id_user, id_item, id_type) {
+      console.log("go to review");
+      stateGo.goToState('review', {
+        id_user: id_user,
+        id_item: id_item,
+        id_type: id_type
+      });
+    };
+
   }])
 
   .controller('reviewsCtrl', ['$scope', '$stateParams', 'getData', 'api', function ($scope, $stateParams, getData, api) {

@@ -91,11 +91,6 @@ angular.module('starter.controllers.tab.activity', [])
         });
     };
 
-    // $rootScope.preparePay = function (targetType, targetId, targetPay) {
-    //   $state.go("prepare-pay");
-    //   $rootScope.inAnimation();
-    // };
-
     $rootScope.pay = function () {
       console.log("pay");
     };
@@ -136,8 +131,6 @@ angular.module('starter.controllers.tab.activity', [])
     };
 
     $rootScope.logout = function () {
-      // UsrInfoLocal.clear();
-      // ls.clear();
       Logout.logoutCurrentAccount();
       $rootScope.globalSignSymbol = false;
       $rootScope.toBackView();
@@ -152,10 +145,8 @@ angular.module('starter.controllers.tab.activity', [])
     if ($scope.globalUsrname !== "" && $scope.globalPassword !== "") {
       SignInOrUpFac.signIn($scope.globalUsrname, $scope.globalPassword)
         .then(function resolve(response) {
-          // console.log("global sign in");
-          // console.log("response", response);
+
           if (response.data.resultStatus === "success") {
-            // console.log("success");
             $rootScope.globalSignSymbol = true;
 
             $scope.uil.setid(response.data.resultData[0].id);
@@ -190,10 +181,6 @@ angular.module('starter.controllers.tab.activity', [])
   // 主页控制器
   .controller('ActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', '$ionicSlideBoxDelegate', 'stateGo', 'UsrInfoLocal', '$ionicScrollDelegate', function ($scope, $rootScope, getData, api, $ionicSlideBoxDelegate, stateGo, UsrInfoLocal, $ionicScrollDelegate) {
 
-    // $scope.$on("$ionicView.enter", function () {
-    //   $rootScope.clearHistory();
-    // });
-
     $scope.firstEnter = true;
     $scope.activityList = [];
     $scope.bannerList = [];
@@ -220,7 +207,6 @@ angular.module('starter.controllers.tab.activity', [])
           console.log(res);
           $scope.bannerList = res.data.resultData.bannerList;
           $scope.activityList = $scope.activityList.concat(res.data.resultData.activityList);
-          // scroller.resize();
           $ionicSlideBoxDelegate.update();
         }, function errorCallback(err) {
           console.log("err:");
@@ -238,10 +224,8 @@ angular.module('starter.controllers.tab.activity', [])
     };
 
     $scope.loadMoreData = function () {
-      console.log("loadMoreData");
       getData.get(api.activity_home)
         .then(function successCallback(res) {
-          // console.log(res);
           $scope.activityList = $scope.activityList.concat(res.data.resultData.activityList);
           $scope.$broadcast('scroll.infiniteScrollComplete');
         }, function errorCallback(err) {
@@ -251,7 +235,6 @@ angular.module('starter.controllers.tab.activity', [])
     };
 
     $scope.refreshNewData = function () {
-      console.log("refreshNewData");
       $scope.$broadcast('scroll.refreshComplete');
     };
 
@@ -265,7 +248,6 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.type = $stateParams.type;
 
     $scope.activity = {};
-
 
     $scope.getActivityInfo = function () {
       getData.post(api.activity_detail, {

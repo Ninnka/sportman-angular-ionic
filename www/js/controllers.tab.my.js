@@ -260,14 +260,6 @@ angular.module('starter.controllers.tab.my', [])
       $rootScope.clearHistory();
     });
 
-    $scope.review = function (id_user, id_activity) {
-      console.log("go to review");
-      stateGo.goToState('review', {
-        id_user: id_user,
-        id_activity: id_activity
-      });
-    };
-
     $scope.activityList = [];
 
     $scope.getActivityInfo = function () {
@@ -291,14 +283,6 @@ angular.module('starter.controllers.tab.my', [])
     });
 
     $scope.show_status = true;
-
-    $scope.review = function (id_user, id_activity) {
-      console.log("go to review");
-      stateGo.goToState('review', {
-        id_user: id_user,
-        id_activity: id_activity
-      });
-    };
 
     $scope.activityList = [];
 

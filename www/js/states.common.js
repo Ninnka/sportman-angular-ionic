@@ -7,8 +7,8 @@ angular.module('starter.states.common', [])
         url: "/review",
         params: {
           id_user: 0,
-          id_activity: 0,
-          id_stadium: 0
+          id_item: 0,
+          id_type: ''
         },
         views: {
           'index': {
