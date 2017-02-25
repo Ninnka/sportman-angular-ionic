@@ -12,6 +12,6 @@
         <p>{{activity.position}}</p>
       </div>
     </div>
-    <review-btn ng-show="activity.status === '已结束'"></review-btn>
+    <review-btn ng-show="activity.status === '已结束'" iduser="{{activity.id_user}}" iditem="{{activity.id_activity}}" idtype="activity"></review-btn>
   </a>
 </li>

@@ -12,6 +12,6 @@
         <p>{{stadium.position}}</p>
       </div>
     </div>
-    <review-btn ng-show="stadium.status === '已使用'"></review-btn>
+    <review-btn ng-show="stadium.status === '已使用'" iduser="{{stadium.id_user}}" iditem="{{stadium.id_stadium}}" idtype="stadium"></review-btn>
   </a>
 </li>
