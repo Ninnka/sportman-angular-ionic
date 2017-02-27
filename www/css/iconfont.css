@@ -17,6 +17,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-xihuan:before {
+  content: "\e600";
+}
+
+.icon-shenglve:before {
+  content: "\e639";
+}
+
 .icon-tab-stadium-on:before {
   content: "\e602";
 }
@@ -27,6 +35,10 @@
 
 .icon-weixinpay:before {
   content: "\e61e";
+}
+
+.icon-huifu:before {
+  content: "\e61a";
 }
 
 .icon-tab-activity-off:before {
@@ -53,6 +65,10 @@
   content: "\e6bc";
 }
 
+.icon-qianbao:before {
+  content: "\e643";
+}
+
 .icon-weixin:before {
   content: "\e637";
 }
@@ -71,4 +87,8 @@
 
 .icon-tab-me-off-copy:before {
   content: "\e6e8";
+}
+
+.icon-mywallet:before {
+  content: "\e6eb";
 }
