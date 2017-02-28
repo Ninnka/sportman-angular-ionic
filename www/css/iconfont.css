@@ -17,6 +17,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-dingwei:before {
+  content: "\e601";
+}
+
 .icon-xihuan:before {
   content: "\e600";
 }
@@ -31,6 +35,10 @@
 
 .icon-tab-me-on:before {
   content: "\e634";
+}
+
+.icon-hf:before {
+  content: "\e63b";
 }
 
 .icon-weixinpay:before {
@@ -49,28 +57,12 @@
   content: "\e6ea";
 }
 
-.icon-social-github:before {
-  content: "\e60a";
-}
-
-.icon-weibo:before {
-  content: "\e613";
-}
-
 .icon-tab-find-on:before {
   content: "\e66d";
 }
 
 .icon-select:before {
   content: "\e6bc";
-}
-
-.icon-qianbao:before {
-  content: "\e643";
-}
-
-.icon-weixin:before {
-  content: "\e637";
 }
 
 .icon-tab-activty-on:before {
@@ -89,6 +81,6 @@
   content: "\e6e8";
 }
 
-.icon-mywallet:before {
-  content: "\e6eb";
+.icon-diqiu:before {
+  content: "\e7b9";
 }

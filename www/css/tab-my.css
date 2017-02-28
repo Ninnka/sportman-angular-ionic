@@ -279,9 +279,10 @@
   max-width: 100%;
 }
 
-.scroll-content.ionic-scroll.has-tabs-top {
+
+/*.scroll-content.ionic-scroll.has-tabs-top {
   top: 44px;
-}
+}*/
 
 .card-title-time {
   line-height: 0.48rem;

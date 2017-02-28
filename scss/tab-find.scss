@@ -46,8 +46,9 @@
 
     .social-avatar {
       border-radius: .05rem;
+      flex-basis: 1rem;
       flex-grow: 0;
-      flex-shrink: 1;
+      flex-shrink: 0;
       height: 1rem;
       width: 1rem;
     }
@@ -70,14 +71,18 @@
         font-size: .264rem;
         flex-grow: 1;
       }
-
-      &:nth-child(2) {
-        color: #555;
-        font-size: .242rem;
-        flex-grow: 0;
-      }
     }
 
+    .icon {
+      color: #555;
+      font-size: .26rem;
+
+      span {
+        font-size: .242rem;
+        flex-grow: 0;
+        vertical-align: text-bottom;
+      }
+    }
   }
 
   .social-publishtime {
@@ -108,7 +113,7 @@
   .social-tools {
     align-items: center;
     justify-content: space-around;
-    margin: 0 0 .7rem;
+    margin: .2rem 0 .5rem;
 
     > .icon-tool {
       color: #666;

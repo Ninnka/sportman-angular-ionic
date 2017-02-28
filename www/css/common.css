@@ -17,11 +17,9 @@ textarea {
   height: .84rem; }
 
 .tab-item .icon {
-  font-size: .45rem;
+  font-size: .4rem;
   height: .51rem;
-  line-height: 0;
-  margin-bottom: .085rem;
-  margin-top: -.085rem; }
+  padding-top: .15rem; }
 
 .tabs-icon-bottom > .tabs .tab-item,
 .tabs-icon-bottom.tabs .tab-item,

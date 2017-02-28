@@ -34,8 +34,9 @@
     padding: .1rem; }
     .social-list .social-item .social-avatar {
       border-radius: .05rem;
+      flex-basis: 1rem;
       flex-grow: 0;
-      flex-shrink: 1;
+      flex-shrink: 0;
       height: 1rem;
       width: 1rem; }
 
@@ -51,10 +52,13 @@
       .social-content-wrapper .social-name-locate > span:nth-child(1) {
         font-size: .264rem;
         flex-grow: 1; }
-      .social-content-wrapper .social-name-locate > span:nth-child(2) {
-        color: #555;
+    .social-content-wrapper .social-name-locate .icon {
+      color: #555;
+      font-size: .26rem; }
+      .social-content-wrapper .social-name-locate .icon span {
         font-size: .242rem;
-        flex-grow: 0; }
+        flex-grow: 0;
+        vertical-align: text-bottom; }
   .social-content-wrapper .social-publishtime {
     color: #666;
     font-size: .238rem;
@@ -74,7 +78,7 @@
   .social-content-wrapper .social-tools {
     align-items: center;
     justify-content: space-around;
-    margin: 0 0 .7rem; }
+    margin: .2rem 0 .5rem; }
     .social-content-wrapper .social-tools > .icon-tool {
       color: #666;
       flex-grow: 0;
