@@ -11,8 +11,19 @@ angular.module('starter.states.tab.find', [])
         },
         views: {
           'index': {
-            templateUrl: 'templates/tab-find/socialcircle-detail.html',
+            templateUrl: 'templates/tab-social/socialcircle-detail.html',
             controller: 'SocialcircleDetailCtrl'
+          }
+        }
+      })
+
+      .state('socialcircle-my', {
+        cache: false,
+        url: '/socialcircle-my',
+        views: {
+          'index': {
+            templateUrl: 'templates/tab-social/socialcircle-my.html',
+            controller: 'SocialcircleMyCtrl'
           }
         }
       });

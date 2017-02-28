@@ -67,6 +67,9 @@ angular.module('starter.controllers.tab.activity', [])
       html[0].style["font-size"] = winX / 640 * 100 + "px";
     };
 
+    // 自动登录标记
+    $scope.isAutoLoading = false;
+
     // 打开定位
     $rootScope.openLocate = function () {
       $state.go("city-selection");
@@ -119,7 +122,7 @@ angular.module('starter.controllers.tab.activity', [])
     };
 
     $rootScope.toBackView = function (target) {
-      console.log("back");
+      $rootScope.outAnimation();
       var target = target ? target : {};
       var step = target.step ? target.step : -1;
       if (target.name === undefined) {
@@ -127,7 +130,6 @@ angular.module('starter.controllers.tab.activity', [])
       } else {
         $state.go(target.name);
       }
-      $rootScope.outAnimation();
     };
 
     $rootScope.logout = function () {
@@ -143,10 +145,12 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.globalPassword = ls.get("usrpassword", "");
 
     if ($scope.globalUsrname !== "" && $scope.globalPassword !== "") {
+      $rootScope.isAutoLoading = true;
       SignInOrUpFac.signIn($scope.globalUsrname, $scope.globalPassword)
         .then(function resolve(response) {
 
           if (response.data.resultStatus === "success") {
+            $scope.$emit('signin-success', '');
             $rootScope.globalSignSymbol = true;
 
             $scope.uil.setid(response.data.resultData[0].id);
@@ -174,6 +178,7 @@ angular.module('starter.controllers.tab.activity', [])
           } else {
             console.log("global fail");
           }
+          $rootScope.isAutoLoading = false;
         });
     }
   }])
@@ -184,6 +189,7 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.firstEnter = true;
     $scope.activityList = [];
     $scope.bannerList = [];
+    $scope.hasFirstLoad = false;
 
     $scope.loadMoreSymbol = true;
 
@@ -201,20 +207,32 @@ angular.module('starter.controllers.tab.activity', [])
       }
     });
 
+    $scope.getDataPromise = '';
+
     $scope.getActivityData = function () {
-      getData.get(api.activity_home)
-        .then(function successCallback(res) {
-          console.log(res);
-          $scope.bannerList = res.data.resultData.bannerList;
-          $scope.activityList = $scope.activityList.concat(res.data.resultData.activityList);
-          $ionicSlideBoxDelegate.update();
-        }, function errorCallback(err) {
-          console.log("err:");
-          console.log(err);
-        });
+      $scope.getDataPromise = getData.get(api.activity_home);
     };
-    $scope.getActivityData();
+    if (!$scope.hasFirstLoad) {
+      $scope.getActivityData();
+    }
+
     $scope.firstEnter = false;
+
+    $scope.$on('$ionicView.afterEnter', function () {
+      if (!$scope.hasFirstLoad) {
+        $scope.hasFirstLoad = true;
+        $scope.getDataPromise
+          .then(function successCallback(res) {
+            console.log(res);
+            $scope.bannerList = res.data.resultData.bannerList;
+            $scope.activityList = $scope.activityList.concat(res.data.resultData.activityList);
+            $ionicSlideBoxDelegate.update();
+          }, function errorCallback(err) {
+            console.log("err:");
+            console.log(err);
+          });
+      }
+    });
 
     $scope.toDetail = function (id_activity) {
       stateGo.goToState('detail_activity', {

@@ -1,11 +1,17 @@
 angular.module('starter.controllers.tab.my', [])
 
   // 我的主页 的控制器
-  .controller('MyCtrl', ['$scope', '$rootScope', 'UsrInfoLocal', function ($scope, $rootScope, UsrInfoLocal) {
+  .controller('MyCtrl', ['$scope', '$rootScope', 'UsrInfoLocal', 'stateGo', function ($scope, $rootScope, UsrInfoLocal, stateGo) {
 
     // 设置页面进入监听事件
     $scope.$on("$ionicView.enter", function () {
       $rootScope.clearHistory();
+    });
+
+    $scope.$on('signin-success', function () {
+      console.log("on signin-success");
+      $scope.my.content = true;
+      $scope.my.form = false;
     });
 
     // 控制个人信息视图显示
@@ -17,19 +23,11 @@ angular.module('starter.controllers.tab.my', [])
     // 本地用户信息共享部分
     $scope.uil = UsrInfoLocal;
 
-    // 观察全局变量
-    $scope.$watch("globalSignSymbol", function (newValue, oldValue, scope) {
-      console.log("change");
-      if (newValue === true) {
-        console.log("newValue: true");
-        $scope.my.content = true;
-        $scope.my.form = false;
-      } else if (newValue === false) {
-        console.log("newValue: false");
-        $scope.my.content = false;
-        $scope.my.form = true;
+    $scope.toSignInUp = function () {
+      if (!$rootScope.isAutoLoading) {
+        stateGo.goToState('signinup');
       }
-    }, true);
+    };
 
     // 我的页面进入检测事件
     $scope.$on("$ionicView.enter", function () {
@@ -46,6 +44,20 @@ angular.module('starter.controllers.tab.my', [])
         };
       }
     });
+
+    // 观察全局变量
+    $scope.$watch("globalSignSymbol", function (newValue, oldValue, scope) {
+      console.log("change");
+      if (newValue === true) {
+        console.log("newValue: true");
+        $scope.my.content = true;
+        $scope.my.form = false;
+      } else if (newValue === false) {
+        console.log("newValue: false");
+        $scope.my.content = false;
+        $scope.my.form = true;
+      }
+    }, true);
 
   }])
 

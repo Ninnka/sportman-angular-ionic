@@ -58,17 +58,30 @@ angular.module('starter.controllers.tab.stadium', [])
 
     $scope.stadiumList = [];
 
+    $scope.hasFirstLoad = false;
+    $scope.getDataPromise = '';
+
     $scope.getStaidumData = function () {
-      getData.get(api.stadium_home)
-        .then(function resolve(res) {
-          // console.log("res.data", res.data);
-          $scope.stadiumList = $scope.stadiumList.concat(res.data.resultData);
-          $scope.$broadcast('scroll.infiniteScrollComplete');
-        }, function reject(err) {
-          console.log("err", err);
-        });
+      $scope.getDataPromise = getData.get(api.stadium_home);
+
     };
-    $scope.getStaidumData();
+    if (!$scope.hasFirstLoad) {
+      $scope.getStaidumData();
+    }
+
+    $scope.$on('$ionicView.afterEnter', function () {
+      if (!$scope.hasFirstLoad) {
+        $scope.hasFirstLoad = true;
+        $scope.getDataPromise
+          .then(function resolve(res) {
+            // console.log("res.data", res.data);
+            $scope.stadiumList = $scope.stadiumList.concat(res.data.resultData);
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+          }, function reject(err) {
+            console.log("err", err);
+          });
+      }
+    });
 
     $scope.loadMoreSymbol = true;
 

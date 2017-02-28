@@ -3,7 +3,6 @@ angular.module('starter.states.tab.stadium', [])
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
       .state('detail_stadium', {
-        cache: false,
         url: '/detail/stadium',
         params: {
           type: "",

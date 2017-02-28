@@ -45,12 +45,12 @@ angular.module('starter.services', [])
     };
   }])
 
-  .factory("SignInOrUpApi", function () {
+  .factory("SignInOrUpApi", ['config', function (config) {
     return {
-      signInUrl: "http://localhost/sportman/signin.php",
-      signUpUrl: "http://localhost/sportman/signup.php"
+      signInUrl: config.env + 'signin.php',
+      signUpUrl: config.env + 'signup.php'
     };
-  })
+  }])
 
   .factory("SignInOrUpFac", function ($http, SignInOrUpApi) {
     return {
@@ -141,12 +141,12 @@ angular.module('starter.services', [])
         //   console.log(data.type);
         //   console.log(data.id);
         // }
-        $state.go(target, data);
         if (animation === "back") {
           $rootScope.outAnimation();
         } else {
           $rootScope.inAnimation();
         }
+        $state.go(target, data);
       },
       goToBack: function (target) {
         $rootScope.toBackView(target);
@@ -163,55 +163,61 @@ angular.module('starter.services', [])
     };
   })
 
-  .factory('api', function () {
+  .factory('config', function () {
     return {
-      sportman_pic_prefix: 'http://ok7pzw2ak.bkt.clouddn.com/',
-      activity_home: 'http://localhost/sportman/activity_home.php',
-      activity_detail: 'http://localhost/sportman/activity_detail.php',
-      stadium_home: 'http://localhost/sportman/stadium_home.php',
-      stadium_detail: 'http://localhost/sportman/stadium_detail.php',
-      stadium_detail_equipment: 'http://localhost/sportman/stadium_detail_equipment.php',
-      search_activity: 'http://localhost/sportman/search_activity.php',
-      search_stadium: 'http://localhost/sportman/search_stadium.php',
-      setting_sportmanid: 'http://localhost/sportman/setting_sportmanid.php',
-      setting_changepassword: 'http://localhost/sportman/setting_changepassword.php',
-      setting_changemobile: 'http://localhost/sportman/setting_changemobile.php',
-      setting_email: 'http://localhost/sportman/setting_email.php',
-      user_activity: 'http://localhost/sportman/user_activity.php',
-      user_activity_star: 'http://localhost/sportman/user_activity_star.php',
-      user_activity_recommend: 'http://localhost/sportman/user_activity_recommend.php',
-      user_stadium: 'http://localhost/sportman/user_stadium.php',
-      user_stadium_star: 'http://localhost/sportman/user_stadium_star.php',
-      user_stadium_recommend: 'http://localhost/sportman/user_stadium_recommend.php',
-      user_review: 'http://localhost/sportman/user_review.php',
-      user_history: 'http://localhost/sportman/user_history.php',
-      user_payment_activity: 'http://localhost/sportman/user_payment_activity.php',
-      user_payment_stadium: 'http://localhost/sportman/user_payment_stadium.php',
-      user_payment_all: 'http://localhost/sportman/user_payment_all.php',
-      activity_addstar: 'http://localhost/sportman/activity_addstar.php',
-      activity_addrecommend: 'http://localhost/sportman/activity_addrecommend.php',
-      activity_removestar: 'http://localhost/sportman/activity_removestar.php',
-      activity_removerecommend: 'http://localhost/sportman/activity_removerecommend.php',
-      activity_createpayment: 'http://localhost/sportman/activity_createpayment.php',
-      activity_deletepayment: 'http://localhost/sportman/activity_deletepayment.php',
-      stadium_addstar: 'http://localhost/sportman/stadium_addstar.php',
-      stadium_addrecommend: 'http://localhost/sportman/stadium_addrecommend.php',
-      stadium_removestar: 'http://localhost/sportman/stadium_removestar.php',
-      stadium_removerecommend: 'http://localhost/sportman/stadium_removerecommend.php',
-      stadium_createpayment: 'http://localhost/sportman/stadium_createpayment.php',
-      stadium_deletepayment: 'http://localhost/sportman/stadium_deletepayment.php',
-      activity_addreview: 'http://localhost/sportman/activity_addreview.php',
-      stadium_addreview: 'http://localhost/sportman/stadium_addreview.php',
-      activity_reviewlist: 'http://localhost/sportman/activity_reviewlist.php',
-      stadium_reviewlist: 'http://localhost/sportman/stadium_reviewlist.php',
-      activity_pay: 'http://localhost/sportman/activity_pay.php',
-      stadium_pay: 'http://localhost/sportman/stadium_pay.php',
-      activity_getpayment: 'http://localhost/sportman/activity_getpayment.php',
-      stadium_getpayment: 'http://localhost/sportman/stadium_getpayment.php',
-      activity_getfeature: 'http://localhost/sportman/activity_getfeature.php',
-      stadium_getfeature: 'http://localhost/sportman/stadium_getfeature.php'
+      env: 'http://1.sportman.applinzi.com/'
     };
   })
+
+  .factory('api', ['config', function (config) {
+    return {
+      sportman_pic_prefix: 'http://ok7pzw2ak.bkt.clouddn.com/',
+      activity_home: config.env + 'activity_home.php',
+      activity_detail: config.env + 'activity_detail.php',
+      stadium_home: config.env + 'stadium_home.php',
+      stadium_detail: config.env + 'stadium_detail.php',
+      stadium_detail_equipment: config.env + 'stadium_detail_equipment.php',
+      search_activity: config.env + 'search_activity.php',
+      search_stadium: config.env + 'search_stadium.php',
+      setting_sportmanid: config.env + 'setting_sportmanid.php',
+      setting_changepassword: config.env + 'setting_changepassword.php',
+      setting_changemobile: config.env + 'setting_changemobile.php',
+      setting_email: config.env + 'setting_email.php',
+      user_activity: config.env + 'user_activity.php',
+      user_activity_star: config.env + 'user_activity_star.php',
+      user_activity_recommend: config.env + 'user_activity_recommend.php',
+      user_stadium: config.env + 'user_stadium.php',
+      user_stadium_star: config.env + 'user_stadium_star.php',
+      user_stadium_recommend: config.env + 'user_stadium_recommend.php',
+      user_review: config.env + 'user_review.php',
+      user_history: config.env + 'user_history.php',
+      user_payment_activity: config.env + 'user_payment_activity.php',
+      user_payment_stadium: config.env + 'user_payment_stadium.php',
+      user_payment_all: config.env + 'user_payment_all.php',
+      activity_addstar: config.env + 'activity_addstar.php',
+      activity_addrecommend: config.env + 'activity_addrecommend.php',
+      activity_removestar: config.env + 'activity_removestar.php',
+      activity_removerecommend: config.env + 'activity_removerecommend.php',
+      activity_createpayment: config.env + 'activity_createpayment.php',
+      activity_deletepayment: config.env + 'activity_deletepayment.php',
+      stadium_addstar: config.env + 'stadium_addstar.php',
+      stadium_addrecommend: config.env + 'stadium_addrecommend.php',
+      stadium_removestar: config.env + 'stadium_removestar.php',
+      stadium_removerecommend: config.env + 'stadium_removerecommend.php',
+      stadium_createpayment: config.env + 'stadium_createpayment.php',
+      stadium_deletepayment: config.env + 'stadium_deletepayment.php',
+      activity_addreview: config.env + 'activity_addreview.php',
+      stadium_addreview: config.env + 'stadium_addreview.php',
+      activity_reviewlist: config.env + 'activity_reviewlist.php',
+      stadium_reviewlist: config.env + 'stadium_reviewlist.php',
+      activity_pay: config.env + 'activity_pay.php',
+      stadium_pay: config.env + 'stadium_pay.php',
+      activity_getpayment: config.env + 'activity_getpayment.php',
+      stadium_getpayment: config.env + 'stadium_getpayment.php',
+      activity_getfeature: config.env + 'activity_getfeature.php',
+      stadium_getfeature: config.env + 'stadium_getfeature.php'
+    };
+  }])
 
   .service("studentsService", function () {
     var somethingCommon = "somethingCommon_init";
