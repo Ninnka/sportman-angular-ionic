@@ -4,11 +4,16 @@
 
     <div class="my-content-wrapper">
 
-      <div class="my-content-signinup-form" ng-if="my.form">
-        <a ng-href="#/signinup" nav-direction="forward">
-          <button type="button" name="button" class="button button-positive">登录/注册</button>
-        </a>
+      <div class="my-content-user-presentation" ng-if="my.form">
+        <a nav-direction="forward" ng-click="toSignInUp()">
+          <img class="content-avatar" ng-src="http://v2ex.assets.uxengine.net/gravatar/314258679ae304a33da79c7534a34657?s=73&d=retro">
 
+          <div class="content-userinfo">
+            <p class="content-userinfo-name">{{isAutoLoading ? '自动登录中，请稍等' : '点击头像登录或注册'}}</p>
+          </div>
+
+          <div class="ion-chevron-right more-arrow-right"></div>
+        </a>
       </div>
 
       <div class="my-content-user-presentation" ng-if="my.content">

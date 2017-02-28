@@ -9,9 +9,9 @@
   <ion-content>
 
     <div class="socialbg-wrapper">
-      <img src="http://ok7pzw2ak.bkt.clouddn.com/user_social_bg.png" alt="" class="socialbg">
+      <img ng-src="http://ok7pzw2ak.bkt.clouddn.com/user_social_bg.png" alt="" class="socialbg">
       <div class="user-avatar position-absolute flex-box">
-        <img src="//v2ex.assets.uxengine.net/gravatar/314258679ae304a33da79c7534a34657?s=73&d=retro" alt="">
+        <img ng-src="http://v2ex.assets.uxengine.net/gravatar/314258679ae304a33da79c7534a34657?s=73&d=retro" alt="" ng-click="viewMy($event)">
         <span>Ninnka</span>
       </div>
 
@@ -19,64 +19,32 @@
 
     <ul class="social-list">
 
-      <li class="social-item flex-box" ng-click="viewDetail($event, id)">
-        <img src="//v2ex.assets.uxengine.net/gravatar/c9cf6e472f42d0ab51134d2c5dbd3a15?s=73&d=retro" alt="" class="social-avatar">
+      <li class="social-item flex-box" ng-repeat="socialcircle in socialcircleList track by $index" ng-click="viewDetail($event, id)">
+        <img ng-src="{{socialcircle.avatar}}" alt="" class="social-avatar">
         <div class="social-content-wrapper">
           <div class="social-name-locate flex-box">
-            <span>小贝</span>
-            <span>英国·伦敦</span>
+            <span>{{socialcircle.name}}</span>
+            <i class="icon icon-diqiu icon-with-text icon-tool">
+              <span>{{socialcircle.locate}}</span>
+            </i>
           </div>
 
-          <p class="social-publishtime">上午9:59 - 2017年1月25日</p>
+          <p class="social-publishtime">{{socialcircle.timestamp | date : 'HH:mm - yyyy年MM月dd日'}}</p>
           <p class="social-publishtext">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ellit anim id est laborum. labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-            nostrud ellit anim id est laborum.
+            {{socialcircle.publish}}
           </p>
 
           <div class="social-imglist flex-box">
-            <img src="img/social-imglist-1.png" alt="">
-            <img src="img/social-imglist-1.png" alt="">
-            <img src="img/social-imglist-1.png" alt="">
-            <img src="img/social-imglist-1.png" alt="">
-            <img src="img/social-imglist-1.png" alt="">
+            <img ng-src="{{image.imgsrc}}" alt="" ng-repeat="image in socialcircle.images track by $index">
+
           </div>
 
           <div class="social-tools flex-box">
             <i class="icon icon-huifu icon-with-text icon-tool">
-              <span>11</span>
+              <span>{{socialcircle.likecount}}</span>
             </i>
             <i class="icon icon-xihuan icon-with-text icon-tool" ng-class="isLike ? 'active' : ''" ng-click="toggleLike($event, id)">
-              <span>99</span>
-            </i>
-            <i class="icon icon-shenglve icon-with-text icon-tool"></i>
-          </div>
-        </div>
-      </li>
-
-      <li class="social-item flex-box" ng-click="viewDetail(id)">
-        <img src="//v2ex.assets.uxengine.net/gravatar/314258679ae304a33da79c7534a34657?s=73&d=retro" alt="" class="social-avatar">
-        <div class="social-content-wrapper">
-          <div class="social-name-locate flex-box">
-            <span>ninnka</span>
-            <span>中国·深圳</span>
-          </div>
-
-          <p class="social-publishtime">下午15:00 - 2017年2月25日</p>
-          <p class="social-publishtext">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ellit anim id est laborum. labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-            nostrud ellit anim id est laborum.
-          </p>
-
-          <div class="social-imglist flex-box">
-            <img src="img/social-imglist-1.png" alt="">
-          </div>
-
-          <div class="social-tools flex-box">
-            <i class="icon icon-huifu icon-with-text icon-tool">
-              <span>11</span>
-            </i>
-            <i class="icon icon-xihuan icon-with-text icon-tool" ng-class="isLike ? 'active' : ''" ng-click="toggleLike()">
-              <span>99</span>
+              <span>{{socialcircle.commentcount}}</span>
             </i>
             <i class="icon icon-shenglve icon-with-text icon-tool"></i>
           </div>

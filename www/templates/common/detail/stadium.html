@@ -20,7 +20,7 @@
           <div class="">
             <review-star score="{{stadium.totalscore}}" class="notifi-text assertive"></review-star>
           </div>
-          <p class="text-sub-gray">营业时间：{{stadium.opentime}}</p>
+          <p class="text-sub-gray">营业时间：{{stadium.opentime | date : 'yyyy-MM-dd HH:mm'}}</p>
         </div>
       </div>
     </a>

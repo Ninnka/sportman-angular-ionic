@@ -22,7 +22,7 @@
 
     <div class="text-with-rightblock space-between">
       <div>
-        <p>举行时间：{{activity.starttime}}</p>
+        <p>举行时间：{{activity.starttime | date : 'yyyy-MM-dd HH:mm'}}</p>
         <p>{{activity.position}}</p>
         <p class="assertive">￥{{activity.price}}</p>
       </div>
