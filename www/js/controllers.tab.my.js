@@ -8,10 +8,16 @@ angular.module('starter.controllers.tab.my', [])
       $rootScope.clearHistory();
     });
 
-    $scope.$on('signin-success', function () {
+    $rootScope.$on('signin-success', function () {
       console.log("on signin-success");
       $scope.my.content = true;
       $scope.my.form = false;
+    });
+
+    $rootScope.$on('logout-success', function () {
+      console.log('on logout-success');
+      $scope.my.content = false;
+      $scope.my.form = true;
     });
 
     // 控制个人信息视图显示
@@ -33,31 +39,31 @@ angular.module('starter.controllers.tab.my', [])
     $scope.$on("$ionicView.enter", function () {
       console.log("enter my");
       $rootScope.clearHistory();
-      if (UsrInfoLocal.empty === true) {
-        console.log("empty");
-        $rootScope.globalSignSymbol = false;
-        $scope.my.content = false;
-        $scope.my.form = true;
-        $scope.usrinfo = {
-          usrname: "",
-          usrpassword: ""
-        };
-      }
+      // if (UsrInfoLocal.empty === true) {
+      //   console.log("empty");
+      //   $rootScope.globalSignSymbol = false;
+      //   $scope.my.content = false;
+      //   $scope.my.form = true;
+      //   $scope.usrinfo = {
+      //     usrname: "",
+      //     usrpassword: ""
+      //   };
+      // }
     });
 
     // 观察全局变量
-    $scope.$watch("globalSignSymbol", function (newValue, oldValue, scope) {
-      console.log("change");
-      if (newValue === true) {
-        console.log("newValue: true");
-        $scope.my.content = true;
-        $scope.my.form = false;
-      } else if (newValue === false) {
-        console.log("newValue: false");
-        $scope.my.content = false;
-        $scope.my.form = true;
-      }
-    }, true);
+    // $scope.$watch("globalSignSymbol", function (newValue, oldValue, scope) {
+    //   console.log("change");
+    //   if (newValue === true) {
+    //     console.log("newValue: true");
+    //     $scope.my.content = true;
+    //     $scope.my.form = false;
+    //   } else if (newValue === false) {
+    //     console.log("newValue: false");
+    //     $scope.my.content = false;
+    //     $scope.my.form = true;
+    //   }
+    // }, true);
 
   }])
 
@@ -158,6 +164,7 @@ angular.module('starter.controllers.tab.my', [])
             $scope.usrinfo = undefined;
 
             $rootScope.globalSignSymbol = true;
+            $rootScope.$emit('signin-success', '');
 
             $rootScope.toBackView();
 

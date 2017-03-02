@@ -135,6 +135,7 @@ angular.module('starter.controllers.tab.activity', [])
     $rootScope.logout = function () {
       Logout.logoutCurrentAccount();
       $rootScope.globalSignSymbol = false;
+      $rootScope.$emit('logout-success');
       $rootScope.toBackView();
     };
 
@@ -144,13 +145,14 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.globalUsrname = ls.get("usrname", "");
     $scope.globalPassword = ls.get("usrpassword", "");
 
+    $scope.isAutoLoading = false;
     if ($scope.globalUsrname !== "" && $scope.globalPassword !== "") {
-      $rootScope.isAutoLoading = true;
+      $scope.isAutoLoading = true;
       SignInOrUpFac.signIn($scope.globalUsrname, $scope.globalPassword)
         .then(function resolve(response) {
 
           if (response.data.resultStatus === "success") {
-            $scope.$emit('signin-success', '');
+            $rootScope.$emit('signin-success', '');
             $rootScope.globalSignSymbol = true;
 
             $scope.uil.setid(response.data.resultData[0].id);
@@ -178,7 +180,7 @@ angular.module('starter.controllers.tab.activity', [])
           } else {
             console.log("global fail");
           }
-          $rootScope.isAutoLoading = false;
+          $scope.isAutoLoading = false;
         });
     }
   }])
