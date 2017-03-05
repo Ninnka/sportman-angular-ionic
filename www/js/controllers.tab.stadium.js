@@ -63,7 +63,6 @@ angular.module('starter.controllers.tab.stadium', [])
 
     $scope.getStaidumData = function () {
       $scope.getDataPromise = getData.get(api.stadium_home);
-
     };
     if (!$scope.hasFirstLoad) {
       $scope.getStaidumData();
@@ -74,7 +73,6 @@ angular.module('starter.controllers.tab.stadium', [])
         $scope.hasFirstLoad = true;
         $scope.getDataPromise
           .then(function resolve(res) {
-            // console.log("res.data", res.data);
             $scope.stadiumList = $scope.stadiumList.concat(res.data.resultData);
             $scope.$broadcast('scroll.infiniteScrollComplete');
           }, function reject(err) {
@@ -180,19 +178,20 @@ angular.module('starter.controllers.tab.stadium', [])
         starActionApi = api.stadium_removestar;
       }
       getData.post(starActionApi, {
-        id: UsrInfoLocal.id,
-        id_stadium: $scope.id_stadium
-      }).then(function resolve(res) {
-        if (res.data.resultData === '取消收藏成功') {
-          $scope.stadium.stared = 0;
-        }
-        if (res.data.resultData === '收藏成功') {
-          $scope.stadium.stared = 1;
-        }
-        $scope.iconStar = $scope.stadium.stared ? 'img/star-yellow.png' : 'img/star-white.png';
-      }, function reject(err) {
-        console.log(err);
-      });
+          id: UsrInfoLocal.id,
+          id_stadium: $scope.id_stadium
+        })
+        .then(function resolve(res) {
+          if (res.data.resultData === '取消收藏成功') {
+            $scope.stadium.stared = 0;
+          }
+          if (res.data.resultData === '收藏成功') {
+            $scope.stadium.stared = 1;
+          }
+          $scope.iconStar = $scope.stadium.stared ? 'img/star-yellow.png' : 'img/star-white.png';
+        }, function reject(err) {
+          console.log(err);
+        });
     };
 
     $scope.addRecommend = function () {
@@ -203,19 +202,20 @@ angular.module('starter.controllers.tab.stadium', [])
         recommendActionApi = api.stadium_removerecommend;
       }
       getData.post(recommendActionApi, {
-        id: UsrInfoLocal.id,
-        id_stadium: $scope.id_stadium
-      }).then(function resolve(res) {
-        if (res.data.resultData === '取消推荐成功') {
-          $scope.stadium.recommended = 0;
-        }
-        if (res.data.resultData === '推荐成功') {
-          $scope.stadium.recommended = 1;
-        }
-        $scope.iconRecommend = $scope.stadium.recommended ? 'img/recommend-yellow.png' : 'img/recommend-white.png';
-      }, function reject(err) {
-        console.log(err);
-      });
+          id: UsrInfoLocal.id,
+          id_stadium: $scope.id_stadium
+        })
+        .then(function resolve(res) {
+          if (res.data.resultData === '取消推荐成功') {
+            $scope.stadium.recommended = 0;
+          }
+          if (res.data.resultData === '推荐成功') {
+            $scope.stadium.recommended = 1;
+          }
+          $scope.iconRecommend = $scope.stadium.recommended ? 'img/recommend-yellow.png' : 'img/recommend-white.png';
+        }, function reject(err) {
+          console.log(err);
+        });
     };
 
     $scope.getStadiumInfo = function () {

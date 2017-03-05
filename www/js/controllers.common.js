@@ -30,10 +30,6 @@ angular.module('starter.controllers.common', [])
     var timer;
 
     $scope.onDrag = function ($event) {
-      // clearTimeout(timer);
-      // timer = $timeout(function () {
-      //   $scope.showhint = false;
-      // }, 1500);
       $scope.showhint = true;
       $scope.dy = $event.gesture.touches[0].clientY;
       for (var i = 0; i < lis.length; i++) {
@@ -173,12 +169,13 @@ angular.module('starter.controllers.common', [])
     $scope.getFeature = function () {
       let symbolUrl = $scope.reviewInfo.id_type === 'activity' ? api.activity_getfeature : api.stadium_getfeature;
       getData.post(symbolUrl, {
-        id: $scope.reviewInfo.id_item
-      }).then(function resolve(res) {
-        $scope.featureList = res.data.resultData;
-      }, function reject(err) {
-        console.log('err:', err);
-      });
+          id: $scope.reviewInfo.id_item
+        })
+        .then(function resolve(res) {
+          $scope.featureList = res.data.resultData;
+        }, function reject(err) {
+          console.log('err:', err);
+        });
     };
     $scope.getFeature();
 
@@ -258,12 +255,13 @@ angular.module('starter.controllers.common', [])
     $scope.getPaymentInfo = function () {
       let paymentUrl = $scope.payinfo.type === 'activity' ? api.activity_getpayment : api.stadium_getpayment;
       getData.post(paymentUrl, {
-        id: $scope.payinfo.id
-      }).then(function resolve(res) {
-        $scope.paymentItem = res.data.resultData;
-      }, function reject(err) {
-        console.log('err:', err);
-      });
+          id: $scope.payinfo.id
+        })
+        .then(function resolve(res) {
+          $scope.paymentItem = res.data.resultData;
+        }, function reject(err) {
+          console.log('err:', err);
+        });
     };
     $scope.getPaymentInfo();
 
@@ -277,19 +275,20 @@ angular.module('starter.controllers.common', [])
       });
       let payUrl = $scope.payinfo.type === 'activity' ? api.activity_pay : api.stadium_pay;
       getData.post(payUrl, {
-        id: $scope.payinfo.id
-      }).then(function resolve(res) {
-        $ionicLoading.hide();
-        $scope.showResult(res.data.resultStatus === 'success' ? '支付成功' : '支付失败');
-        stateGo.goToBack({
-          step: -1
+          id: $scope.payinfo.id
+        })
+        .then(function resolve(res) {
+          $ionicLoading.hide();
+          $scope.showResult(res.data.resultStatus === 'success' ? '支付成功' : '支付失败');
+          stateGo.goToBack({
+            step: -1
+          });
+        }, function reject(err) {
+          $scope.showResult('支付失败', '发生网络错误');
+          stateGo.goToBack({
+            step: -1
+          });
         });
-      }, function reject(err) {
-        $scope.showResult('支付失败', '发生网络错误');
-        stateGo.goToBack({
-          step: -1
-        });
-      });
     };
 
     $scope.showResult = function (result, reason) {
@@ -326,21 +325,22 @@ angular.module('starter.controllers.common', [])
     $scope.getReviewData = function () {
       let apiUrl = $scope.type === 'activity' ? api.activity_reviewlist : api.stadium_reviewlist;
       getData.get(api.activity_reviewlist, {
-        id_activity: $scope.id
-      }).then(function resolve(res) {
-        console.log('res:', res);
-        $scope.featureList = res.data.resultData.featureList;
-        $scope.reviewList = res.data.resultData.reviewList;
-        let totalscore = res.data.resultData.totalscore;
-        let bol = totalscore.match('.');
-        if (bol) {
-          $scope.totalscore = Math.floor(totalscore) + 0.5;
-        } else {
-          $scope.totalscore = totalscore;
-        }
-      }, function reject(err) {
-        console.log('err:', err);
-      });
+          id_activity: $scope.id
+        })
+        .then(function resolve(res) {
+          console.log('res:', res);
+          $scope.featureList = res.data.resultData.featureList;
+          $scope.reviewList = res.data.resultData.reviewList;
+          let totalscore = res.data.resultData.totalscore;
+          let bol = totalscore.match('.');
+          if (bol) {
+            $scope.totalscore = Math.floor(totalscore) + 0.5;
+          } else {
+            $scope.totalscore = totalscore;
+          }
+        }, function reject(err) {
+          console.log('err:', err);
+        });
     };
     $scope.getReviewData();
 

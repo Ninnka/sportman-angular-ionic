@@ -225,7 +225,6 @@ angular.module('starter.controllers.tab.activity', [])
         $scope.hasFirstLoad = true;
         $scope.getDataPromise
           .then(function successCallback(res) {
-            console.log(res);
             $scope.bannerList = res.data.resultData.bannerList;
             $scope.activityList = $scope.activityList.concat(res.data.resultData.activityList);
             $ionicSlideBoxDelegate.update();
@@ -308,19 +307,20 @@ angular.module('starter.controllers.tab.activity', [])
         starActionApi = api.activity_removestar;
       }
       getData.post(starActionApi, {
-        id: UsrInfoLocal.id,
-        id_activity: $scope.id_activity
-      }).then(function resolve(res) {
-        if (res.data.resultData === '取消收藏成功') {
-          $scope.activity.stared = 0;
-        }
-        if (res.data.resultData === '收藏成功') {
-          $scope.activity.stared = 1;
-        }
-        $scope.iconStar = $scope.activity.stared ? 'img/star-yellow.png' : 'img/star-white.png';
-      }, function reject(err) {
-        console.log(err);
-      });
+          id: UsrInfoLocal.id,
+          id_activity: $scope.id_activity
+        })
+        .then(function resolve(res) {
+          if (res.data.resultData === '取消收藏成功') {
+            $scope.activity.stared = 0;
+          }
+          if (res.data.resultData === '收藏成功') {
+            $scope.activity.stared = 1;
+          }
+          $scope.iconStar = $scope.activity.stared ? 'img/star-yellow.png' : 'img/star-white.png';
+        }, function reject(err) {
+          console.log(err);
+        });
     };
 
     // 添加推荐
@@ -332,19 +332,20 @@ angular.module('starter.controllers.tab.activity', [])
         recommendActionApi = api.activity_removerecommend;
       }
       getData.post(recommendActionApi, {
-        id: UsrInfoLocal.id,
-        id_activity: $scope.id_activity
-      }).then(function resolve(res) {
-        if (res.data.resultData === '取消推荐成功') {
-          $scope.activity.recommended = 0;
-        }
-        if (res.data.resultData === '推荐成功') {
-          $scope.activity.recommended = 1;
-        }
-        $scope.iconRecommend = $scope.activity.recommended ? 'img/recommend-yellow.png' : 'img/recommend-white.png';
-      }, function reject(err) {
-        console.log(err);
-      });
+          id: UsrInfoLocal.id,
+          id_activity: $scope.id_activity
+        })
+        .then(function resolve(res) {
+          if (res.data.resultData === '取消推荐成功') {
+            $scope.activity.recommended = 0;
+          }
+          if (res.data.resultData === '推荐成功') {
+            $scope.activity.recommended = 1;
+          }
+          $scope.iconRecommend = $scope.activity.recommended ? 'img/recommend-yellow.png' : 'img/recommend-white.png';
+        }, function reject(err) {
+          console.log(err);
+        });
     };
 
     // 查看评论
