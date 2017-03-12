@@ -57,7 +57,7 @@ textarea {
   background: #fff; }
 
 .with-bottom-fix-item-block {
-  margin-bottom: .768rem; }
+  margin-bottom: .768rem !important; }
 
 .content-notifi {
   background: #fdfda6;
