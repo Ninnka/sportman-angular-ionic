@@ -1,18 +1,20 @@
-<ion-view view="查看详情">
+<ion-view view-title="查看详情">
 
   <ion-nav-buttons side="left">
     <ion-navbuttonsgo></ion-navbuttonsgo>
   </ion-nav-buttons>
 
-  <ion-content>
-    <ul class="social-list">
+  <ion-content class="with-bottom-fix-item-block">
+    <div class="social-list">
 
-      <li class="social-item flex-box">
+      <div class="social-item flex-box">
         <img src="{{socialcircle.avatar}}" alt="" class="social-avatar">
         <div class="social-content-wrapper">
           <div class="social-name-locate flex-box">
             <span>{{socialcircle.name}}</span>
-            <span>{{socialcircle.locate}}</span>
+            <i class="icon icon-diqiu icon-with-text icon-tool">
+              <span>{{socialcircle.locate}}</span>
+            </i>
           </div>
 
           <p class="social-publishtime">{{socialcircle.timestamp | date : 'HH:mm - yyyy年MM月dd日'}}</p>
@@ -25,22 +27,49 @@
           </div>
 
           <div class="social-tools flex-box">
-            <i class="icon icon-huifu icon-with-text icon-tool">
-              <span>{{socialcircle.likecount}}</span>
-            </i>
-            <i class="icon icon-xihuan icon-with-text icon-tool" ng-class="isLike ? 'active' : ''">
+            <i class="icon icon-huifu icon-with-text icon-tool" ng-click="getReplyFocus($event)">
               <span>{{socialcircle.commentcount}}</span>
+            </i>
+            <i class="icon icon-xihuan icon-with-text icon-tool" ng-class="isLike ? 'active' : ''" ng-click="setLikeSymbol()">
+              <span>{{socialcircle.likecount}}</span>
             </i>
             <i class="icon icon-shenglve icon-with-text icon-tool"></i>
           </div>
         </div>
-      </li>
+      </div>
 
-    </ul>
+    </div>
+
+    <div class="social-list comment-list">
+      <p class="block-title">评论列表</p>
+      <div class="social-item noshadow flex-box" ng-repeat="comment in socialcircle.comments track by $index">
+        <img src="{{comment.avatar}}" alt="" class="social-avatar">
+        <div class="social-content-wrapper">
+          <div class="social-name-locate flex-box">
+            <span>{{comment.name}}</span>
+            <span>~ {{comment.timestamp | date : 'MM-dd HH:mm'}}</span>
+            <i class="icon icon-diqiu icon-with-text icon-tool">
+              <span>{{comment.locate}}</span>
+            </i>
+          </div>
+
+          <p class="social-publishtext">
+            {{comment.comment}}
+          </p>
+        </div>
+      </div>
+    </div>
+
   </ion-content>
 
-  <div class="social-reply-inputwrapper">
-
+  <div class="content-fix fix-bottom flex-box social-reply-inputwrapper">
+    <i class="icon icon-dingwei"></i>
+    <span class="reply-target">@小贝</span>
+    <div class="input-wrapper flex-box">
+      <textarea type="text" name="social-reply" ng-model="replyInfo.reply" placeholder="请输入回复"></textarea>
+      <img ng-src="img/social_camera_dark.png" alt="" class="custom-nav-button-img" />
+    </div>
+    <i class="icon icon-huifu"></i>
   </div>
 
 </ion-view>
