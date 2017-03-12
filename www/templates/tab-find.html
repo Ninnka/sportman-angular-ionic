@@ -1,8 +1,8 @@
 <ion-view view-title="Sportman">
 
   <ion-nav-buttons side="right">
-    <a nav-direction="forward" ng-href="#/search/activity">
-      <img ng-src="img/social_camera.png" alt="" class="custom-nav-button-img">
+    <a nav-direction="forward">
+      <img ng-src="img/social_camera.png" alt="" class="custom-nav-button-img" ng-click="toPublish()" on-hold="toPublishWithImg()">
     </a>
   </ion-nav-buttons>
 
@@ -40,11 +40,11 @@
           </div>
 
           <div class="social-tools flex-box">
-            <i class="icon icon-huifu icon-with-text icon-tool">
-              <span>{{socialcircle.likecount}}</span>
+            <i class="icon icon-huifu icon-with-text icon-tool" ng-click="replyShortcut($event)">
+              <span>{{socialcircle.commentcount}}</span>
             </i>
             <i class="icon icon-xihuan icon-with-text icon-tool" ng-class="isLike ? 'active' : ''" ng-click="toggleLike($event, id)">
-              <span>{{socialcircle.commentcount}}</span>
+              <span>{{socialcircle.likecount}}</span>
             </i>
             <i class="icon icon-shenglve icon-with-text icon-tool"></i>
           </div>
