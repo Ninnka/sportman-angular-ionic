@@ -8,6 +8,7 @@ angular.module('starter.services', [])
   this.email = "";
   this.pn = "";
   this.gender = "";
+  this.socialbg = '';
   this.empty = true;
   this.setid = function (id) {
     this.id = id;
@@ -33,6 +34,9 @@ angular.module('starter.services', [])
   this.setEmpty = function (flag) {
     this.empty = flag;
   };
+  this.setSocialbg = function (socialbg) {
+    this.socialbg = socialbg;
+  };
   this.clear = function () {
     this.setid("");
     this.setUm("");
@@ -41,6 +45,7 @@ angular.module('starter.services', [])
     this.setEmail("");
     this.setPn("");
     this.setGender("");
+    this.setSocialbg('');
     this.setEmpty(true);
   };
 }])
@@ -165,7 +170,8 @@ angular.module('starter.services', [])
 
 .factory('config', function () {
   return {
-    env: 'http://1.sportman.applinzi.com/'
+    // env: 'http://1.sportman.applinzi.com/'
+    env: 'http://localhost/sportman/'
   };
 })
 

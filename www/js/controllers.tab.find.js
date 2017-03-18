@@ -1,11 +1,38 @@
 angular.module('starter.controllers.tab.find', [])
 
-.controller('FindCtrl', ["$scope", '$rootScope', "$http", 'getData', 'api', 'stateGo', function ($scope, $rootScope, $http, getData, api, stateGo) {
+.controller('FindCtrl', ["$scope", '$rootScope', "$http", 'getData', 'api', 'stateGo', '$ionicModal', function ($scope, $rootScope, $http, getData, api, stateGo, $ionicModal) {
+  $ionicModal.fromTemplateUrl('social-reply-shortcut.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.replyShortcutModal = modal;
+  }, function (err) {
+    console.log('err:', err);
+  });
+  $scope.$on('$destory', function () {
+    $scope.replyShortcutModal.remove();
+  });
+  $scope.openReplyShortcutModal = function () {
+    $scope.replyShortcutModal.show();
+  };
+  $scope.closeReplyShortcutModal = function () {
+    $scope.replyShortcutModal.hide();
+  };
 
-  // test
+  $scope.shortcutTargetInfo = {
+    id: '',
+    name: '',
+    avatar: '',
+    locate: '',
+    timestamp: ''
+  };
+
+  // 测试用
   $scope.isLike = false;
+  // ---
 
-  $scope.socialcircleList = [{
+  $scope.socialcircleList = [
+    {
       name: '小贝',
       avatar: 'http://v2ex.assets.uxengine.net/gravatar/c9cf6e472f42d0ab51134d2c5dbd3a15?s=73&d=retro',
       locate: '英国·伦敦',
@@ -96,12 +123,40 @@ angular.module('starter.controllers.tab.find', [])
     console.log('toPublishWithImg');
   };
 
-  $scope.replyShortcut = function ($event) {
+  $scope.replyShortcut = function ($event, targetObj) {
     console.log('replyShortcut');
     if ($event.stopPropagation) {
       $event.stopPropagation();
     }
-    stateGo.goToState();
+    $scope.openReplyShortcutModal();
+    $scope.shortcutTargetInfo.id = targetObj.id;
+    $scope.shortcutTargetInfo.name = targetObj.name;
+    $scope.shortcutTargetInfo.avatar = targetObj.avatar;
+    $scope.shortcutTargetInfo.locate = targetObj.locate;
+    $scope.shortcutTargetInfo.timestamp = targetObj.timestamp;
+  };
+
+  $scope.closeShortcut = function ($event) {
+    $scope.resetReplyInShortcut();
+    $scope.closeReplyShortcutModal();
+  };
+
+  $scope.submitReplyInShortcut = function ($event) {
+    if ($event.stopPropagation) {
+      $event.stopPropagation();
+    }
+    // TODO
+  };
+
+  $scope.resetReplyInShortcut = function ($event) {
+    if ($event && $event.stopPropagation) {
+      $event.stopPropagation();
+    }
+    $scope.shortcutTargetInfo.id = '';
+    $scope.shortcutTargetInfo.name = '';
+    $scope.shortcutTargetInfo.avatar = '';
+    $scope.shortcutTargetInfo.locate = '';
+    $scope.shortcutTargetInfo.timestamp = '';
   };
 
 }])
