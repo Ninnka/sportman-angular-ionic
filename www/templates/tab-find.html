@@ -40,7 +40,7 @@
           </div>
 
           <div class="social-tools flex-box">
-            <i class="icon icon-huifu icon-with-text icon-tool" ng-click="replyShortcut($event)">
+            <i class="icon icon-huifu icon-with-text icon-tool" ng-click="replyShortcut($event, {'id': socialcircle.id, 'name': socialcircle.name, 'avatar': socialcircle.avatar, 'locate': socialcircle.locate, 'timestamp': socialcircle.timestamp})">
               <span>{{socialcircle.commentcount}}</span>
             </i>
             <i class="icon icon-xihuan icon-with-text icon-tool" ng-class="isLike ? 'active' : ''" ng-click="toggleLike($event, id)">
@@ -84,5 +84,31 @@
     </transclude-directive> -->
 
   </ion-content>
+
+  <script id="social-reply-shortcut.html" type="text/ng-template">
+    <div class="modal">
+
+      <ion-header-bar class="bar-secondary">
+
+        <h1 class="title white-text">快速回复</h1>
+        <button class="button button-clear button-assertive white-text" ng-click="closeShortcut()">Cancel</button>
+        <!--<button class="button button-small button-positive" ng-click="submitReplyInShortcut()">发送</button>-->
+
+      </ion-header-bar>
+
+      <ion-content>
+        <div class="reply-shortcut-wrap">
+          <textarea class="" placeholder="说点什么吧..."></textarea>
+          <div class="reply-operator flex-box">
+            <button class="button button-assertive" ng-click="resetReplyInShortcut()">重置</button>
+            <button class="button button-positive" ng-click="submitReplyInShortcut()">发送</button>
+          </div>
+        </div>
+
+      </ion-content>
+
+    </div>
+
+  </script>
 
 </ion-view>
