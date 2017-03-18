@@ -207,3 +207,26 @@
         }
     }
 }
+
+.reply-shortcut-wrap {
+    padding: .272rem .2rem;
+    width: 100%;
+    textarea {
+        padding: .1em;
+        resize: none;
+        width: 100%;
+        height: 3.4rem;
+    }
+    .reply-operator {
+        padding: .2rem;
+        margin-top: .2rem;
+        justify-content: space-around;
+        button {
+            line-height: .612rem;
+            min-height: .714rem;
+            width: 2.21rem;
+            font-size: .255rem;
+            margin: 0 .2rem;
+        }
+    }
+}
