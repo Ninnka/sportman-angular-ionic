@@ -221,7 +221,8 @@ angular.module('starter.services', [])
     activity_getpayment: config.env + 'activity_getpayment.php',
     stadium_getpayment: config.env + 'stadium_getpayment.php',
     activity_getfeature: config.env + 'activity_getfeature.php',
-    stadium_getfeature: config.env + 'stadium_getfeature.php'
+    stadium_getfeature: config.env + 'stadium_getfeature.php',
+    socialcircle: config.env + 'socialcircle.php'
   };
 }])
 

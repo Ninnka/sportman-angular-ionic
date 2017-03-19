@@ -1,6 +1,6 @@
 angular.module('starter.controllers.tab.find', [])
 
-.controller('FindCtrl', ["$scope", '$rootScope', "$http", 'getData', 'api', 'stateGo', '$ionicModal', function ($scope, $rootScope, $http, getData, api, stateGo, $ionicModal) {
+.controller('FindCtrl', ["$scope", '$rootScope', 'getData', 'api', 'stateGo', '$ionicModal', 'UsrInfoLocal', function ($scope, $rootScope, getData, api, stateGo, $ionicModal, UsrInfoLocal) {
   $ionicModal.fromTemplateUrl('social-reply-shortcut.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -19,6 +19,9 @@ angular.module('starter.controllers.tab.find', [])
     $scope.replyShortcutModal.hide();
   };
 
+  $scope.avatar = UsrInfoLocal.avatar;
+  $scope.socialbg = UsrInfoLocal.socialbg;
+
   $scope.shortcutTargetInfo = {
     id: '',
     name: '',
@@ -31,50 +34,7 @@ angular.module('starter.controllers.tab.find', [])
   $scope.isLike = false;
   // ---
 
-  $scope.socialcircleList = [
-    {
-      name: '小贝',
-      avatar: 'http://v2ex.assets.uxengine.net/gravatar/c9cf6e472f42d0ab51134d2c5dbd3a15?s=73&d=retro',
-      locate: '英国·伦敦',
-      timestamp: '1485309540000',
-      publish: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ellit anim id est laborum. labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ellit anim id est laborum.',
-      likecount: 11,
-      commentcount: 99,
-      images: [
-        {
-          id: 1,
-          imgsrc: 'img/social-imglist-1.png'
-        },
-        {
-          id: 1,
-          imgsrc: 'img/social-imglist-1.png'
-        },
-        {
-          id: 1,
-          imgsrc: 'img/social-imglist-1.png'
-        },
-        {
-          id: 1,
-          imgsrc: 'img/social-imglist-1.png'
-        }
-      ]
-    },
-    {
-      name: 'Ninnka',
-      avatar: 'http://v2ex.assets.uxengine.net/gravatar/314258679ae304a33da79c7534a34657?s=73&d=retro',
-      locate: '中国·深圳',
-      timestamp: '1488009540000',
-      publish: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ellit anim id est laborum. labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ellit anim id est laborum.',
-      likecount: 11,
-      commentcount: 99,
-      images: [
-        {
-          id: 1,
-          imgsrc: 'img/social-imglist-1.png'
-        }
-      ]
-    }
-  ];
+  $scope.socialcircleList = [];
 
   $scope.currentReplyTarget = {
     id: 0
@@ -82,6 +42,17 @@ angular.module('starter.controllers.tab.find', [])
 
   $scope.getSocialCircleList = function () {
     // todo
+    getData.get(api.socialcircle)
+      .then(function resolve(res) {
+        console.log('res.data:', res.data);
+        if (res.data.resultStatus === 'success') {
+          $scope.socialcircleList = res.data.resultData;
+        } else {
+          // todo
+        }
+      }, function reject(err) {
+        console.log('err:', err);
+      });
   };
   $scope.getSocialCircleList();
 
