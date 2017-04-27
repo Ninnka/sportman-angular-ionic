@@ -41,14 +41,13 @@ angular.module('starter.controllers.tab.find', [])
   };
 
   $scope.getSocialCircleList = function () {
-    // todo
     getData.get(api.socialcircle)
       .then(function resolve(res) {
         console.log('res.data:', res.data);
         if (res.data.resultStatus === 'success') {
           $scope.socialcircleList = res.data.resultData;
         } else {
-          // todo
+          console.log('发生未知错误');
         }
       }, function reject(err) {
         console.log('err:', err);
