@@ -13,7 +13,7 @@
 
     <ul class="stream-list margin-top-border">
 
-      <stadium-book ng-repeat="equipment in equipmentList track by $index"></stadium-book>
+      <stadium-book ng-repeat="equipment in equipmentList track by $index" ng-click="selectListItem(equipment)"></stadium-book>
 
     </ul>
 

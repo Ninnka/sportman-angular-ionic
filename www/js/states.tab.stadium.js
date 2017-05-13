@@ -35,8 +35,7 @@ angular.module('starter.states.tab.stadium', [])
         cache: false,
         url: '/detail/stadium/book-select',
         params: {
-          id: 0,
-          type: ""
+          info: {}
         },
         views: {
           'index': {

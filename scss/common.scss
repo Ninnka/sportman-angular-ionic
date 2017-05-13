@@ -157,7 +157,7 @@ textarea {
 .text-with-rightblock {
     align-items: center;
     background: $white;
-    display: flex;
+    display: flex !important;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;

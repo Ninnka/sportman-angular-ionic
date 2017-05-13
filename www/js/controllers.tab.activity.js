@@ -266,7 +266,7 @@ angular.module('starter.controllers.tab.activity', [])
 
   $scope.viewTitle = "活动详细";
   $scope.id_activity = $stateParams.id_activity;
-  $scope.type = $stateParams.type;
+  $scope.type = 'activity';
 
   $scope.activity = {};
 

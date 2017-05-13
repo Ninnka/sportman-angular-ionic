@@ -116,7 +116,7 @@ textarea {
 .text-with-rightblock {
   align-items: center;
   background: #fff;
-  display: flex;
+  display: flex !important;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between; }

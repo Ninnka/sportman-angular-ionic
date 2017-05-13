@@ -84,7 +84,15 @@ angular.module('starter.controllers.tab.stadium', [])
     $scope.loadMoreSymbol = true;
 
     $scope.loadMoreData = function () {
-      $scope.getStaidumData();
+      // $scope.getStaidumData();
+      getData.get(api.stadium_home)
+        .then(function successCallback(res) {
+          $scope.stadiumList = $scope.stadiumList.concat(res.data.resultData);
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        }, function errorCallback(err) {
+          console.log("err:");
+          console.log(err);
+        });
     };
 
     $scope.refreshNewData = function () {
@@ -161,7 +169,7 @@ angular.module('starter.controllers.tab.stadium', [])
     $scope.id_stadium = $stateParams.id;
 
     $scope.bookStadium = function (trade_id, trade_name) {
-      console.log("bookStadiu trade_name:", trade_name);
+      console.log("bookStadium trade_name:", trade_name);
       stateGo.goToState("detail_stadium_book-list", {
         type: $scope.type,
         name: trade_name,
@@ -243,7 +251,7 @@ angular.module('starter.controllers.tab.stadium', [])
 
   }])
 
-  .controller('BooklistStadiumCtrl', ['$scope', '$stateParams', 'getData', 'api', function ($scope, $stateParams, getData, api) {
+  .controller('BooklistStadiumCtrl', ['$scope', '$stateParams', 'getData', 'api', 'stateGo',function ($scope, $stateParams, getData, api, stateGo) {
     $scope.equipmentList = [];
 
     $scope.type = $stateParams.type;
@@ -257,6 +265,7 @@ angular.module('starter.controllers.tab.stadium', [])
           id: $scope.trade_id
         })
         .then(function resolve(res) {
+          console.log('getEquipmentList res', res);
           $scope.equipmentList = res.data.resultData;
         }, function reject(err) {
           console.log("err:", err);
@@ -264,16 +273,29 @@ angular.module('starter.controllers.tab.stadium', [])
     };
     $scope.getEquipmentList();
 
+    $scope.selectListItem = function (equipment) {
+      console.log('equipment', equipment);
+      stateGo.goToState('detail_stadium_book-select', {
+        info: {
+          type: $scope.type,
+          stadium_id: $scope.id,
+          trade_id: $scope.trade_id,
+          equipment_id: equipment.id,
+          equipment: equipment
+        }
+      });
+    };
+
 }])
 
-  .controller('BookselectStadiumCtrl', ['$scope', '$stateParams', '$cordovaDialogs', 'stateGo', function ($scope, $stateParams, $cordovaDialogs, stateGo) {
-    $scope.type = $stateParams.type;
-    $scope.id = $stateParams.id;
+  .controller('BookselectStadiumCtrl', ['$scope', '$stateParams', '$cordovaDialogs', 'UsrInfoLocal', 'stateGo', 'getData', 'api', '$ionicPopup',function ($scope, $stateParams, $cordovaDialogs, UsrInfoLocal, stateGo, getData, api, $ionicPopup) {
+    $scope.info = $stateParams.info;
+    console.log('$scope.info', $scope.info);
 
     $scope.selectinfo = {
       selectMount: 1,
-      selectStartTime: "",
-      selectEndTime: ""
+      bookstarttime: "",
+      bookendtime: ""
     };
 
     $scope.insSelectMount = function () {
@@ -302,11 +324,44 @@ angular.module('starter.controllers.tab.stadium', [])
     };
 
     $scope.submitSelectInfo = function () {
-      stateGo.goToState("prepare-pay", {
-        type: $scope.type,
-        id: $scope.id,
-        selectMount: $scope.selectinfo.selectMount,
-        unitprice: 10
+      // 创建订单
+      getData.post(api.stadium_createpayment, {
+        id: UsrInfoLocal.id,
+        id_stadium: $scope.info.stadium_id,
+        id_trade: $scope.info.trade_id,
+        id_equipment: $scope.info.equipment_id,
+        quantity: $scope.selectinfo.selectMount,
+        totalprice: 20,
+        bookstarttime: '1485930800000',
+        bookendtime: '1485136500000'
+      }).then(function resolve (res) {
+          console.log('submitSelectInfo res', res);
+          $scope.showResult(res.data.resultStatus === 'success' ? '预定成功，准备付款' : '预定失败');
+          if(res.data.resultStatus === 'success') {
+            stateGo.goToState("prepare-pay", {
+              // id: $scope.id,
+              // type: $scope.type,
+              info: {
+                type: 'stadium',
+                id_payment: res.data.resultData.id_payment,
+                id_activity: 0,
+                id_stadium: res.data.resultData.id_stadium,
+                payTotalPrice: $scope.selectinfo.selectMount * $scope.info.equipment.price,
+                redirectState: 'detail_stadium'
+              }
+            });
+          }
+        }, function reject (err) {
+          $scope.showResult('网络出错，请稍后重试');
+          console.log('submitSelectInfo err', err);
+        });
+    };
+
+    $scope.showResult = function (result) {
+      var alertPopup = $ionicPopup.alert({
+        title: result,
+        template: ''
       });
+      alertPopup.then(function (res) {});
     };
 }]);

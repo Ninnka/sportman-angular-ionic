@@ -239,10 +239,8 @@ angular.module('starter.controllers.common', [])
 
   .controller('preparePayCtrl', ['$scope', '$stateParams', 'stateGo', 'getData', 'api', '$ionicPopup', '$ionicLoading', function ($scope, $stateParams, stateGo, getData, api, $ionicPopup, $ionicLoading) {
 
-    $scope.payinfo = {
-      id: $stateParams.id,
-      type: $stateParams.type
-    };
+    $scope.payinfo = $stateParams.info;
+    console.log('payinfo', $scope.payinfo);
 
     $scope.selectPayIndex = 0;
 
@@ -251,13 +249,17 @@ angular.module('starter.controllers.common', [])
     };
 
     $scope.paymentItem = {};
+    $scope.paymentInfo = {
+      payTotalPrice: $stateParams.info.payTotalPrice,
+    };
 
     $scope.getPaymentInfo = function () {
       let paymentUrl = $scope.payinfo.type === 'activity' ? api.activity_getpayment : api.stadium_getpayment;
       getData.post(paymentUrl, {
-          id: $scope.payinfo.id
+          id: $scope.payinfo.id_payment
         })
         .then(function resolve(res) {
+          console.log('res', res);
           $scope.paymentItem = res.data.resultData;
         }, function reject(err) {
           console.log('err:', err);
@@ -275,19 +277,37 @@ angular.module('starter.controllers.common', [])
       });
       let payUrl = $scope.payinfo.type === 'activity' ? api.activity_pay : api.stadium_pay;
       getData.post(payUrl, {
-          id: $scope.payinfo.id
+          id: $scope.payinfo.id_payment
         })
         .then(function resolve(res) {
           $ionicLoading.hide();
           $scope.showResult(res.data.resultStatus === 'success' ? '支付成功' : '支付失败');
-          stateGo.goToBack({
-            step: -1
-          });
+          if($scope.payinfo.redirectState == 'detail_stadium') {
+            stateGo.goToBack({
+              step: -4
+            });
+          }else if ($scope.payinfo.redirectState == 'detail_activity') {
+            stateGo.goToState('detail_activity', {
+              id_activity: $scope.payinfo.id_activity,
+              type: 'activity'
+            }, "back");
+          }else {
+            stateGo.goToBack({
+              step: -1
+            });
+          }
         }, function reject(err) {
+          $ionicLoading.hide();
           $scope.showResult('支付失败', '发生网络错误');
-          stateGo.goToBack({
-            step: -1
-          });
+          // if($scope.payinfo.redirectState != undefined || $scope.payinfo.redirectState != '') {
+          //   stateGo.goToBack({
+          //     step: -1
+          //   });
+          // }else {
+          //   stateGo.goToBack({
+          //     step: -1
+          //   });
+          // }
         });
     };
 
