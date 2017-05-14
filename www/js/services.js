@@ -222,7 +222,11 @@ angular.module('starter.services', [])
     stadium_getpayment: config.env + 'stadium_getpayment.php',
     activity_getfeature: config.env + 'activity_getfeature.php',
     stadium_getfeature: config.env + 'stadium_getfeature.php',
-    socialcircle: config.env + 'socialcircle.php'
+    socialcircle: config.env + 'socialcircle.php',
+    socialcircle_addlike: config.env + 'socialcircle_addlike.php',
+    socialcircle_removelike: config.env + 'socialcircle_removelike.php',
+    socialcircle_addcomment: config.env + 'socialcircle_addcomment.php',
+    user_check_attend_activity: config.env + 'user_check_attend_activity.php'
   };
 }])
 

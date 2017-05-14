@@ -132,6 +132,11 @@ angular.module('starter.controllers.tab.activity', [])
     }
   };
 
+  $rootScope.my = {
+    form: true,
+    content: false
+  };
+
   $rootScope.logout = function () {
     Logout.logoutCurrentAccount();
     $rootScope.globalSignSymbol = false;
@@ -152,7 +157,7 @@ angular.module('starter.controllers.tab.activity', [])
       .then(function resolve(response) {
 
         if (response.data.resultStatus === "success") {
-          $rootScope.$emit('signin-success', '');
+          console.log('activity signin');
           $rootScope.globalSignSymbol = true;
 
           $scope.uil.setid(response.data.resultData[0].id);
@@ -179,6 +184,9 @@ angular.module('starter.controllers.tab.activity', [])
           ls.set("gender", response.data.resultData[0].gender);
           ls.set('socialbg', response.data.resultData[0].socialbg);
 
+          // $rootScope.$emit('signin-success', '');
+          $rootScope.my.form = false;
+          $rootScope.my.content = true;
         } else {
           console.log("global fail");
         }
@@ -262,14 +270,22 @@ angular.module('starter.controllers.tab.activity', [])
 }])
 
 // 主页商品详细页面控制器
-.controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'stateGo', 'api', 'UsrInfoLocal', function ($scope, $rootScope, $stateParams, getData, stateGo, api, UsrInfoLocal) {
+.controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'stateGo', 'api', 'UsrInfoLocal', '$ionicLoading',function ($scope, $rootScope, $stateParams, getData, stateGo, api, UsrInfoLocal, $ionicLoading) {
 
   $scope.viewTitle = "活动详细";
   $scope.id_activity = $stateParams.id_activity;
   $scope.type = 'activity';
 
   $scope.activity = {};
+  $scope.isAttend = false;
 
+  $ionicLoading.show({
+    content: 'Loading',
+    animation: 'fade-in',
+    showBackdrop: true,
+    maxWidth: 200,
+    showDelay: 0
+  });
   $scope.getActivityInfo = function () {
     getData.post(api.activity_detail, {
         id: UsrInfoLocal.id,
@@ -277,27 +293,52 @@ angular.module('starter.controllers.tab.activity', [])
       })
       .then(function resolve(res) {
         console.log("res.data:", res.data);
+        $ionicLoading.hide();
         $scope.activity = res.data.resultData;
         $scope.iconStar = $scope.activity.stared ? 'img/star-yellow.png' : 'img/star-white.png';
         $scope.iconRecommend = $scope.activity.recommended ? 'img/recommend-yellow.png' : 'img/recommend-white.png';
       }, function reject(err) {
+        $ionicLoading.hide();
         console.log("err:", err);
       });
   };
   $scope.getActivityInfo();
 
+  $scope.checkIsAttend = function () {
+    getData.post(api.user_check_attend_activity, {
+      id: UsrInfoLocal.id,
+      id_activity: $scope.id_activity
+    }).then(function resolve (res) {
+      console.log('checkIsAttend res', res);
+      $scope.isAttend = !!res.data.resultData;
+    }, function reject (err) {
+      console.log('checkIsAttend err', err);
+    });
+  };
+  $scope.$on('$ionicView.beforeEnter', function () {
+    $scope.checkIsAttend();
+  });
+
   // 参加活动
   $scope.attendActivity = function () {
-    // todo
     stateGo.goToState('registration-instruction', {
       id_activity: $scope.id_activity,
-      type: $scope.type
+      type: $scope.type,
+      acitivty: $scope.activity
     });
   };
 
   // 退出活动
   $scope.exitActivity = function () {
-    // todo
+    // TODOS:
+    getData.post(api.activity_deletepayment, {
+      id: UsrInfoLocal.id,
+      id_activity: $scope.id_activity
+    }).then(function resolve (res) {
+      console.log('exitActivity res', res);
+    }, function reject (err) {
+      console.log('exitActivity err', err);
+    });
   };
 
   // 添加或删除点赞
@@ -364,6 +405,7 @@ angular.module('starter.controllers.tab.activity', [])
 
   $scope.id_activity = $stateParams.id_activity;
   $scope.type = $stateParams.type;
+  $scope.activity = $stateParams.activity;
 
   $scope.isAgree = false;
 
@@ -372,7 +414,8 @@ angular.module('starter.controllers.tab.activity', [])
     if ($scope.isAgree) {
       stateGo.goToState("registration-information", {
         id_activity: $scope.id_activity,
-        type: $scope.type
+        type: $scope.type,
+        activity: $scope.activity
       });
     } else {
       alert("请阅读并同意协议后才能进行下一步操作");
@@ -380,31 +423,92 @@ angular.module('starter.controllers.tab.activity', [])
   };
 }])
 
-.controller('RegistrationInformationCtrl', ['$scope', '$stateParams', 'stateGo', function ($scope, $stateParams, stateGo) {
+.controller('RegistrationInformationCtrl', ['$scope', '$stateParams', 'getData', 'stateGo', 'api', 'UsrInfoLocal', '$ionicPopup', '$ionicLoading',function ($scope, $stateParams, getData, stateGo, api, UsrInfoLocal, $ionicPopup, $ionicLoading) {
 
   $scope.id_activity = $stateParams.id_activity;
   $scope.type = $stateParams.type;
+  $scope.activity = $stateParams.activity;
 
-  $scope.information = {
-    // todo
+  $scope.userInputInfo = {
+    name: '',
+    identifyCode: '',
+    tel: ''
+  };
+
+  $scope.checkInputInfo = function () {
+    var telReg = /^1[3|4|5|7|8][0-9]{9}$/;
+    var icodeReg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+    var nameReg = /^[u4e00-u9fa5·0-9A-z]+$/;
+    var resbol = true;
+    if(!telReg.test($scope.userInputInfo.tel)) {
+      resbol = false;
+    }
+    if(!icodeReg.test($scope.userInputInfo.identifyCode)) {
+      resbol = false;
+    }
+    if(!nameReg.test($scope.userInputInfo.name)) {
+      resbol = false;
+    }
+    return resbol;
   };
 
   $scope.submitInformation = function () {
-    // todo
-    stateGo.goToState("registration-complete", {
-      id_activity: $scope.id_activity,
-      type: $scope.type
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
     });
+    var isValid = $scope.checkInputInfo();
+    if(!isValid) {
+      $ionicLoading.hide();
+      $scope.showResult('信息不合法');
+      return;
+    }
+    // 提交信息
+    getData.post(api.activity_createpayment, {
+      id: UsrInfoLocal.id,
+      id_activity: $scope.id_activity
+    }).then(function resolve(res) {
+      $ionicLoading.hide();
+      if(res.data.resultStatus == 'success') {
+        stateGo.goToState("registration-complete", {
+          info: {
+            id_payment: res.data.resultData.id_payment,
+            id_activity: res.data.resultData.id_activity,
+            type: $scope.type,
+            activity: $scope.activity
+          }
+        });
+      }else {
+        $ionicLoading.hide();
+        $scope.showResult('预定失败,' + res.data.resultData);
+      }
+    }, function reject (err) {
+      $scope.showResult('网络出错，请稍后重试');
+      console.log('submitInformation err', err);
+    });
+  };
+
+  $scope.showResult = function (result) {
+    var alertPopup = $ionicPopup.alert({
+      title: result,
+      template: ''
+    });
+    alertPopup.then(function (res) {});
   };
 }])
 
-.controller('RegistrationCompleteCtrl', ['$scope', '$rootScope', '$stateParams', 'stateGo', function ($scope, $rootScope, $stateParams, stateGo) {
+.controller('RegistrationCompleteCtrl', ['$scope', '$rootScope', '$stateParams', 'stateGo', 'getData', 'api', function ($scope, $rootScope, $stateParams, stateGo, getData, api) {
   $scope.$on("$ionicView.enter", function () {
     $rootScope.clearHistory();
   });
 
-  $scope.id_activity = $stateParams.id_activity;
-  $scope.type = $stateParams.type;
+  $scope.payInfo = $stateParams.info;
+  console.log('$scope.payInfo', $scope.payInfo);
+  // $scope.id_activity = $stateParams.id_activity;
+  // $scope.type = $stateParams.type;
 
   $scope.showNotification = true;
 
@@ -412,10 +516,39 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.showNotification = !$scope.showNotification;
   };
 
+  $scope.paymentItemInfo = {};
+  $scope.getPaymentItemInfo = function () {
+    getData.post(api.activity_getpayment, {
+      id: $scope.payInfo.id_payment
+    }).then(function resolve (res) {
+      console.log('r c getPaymentItemInfo res', res);
+      if(res.data.resultStatus == 'success') {
+        $scope.paymentItemInfo = res.data.resultData;
+      }else {
+
+      }
+    }, function reject (err) {
+      console.log('r c getPaymentItemInfo err', err);
+    });
+  };
+  $scope.getPaymentItemInfo();
+
   $scope.complete = function () {
     stateGo.goToState('detail_activity', {
-      id_activity: $scope.id_activity,
-      type: $scope.type
+      id_activity: $scope.payInfo.id_activity,
+      type: $scope.payInfo.type
     }, "back");
+  };
+
+  $scope.toPay = function () {
+    stateGo.goToState("prepare-pay", {
+      info: {
+        type: 'activity',
+        id_payment: $scope.paymentItemInfo.id_payment,
+        id_activity: $scope.paymentItemInfo.id,
+        payTotalPrice: $scope.paymentItemInfo.price,
+        redirectState: 'detail_activity'
+      }
+    });
   };
 }]);

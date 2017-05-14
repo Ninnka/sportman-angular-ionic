@@ -339,8 +339,6 @@ angular.module('starter.controllers.tab.stadium', [])
           $scope.showResult(res.data.resultStatus === 'success' ? '预定成功，准备付款' : '预定失败');
           if(res.data.resultStatus === 'success') {
             stateGo.goToState("prepare-pay", {
-              // id: $scope.id,
-              // type: $scope.type,
               info: {
                 type: 'stadium',
                 id_payment: res.data.resultData.id_payment,

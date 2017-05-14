@@ -31,7 +31,8 @@ angular.module('starter.states.tab.activity', [])
         url: '/registration/instruction',
         params: {
           type: "",
-          id_activity: 0
+          id_activity: 0,
+          activity: {}
         },
         views: {
           'index': {
@@ -58,8 +59,7 @@ angular.module('starter.states.tab.activity', [])
         cache: false,
         url: '/registration/complete',
         params: {
-          type: "",
-          id_activity: 0
+          info: {}
         },
         views: {
           'index': {

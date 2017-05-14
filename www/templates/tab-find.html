@@ -8,6 +8,8 @@
 
   <ion-content>
 
+    <ion-refresher pulling-text="下拉刷新" on-refresh="refreshNewData()"></ion-refresher>
+
     <div class="socialbg-wrapper">
       <img ng-src="{{socialbg}}" alt="" class="socialbg">
       <div class="user-avatar position-absolute flex-box">
@@ -23,7 +25,7 @@
         <img ng-src="{{socialcircle.avatar}}" alt="" class="social-avatar">
         <div class="social-content-wrapper">
           <div class="social-name-locate flex-box">
-            <span>{{socialcircle.name}}</span>
+            <span>{{socialcircle.uname}}</span>
             <i class="icon icon-diqiu icon-with-text icon-tool">
               <span>{{socialcircle.locate}}</span>
             </i>
@@ -43,7 +45,7 @@
             <i class="icon icon-huifu icon-with-text icon-tool" ng-click="replyShortcut($event, {'id': socialcircle.id, 'name': socialcircle.name, 'avatar': socialcircle.avatar, 'locate': socialcircle.locate, 'timestamp': socialcircle.timestamp})">
               <span>{{socialcircle.commentcount}}</span>
             </i>
-            <i class="icon icon-xihuan icon-with-text icon-tool" ng-class="isLike ? 'active' : ''" ng-click="toggleLike($event, id)">
+            <i class="icon icon-xihuan icon-with-text icon-tool" ng-class="!!socialcircle.isLike ? 'active' : ''" ng-click="toggleLike($event, socialcircle.id, socialcircle.isLike)">
               <span>{{socialcircle.likecount}}</span>
             </i>
             <i class="icon icon-shenglve icon-with-text icon-tool"></i>
@@ -52,6 +54,8 @@
       </li>
 
     </ul>
+
+    <ion-infinite-scroll ng-if="loadMoreSymbol" on-infinite="loadMoreData()" distance="2%" immediate-check="false"></ion-infinite-scroll>
 
     <!-- <transclude-directive>
       <div class="card">

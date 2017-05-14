@@ -19,6 +19,8 @@ angular.module('starter.controllers.tab.find', [])
     $scope.replyShortcutModal.hide();
   };
 
+  $scope.loadMoreSymbol = true;
+
   $scope.avatar = UsrInfoLocal.avatar;
   $scope.socialbg = UsrInfoLocal.socialbg;
 
@@ -30,22 +32,30 @@ angular.module('starter.controllers.tab.find', [])
     timestamp: ''
   };
 
-  // 测试用
-  $scope.isLike = false;
-  // ---
-
   $scope.socialcircleList = [];
+  $scope.likeSocial = [];
 
+  // 当前需要快速回复的动态消息的信息
   $scope.currentReplyTarget = {
     id: 0
   };
 
+  // 获取动态消息列表
   $scope.getSocialCircleList = function () {
-    getData.get(api.socialcircle)
-      .then(function resolve(res) {
+    getData.post(api.socialcircle, {
+      id: UsrInfoLocal.id
+    }).then(function resolve(res) {
         console.log('res.data:', res.data);
         if (res.data.resultStatus === 'success') {
-          $scope.socialcircleList = res.data.resultData;
+          $scope.likeSocial = res.data.resultData.socialLike;
+          $scope.socialcircleList = res.data.resultData.socialList;
+          for(var i = 0; i < $scope.socialcircleList.length; i++) {
+            var index = $scope.likeSocial.indexOf($scope.socialcircleList[i].id);
+            if(index != -1) {
+              console.log('i', i + ' islike');
+              $scope.socialcircleList[i].isLike = true;
+            }
+          }
         } else {
           console.log('发生未知错误');
         }
@@ -59,14 +69,58 @@ angular.module('starter.controllers.tab.find', [])
     $rootScope.clearHistory();
   });
 
-  $scope.toggleLike = function ($event, id) {
+  // 检测是否已标记为喜欢
+  $scope.isLike = function (id_social) {
+    console.log('isLike id_social', id_social);
+    return false;
+  };
+
+  // 点击喜欢按钮
+  $scope.toggleLike = function ($event, id_socialcircle, isLike) {
     // todo
     if ($event.stopPropagation) {
       $event.stopPropagation();
     }
-    $scope.isLike = !$scope.isLike;
+    if(!isLike) {
+      console.log('');
+      getData.post(api.socialcircle_addlike, {
+        id: UsrInfoLocal.id,
+        id_socialcircle: id_socialcircle
+      }).then(function resolve (res) {
+        console.log('toggleLike add res', res);
+        if(res.data.resultStatus == 'success') {
+          $scope.likeSocial.push(id_socialcircle);
+          for(var i = 0; i < $scope.socialcircleList.length; i++) {
+            if($scope.socialcircleList[i].id == id_socialcircle) {
+              console.log('i', i + ' islike');
+              $scope.socialcircleList[i].isLike = true;
+            }
+          }
+        }
+      }, function reject (err) {
+        console.log('toggleLike add err', err);
+      });
+    }else {
+      getData.post(api.socialcircle_removelike, {
+        id: UsrInfoLocal.id,
+        id_socialcircle: id_socialcircle
+      }).then(function resolve (res) {
+        console.log('toggleLike remove res', res);
+        var index = $scope.likeSocial.indexOf(id_socialcircle);
+        $scope.likeSocial.splice(index, 1);
+        for(var i = 0; i < $scope.socialcircleList.length; i++) {
+          if($scope.socialcircleList[i].id == id_socialcircle) {
+            console.log('i', i + ' islike');
+            $scope.socialcircleList[i].isLike = false;
+          }
+        }
+      }, function reject (err) {
+        console.log('toggleLike remove err', err);
+      });
+    }
   };
 
+  // 查看详细的动态消息
   $scope.viewDetail = function ($event, id) {
     // todo
     if ($event.stopPropagation) {
@@ -77,6 +131,7 @@ angular.module('starter.controllers.tab.find', [])
     });
   };
 
+  // 查看自己的动态消息列表
   $scope.viewMy = function ($event) {
     if ($event.stopPropagation) {
       $event.stopPropagation();
@@ -84,6 +139,31 @@ angular.module('starter.controllers.tab.find', [])
     stateGo.goToState('socialcircle-my');
   };
 
+  // 下拉刷新
+  $scope.refreshNewData = function () {
+    $scope.$broadcast('scroll.refreshComplete');
+  };
+
+  // 上拉加载
+  $scope.loadMoreData = function () {
+    getData.post(api.socialcircle, {
+      id: UsrInfoLocal.id
+    }).then(function successCallback(res) {
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+        $scope.socialcircleList = $scope.socialcircleList.concat(res.data.resultData.socialList);
+        for(var i = 0; i < $scope.socialcircleList.length; i++) {
+          var index = $scope.likeSocial.indexOf($scope.socialcircleList[i].id);
+          if(index != -1) {
+            console.log('i', i + ' islike');
+            $scope.socialcircleList[i].isLike = true;
+          }
+        }
+      }, function errorCallback(err) {
+        console.log("err:", err);
+      });
+  };
+
+  // 点击右上角的发送动态消息
   $scope.toPublish = function () {
     console.log('toPublish');
     stateGo.goToState('socialcircle-publish');
@@ -93,12 +173,14 @@ angular.module('starter.controllers.tab.find', [])
     console.log('toPublishWithImg');
   };
 
+  // 动友圈的快速回复按钮
   $scope.replyShortcut = function ($event, targetObj) {
     console.log('replyShortcut');
     if ($event.stopPropagation) {
       $event.stopPropagation();
     }
     $scope.openReplyShortcutModal();
+    // REVIEW:
     $scope.shortcutTargetInfo.id = targetObj.id;
     $scope.shortcutTargetInfo.name = targetObj.name;
     $scope.shortcutTargetInfo.avatar = targetObj.avatar;
@@ -106,22 +188,26 @@ angular.module('starter.controllers.tab.find', [])
     $scope.shortcutTargetInfo.timestamp = targetObj.timestamp;
   };
 
+  // 关闭快速回复按钮
   $scope.closeShortcut = function ($event) {
     $scope.resetReplyInShortcut();
     $scope.closeReplyShortcutModal();
   };
 
+  // 提交快速回复
   $scope.submitReplyInShortcut = function ($event) {
     if ($event.stopPropagation) {
       $event.stopPropagation();
     }
-    // TODO
+    // TODO:
   };
 
+  // 重置快速回复对象的信息
   $scope.resetReplyInShortcut = function ($event) {
     if ($event && $event.stopPropagation) {
       $event.stopPropagation();
     }
+    // REVIEW:
     $scope.shortcutTargetInfo.id = '';
     $scope.shortcutTargetInfo.name = '';
     $scope.shortcutTargetInfo.avatar = '';

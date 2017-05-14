@@ -15,13 +15,13 @@
 
     <div class="text-with-rightblock space-between  with-absolute-ele">
       <div>
-        <p>2016广州马拉松</p>
-        <p class="assertive">2016-04-01 07:00 ~ 11:30</p>
-        <p>广州市天河区珠江新城花城广场（起点）</p>
+        <p>{{paymentItemInfo.name}}</p>
+        <p class="assertive">{{paymentItemInfo.starttime | date : 'yyyy-MM-dd HH:mm'}}</p>
+        <p>{{paymentItemInfo.position}}</p>
       </div>
-      <a ng-href="#/registration/instruction" nav-direction="forward">
+      <!--<a ng-href="#/registration/instruction" nav-direction="forward">
         <img ng-src="img/marason-icon.png" alt="" class="img-right">
-      </a>
+      </a>-->
       <img ng-src="img/investigation.png" alt="" class="absolute-img absolute-right investigating-notifi" ng-show="true">
       <img ng-src="img/pass.png" alt="" class="absolute-img absolute-right investigating-notifi" ng-show="false">
     </div>
@@ -34,8 +34,8 @@
         通过审核后显示
       </div>
       <div class="item text-align-left" ng-show="false">
-        <p>选手号码：666</p>
-        <p>选手姓名：黄毛</p>
+        <p>选手姓名：{{paymentItemInfo.uname}}</p>
+        <p>选手性别：{{paymentItemInfo.ugender}}</p>
       </div>
     </div>
 
@@ -45,8 +45,8 @@
       </div>
       <div class="item text-with-rightblock space-between">
         <div class="item-text-main">
-          <p>广州体育局</p>
-          <p>广州市天河区天河路299号天河体育中心</p>
+          <p>{{paymentItemInfo.host}}</p>
+          <p>{{paymentItemInfo.hostaddress}}</p>
         </div>
         <img src="img/call-maintheme.png" alt="" class="icon-custom">
       </div>
@@ -57,15 +57,15 @@
         支付信息
       </div>
       <div class="item text-align-left">
-        <p>实付金额：￥100</p>
-        <p>订单号：135846350044646</p>
-        <p>支付时间：2016-01-16 12:06:50</p>
+        <p>实付金额：￥{{paymentItemInfo.price}}</p>
+        <p>订单号：{{paymentItemInfo.uid_payment}}</p>
+        <p>支付时间：{{paymentItemInfo.id_payment_timestamp | date : 'yyyy-MM-dd HH:mm'}}</p>
         <p class="assertive">*报名失败将自动退还所付金额</p>
-        <pay-btn ng-show="true"></pay-btn>
+        <pay-btn ng-show="true" ng-click="toPay()"></pay-btn>
       </div>
     </div>
 
-    <div class="content-wrapper margin-top-md">
+    <!--<div class="content-wrapper margin-top-md">
       <div class="item item-divider">
         参赛须知
       </div>
@@ -92,7 +92,7 @@
 *广州马拉松赛组委会对以上内容保留最终解释权*</pre>
         </div>
       </div>
-    </div>
+    </div>-->
 
   </ion-content>
 

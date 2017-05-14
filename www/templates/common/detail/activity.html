@@ -27,7 +27,8 @@
         <p class="assertive">￥{{activity.price}}</p>
       </div>
       <a>
-        <button class="button button-positive" ng-click="attendActivity()">立即参加</button>
+        <button ng-if="!isAttend" class="button button-positive" ng-click="attendActivity()">立即参加</button>
+        <button ng-if="isAttend" class="button button-assertive" ng-click="exitActivity()">取消参加</button>
       </a>
     </div>
 
@@ -36,11 +37,10 @@
         报名详情
       </div>
       <div class="item item-text-wrap">
-        <p>报名日期：2016年01月06日 - 2016年03月01日</p>
-        <p>报名人数：550/1000</p>
+        <p>报名日期：{{activity.bookactivitystart | date : 'yyyy-MM-dd HH:mm'}} - {{activity.bookactivityend | date : 'yyyy-MM-dd HH:mm'}}</p>
+        <p>报名人数：{{activity.currentnumber}}/{{activity.totalnumber}}</p>
         <p>选手登记：在线登记</p>
-        <p>是否分组：是</p>
-        <p class="text-abvious">点击查看全部</p>
+        <!--<p class="text-abvious">点击查看全部</p>-->
       </div>
     </div>
 

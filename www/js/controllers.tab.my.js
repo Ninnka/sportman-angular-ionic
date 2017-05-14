@@ -21,10 +21,7 @@ angular.module('starter.controllers.tab.my', [])
   });
 
   // 控制个人信息视图显示
-  $scope.my = {
-    form: true,
-    content: false
-  };
+  $scope.my = $rootScope.my;
 
   // 本地用户信息共享部分
   $scope.uil = UsrInfoLocal;
@@ -611,7 +608,7 @@ angular.module('starter.controllers.tab.my', [])
   }])
 
 // 付款管理
-.controller('myPaymentCtrl', ['$scope', 'stateGo', 'getData', 'api', function ($scope, stateGo, getData, api) {
+.controller('myPaymentCtrl', ['$scope', 'stateGo', 'getData', 'api', 'UsrInfoLocal', function ($scope, stateGo, getData, api, UsrInfoLocal) {
 
   $scope.toBackView = function () {
     stateGo.goToBack({
@@ -619,13 +616,16 @@ angular.module('starter.controllers.tab.my', [])
     });
   };
 
-  $scope.preparePay = function (id, type) {
+  $scope.preparePay = function (id_payment, type, payTotalPrice) {
     stateGo.goToState('prepare-pay', {
-      id: id,
-      type: type
+      info: {
+        id: UsrInfoLocal.id,
+        id_payment: id_payment,
+        type: type,
+        payTotalPrice: payTotalPrice
+      }
     });
   };
-
   }])
 
 .controller('myPaymentActivityCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', function ($scope, getData, api, UsrInfoLocal) {
@@ -678,6 +678,7 @@ angular.module('starter.controllers.tab.my', [])
     getData.post(api.user_payment_all, {
       id: UsrInfoLocal.id
     }).then(function resolve(res) {
+      console.log('getPaymentList res', res);
       $scope.paidActivityList = $scope.paidActivityList.concat(res.data.resultData.paid_activity);
       $scope.paidStadiumList = $scope.paidStadiumList.concat(res.data.resultData.paid_stadium);
     }, function reject(err) {
@@ -685,6 +686,32 @@ angular.module('starter.controllers.tab.my', [])
     });
   };
   $scope.getPaymentList();
+
+  $scope.cancelPaidActivity = function (id, id_payment, type) {
+    console.log('cancelPaid id_payment', id_payment);
+    getData.post(api.activity_deletepayment, {
+      id: UsrInfoLocal.id,
+      id_activity: id
+    }).then(function resolve (res) {
+      console.log('cancelPaidActivity res', res);
+    }, function reject (err) {
+      console.log('cancelPaidActivity err', err);
+    });
+  };
+
+  $scope.cancelPaidStadium = function (id, id_payment, type) {
+    console.log('cancelPaid id_payment', id_payment);
+    getData.post(api.stadium_deletepayment, {
+      id: UsrInfoLocal.id,
+      id_stadium: id,
+      id_payment: id_payment
+    }).then(function resolve (res) {
+      console.log('cancelPaidActivity res', res);
+    }, function reject (err) {
+      console.log('cancelPaidActivity err', err);
+    });
+  };
+
   }])
 
 // 消息推送

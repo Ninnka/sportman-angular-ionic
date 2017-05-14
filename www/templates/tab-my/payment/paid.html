@@ -25,6 +25,9 @@
               <p>{{paidActivity.position}}</p>
             </div>
           </div>
+          <div class="button-right" ng-show="true">
+            <button type="button" name="button" class="button button-outline button-assertive" ng-click="cancelPaidActivity(paidActivity.id, paidActivity.id_payment, 'activity', paidActivity.price)">取消</button>
+          </div>
         </a>
       </li>
     </ul>
@@ -45,6 +48,9 @@
               <p>时间：{{paidStadium.bookstarttime | date : 'yy-MM-dd hh:mm'}}起</p>
               <p>{{paidStadium.position}}</p>
             </div>
+          </div>
+          <div class="button-right" ng-show="true">
+            <button type="button" name="button" class="button button-outline button-assertive" ng-click="cancelPaidStadium(paidStadium.id, paidStadium.id_payment, 'stadium')">取消</button>
           </div>
         </a>
       </li>
