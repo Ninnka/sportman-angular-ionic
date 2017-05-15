@@ -21,7 +21,7 @@
 
     <ul class="social-list">
 
-      <li class="social-item flex-box" ng-repeat="socialcircle in socialcircleList track by $index" ng-click="viewDetail($event, id)">
+      <li class="social-item flex-box" ng-repeat="socialcircle in socialcircleList track by $index" ng-click="viewDetail($event, socialcircle.id)">
         <img ng-src="{{socialcircle.avatar}}" alt="" class="social-avatar">
         <div class="social-content-wrapper">
           <div class="social-name-locate flex-box">
@@ -102,7 +102,7 @@
 
       <ion-content>
         <div class="reply-shortcut-wrap">
-          <textarea class="" placeholder="说点什么吧..."></textarea>
+          <textarea class="" placeholder="说点什么吧..." ng-model="currentReplyTarget.comment"></textarea>
           <div class="reply-operator flex-box">
             <button class="button button-assertive" ng-click="resetReplyInShortcut()">重置</button>
             <button class="button button-positive" ng-click="submitReplyInShortcut()">发送</button>

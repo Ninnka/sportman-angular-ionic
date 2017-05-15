@@ -226,6 +226,11 @@ angular.module('starter.services', [])
     socialcircle_addlike: config.env + 'socialcircle_addlike.php',
     socialcircle_removelike: config.env + 'socialcircle_removelike.php',
     socialcircle_addcomment: config.env + 'socialcircle_addcomment.php',
+    socialcircle_detail: config.env + 'socialcircle_detail.php',
+    socialcircle_detailcomment: config.env + 'socialcircle_detailcomment.php',
+    socialcircle_my: config.env + 'socialcircle_my.php',
+    activity_home_hot: config.env + 'activity_home_hot.php',
+    activity_home_recommend: config.env + 'activity_home_recommend.php',
     user_check_attend_activity: config.env + 'user_check_attend_activity.php'
   };
 }])

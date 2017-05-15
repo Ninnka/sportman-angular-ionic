@@ -267,6 +267,17 @@ angular.module('starter.controllers.tab.activity', [])
     $scope.$broadcast('scroll.refreshComplete');
   };
 
+  $scope.viewHot = function () {
+    console.log('viewHot');
+    stateGo.goToState('activity_hot');
+  };
+
+  $scope.viewRecommend = function () {
+    console.log('viewRecommend');
+    stateGo.goToState('activity_recommend');
+  };
+
+
 }])
 
 // 主页商品详细页面控制器
@@ -275,6 +286,7 @@ angular.module('starter.controllers.tab.activity', [])
   $scope.viewTitle = "活动详细";
   $scope.id_activity = $stateParams.id_activity;
   $scope.type = 'activity';
+  $scope.backState = $stateParams.backState;
 
   $scope.activity = {};
   $scope.isAttend = false;
@@ -398,7 +410,54 @@ angular.module('starter.controllers.tab.activity', [])
       id: $scope.activity.id
     });
   };
+
 }])
+
+.controller('ActivityHotCtrl', ['$scope', 'getData', 'stateGo', function ($scope, getData, stateGo) {
+  $scope.backState = '';
+
+  $scope.activityList = [];
+
+  $scope.getHotList = function () {
+    getData.get(api.activity_home_hot).then(function resolve(res) {
+      console.log('getHotList res', res);
+      $scope.activityList = res.data.resultData;
+    }, function reject(err) {
+      console.log('getHotList err', err);
+    });
+  };
+  $scope.getHotList();
+
+  $scope.toDetail = function (id_activity) {
+    stateGo.goToState('detail_activity', {
+      type: "activity",
+      id_activity: id_activity
+    });
+  };
+}])
+
+.controller('ActivityRecommendCtrl', ['$scope', 'getData', 'stateGo', function ($scope, getData, stateGo) {
+  $scope.backState = '';
+
+  $scope.activityList = [];
+
+  $scope.getRecommendList = function () {
+    getData.get(api.activity_home_recommend).then(function resolve(res) {
+      console.log('getRecommendList res', res);
+      $scope.activityList = res.data.resultData;
+    }, function reject(err) {
+      console.log('getRecommendList err', err);
+    });
+  };
+  $scope.getRecommendList();
+
+  $scope.toDetail = function (id_activity) {
+    stateGo.goToState('detail_activity', {
+      type: "activity",
+      id_activity: id_activity
+    });
+  };
+}]) 
 
 // 报名参加活动
 .controller('RegistrationInstructionCtrl', ['$scope', '$stateParams', 'stateGo', function ($scope, $stateParams, stateGo) {

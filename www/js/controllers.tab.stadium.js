@@ -62,8 +62,10 @@ angular.module('starter.controllers.tab.stadium', [])
     $scope.getDataPromise = '';
 
     $scope.getStaidumData = function () {
-      $scope.getDataPromise = getData.get(api.stadium_home);
-    };
+      $scope.getDataPromise = getData.post(api.stadium_home, {
+        area: $scope.areaName,
+        sport_type: $scope.typeName
+      });
     if (!$scope.hasFirstLoad) {
       $scope.getStaidumData();
     }
@@ -85,8 +87,10 @@ angular.module('starter.controllers.tab.stadium', [])
 
     $scope.loadMoreData = function () {
       // $scope.getStaidumData();
-      getData.get(api.stadium_home)
-        .then(function successCallback(res) {
+      getData.post(api.stadium_home, {
+        area: $scope.areaName,
+        sport_type: $scope.typeName
+      }).then(function successCallback(res) {
           $scope.stadiumList = $scope.stadiumList.concat(res.data.resultData);
           $scope.$broadcast('scroll.infiniteScrollComplete');
         }, function errorCallback(err) {

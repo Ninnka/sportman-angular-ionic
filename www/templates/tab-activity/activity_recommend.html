@@ -1,0 +1,12 @@
+<ion-view view-title="推荐活动">
+
+  <ion-nav-buttons side="left">
+    <ion-navbuttonsgo target="{{backState}}"></ion-navbuttonsgo>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <ul class="stream-list">
+      <activity ng-repeat="activity in activityList track by $index" ng-click="toDetail(activity.id)"></activity>
+    </ul>
+  </ion-content>
+</ion-view>

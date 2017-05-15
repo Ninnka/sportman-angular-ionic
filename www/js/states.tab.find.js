@@ -7,7 +7,7 @@ angular.module('starter.states.tab.find', [])
       cache: false,
       url: '/socialcircle-detail',
       params: {
-        id: 0
+        id_socialcircle: 0
       },
       views: {
         'index': {

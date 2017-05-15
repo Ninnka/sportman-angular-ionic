@@ -17,12 +17,35 @@ angular.module('starter.states.tab.activity', [])
         url: '/detail/activity',
         params: {
           type: "",
-          id_activity: 0
+          id_activity: 0,
+          backState: ''
         },
         views: {
           'index': {
             templateUrl: 'templates/common/detail/activity.html',
             controller: 'DetailActivityCtrl'
+          }
+        }
+      })
+      .state('activity_hot', {
+        url: '/activity_hot',
+        cache: false,
+        params: {},
+        views: {
+          'index': {
+            templateUrl: 'templates/tab-activity/activity_hot.html',
+            controller: 'ActivityHotCtrl'
+          }
+        }
+      })
+      .state('activity_recommend', {
+        url: '/activity_recommend',
+        cache: false,
+        params: {},
+        views: {
+          'index': {
+            templateUrl: 'templates/tab-activity/activity_recommend.html',
+            controller: 'ActivityRecommendCtrl'
           }
         }
       })
