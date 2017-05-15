@@ -187,9 +187,9 @@ angular.module('starter.controllers.tab.find', [])
 
   // 提交快速回复
   $scope.submitReplyInShortcut = function ($event) {
-    if ($event.stopPropagation) {
-      $event.stopPropagation();
-    }
+    // if ($event.stopPropagation) {
+    //   $event.stopPropagation();
+    // }
     // TODO: 获取地点
     getData.post(api.socialcircle_addcomment, {
       id: UsrInfoLocal.id,
@@ -238,6 +238,10 @@ angular.module('starter.controllers.tab.find', [])
 
   $scope.pageNum = 1;
   $scope.pageSize = 6;
+
+  $scope.userPartInfo = {
+    avatar: UsrInfoLocal.avatar
+  }
 
   $scope.socialcircle = {
     // name: 'Ninnka',
@@ -290,7 +294,7 @@ angular.module('starter.controllers.tab.find', [])
       id_socialcircle: $scope.id_socialcircle
     }).then(function resolve (res) {
       console.log('getSocialMsg res', res);
-      $scope.socialcircle = res.data.resultData;
+      $scope.socialcircle = res.data.resultData.socialDetail;
     }, function reject(err) {
       console.log('getSocialMsg err', err);
     });
@@ -328,6 +332,8 @@ angular.module('starter.controllers.tab.find', [])
 
   // REVIEW:标记为喜欢 
   $scope.toggleLike = function ($event, id_socialcircle, isLike) {
+    console.log('id_socialcircle', id_socialcircle);
+    console.log('isLike', isLike);
     if ($event.stopPropagation) {
       $event.stopPropagation();
     }
@@ -340,6 +346,7 @@ angular.module('starter.controllers.tab.find', [])
         console.log('toggleLike add res', res);
         if(res.data.resultStatus == 'success') {
           $scope.socialcircle.isLike = true;
+          $scope.socialcircle.likecount = $scope.socialcircle.likecount + 1;
         }
       }, function reject (err) {
         console.log('toggleLike add err', err);
@@ -352,6 +359,7 @@ angular.module('starter.controllers.tab.find', [])
         console.log('toggleLike remove res', res);
         if(res.data.resultStatus == 'success') {
           $scope.socialcircle.isLike = false;
+          $scope.socialcircle.likecount = $scope.socialcircle.likecount - 1;
         }
       }, function reject (err) {
         console.log('toggleLike remove err', err);
@@ -367,7 +375,7 @@ angular.module('starter.controllers.tab.find', [])
     getData.post(api.socialcircle_addcomment, {
       id: UsrInfoLocal.id,
       id_socialcircle: $scope.id_socialcircle,
-      comment: $scope.replyInfo,
+      comment: $scope.replyInfo.reply,
       locate: '中国'
     }).then(function resolve(res) {
       console.log('submitReplyInDetail res', res);

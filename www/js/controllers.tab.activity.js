@@ -413,7 +413,7 @@ angular.module('starter.controllers.tab.activity', [])
 
 }])
 
-.controller('ActivityHotCtrl', ['$scope', 'getData', 'stateGo', function ($scope, getData, stateGo) {
+.controller('ActivityHotCtrl', ['$scope', 'getData', 'stateGo', 'api', function ($scope, getData, stateGo, api) {
   $scope.backState = '';
 
   $scope.activityList = [];
@@ -436,7 +436,7 @@ angular.module('starter.controllers.tab.activity', [])
   };
 }])
 
-.controller('ActivityRecommendCtrl', ['$scope', 'getData', 'stateGo', function ($scope, getData, stateGo) {
+.controller('ActivityRecommendCtrl', ['$scope', 'getData', 'stateGo', 'api', function ($scope, getData, stateGo, api) {
   $scope.backState = '';
 
   $scope.activityList = [];

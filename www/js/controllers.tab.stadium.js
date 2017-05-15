@@ -47,14 +47,14 @@ angular.module('starter.controllers.tab.stadium', [])
     ];
     $scope.typeName = "";
 
-    $scope.priceList = [
-      "",
-      "0",
-      "1~49",
-      "50~149",
-      "150~"
-    ];
-    $scope.price = "";
+    // $scope.priceList = [
+    //   "",
+    //   "0",
+    //   "1~49",
+    //   "50~149",
+    //   "150~"
+    // ];
+    // $scope.price = "";
 
     $scope.stadiumList = [];
 
@@ -66,6 +66,7 @@ angular.module('starter.controllers.tab.stadium', [])
         area: $scope.areaName,
         sport_type: $scope.typeName
       });
+    }
     if (!$scope.hasFirstLoad) {
       $scope.getStaidumData();
     }
@@ -104,65 +105,7 @@ angular.module('starter.controllers.tab.stadium', [])
       $scope.$broadcast('scroll.refreshComplete');
     };
 
-    //   $scope.stadiumList = [
-    //     {
-    //       name: "胜利运动场（万寿路店）",
-    //       post: "img/tabletenis-star.png",
-    //       trade: "乒乓球、羽毛球",
-    //       opentime: "08:00 - 22:00",
-    //       position: "海珠区",
-    //       price: 9
-    //   },
-    //     {
-    //       name: "广州市射击射箭运动管理中心",
-    //       post: "img/shot-stadium.png",
-    //       trade: "台球、射箭、射击",
-    //       opentime: "08:00 - 19:00",
-    //       position: "天河区",
-    //       price: 99
-    //   },
-    //     {
-    //       name: "杰冠真人CS野战基地",
-    //       post: "img/cs-stadium.png",
-    //       trade: "仿真枪机野战",
-    //       opentime: "08:00 - 18:00",
-    //       position: "海珠区",
-    //       price: 299
-    //   },
-    //     {
-    //       name: "大世界保龄球馆",
-    //       post: "img/bowling-stadium.png",
-    //       trade: "保龄球",
-    //       opentime: "08:00 - 18:00",
-    //       position: "海珠区",
-    //       price: 199
-    //   },
-    //     {
-    //       name: "冰河湾真冰溜冰场",
-    //       post: "img/skip-stadium.png",
-    //       trade: "溜冰",
-    //       opentime: "08:00 - 22:00",
-    //       position: "海珠区",
-    //       price: 9
-    //   },
-    //     {
-    //       name: "胜利运动场（万寿路店）",
-    //       post: "img/tabletenis-star.png",
-    //       trade: "乒乓球、羽毛球",
-    //       opentime: "08:00 - 22:00",
-    //       position: "海珠区",
-    //       price: 9
-    //   },
-    //     {
-    //       name: "广州市射击射箭运动管理中心",
-    //       post: "img/shot-stadium.png",
-    //       trade: "台球、射箭、射击",
-    //       opentime: "08:00-19:00",
-    //       position: "天河区",
-    //       price: 99
-    //   }
-    // ];
-  }])
+}])
 
   .controller('DetailStadiumCtrl', ['$scope', '$stateParams', 'stateGo', 'getData', 'api', 'UsrInfoLocal', function ($scope, $stateParams, stateGo, getData, api, UsrInfoLocal) {
     $scope.stadium = {};
