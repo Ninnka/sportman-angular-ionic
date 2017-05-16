@@ -19,6 +19,8 @@ angular.module('starter.controllers.tab.find', [])
     $scope.replyShortcutModal.hide();
   };
 
+  $scope.imgPrefix = api.sportman_pic_prefix;
+
   $scope.loadMoreSymbol = true;
 
   $scope.avatar = UsrInfoLocal.avatar;
@@ -234,53 +236,20 @@ angular.module('starter.controllers.tab.find', [])
 
 .controller('SocialcircleDetailCtrl', ['$scope', '$stateParams', 'getData', 'api', '$timeout', 'UsrInfoLocal', function ($scope, $stateParams, getData, api, $timeout, UsrInfoLocal) {
 
+
   $scope.id_socialcircle = $stateParams.id_socialcircle;
 
   $scope.pageNum = 1;
   $scope.pageSize = 6;
 
+  $scope.imgPrefix = api.sportman_pic_prefix;
+
   $scope.userPartInfo = {
     avatar: UsrInfoLocal.avatar
   }
 
-  $scope.socialcircle = {
-    // name: 'Ninnka',
-    // avatar: 'http://v2ex.assets.uxengine.net/gravatar/314258679ae304a33da79c7534a34657?s=73&d=retro',
-    // locate: '中国·深圳',
-    // timestamp: '1488009540000',
-    // publish: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ellit anim id est laborum. labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ellit anim id est laborum.',
-    // likecount: 11,
-    // commentcount: 99,
-    // images: [
-    //   {
-    //     id: 1,
-    //     imgsrc: 'img/social-imglist-1.png'
-    //   }
-    // ],
-    // comments: [
-    //   {
-    //     name: 'Ninnka',
-    //     avatar: 'http://v2ex.assets.uxengine.net/gravatar/314258679ae304a33da79c7534a34657?s=73&d=retro',
-    //     locate: '中国·深圳',
-    //     timestamp: '1488009540000',
-    //     comment: '是啊是啊'
-    //   },
-    //   {
-    //     name: 'Hennzr',
-    //     avatar: 'http://v2ex.assets.uxengine.net/gravatar/314258679ae304a33da79c7534a34657?s=73&d=retro',
-    //     locate: '中国·深圳',
-    //     timestamp: '1488009540000',
-    //     comment: '叼叼叼',
-    //   },
-    //   {
-    //     name: 'Rennzh',
-    //     avatar: 'http://v2ex.assets.uxengine.net/gravatar/314258679ae304a33da79c7534a34657?s=73&d=retro',
-    //     locate: '中国·深圳',
-    //     timestamp: '1488009540000',
-    //     comment: '能不能别装逼',
-    //   }
-    // ]
-  };
+  $scope.socialcircle = {};
+  $scope.socialimgList = [];
   $scope.socialcomment = [];
 
   $scope.replyInfo = {
@@ -295,6 +264,7 @@ angular.module('starter.controllers.tab.find', [])
     }).then(function resolve (res) {
       console.log('getSocialMsg res', res);
       $scope.socialcircle = res.data.resultData.socialDetail;
+      $scope.socialimgList = res.data.resultData.images;
     }, function reject(err) {
       console.log('getSocialMsg err', err);
     });
@@ -396,7 +366,11 @@ angular.module('starter.controllers.tab.find', [])
 
 .controller('SocialcircleMyCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', 'stateGo', function ($scope, getData, api, UsrInfoLocal, stateGo) {
 
-  $scope.socialcircle = {};
+  $scope.imgPrefix = api.sportman_pic_prefix;
+
+  $scope.loadMoreData = true;
+
+  $scope.socialcircleList = [];
 
   // REVIEW:获取我发送的动态消息
   $scope.getMySocialMsg = function () {
@@ -405,6 +379,9 @@ angular.module('starter.controllers.tab.find', [])
       id: UsrInfoLocal.id
     }).then(function resolve(res) {
       console.log('getMySocialMsg res', res);
+      if (res.data.resultStatus == 'success') {
+        $scope.socialcircleList = $scope.socialcircleList.concat(res.data.resultData.socialList);
+      }
     }, function reject(err) {
       console.log('getMySocialMsg err', err);
     });
@@ -421,16 +398,81 @@ angular.module('starter.controllers.tab.find', [])
     });
   };
 
+  $scope.loadMoreData = function () {
+    // TODO:
+    $scope.$broadcast('scroll.infiniteScrollComplete');
+  };
+
 }])
 
-.controller('SocialcirclePublishCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', function ($scope, getData, api, UsrInfoLocal) {
+.controller('SocialcirclePublishCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', '$timeout', '$ionicPopup', function ($scope, getData, api, UsrInfoLocal, $timeout, $ionicPopup) {
+
   $scope.publishInfo = {
     imagesList: [],
     text: ''
   };
 
-  $scope.publishMsg = function () {
+  $scope.resetPublishInfo = function () {
+    $scope.publishInfo.imagesList.splice(0, $scope.publishInfo.imagesList.length);
+    $scope.publishInfo.text = '';
+  };
+
+  $scope.submitPublishMsg = function () {
     console.log('publishMsg');
-    // todo
+    $timeout(function () {
+      var fd = new FormData();
+      fd.append('id_user', UsrInfoLocal.id);
+      fd.append('locate', '中国-广东-广州');
+      fd.append('text', $scope.publishInfo.text);
+      for (var i = 0, file; file = $scope.publishInfo.imagesList[i]; i++) {
+        (function (file) {
+            fd.append('imgs[]',file);
+        })(file);
+      }
+      $.ajax({
+        url: 'http://localhost/sportman/upload_image.php' ,
+        type: 'POST',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function (res) {
+            console.log(res);
+            if(res.data.resultStatus == 'success') {
+              $scope.showResult('上传成功');
+              $scope.resetPublishInfo();
+              // TODO:返回上一页
+            }else {
+              $scope.showResult('上传失败');
+            }
+        },
+        error: function (err) {
+            $scope.showResult('网络出错');
+            console.log(err);
+        }
+      });
+    }, 1);
+  };
+
+  $scope.deleteImageItem = function (index) {
+    console.log('deleteImageItem index', index);
+    $scope.publishInfo.imagesList.splice(index, 1);
+  };
+
+  angular.element('#imginput').on("change", function (e) {
+    $timeout(function () {
+      var files = e.target.files || e.dataTransfer.files;
+      console.log('files', files);
+      $scope.publishInfo.imagesList.push(files[0]);
+      console.log('$scope.publishInfo.imagesList', $scope.publishInfo.imagesList);
+    }, 1);
+    // $scope.apply();
+  });
+
+  $scope.showResult = function (result) {
+    var alertPopup = $ionicPopup.alert({
+      title: result,
+      template: ''
+    });
+    alertPopup.then(function (res) {});
   };
 }]);

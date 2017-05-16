@@ -27,16 +27,6 @@ angular.module('starter.states.tab.my', [])
           }
         }
       })
-      .state('usrdetail_phone', {
-        cache: false,
-        url: '/usr/detail/phone',
-        views: {
-          'index': {
-            templateUrl: 'templates/usr/detail/phone.html',
-            controller: ''
-          }
-        }
-      })
 
       // 我的活动
       .state('my_collections-activity', {

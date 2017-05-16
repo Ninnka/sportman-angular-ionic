@@ -169,6 +169,7 @@ angular.module('starter.controllers.tab.activity', [])
           $scope.uil.setEmail(response.data.resultData[0].email);
           $scope.uil.setPn(response.data.resultData[0].password);
           $scope.uil.setGender(response.data.resultData[0].gender);
+          $scope.uil.setAddress(response.data.resultData[0].address);
           $scope.uil.setSocialbg(response.data.resultData[0].socialbg);
 
           // console.log("UsrInfoLocal.sportmanid: " + UsrInfoLocal.sportmanid);
@@ -182,6 +183,7 @@ angular.module('starter.controllers.tab.activity', [])
           ls.set("email", response.data.resultData[0].email);
           ls.set("phonenumber", response.data.resultData[0].mobile);
           ls.set("gender", response.data.resultData[0].gender);
+          ls.set("address", response.data.resultData[0].address);
           ls.set('socialbg', response.data.resultData[0].socialbg);
 
           // $rootScope.$emit('signin-success', '');

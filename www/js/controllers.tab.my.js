@@ -143,6 +143,7 @@ angular.module('starter.controllers.tab.my', [])
           $scope.uil.setEmail(response.data.resultData[0].email);
           $scope.uil.setPn(response.data.resultData[0].password);
           $scope.uil.setGender(response.data.resultData[0].gender);
+          $scope.uil.setAddress(response.data.resultData[0].address);
           $scope.uil.setSocialbg(response.data.resultData[0].socialbg);
 
           // storage in local
@@ -155,6 +156,7 @@ angular.module('starter.controllers.tab.my', [])
           ls.set("email", response.data.resultData[0].email);
           ls.set("phonenumber", response.data.resultData[0].mobile);
           ls.set("gender", response.data.resultData[0].gender);
+          ls.set("address", response.data.resultData[0].address);
           ls.set('socialbg', response.data.resultData[0].socialbg);
 
           // console.log("on signinsuccess");
@@ -207,9 +209,37 @@ angular.module('starter.controllers.tab.my', [])
   }])
 
 // 用户详细页控制器
-.controller('usrDetailCtrl', ['$scope', function ($scope) {
+.controller('usrDetailCtrl', ['$scope', 'UsrInfoLocal', 'getData', 'api', function ($scope, UsrInfoLocal, getData, api) {
 
-  }])
+  $scope.personInfo = {
+    avatar: UsrInfoLocal.avatar,
+    gender: UsrInfoLocal.gender,
+    address: UsrInfoLocal.address,
+    socialbg: UsrInfoLocal.socialbg
+  };
+
+  $scope.avatarList = [];
+  $scope.socialbgList = [];
+
+  $scope.saveChange = function () {
+    console.log('$scope.personInfo', $scope.personInfo);
+    // TODO:
+    getData.post(api.setting_person_info, {
+      id: UsrInfoLocal.id,
+      gender: $scope.personInfo.gender,
+      address: $scope.personInfo.address
+    }).then(function resolve(res) {
+      console.log('saveChange res', res);
+      if (res.data.resultStatus == 'success') {
+        UsrInfoLocal.gender = res.data.resultData.gender;
+        UsrInfoLocal.address = res.data.resultData.address;
+      }
+    }, function reject(err) {
+      console.log('saveChange err', err);
+    });
+  };
+
+}])
 
 // 我的活动
 .controller('myCollectionsActivityCtrl', ['$scope', '$rootScope', '$state', 'stateGo', function ($scope, $rootScope, $state, stateGo) {

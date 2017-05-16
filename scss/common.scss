@@ -439,3 +439,17 @@ p.assertive {
         width: 100%;
     }
 }
+
+.padding-none {
+    padding: 0 !important;
+    .item-radio {
+        padding: 0 !important;
+    }
+}
+
+.person-info-title {
+    padding-left: 10px;
+    margin: 0;
+    line-height: .85rem;
+    background-color: #FDFDFD;
+}

@@ -8,6 +8,7 @@ angular.module('starter.services', [])
   this.email = "";
   this.pn = "";
   this.gender = "";
+  this.address = '';
   this.socialbg = '';
   this.empty = true;
   this.setid = function (id) {
@@ -31,6 +32,9 @@ angular.module('starter.services', [])
   this.setGender = function (gender) {
     this.gender = gender;
   };
+  this.setAddress = function (address) {
+    this.address = address;
+  };
   this.setEmpty = function (flag) {
     this.empty = flag;
   };
@@ -45,6 +49,7 @@ angular.module('starter.services', [])
     this.setEmail("");
     this.setPn("");
     this.setGender("");
+    this.setAddress('');
     this.setSocialbg('');
     this.setEmpty(true);
   };
@@ -189,6 +194,7 @@ angular.module('starter.services', [])
     setting_changepassword: config.env + 'setting_changepassword.php',
     setting_changemobile: config.env + 'setting_changemobile.php',
     setting_email: config.env + 'setting_email.php',
+    setting_person_info: config.env + 'setting_person_info.php',
     user_activity: config.env + 'user_activity.php',
     user_activity_star: config.env + 'user_activity_star.php',
     user_activity_recommend: config.env + 'user_activity_recommend.php',
@@ -229,6 +235,7 @@ angular.module('starter.services', [])
     socialcircle_detail: config.env + 'socialcircle_detail.php',
     socialcircle_detailcomment: config.env + 'socialcircle_detailcomment.php',
     socialcircle_my: config.env + 'socialcircle_my.php',
+    socialcircle_publish_msg: config.env + 'socialcircle_publish_msg.php',
     activity_home_hot: config.env + 'activity_home_hot.php',
     activity_home_recommend: config.env + 'activity_home_recommend.php',
     user_check_attend_activity: config.env + 'user_check_attend_activity.php'

@@ -23,7 +23,7 @@
           </p>
 
           <div class="social-imglist flex-box">
-            <img src="{{image.imgsrc}}" alt="" ng-repeat="image in socialcircle.images track by $index">
+            <img src="{{imgPrefix}}{{image.imgsrc}}" alt="" ng-repeat="image in socialimgList track by $index">
           </div>
 
           <div class="social-tools flex-box">
@@ -67,7 +67,7 @@
     <span class="reply-target">@小贝</span>
     <div class="input-wrapper flex-box">
       <textarea type="text" name="social-reply" ng-model="replyInfo.reply" placeholder="请输入回复"></textarea>
-      <img ng-src="img/social_camera_dark.png" alt="" class="custom-nav-button-img" />
+      <!--<img ng-src="img/social_camera_dark.png" alt="" class="custom-nav-button-img" />-->
     </div>
     <i class="icon icon-huifu" ng-click="submitReplyInDetail($event)"></i>
   </div>

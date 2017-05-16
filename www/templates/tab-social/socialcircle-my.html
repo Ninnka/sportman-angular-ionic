@@ -5,7 +5,38 @@
   </ion-nav-buttons>
 
   <ion-content>
-    <div>content</div>
+
+    <ul class="social-list">
+      <li class="social-item flex-box" ng-repeat="socialcircle in socialcircleList track by $index" ng-click="viewDetail($event, socialcircle.id)">
+        <!--<img ng-src="{{socialcircle.avatar}}" alt="" class="social-avatar">-->
+        <div class="social-date-wrap">
+          <p>{{socialcircle.timestamp | date : 'yyyy年'}}</p>
+          <p>{{socialcircle.timestamp | date : 'MM月'}}</p>
+          <p>{{socialcircle.timestamp | date : 'dd日'}}</p>
+        </div>
+        <div class="social-content-wrapper">
+          <div class="social-name-locate flex-box">
+            <span>{{socialcircle.uname}}</span>
+            <i class="icon icon-diqiu icon-with-text icon-tool">
+              <span>{{socialcircle.locate}}</span>
+            </i>
+          </div>
+
+          <!--<p class="social-publishtime">{{socialcircle.timestamp | date : 'HH:mm - yyyy年MM月dd日'}}</p>-->
+          <p class="social-publishtext">
+            {{socialcircle.publish}}
+          </p>
+
+          <div class="social-imglist flex-box">
+            <img ng-src="{{imgPrefix}}{{image.imgsrc}}" alt="" ng-repeat="image in socialcircle.images track by $index">
+
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <ion-infinite-scroll ng-if="loadMoreSymbol" on-infinite="loadMoreData()" distance="2%" immediate-check="false"></ion-infinite-scroll>
+
   </ion-content>
 
 </ion-view>

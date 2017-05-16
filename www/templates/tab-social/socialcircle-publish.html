@@ -5,8 +5,30 @@
   </ion-nav-buttons>
 
   <ion-content>
-    <div>
-      content
+    <div class="reply-shortcut-wrap">
+      <textarea class="" placeholder="说点什么吧..." ng-model="publishInfo.text"></textarea>
+      <div class="upload-img-wrap">
+        <label for="imginput" class="upload-img-main">
+          <span>点击右侧添加图片</span>
+          <span>+</span>
+        </label>
+        <input type="file" id="imginput" name="uploadFiles" accept="image/*" style="position: absolute; opacity: 0; width: 100%; top: 0; left: 0;">
+      </div>
+      <ul class="upload-img-list">
+        <li class="upload-img-list-item" ng-repeat="imageItem in publishInfo.imagesList track by $index">
+          <span>{{imageItem.name}}</span>
+          <span ng-click="deleteImageItem($index)">X</span>
+        </li>
+        <!--<li class="upload-img-list-item">
+          <span>680516629-5910272d77c30_articlex.png</span>
+          <span>X</span>
+        </li>-->
+      </ul>
+      
+      <div class="reply-operator flex-box">
+        <button class="button button-assertive" ng-click="resetPublishInfo()">重置</button>
+        <button class="button button-positive" ng-click="submitPublishMsg()">发送</button>
+      </div>
     </div>
   </ion-content>
 </ion-view>
