@@ -11,11 +11,25 @@
 
   <ion-content>
     <div class="person-info-wrap">
+      <div class="avatar-wrap">
+        <span class="avatar-title">头像</span>
+        <img ng-src="{{personInfo.avatar}}" alt="">
+        <input type="file" id="avatarinput" name="uploadFiles" accept="image/*" />
+      </div>
       <p class="person-info-title">性别</p>
       <ion-list class="padding-none">
         <ion-radio ng-model="personInfo.gender" ng-value="'m'">男</ion-radio>
         <ion-radio ng-model="personInfo.gender" ng-value="'fm'">女</ion-radio>
       </ion-list>
+      <label class="item item-input item-stacked-label" style="background-color: white;">
+        <span class="input-label">住址</span>
+        <input type="text" placeholder="住址" ng-model="personInfo.address" style="background-color: #FAFAFA; padding: 6px 4px;">
+      </label>
+      <div class="avatar-wrap" style="padding-top: 10px;padding-bottom: 10px;">
+        <span class="avatar-title">动友圈背景</span>
+        <img class="socialbg-img" ng-src="{{personInfo.socialbg}}" alt="">
+        <input type="file" id="soicalbginput" name="uploadFiles" accept="image/*" />
+      </div>
     </div>
 
     <button class="button button-block button-positive" ng-click="saveChange()">

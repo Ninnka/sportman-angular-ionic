@@ -238,7 +238,8 @@ angular.module('starter.services', [])
     socialcircle_publish_msg: config.env + 'socialcircle_publish_msg.php',
     activity_home_hot: config.env + 'activity_home_hot.php',
     activity_home_recommend: config.env + 'activity_home_recommend.php',
-    user_check_attend_activity: config.env + 'user_check_attend_activity.php'
+    user_check_attend_activity: config.env + 'user_check_attend_activity.php',
+    upload_img: config.env + 'upload_img.php'
   };
 }])
 

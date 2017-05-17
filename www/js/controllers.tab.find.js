@@ -43,15 +43,23 @@ angular.module('starter.controllers.tab.find', [])
     comment: ''
   };
 
+  $scope.pageNum = 0;
+  $scope.pageSize = 5;
+
   // 获取动态消息列表
   $scope.getSocialCircleList = function () {
     getData.post(api.socialcircle, {
-      id: UsrInfoLocal.id
+      id: UsrInfoLocal.id,
+      pageNum: $scope.pageNum,
+      pageSize: $scope.pageSize
     }).then(function resolve(res) {
         console.log('res.data:', res.data);
         if (res.data.resultStatus === 'success') {
           $scope.likeSocial = res.data.resultData.socialLike;
           $scope.socialcircleList = res.data.resultData.socialList;
+
+          $scope.pageNum = $scope.pageNum + res.data.resultData.totalSize;
+
           for(var i = 0; i < $scope.socialcircleList.length; i++) {
             var index = $scope.likeSocial.indexOf($scope.socialcircleList[i].id);
             if(index != -1) {
@@ -97,6 +105,7 @@ angular.module('starter.controllers.tab.find', [])
             if($scope.socialcircleList[i].id == id_socialcircle) {
               console.log('i', i + ' islike');
               $scope.socialcircleList[i].isLike = true;
+              $scope.socialcircleList[i].likecount = Number($scope.socialcircleList[i].likecount) + 1;
             }
           }
         }
@@ -115,6 +124,7 @@ angular.module('starter.controllers.tab.find', [])
           if($scope.socialcircleList[i].id == id_socialcircle) {
             console.log('i', i + ' islike');
             $scope.socialcircleList[i].isLike = false;
+            $scope.socialcircleList[i].likecount = Number($scope.socialcircleList[i].likecount) - 1;
           }
         }
       }, function reject (err) {
@@ -143,24 +153,62 @@ angular.module('starter.controllers.tab.find', [])
 
   // 下拉刷新
   $scope.refreshNewData = function () {
-    $scope.$broadcast('scroll.refreshComplete');
+      $scope.loadMoreSymbol = true;
+    $scope.pageNum = 0;
+    getData.post(api.socialcircle, {
+      id: UsrInfoLocal.id,
+      pageNum: $scope.pageNum,
+      pageSize: $scope.pageSize
+    }).then(function resolve(res) {
+        $scope.$broadcast('scroll.refreshComplete');
+        console.log('res.data:', res.data);
+        if (res.data.resultStatus === 'success') {
+          $scope.likeSocial = res.data.resultData.socialLike;
+          $scope.socialcircleList = res.data.resultData.socialList;
+
+          $scope.pageNum = $scope.pageNum + res.data.resultData.totalSize;
+
+          for(var i = 0; i < $scope.socialcircleList.length; i++) {
+            var index = $scope.likeSocial.indexOf($scope.socialcircleList[i].id);
+            if(index != -1) {
+              console.log('i', i + ' islike');
+              $scope.socialcircleList[i].isLike = true;
+            }
+          }
+        } else {
+          console.log('发生未知错误');
+        }
+      }, function reject(err) {
+        $scope.$broadcast('scroll.refreshComplete');
+        console.log('err:', err);
+      });
   };
 
   // 上拉加载
   $scope.loadMoreData = function () {
     getData.post(api.socialcircle, {
-      id: UsrInfoLocal.id
+      id: UsrInfoLocal.id,
+      pageNum: $scope.pageNum,
+      pageSize: $scope.pageSize
     }).then(function successCallback(res) {
         $scope.$broadcast('scroll.infiniteScrollComplete');
-        $scope.socialcircleList = $scope.socialcircleList.concat(res.data.resultData.socialList);
-        for(var i = 0; i < $scope.socialcircleList.length; i++) {
-          var index = $scope.likeSocial.indexOf($scope.socialcircleList[i].id);
-          if(index != -1) {
-            console.log('i', i + ' islike');
-            $scope.socialcircleList[i].isLike = true;
+        if(res.data.resultStatus == 'success') {
+          $scope.likeSocial = $scope.likeSocial.concat(res.data.resultData.socialLike);
+          $scope.socialcircleList = $scope.socialcircleList.concat(res.data.resultData.socialList);
+          for(var i = 0; i < $scope.socialcircleList.length; i++) {
+            var index = $scope.likeSocial.indexOf($scope.socialcircleList[i].id);
+            if(index != -1) {
+              console.log('i', i + ' islike');
+              $scope.socialcircleList[i].isLike = true;
+            }
           }
+          $scope.pageNum = $scope.pageNum + res.data.resultData.totalSize;
+        }else {
+          console.log('fail');
+          $scope.loadMoreSymbol = false;
         }
       }, function errorCallback(err) {
+        $scope.$broadcast('scroll.infiniteScrollComplete');
         console.log("err:", err);
       });
   };
@@ -200,6 +248,12 @@ angular.module('starter.controllers.tab.find', [])
       locate: '中国'
     }).then(function resolve(res) {
       console.log('submitReplyInShortcut res', res);
+      var id_socialcircle = $scope.currentReplyTarget.id;
+      for(var i = 0; i < $scope.socialcircleList.length; i++) {
+        if(id_socialcircle == $scope.socialcircleList[i].id) {
+          $scope.socialcircleList[i].commentcount = Number($scope.socialcircleList[i].commentcount) + 1;
+        }
+      }
       $scope.resetReplyInShortcut();
       $scope.closeShortcut();
     }, function reject(err) {
@@ -234,13 +288,13 @@ angular.module('starter.controllers.tab.find', [])
 
 }])
 
-.controller('SocialcircleDetailCtrl', ['$scope', '$stateParams', 'getData', 'api', '$timeout', 'UsrInfoLocal', function ($scope, $stateParams, getData, api, $timeout, UsrInfoLocal) {
+.controller('SocialcircleDetailCtrl', ['$scope', '$stateParams', 'getData', 'api', '$timeout', 'UsrInfoLocal', '$rootScope', function ($scope, $stateParams, getData, api, $timeout, UsrInfoLocal, $rootScope) {
 
 
   $scope.id_socialcircle = $stateParams.id_socialcircle;
 
-  $scope.pageNum = 1;
-  $scope.pageSize = 6;
+  $scope.pageNum = 0;
+  $scope.pageSize = 5;
 
   $scope.imgPrefix = api.sportman_pic_prefix;
 
@@ -256,6 +310,8 @@ angular.module('starter.controllers.tab.find', [])
     reply: ''
   };
 
+  $scope.loadMoreSymbol = true;
+
   // REVIEW:获取详细的动态消息
   $scope.getSocialMsg = function () {
     getData.post(api.socialcircle_detail, {
@@ -265,6 +321,7 @@ angular.module('starter.controllers.tab.find', [])
       console.log('getSocialMsg res', res);
       $scope.socialcircle = res.data.resultData.socialDetail;
       $scope.socialimgList = res.data.resultData.images;
+      $scope.pageNum = $scope.pageNum + res.data.resultData.totalSize;
     }, function reject(err) {
       console.log('getSocialMsg err', err);
     });
@@ -282,7 +339,7 @@ angular.module('starter.controllers.tab.find', [])
       console.log('getSocialComment res', res);
       if (res.data.resultStatus == 'success') {
         $scope.socialcomment = $scope.socialcomment.concat(res.data.resultData.comments);
-        $scope.pageNum = $scope.pageNum + 1;
+        $scope.pageNum = $scope.pageNum + res.data.resultData.totalSize;
       }
     }, function reject (err) {
       console.log('getSocialComment err', err);
@@ -316,7 +373,7 @@ angular.module('starter.controllers.tab.find', [])
         console.log('toggleLike add res', res);
         if(res.data.resultStatus == 'success') {
           $scope.socialcircle.isLike = true;
-          $scope.socialcircle.likecount = $scope.socialcircle.likecount + 1;
+          $scope.socialcircle.likecount = Number($scope.socialcircle.likecount) + 1;
         }
       }, function reject (err) {
         console.log('toggleLike add err', err);
@@ -329,7 +386,7 @@ angular.module('starter.controllers.tab.find', [])
         console.log('toggleLike remove res', res);
         if(res.data.resultStatus == 'success') {
           $scope.socialcircle.isLike = false;
-          $scope.socialcircle.likecount = $scope.socialcircle.likecount - 1;
+          $scope.socialcircle.likecount = Number($scope.socialcircle.likecount) - 1;
         }
       }, function reject (err) {
         console.log('toggleLike remove err', err);
@@ -350,7 +407,10 @@ angular.module('starter.controllers.tab.find', [])
     }).then(function resolve(res) {
       console.log('submitReplyInDetail res', res);
       if (res.data.resultStatus == 'success') {
+        $scope.socialcircle.commentcount = Number($scope.socialcircle.commentcount) + 1;
         $scope.replyInfo = '';
+        $scope.getSocialComment();
+        $scope.socialcomment = [];
       }
     }, function reject(err) {
       console.log('submitReplyInDetail err', err);
@@ -359,7 +419,15 @@ angular.module('starter.controllers.tab.find', [])
 
   // TODO:上拉加载更多评论
   $scope.loadMoreData = function () {
+    getData.post().then(function resolve (res) {
+      if(res.data.resultStatus == 'success') {
 
+      }else {
+
+      }
+    }, function reject (err) {
+
+    });
   };
 
 }])
@@ -405,7 +473,7 @@ angular.module('starter.controllers.tab.find', [])
 
 }])
 
-.controller('SocialcirclePublishCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', '$timeout', '$ionicPopup', function ($scope, getData, api, UsrInfoLocal, $timeout, $ionicPopup) {
+.controller('SocialcirclePublishCtrl', ['$scope', 'getData', 'api', 'UsrInfoLocal', '$timeout', '$ionicPopup', '$rootScope', function ($scope, getData, api, UsrInfoLocal, $timeout, $ionicPopup, $rootScope) {
 
   $scope.publishInfo = {
     imagesList: [],
@@ -424,23 +492,25 @@ angular.module('starter.controllers.tab.find', [])
       fd.append('id_user', UsrInfoLocal.id);
       fd.append('locate', '中国-广东-广州');
       fd.append('text', $scope.publishInfo.text);
-      for (var i = 0, file; file = $scope.publishInfo.imagesList[i]; i++) {
+      for (var i = 0, file; i < $scope.publishInfo.imagesList.length; i++) {
+        file = $scope.publishInfo.imagesList[i];
         (function (file) {
             fd.append('imgs[]',file);
         })(file);
       }
       $.ajax({
-        url: 'http://localhost/sportman/upload_image.php' ,
+        url: api.socialcircle_publish_msg,
         type: 'POST',
         data: fd,
+        dataType: 'json',
         contentType: false,
         processData: false,
         success: function (res) {
             console.log(res);
-            if(res.data.resultStatus == 'success') {
+            if(res.resultStatus == 'success') {
+              $rootScope.toBackView();
               $scope.showResult('上传成功');
               $scope.resetPublishInfo();
-              // TODO:返回上一页
             }else {
               $scope.showResult('上传失败');
             }
@@ -465,7 +535,6 @@ angular.module('starter.controllers.tab.find', [])
       $scope.publishInfo.imagesList.push(files[0]);
       console.log('$scope.publishInfo.imagesList', $scope.publishInfo.imagesList);
     }, 1);
-    // $scope.apply();
   });
 
   $scope.showResult = function (result) {

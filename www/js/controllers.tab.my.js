@@ -209,7 +209,7 @@ angular.module('starter.controllers.tab.my', [])
   }])
 
 // 用户详细页控制器
-.controller('usrDetailCtrl', ['$scope', 'UsrInfoLocal', 'getData', 'api', function ($scope, UsrInfoLocal, getData, api) {
+.controller('usrDetailCtrl', ['$scope', 'UsrInfoLocal', 'getData', 'api', '$rootScope', '$timeout', '$ionicPopup', function ($scope, UsrInfoLocal, getData, api, $rootScope, $timeout, $ionicPopup) {
 
   $scope.personInfo = {
     avatar: UsrInfoLocal.avatar,
@@ -223,7 +223,6 @@ angular.module('starter.controllers.tab.my', [])
 
   $scope.saveChange = function () {
     console.log('$scope.personInfo', $scope.personInfo);
-    // TODO:
     getData.post(api.setting_person_info, {
       id: UsrInfoLocal.id,
       gender: $scope.personInfo.gender,
@@ -233,10 +232,75 @@ angular.module('starter.controllers.tab.my', [])
       if (res.data.resultStatus == 'success') {
         UsrInfoLocal.gender = res.data.resultData.gender;
         UsrInfoLocal.address = res.data.resultData.address;
+        $rootScope.toBackView();
       }
     }, function reject(err) {
       console.log('saveChange err', err);
     });
+  };
+
+  $scope.uploadImg = function (files, type) {
+    var fd = new FormData();
+    console.log('uploadImg type', type);
+    fd.append('type', type);
+    fd.append('id_user', UsrInfoLocal.id);
+    for (var i = 0, file; i < files.length; i++) {
+      file = files[i];
+      (function (file) {
+          fd.append('imgs[]',file);
+      })(file);
+    }
+    $.ajax({
+      url: api.upload_img,
+      type: 'POST',
+      data: fd,
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+      success: function (res) {
+          console.log(res);
+          if(res.data.resultStatus == 'success') {
+            $scope.showResult('上传成功');
+            UsrInfoLocal[type] = res.data.resultData.ret[0].key;
+            $scope.personInfo[type] = res.data.resultData.ret[0].key;
+          }else {
+            $scope.showResult('上传失败');
+          }
+      },
+      error: function (err) {
+          $scope.showResult('网络出错');
+          console.log(err);
+      }
+    });
+  };
+
+  angular.element('#avatarinput').on("change", function (e) {
+    $timeout(function () {
+      var files = e.target.files || e.dataTransfer.files;
+      console.log('files', files);
+      var fileList = [];
+      fileList.push(files[0]);
+      console.log('fileList', fileList);
+      $scope.uploadImg(fileList, 'avatar');
+    }, 1);
+  });
+
+  angular.element('#soicalbginput').on("change", function (e) {
+    $timeout(function () {
+      var files = e.target.files || e.dataTransfer.files;
+      console.log('files', files);
+      var fileList = [];
+      fileList.push(files[0]);
+      $scope.uploadImg(fileList, 'socialbg');
+    }, 1);
+  });
+
+  $scope.showResult = function (result) {
+    var alertPopup = $ionicPopup.alert({
+      title: result,
+      template: ''
+    });
+    alertPopup.then(function (res) {});
   };
 
 }])
