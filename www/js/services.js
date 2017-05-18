@@ -175,14 +175,14 @@ angular.module('starter.services', [])
 
 .factory('config', function () {
   return {
-    // env: 'http://1.sportman.applinzi.com/'
-    env: 'http://localhost/sportman/'
+    env: 'http://3.sportman.applinzi.com/'
+    // env: 'http://localhost/sportman/'
   };
 })
 
 .factory('api', ['config', function (config) {
   return {
-    sportman_pic_prefix: 'http://ok7pzw2ak.bkt.clouddn.com/',
+    sportman_pic_prefix: 'http://sportman-img.stor.sinaapp.com/',
     activity_home: config.env + 'activity_home.php',
     activity_detail: config.env + 'activity_detail.php',
     stadium_home: config.env + 'stadium_home.php',

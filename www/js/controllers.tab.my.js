@@ -259,10 +259,10 @@ angular.module('starter.controllers.tab.my', [])
       processData: false,
       success: function (res) {
           console.log(res);
-          if(res.data.resultStatus == 'success') {
+          if(res.resultStatus == 'success') {
             $scope.showResult('上传成功');
-            UsrInfoLocal[type] = res.data.resultData.ret[0].key;
-            $scope.personInfo[type] = res.data.resultData.ret[0].key;
+            UsrInfoLocal[type] = api.sportman_pic_prefix + res.resultData.ret[0].key;
+            $scope.personInfo[type] = api.sportman_pic_prefix + res.resultData.ret[0].key;
           }else {
             $scope.showResult('上传失败');
           }
@@ -275,8 +275,11 @@ angular.module('starter.controllers.tab.my', [])
   };
 
   angular.element('#avatarinput').on("change", function (e) {
+    var files = e.target.files || e.dataTransfer.files;
+    if(files.length == 0) {
+      return;
+    }
     $timeout(function () {
-      var files = e.target.files || e.dataTransfer.files;
       console.log('files', files);
       var fileList = [];
       fileList.push(files[0]);
@@ -286,6 +289,10 @@ angular.module('starter.controllers.tab.my', [])
   });
 
   angular.element('#soicalbginput').on("change", function (e) {
+    var files = e.target.files || e.dataTransfer.files;
+    if(files.length == 0) {
+      return;
+    }
     $timeout(function () {
       var files = e.target.files || e.dataTransfer.files;
       console.log('files', files);
