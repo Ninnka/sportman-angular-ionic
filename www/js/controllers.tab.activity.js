@@ -198,7 +198,7 @@ angular.module('starter.controllers.tab.activity', [])
 }])
 
 // 主页控制器
-.controller('ActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', '$ionicSlideBoxDelegate', 'stateGo', 'UsrInfoLocal', '$ionicScrollDelegate', function($scope, $rootScope, getData, api, $ionicSlideBoxDelegate, stateGo, UsrInfoLocal, $ionicScrollDelegate) {
+.controller('ActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', '$ionicSlideBoxDelegate', 'stateGo', 'UsrInfoLocal', '$ionicScrollDelegate', '$ionicPopup', function($scope, $rootScope, getData, api, $ionicSlideBoxDelegate, stateGo, UsrInfoLocal, $ionicScrollDelegate, $ionicPopup) {
 
   $scope.firstEnter = true;
   $scope.activityList = [];
@@ -237,10 +237,15 @@ angular.module('starter.controllers.tab.activity', [])
       $scope.hasFirstLoad = true;
       $scope.getDataPromise
         .then(function successCallback(res) {
-          $scope.bannerList = res.data.resultData.bannerList;
-          $scope.activityList = $scope.activityList.concat(res.data.resultData.activityList);
-          $ionicSlideBoxDelegate.update();
+          if (res.data.resultStatus == 'success') {
+            $scope.bannerList = res.data.resultData.bannerList;
+            $scope.activityList = $scope.activityList.concat(res.data.resultData.activityList);
+            $ionicSlideBoxDelegate.update();
+          } else {
+            $scope.showResult('获取失败');
+          }
         }, function errorCallback(err) {
+          $scope.showResult('网络出错');
           console.log("err:");
           console.log(err);
         });
@@ -266,7 +271,20 @@ angular.module('starter.controllers.tab.activity', [])
   };
 
   $scope.refreshNewData = function() {
-    $scope.$broadcast('scroll.refreshComplete');
+    getData.get(api.activity_home).then(function(res) {
+      if (res.data.resultStatus == 'success') {
+        $scope.bannerList = res.data.resultData.bannerList;
+        $scope.activityList = res.data.resultData.activityList;
+        $ionicSlideBoxDelegate.update();
+      } else {
+        $scope.showResult('获取失败');
+      }
+      $scope.$broadcast('scroll.refreshComplete');
+    }, function reject(err) {
+      $scope.$broadcast('scroll.refreshComplete');
+      $scope.showResult('网络出错');
+    });
+
   };
 
   $scope.viewHot = function() {
@@ -279,6 +297,13 @@ angular.module('starter.controllers.tab.activity', [])
     stateGo.goToState('activity_recommend');
   };
 
+  $scope.showResult = function(result) {
+    var alertPopup = $ionicPopup.alert({
+      title: result,
+      template: ''
+    });
+    alertPopup.then(function(res) {});
+  };
 
 }])
 
