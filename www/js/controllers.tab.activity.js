@@ -283,7 +283,7 @@ angular.module('starter.controllers.tab.activity', [])
 }])
 
 // 主页商品详细页面控制器
-.controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'stateGo', 'api', 'UsrInfoLocal', '$ionicLoading', function($scope, $rootScope, $stateParams, getData, stateGo, api, UsrInfoLocal, $ionicLoading) {
+.controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'stateGo', 'api', 'UsrInfoLocal', '$ionicLoading', '$ionicPopup', function($scope, $rootScope, $stateParams, getData, stateGo, api, UsrInfoLocal, $ionicLoading, $ionicPopup) {
 
   $scope.viewTitle = "活动详细";
   $scope.id_activity = $stateParams.id_activity;
@@ -418,6 +418,14 @@ angular.module('starter.controllers.tab.activity', [])
       type: 'activity',
       id: $scope.activity.id
     });
+  };
+
+  $scope.showResult = function(result) {
+    var alertPopup = $ionicPopup.alert({
+      title: result,
+      template: ''
+    });
+    alertPopup.then(function(res) {});
   };
 
 }])
