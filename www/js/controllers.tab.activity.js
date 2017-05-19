@@ -1,21 +1,21 @@
 angular.module('starter.controllers.tab.activity', [])
 
-.controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', '$cordovaBarcodeScanner', '$document', '$window', '$cordovaGeolocation', function ($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher, $cordovaBarcodeScanner, $document, $window, $cordovaGeolocation) {
+.controller('AppCtrl', ['$scope', '$rootScope', '$state', 'SignInOrUpFac', 'ls', '$ionicHistory', 'UsrInfoLocal', 'Logout', '$ionicViewSwitcher', '$cordovaBarcodeScanner', '$document', '$window', '$cordovaGeolocation', function($scope, $rootScope, $state, SignInOrUpFac, ls, $ionicHistory, UsrInfoLocal, Logout, $ionicViewSwitcher, $cordovaBarcodeScanner, $document, $window, $cordovaGeolocation) {
 
   // 监听地理位置
-  $scope.watchPosition = function () {
+  $scope.watchPosition = function() {
     var posOptions = {
       timeout: 10000,
       enableHighAccuracy: false
     };
     $cordovaGeolocation
       .getCurrentPosition(posOptions)
-      .then(function (position) {
+      .then(function(position) {
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
         alert("lat: " + lat);
         alert("long: " + long);
-      }, function (err) {
+      }, function(err) {
         // error
         console.log("err:", err);
       });
@@ -52,7 +52,7 @@ angular.module('starter.controllers.tab.activity', [])
   $scope.watchPosition();
 
   // 打开电话应用
-  $scope.openTel = function () {
+  $scope.openTel = function() {
 
   };
 
@@ -61,7 +61,7 @@ angular.module('starter.controllers.tab.activity', [])
   var html = $document.find("html");
   html[0].style["font-size"] = winX / 640 * 100 + "px";
 
-  $window.onresize = function () {
+  $window.onresize = function() {
     var winX = $document[0].body.clientWidth;
     var html = $document.find("html");
     html[0].style["font-size"] = winX / 640 * 100 + "px";
@@ -71,15 +71,15 @@ angular.module('starter.controllers.tab.activity', [])
   $scope.isAutoLoading = false;
 
   // 打开定位
-  $rootScope.openLocate = function () {
+  $rootScope.openLocate = function() {
     $state.go("city-selection");
     $rootScope.inAnimation();
   };
 
   // 打开相机扫码
-  $rootScope.openScanCamara = function () {
+  $rootScope.openScanCamara = function() {
     $cordovaBarcodeScanner.scan()
-      .then(function (barcodeData) {
+      .then(function(barcodeData) {
         // Success! Barcode data is here
         // return info:
         // 1.text
@@ -88,21 +88,21 @@ angular.module('starter.controllers.tab.activity', [])
         for (var key in barcodeData) {
           alert("key: " + key + "  value: " + barcodeData[key]);
         }
-      }, function (error) {
+      }, function(error) {
         // An error occurred
         alert(error);
       });
   };
 
-  $rootScope.pay = function () {
+  $rootScope.pay = function() {
     console.log("pay");
   };
 
-  $rootScope.clearHistory = function () {
+  $rootScope.clearHistory = function() {
     $ionicHistory.clearHistory();
   };
 
-  $rootScope.checkSignSymbolAndState = function (targetState) {
+  $rootScope.checkSignSymbolAndState = function(targetState) {
     // $state.go(targetState);
     // $rootScope.inAnimation();
     if ($rootScope.globalSignSymbol === true) {
@@ -113,15 +113,15 @@ angular.module('starter.controllers.tab.activity', [])
     }
   };
 
-  $rootScope.inAnimation = function () {
+  $rootScope.inAnimation = function() {
     $ionicViewSwitcher.nextDirection("forward");
   };
 
-  $rootScope.outAnimation = function () {
+  $rootScope.outAnimation = function() {
     $ionicViewSwitcher.nextDirection("back");
   };
 
-  $rootScope.toBackView = function (target) {
+  $rootScope.toBackView = function(target) {
     $rootScope.outAnimation();
     var target = target ? target : {};
     var step = target.step ? target.step : -1;
@@ -137,7 +137,7 @@ angular.module('starter.controllers.tab.activity', [])
     content: false
   };
 
-  $rootScope.logout = function () {
+  $rootScope.logout = function() {
     Logout.logoutCurrentAccount();
     $rootScope.globalSignSymbol = false;
     $rootScope.$emit('logout-success');
@@ -198,7 +198,7 @@ angular.module('starter.controllers.tab.activity', [])
 }])
 
 // 主页控制器
-.controller('ActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', '$ionicSlideBoxDelegate', 'stateGo', 'UsrInfoLocal', '$ionicScrollDelegate', function ($scope, $rootScope, getData, api, $ionicSlideBoxDelegate, stateGo, UsrInfoLocal, $ionicScrollDelegate) {
+.controller('ActivityCtrl', ['$scope', '$rootScope', 'getData', 'api', '$ionicSlideBoxDelegate', 'stateGo', 'UsrInfoLocal', '$ionicScrollDelegate', function($scope, $rootScope, getData, api, $ionicSlideBoxDelegate, stateGo, UsrInfoLocal, $ionicScrollDelegate) {
 
   $scope.firstEnter = true;
   $scope.activityList = [];
@@ -209,12 +209,12 @@ angular.module('starter.controllers.tab.activity', [])
 
   var scroller = $ionicScrollDelegate.$getByHandle('activity_home-scroller');
 
-  $scope.moreDataCanbeLoaded = function () {
+  $scope.moreDataCanbeLoaded = function() {
     // todo
     return true;
   };
 
-  $scope.$on("$ionicView.enter", function () {
+  $scope.$on("$ionicView.enter", function() {
     $rootScope.clearHistory();
     if (!$scope.firstEnter) {
       $ionicSlideBoxDelegate.start();
@@ -223,7 +223,7 @@ angular.module('starter.controllers.tab.activity', [])
 
   $scope.getDataPromise = '';
 
-  $scope.getActivityData = function () {
+  $scope.getActivityData = function() {
     $scope.getDataPromise = getData.get(api.activity_home);
   };
   if (!$scope.hasFirstLoad) {
@@ -232,7 +232,7 @@ angular.module('starter.controllers.tab.activity', [])
 
   $scope.firstEnter = false;
 
-  $scope.$on('$ionicView.afterEnter', function () {
+  $scope.$on('$ionicView.afterEnter', function() {
     if (!$scope.hasFirstLoad) {
       $scope.hasFirstLoad = true;
       $scope.getDataPromise
@@ -247,14 +247,14 @@ angular.module('starter.controllers.tab.activity', [])
     }
   });
 
-  $scope.toDetail = function (id_activity) {
+  $scope.toDetail = function(id_activity) {
     stateGo.goToState('detail_activity', {
       type: "activity",
       id_activity: id_activity
     });
   };
 
-  $scope.loadMoreData = function () {
+  $scope.loadMoreData = function() {
     getData.get(api.activity_home)
       .then(function successCallback(res) {
         $scope.activityList = $scope.activityList.concat(res.data.resultData.activityList);
@@ -265,16 +265,16 @@ angular.module('starter.controllers.tab.activity', [])
       });
   };
 
-  $scope.refreshNewData = function () {
+  $scope.refreshNewData = function() {
     $scope.$broadcast('scroll.refreshComplete');
   };
 
-  $scope.viewHot = function () {
+  $scope.viewHot = function() {
     console.log('viewHot');
     stateGo.goToState('activity_hot');
   };
 
-  $scope.viewRecommend = function () {
+  $scope.viewRecommend = function() {
     console.log('viewRecommend');
     stateGo.goToState('activity_recommend');
   };
@@ -283,7 +283,7 @@ angular.module('starter.controllers.tab.activity', [])
 }])
 
 // 主页商品详细页面控制器
-.controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'stateGo', 'api', 'UsrInfoLocal', '$ionicLoading',function ($scope, $rootScope, $stateParams, getData, stateGo, api, UsrInfoLocal, $ionicLoading) {
+.controller('DetailActivityCtrl', ['$scope', '$rootScope', '$stateParams', 'getData', 'stateGo', 'api', 'UsrInfoLocal', '$ionicLoading', function($scope, $rootScope, $stateParams, getData, stateGo, api, UsrInfoLocal, $ionicLoading) {
 
   $scope.viewTitle = "活动详细";
   $scope.id_activity = $stateParams.id_activity;
@@ -300,7 +300,7 @@ angular.module('starter.controllers.tab.activity', [])
     maxWidth: 200,
     showDelay: 0
   });
-  $scope.getActivityInfo = function () {
+  $scope.getActivityInfo = function() {
     getData.post(api.activity_detail, {
         id: UsrInfoLocal.id,
         id_activity: $scope.id_activity
@@ -318,23 +318,23 @@ angular.module('starter.controllers.tab.activity', [])
   };
   $scope.getActivityInfo();
 
-  $scope.checkIsAttend = function () {
+  $scope.checkIsAttend = function() {
     getData.post(api.user_check_attend_activity, {
       id: UsrInfoLocal.id,
       id_activity: $scope.id_activity
-    }).then(function resolve (res) {
+    }).then(function resolve(res) {
       console.log('checkIsAttend res', res);
       $scope.isAttend = !!res.data.resultData;
-    }, function reject (err) {
+    }, function reject(err) {
       console.log('checkIsAttend err', err);
     });
   };
-  $scope.$on('$ionicView.beforeEnter', function () {
+  $scope.$on('$ionicView.beforeEnter', function() {
     $scope.checkIsAttend();
   });
 
   // 参加活动
-  $scope.attendActivity = function () {
+  $scope.attendActivity = function() {
     stateGo.goToState('registration-instruction', {
       id_activity: $scope.id_activity,
       type: $scope.type,
@@ -343,20 +343,27 @@ angular.module('starter.controllers.tab.activity', [])
   };
 
   // 退出活动
-  $scope.exitActivity = function () {
+  $scope.exitActivity = function() {
     // TODOS:
     getData.post(api.activity_deletepayment, {
       id: UsrInfoLocal.id,
       id_activity: $scope.id_activity
-    }).then(function resolve (res) {
+    }).then(function resolve(res) {
+      if (res.data.resultStatus == 'success') {
+        $scope.showResult('退出成功');
+        $scope.isAttend = false;
+      } else {
+        $scope.showResult('退出失败');
+      }
       console.log('exitActivity res', res);
-    }, function reject (err) {
+    }, function reject(err) {
+      $scope.showResult('网络出错');
       console.log('exitActivity err', err);
     });
   };
 
   // 添加或删除点赞
-  $scope.addStar = function () {
+  $scope.addStar = function() {
     var starActionApi = '';
     if (!$scope.activity.stared) {
       starActionApi = api.activity_addstar;
@@ -381,7 +388,7 @@ angular.module('starter.controllers.tab.activity', [])
   };
 
   // 添加推荐
-  $scope.addRecommend = function () {
+  $scope.addRecommend = function() {
     var recommendActionApi = '';
     if (!$scope.activity.recommended) {
       recommendActionApi = api.activity_addrecommend;
@@ -406,7 +413,7 @@ angular.module('starter.controllers.tab.activity', [])
   };
 
   // 查看评论
-  $scope.viewReview = function () {
+  $scope.viewReview = function() {
     stateGo.goToState('reviews', {
       type: 'activity',
       id: $scope.activity.id
@@ -415,12 +422,12 @@ angular.module('starter.controllers.tab.activity', [])
 
 }])
 
-.controller('ActivityHotCtrl', ['$scope', 'getData', 'stateGo', 'api', function ($scope, getData, stateGo, api) {
+.controller('ActivityHotCtrl', ['$scope', 'getData', 'stateGo', 'api', function($scope, getData, stateGo, api) {
   $scope.backState = '';
 
   $scope.activityList = [];
 
-  $scope.getHotList = function () {
+  $scope.getHotList = function() {
     getData.get(api.activity_home_hot).then(function resolve(res) {
       console.log('getHotList res', res);
       $scope.activityList = res.data.resultData;
@@ -430,7 +437,7 @@ angular.module('starter.controllers.tab.activity', [])
   };
   $scope.getHotList();
 
-  $scope.toDetail = function (id_activity) {
+  $scope.toDetail = function(id_activity) {
     stateGo.goToState('detail_activity', {
       type: "activity",
       id_activity: id_activity
@@ -438,12 +445,12 @@ angular.module('starter.controllers.tab.activity', [])
   };
 }])
 
-.controller('ActivityRecommendCtrl', ['$scope', 'getData', 'stateGo', 'api', function ($scope, getData, stateGo, api) {
+.controller('ActivityRecommendCtrl', ['$scope', 'getData', 'stateGo', 'api', function($scope, getData, stateGo, api) {
   $scope.backState = '';
 
   $scope.activityList = [];
 
-  $scope.getRecommendList = function () {
+  $scope.getRecommendList = function() {
     getData.get(api.activity_home_recommend).then(function resolve(res) {
       console.log('getRecommendList res', res);
       $scope.activityList = res.data.resultData;
@@ -453,16 +460,16 @@ angular.module('starter.controllers.tab.activity', [])
   };
   $scope.getRecommendList();
 
-  $scope.toDetail = function (id_activity) {
+  $scope.toDetail = function(id_activity) {
     stateGo.goToState('detail_activity', {
       type: "activity",
       id_activity: id_activity
     });
   };
-}]) 
+}])
 
 // 报名参加活动
-.controller('RegistrationInstructionCtrl', ['$scope', '$stateParams', 'stateGo', function ($scope, $stateParams, stateGo) {
+.controller('RegistrationInstructionCtrl', ['$scope', '$stateParams', 'stateGo', function($scope, $stateParams, stateGo) {
 
   $scope.id_activity = $stateParams.id_activity;
   $scope.type = $stateParams.type;
@@ -470,7 +477,7 @@ angular.module('starter.controllers.tab.activity', [])
 
   $scope.isAgree = false;
 
-  $scope.agreeTreaty = function () {
+  $scope.agreeTreaty = function() {
     // todo
     if ($scope.isAgree) {
       stateGo.goToState("registration-information", {
@@ -484,7 +491,7 @@ angular.module('starter.controllers.tab.activity', [])
   };
 }])
 
-.controller('RegistrationInformationCtrl', ['$scope', '$stateParams', 'getData', 'stateGo', 'api', 'UsrInfoLocal', '$ionicPopup', '$ionicLoading',function ($scope, $stateParams, getData, stateGo, api, UsrInfoLocal, $ionicPopup, $ionicLoading) {
+.controller('RegistrationInformationCtrl', ['$scope', '$stateParams', 'getData', 'stateGo', 'api', 'UsrInfoLocal', '$ionicPopup', '$ionicLoading', function($scope, $stateParams, getData, stateGo, api, UsrInfoLocal, $ionicPopup, $ionicLoading) {
 
   $scope.id_activity = $stateParams.id_activity;
   $scope.type = $stateParams.type;
@@ -496,24 +503,24 @@ angular.module('starter.controllers.tab.activity', [])
     tel: ''
   };
 
-  $scope.checkInputInfo = function () {
+  $scope.checkInputInfo = function() {
     var telReg = /^1[3|4|5|7|8][0-9]{9}$/;
     var icodeReg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
     var nameReg = /^[u4e00-u9fa5·0-9A-z]+$/;
     var resbol = true;
-    if(!telReg.test($scope.userInputInfo.tel)) {
+    if (!telReg.test($scope.userInputInfo.tel)) {
       resbol = false;
     }
-    if(!icodeReg.test($scope.userInputInfo.identifyCode)) {
+    if (!icodeReg.test($scope.userInputInfo.identifyCode)) {
       resbol = false;
     }
-    if(!nameReg.test($scope.userInputInfo.name)) {
+    if (!nameReg.test($scope.userInputInfo.name)) {
       resbol = false;
     }
     return resbol;
   };
 
-  $scope.submitInformation = function () {
+  $scope.submitInformation = function() {
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -522,7 +529,7 @@ angular.module('starter.controllers.tab.activity', [])
       showDelay: 0
     });
     var isValid = $scope.checkInputInfo();
-    if(!isValid) {
+    if (!isValid) {
       $ionicLoading.hide();
       $scope.showResult('信息不合法');
       return;
@@ -533,7 +540,7 @@ angular.module('starter.controllers.tab.activity', [])
       id_activity: $scope.id_activity
     }).then(function resolve(res) {
       $ionicLoading.hide();
-      if(res.data.resultStatus == 'success') {
+      if (res.data.resultStatus == 'success') {
         stateGo.goToState("registration-complete", {
           info: {
             id_payment: res.data.resultData.id_payment,
@@ -542,27 +549,27 @@ angular.module('starter.controllers.tab.activity', [])
             activity: $scope.activity
           }
         });
-      }else {
+      } else {
         $ionicLoading.hide();
         $scope.showResult('预定失败,' + res.data.resultData);
       }
-    }, function reject (err) {
+    }, function reject(err) {
       $scope.showResult('网络出错，请稍后重试');
       console.log('submitInformation err', err);
     });
   };
 
-  $scope.showResult = function (result) {
+  $scope.showResult = function(result) {
     var alertPopup = $ionicPopup.alert({
       title: result,
       template: ''
     });
-    alertPopup.then(function (res) {});
+    alertPopup.then(function(res) {});
   };
 }])
 
-.controller('RegistrationCompleteCtrl', ['$scope', '$rootScope', '$stateParams', 'stateGo', 'getData', 'api', function ($scope, $rootScope, $stateParams, stateGo, getData, api) {
-  $scope.$on("$ionicView.enter", function () {
+.controller('RegistrationCompleteCtrl', ['$scope', '$rootScope', '$stateParams', 'stateGo', 'getData', 'api', function($scope, $rootScope, $stateParams, stateGo, getData, api) {
+  $scope.$on("$ionicView.enter", function() {
     $rootScope.clearHistory();
   });
 
@@ -573,35 +580,35 @@ angular.module('starter.controllers.tab.activity', [])
 
   $scope.showNotification = true;
 
-  $scope.closeNotification = function () {
+  $scope.closeNotification = function() {
     $scope.showNotification = !$scope.showNotification;
   };
 
   $scope.paymentItemInfo = {};
-  $scope.getPaymentItemInfo = function () {
+  $scope.getPaymentItemInfo = function() {
     getData.post(api.activity_getpayment, {
       id: $scope.payInfo.id_payment
-    }).then(function resolve (res) {
+    }).then(function resolve(res) {
       console.log('r c getPaymentItemInfo res', res);
-      if(res.data.resultStatus == 'success') {
+      if (res.data.resultStatus == 'success') {
         $scope.paymentItemInfo = res.data.resultData;
-      }else {
+      } else {
 
       }
-    }, function reject (err) {
+    }, function reject(err) {
       console.log('r c getPaymentItemInfo err', err);
     });
   };
   $scope.getPaymentItemInfo();
 
-  $scope.complete = function () {
+  $scope.complete = function() {
     stateGo.goToState('detail_activity', {
       id_activity: $scope.payInfo.id_activity,
       type: $scope.payInfo.type
     }, "back");
   };
 
-  $scope.toPay = function () {
+  $scope.toPay = function() {
     stateGo.goToState("prepare-pay", {
       info: {
         type: 'activity',
